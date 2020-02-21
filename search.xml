@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>MarkDown常用语法</title>
+    <url>/2020/02/20/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<p>一、标题</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h3 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h3><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p>【最多六级】</p>
+<p>二、字体<br><strong>加粗文字</strong><br><em>倾斜文字</em><br><strong><em>加粗倾斜文字</em></strong><br><del>删除线文字</del></p>
+<p>三、引用</p>
+<blockquote>
+<p>引用</p>
+<blockquote>
+<p>引用</p>
+<blockquote>
+<p>引用</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>四、分割线</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<p>五、图片</p>
+<p>![图片alt](图片地址 ‘’图片title’’)</p>
+<p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg" alt="blockchain" title="区块链"></p>
+<p>六、超链接</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>运维思考</title>
+    <url>/2020/02/20/opsthink/</url>
+    <content><![CDATA[<h1 id="运维管理思考"><a href="#运维管理思考" class="headerlink" title="运维管理思考"></a>运维管理思考</h1><h2 id="技术管理"><a href="#技术管理" class="headerlink" title="技术管理"></a>技术管理</h2>]]></content>
+  </entry>
+  <entry>
+    <title>AboutMe</title>
+    <url>/2020/02/17/AboutMe/</url>
+    <content><![CDATA[<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2>]]></content>
+  </entry>
+</search>
