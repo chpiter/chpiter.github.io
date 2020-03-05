@@ -66,9 +66,16 @@
     <link href="https://chpiter.github.io/2020/02/21/SRE%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     <id>https://chpiter.github.io/2020/02/21/SRE%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</id>
     <published>2020-02-21T10:34:30.000Z</published>
-    <updated>2020-02-21T10:34:30.392Z</updated>
+    <updated>2020-03-05T13:40:03.414Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、方法论"><a href="#一、方法论" class="headerlink" title="一、方法论"></a>一、方法论</h1><h2 id="确保长期关注运维研发工作"><a href="#确保长期关注运维研发工作" class="headerlink" title="确保长期关注运维研发工作"></a>确保长期关注运维研发工作</h2><ul><li>最多 50% 的运维值班内容，最少 50% 的运维开发内容</li><li>控制处理紧急事件的数量，运维人员有充分时间处理故障、恢复服务以及事后进行复盘报告</li><li>事前报警，但是事后总结更加重要：复盘故障发生、报警和处理的全过程，挖掘故障发生的根本原因，提供相应的预防或解决方案。对事不对人。</li></ul>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;一、方法论&quot;&gt;&lt;a href=&quot;#一、方法论&quot; class=&quot;headerlink&quot; title=&quot;一、方法论&quot;&gt;&lt;/a&gt;一、方法论&lt;/h1&gt;&lt;h2 id=&quot;确保长期关注运维研发工作&quot;&gt;&lt;a href=&quot;#确保长期关注运维研发工作&quot; class=&quot;headerli
+      
     
     </summary>
     
