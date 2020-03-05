@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://chpiter.github.io/"/>
+  <link href="https://chpiter.net/"/>
   <updated>2020-02-22T12:26:00.116Z</updated>
-  <id>https://chpiter.github.io/</id>
+  <id>https://chpiter.net/</id>
   
   <author>
     <name>ChpiTer</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>K8s学习笔记</title>
-    <link href="https://chpiter.github.io/2020/02/22/K8s%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://chpiter.github.io/2020/02/22/K8s%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://chpiter.net/2020/02/22/K8s%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://chpiter.net/2020/02/22/K8s%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2020-02-22T12:26:00.000Z</published>
     <updated>2020-02-22T12:26:00.116Z</updated>
     
@@ -33,8 +33,8 @@
   
   <entry>
     <title>MongoDB学习笔记</title>
-    <link href="https://chpiter.github.io/2020/02/22/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://chpiter.github.io/2020/02/22/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://chpiter.net/2020/02/22/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://chpiter.net/2020/02/22/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2020-02-22T12:25:39.000Z</published>
     <updated>2020-02-22T12:25:39.425Z</updated>
     
@@ -48,8 +48,8 @@
   
   <entry>
     <title>纪念我的父亲</title>
-    <link href="https://chpiter.github.io/2020/02/22/%E7%BA%AA%E5%BF%B5%E6%88%91%E7%9A%84%E7%88%B6%E4%BA%B2/"/>
-    <id>https://chpiter.github.io/2020/02/22/%E7%BA%AA%E5%BF%B5%E6%88%91%E7%9A%84%E7%88%B6%E4%BA%B2/</id>
+    <link href="https://chpiter.net/2020/02/22/%E7%BA%AA%E5%BF%B5%E6%88%91%E7%9A%84%E7%88%B6%E4%BA%B2/"/>
+    <id>https://chpiter.net/2020/02/22/%E7%BA%AA%E5%BF%B5%E6%88%91%E7%9A%84%E7%88%B6%E4%BA%B2/</id>
     <published>2020-02-22T12:22:02.000Z</published>
     <updated>2020-02-22T12:22:02.974Z</updated>
     
@@ -63,8 +63,8 @@
   
   <entry>
     <title>SRE读书笔记</title>
-    <link href="https://chpiter.github.io/2020/02/21/SRE%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    <id>https://chpiter.github.io/2020/02/21/SRE%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://chpiter.net/2020/02/21/SRE%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>https://chpiter.net/2020/02/21/SRE%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</id>
     <published>2020-02-21T10:34:30.000Z</published>
     <updated>2020-03-05T13:40:03.414Z</updated>
     
@@ -85,8 +85,8 @@
   
   <entry>
     <title>MarkDown常用语法</title>
-    <link href="https://chpiter.github.io/2020/02/20/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/"/>
-    <id>https://chpiter.github.io/2020/02/20/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</id>
+    <link href="https://chpiter.net/2020/02/20/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/"/>
+    <id>https://chpiter.net/2020/02/20/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</id>
     <published>2020-02-20T06:38:04.000Z</published>
     <updated>2020-02-21T10:26:12.622Z</updated>
     
@@ -107,8 +107,8 @@
   
   <entry>
     <title>运维思考</title>
-    <link href="https://chpiter.github.io/2020/02/20/opsthink/"/>
-    <id>https://chpiter.github.io/2020/02/20/opsthink/</id>
+    <link href="https://chpiter.net/2020/02/20/opsthink/"/>
+    <id>https://chpiter.net/2020/02/20/opsthink/</id>
     <published>2020-02-20T05:47:08.000Z</published>
     <updated>2020-02-20T23:53:50.488Z</updated>
     
@@ -129,8 +129,8 @@
   
   <entry>
     <title>AboutMe</title>
-    <link href="https://chpiter.github.io/2020/02/17/AboutMe/"/>
-    <id>https://chpiter.github.io/2020/02/17/AboutMe/</id>
+    <link href="https://chpiter.net/2020/02/17/AboutMe/"/>
+    <id>https://chpiter.net/2020/02/17/AboutMe/</id>
     <published>2020-02-17T13:06:08.000Z</published>
     <updated>2020-02-17T13:11:54.999Z</updated>
     
