@@ -29,6 +29,10 @@
 <li>紧急报警（alert） ：业务正常运行受到影响，需要紧急处理</li>
 <li>工单（ticket）：业务不受影响，可以延期处理</li>
 <li>日志（logging）：记录应用运行日志，用于调试和事后分析<h2 id="应急事件处理"><a href="#应急事件处理" class="headerlink" title="应急事件处理"></a>应急事件处理</h2></li>
+<li>MTTF（平均失败时间）</li>
+<li>MTTR（平均恢复时间）</li>
+<li>自动恢复系统，而非需要人工干预，可减少恢复时间</li>
+<li>运维手册（playbook）</li>
 </ul>
 ]]></content>
   </entry>
