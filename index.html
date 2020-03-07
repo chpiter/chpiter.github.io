@@ -105,18 +105,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -169,18 +157,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -233,18 +209,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -297,18 +261,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -361,88 +313,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="一、方法论"><a href="#一、方法论" class="headerlink" title="一、方法论"></a>一、方法论</h1><h2 id="确保长期关注运维研发工作"><a href="#确保长期关注运维研发工作" class="headerlink" title="确保长期关注运维研发工作"></a>确保长期关注运维研发工作</h2><ul>
-<li>最多 50% 的运维值班内容，最少 50% 的运维开发内容</li>
-<li>控制处理紧急事件的数量，运维人员有充分时间处理故障、恢复服务以及事后进行复盘报告</li>
-<li>事前报警，但是事后总结更加重要：复盘故障发生、报警和处理的全过程，挖掘故障发生的根本原因，提供相应的预防或解决方案，对事不对人<h2 id="产品稳定性和迭代速度之间的矛盾"><a href="#产品稳定性和迭代速度之间的矛盾" class="headerlink" title="产品稳定性和迭代速度之间的矛盾"></a>产品稳定性和迭代速度之间的矛盾</h2></li>
-<li>可靠性目标 SLO</li>
-<li>错误预算</li>
-<li>利用错误预算，加快产品迭代速度，同时保证服务质量</li>
-<li>最终目标不是“零事故”，而是在稳定和迭代之间寻求平衡，开发和运维之间协作创新<h2 id="监控系统（SRE方向来看，实际是个庞大而独立的系统，单独写一篇文章来描述）"><a href="#监控系统（SRE方向来看，实际是个庞大而独立的系统，单独写一篇文章来描述）" class="headerlink" title="监控系统（SRE方向来看，实际是个庞大而独立的系统，单独写一篇文章来描述）"></a>监控系统（SRE方向来看，实际是个庞大而独立的系统，单独写一篇文章来描述）</h2></li>
-<li>紧急报警（alert） ：业务正常运行受到影响，需要紧急处理</li>
-<li>工单（ticket）：业务不受影响，可以延期处理</li>
-<li>日志（logging）：记录应用运行日志，用于调试和事后分析<h2 id="应急事件处理"><a href="#应急事件处理" class="headerlink" title="应急事件处理"></a>应急事件处理</h2></li>
-<li>MTTF（平均失败时间）</li>
-<li>MTTR（平均恢复时间）</li>
-<li>自动恢复系统，而非需要人工干预，可减少恢复时间</li>
-<li>运维手册（playbook）<h2 id="变更管理"><a href="#变更管理" class="headerlink" title="变更管理"></a>变更管理</h2></li>
-<li>渐进式发布机制（<a href="https://www.cnblogs.com/nulige/articles/10929182.html" target="_blank" rel="noopener">几种常见的发布方式</a>：<ul>
-<li>蓝绿发布（AB发布）<br>将应用所在集群上的机器从逻辑上分为A/B两组。在新版发布时，首先把A组的机器从负载均衡中摘除，再进行新版本的部署。此时，B组仍然继续提供服务。<br><img src="https://img2018.cnblogs.com/blog/1053682/201905/1053682-20190527095123236-652009308.png" alt=""><br>当A组升级完毕后，负载均衡重新接入A组，再把B组从负载列表中摘除，进行新版本的部署。A组重新提供服务。<br><img src="https://img2018.cnblogs.com/blog/1053682/201905/1053682-20190527095313544-971610690.png" alt=""><br>特点：<ul>
-<li>如果出问题，影响面较广，或者说很难控制具体的影响面</li>
-<li>发布策略简单</li>
-<li>用户无感知，平滑过渡</li>
-<li>升级/回滚速度快<br>缺点：</li>
-<li>需要准备正常业务使用资源的两倍以上服务器，防止升级期间单组无法承载业务突发</li>
-<li>短时间内浪费一定资源成本</li>
-<li>基础设施无改动，增大升级稳定性<br>蓝绿发布在早期物理服务器时代，还是比较昂贵的，由于云计算普及，成本也大大降低</li>
-</ul>
-</li>
-<li>灰度发布<br>灰度发布只升级部分服务，即让一部分用户继续用老版本，一部分用户开始用新版本，如果用户对新版本没什么意见，那么逐步扩大范围，把所有用户都迁移到新版本上面来。<br><img src="https://img2018.cnblogs.com/blog/1053682/201905/1053682-20190527095414439-329213436.png" alt=""><br>特点：<ul>
-<li>保证整体系统稳定性，在初始灰度的时候就可以发现、调整问题，影响范围可控</li>
-<li>新功能逐步评估性能，稳定性和健康状况，如果出问题影响范围很小，相对用户体验也少</li>
-<li>用户无感知，平滑过渡<br>缺点：</li>
-<li>自动化要求高<br>部署过程：</li>
-<li>从LB摘掉灰度服务器，升级成功后再加入LB</li>
-<li>少量用户流量到新版本</li>
-<li>如果灰度服务器测试成功，升级剩余服务器<br>灰度发布是通过切换线上并存版本之间的路由权重，逐步从一个版本切换为另一个版本的过程</li>
-</ul>
-</li>
-<li>滚动发布<br>滚动发布是指每次只升级一个或多个服务，升级完成后加入生产环境，不断执行这个过程，直到集群中的全部旧版本升级新版本。<br><img src="https://img2018.cnblogs.com/blog/1053682/201905/1053682-20190527095443475-675603692.png" alt=""><ul>
-<li>红色：正在更新的实例</li>
-<li>蓝色：更新完成并加入集群的实例</li>
-<li>绿色：正在运行的实例<br>特点：</li>
-<li>用户无感知，平滑过渡</li>
-<li>节约资源<br>缺点：</li>
-<li>部署时间慢，取决于每阶段更新时间</li>
-<li>发布策略较复杂</li>
-<li>无法确定OK的环境，不易回滚<br>部署过程：</li>
-<li>先升级1个副本，主要做部署验证</li>
-<li>每次升级副本，自动从LB上摘掉，升级成功后自动加入集群</li>
-<li>事先需要有自动更新策略，分为若干次，每次数量/百分比可配置</li>
-<li>回滚是发布的逆过程，先从LB摘掉新版本，再升级老版本，这个过程一般时间比较长</li>
-<li>自动化要求高</li>
-</ul>
-</li>
-<li>小结<br>综上所述，三种方式均可以做到平滑式升级，在升级过程中服务仍然保持服务的连续性，升级对外界是无感知的。那生产上选择哪种部署方法最合适呢？这取决于哪种方法最适合你的业务和技术需求。如果你们运维自动化能力储备不够，肯定是越简单越好，建议蓝绿发布，如果业务对用户依赖很强，建议灰度发布。如果是K8S平台，滚动更新是现成的方案，建议先直接使用<ul>
-<li>蓝绿发布：两套环境交替升级，旧版本保留一定时间便于回滚</li>
-<li>灰度发布：根据比例将老版本升级，例如80%用户访问是老版本，20%用户访问是新版本</li>
-<li>滚动发布：按批次停止老版本实例，启动新版本实例</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>迅速而准确的检测到问题的发生</li>
-<li>当出现问题时，安全迅速的回退改动<h2 id="需求预测和容量规划"><a href="#需求预测和容量规划" class="headerlink" title="需求预测和容量规划"></a>需求预测和容量规划</h2>业务的容量规划，包括自然增长（随着用户使用量上升，资源使用量也上升），也包括一些非自然增长的因素（如新功能的发布，商业推广，以及其他商业因素在内）</li>
-<li>必须有一个准确的自然增长需求预测模型，需求预测的时间应该超过资源获取的时间</li>
-<li>规划中必须有准确的非自然增长的需求来源的统计</li>
-<li>必须有周期性的压力测试，以便准确的将系统原始资源信息与业务容量对应起来<h2 id="资源部署"><a href="#资源部署" class="headerlink" title="资源部署"></a>资源部署</h2>资源部署是变更管理与容量规划的结合产物。</li>
-<li>资源部署和配置必须迅速完成</li>
-<li>仅在必要的时候执行，因为资源有限且昂贵</li>
-<li>保证部署和配置过程执行的正确性，否则资源不可用</li>
-<li>部署和配置过程影响较大，会有较大幅度修改，必须执行一系列测试，确保可以正确的提供服务<h2 id="效率与性能"><a href="#效率与性能" class="headerlink" title="效率与性能"></a>效率与性能</h2></li>
-</ul>
-
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -495,82 +365,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>一、标题<br><code># 一级标题</code><br><code>## 二级标题</code><br><code>### 三级标题</code><br><code>### 四级标题</code><br><code>##### 五级标题</code><br><code>###### 六级标题</code><br><strong>【最多六级】</strong></p>
-<p>二、字体<br><strong>加粗文字</strong><br><em>倾斜文字</em><br><strong><em>加粗倾斜文字</em></strong><br><del>删除线文字</del></p>
-<p>三、引用</p>
-<blockquote>
-<p>引用</p>
-<blockquote>
-<p>引用</p>
-<blockquote>
-<p>引用</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>四、分割线</p>
-<hr>
-<hr>
-<hr>
-<hr>
-<p>五、图片</p>
-<p>![图片alt](图片地址 ‘’图片title’’)</p>
-<p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg" alt="blockchain" title="区块链"></p>
-<p>六、超链接<br><a href="超链接地址" title="超链接title">超链接名</a><br>title可加可不加</p>
-<p>七、列表<br>无序列表</p>
-<ul>
-<li>a</li>
-</ul>
-<ul>
-<li>b</li>
-</ul>
-<ul>
-<li>c</li>
-</ul>
-<p>有序列表</p>
-<ol>
-<li>a</li>
-<li>b</li>
-<li>c</li>
-</ol>
-<p>注意序号和内容之间的空格</p>
-<p>列表嵌套：上下级列表使用3个空格</p>
-<ul>
-<li>a<ul>
-<li>b<ul>
-<li>c</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>十、流程图</p>
-<p>`` <div id="flowchart-0" class="flow-chart"></div></p>
-<div id="flowchart-1" class="flow-chart"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">`` st=>start: 开始
-`` op=>operation: My Operation
-`` cond=>condition: Yes or No?
-`` e=>end
-`` st->op->cond
-`` cond(yes)->e
-`` cond(no)->op
-`` &</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><textarea id="flowchart-1-code" style="display: none">st=>start: 开始
-op=>operation: My Operation
-cond=>condition: Yes or No?
-e=>end
-st->op->cond
-cond(yes)->e
-cond(no)->op
-&</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script>
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -623,18 +417,6 @@ cond(no)->op
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="运维管理思考"><a href="#运维管理思考" class="headerlink" title="运维管理思考"></a>运维管理思考</h1><h2 id="技术管理"><a href="#技术管理" class="headerlink" title="技术管理"></a>技术管理</h2>
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -687,18 +469,6 @@ cond(no)->op
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2>
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -776,14 +546,6 @@ cond(no)->op
     
     <li class="nav-item">
       <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
     </li>
     
   </ul>
