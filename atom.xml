@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chpiter.net/"/>
-  <updated>2020-03-07T10:24:51.000Z</updated>
+  <updated>2020-03-09T10:06:17.074Z</updated>
   <id>https://chpiter.net/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx限速模块探讨</title>
+    <link href="https://chpiter.net/2020/03/09/Nginx%E9%99%90%E9%80%9F%E6%A8%A1%E5%9D%97%E6%8E%A2%E8%AE%A8/"/>
+    <id>https://chpiter.net/2020/03/09/Nginx%E9%99%90%E9%80%9F%E6%A8%A1%E5%9D%97%E6%8E%A2%E8%AE%A8/</id>
+    <published>2020-03-09T09:59:04.000Z</published>
+    <updated>2020-03-09T10:06:17.074Z</updated>
+    
+    <content type="html"><![CDATA[<p>Nginx限速模块探讨，引用 <a href="https://zhuanlan.zhihu.com/p/32391675" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32391675</a> <a href="http://tengine.taobao.org/book/index.html" target="_blank" rel="noopener">http://tengine.taobao.org/book/index.html</a></p><h1 id="核心算法"><a href="#核心算法" class="headerlink" title="核心算法"></a>核心算法</h1><p>在探讨Nginx限速模块之前，我们先来看看网络传输中常用两个的流量控制算法：漏铜算法和令牌桶算法。</p><h2 id="漏洞算法（leaky-bucket）"><a href="#漏洞算法（leaky-bucket）" class="headerlink" title="漏洞算法（leaky bucket）"></a>漏洞算法（leaky bucket）</h2><p>漏洞算法（leaky bucket）思想如图所示：<br>！<a href="/images/v2-2ff7a9dbc1242a4c1abf960efe116813_r.jpg"></a><br>一个形象的解释是：</p><ul><li>水（请求）从上方倒入水桶，从水桶下方流出（被处理）；</li><li>来不及流出的水存在水桶中（缓冲），同时水桶中的水以<strong>固定速率</strong>流出</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Nginx限速模块探讨，引用 &lt;a href=&quot;https://zhuanlan.zhihu.com/p/32391675&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://zhuanlan.zhihu.com/p/32391675&lt;/a&gt; &lt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>ITIL思想</title>
