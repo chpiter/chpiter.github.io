@@ -62,7 +62,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">142字</span>
+            <span class="post-count">455字</span>
         </span>
     </span>
 
@@ -98,13 +98,27 @@
       
 
       
-      <p>Nginx限速模块探讨，引用 <a href="https://zhuanlan.zhihu.com/p/32391675" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32391675</a> <a href="http://tengine.taobao.org/book/index.html" target="_blank" rel="noopener">http://tengine.taobao.org/book/index.html</a></p>
-<h1 id="核心算法"><a href="#核心算法" class="headerlink" title="核心算法"></a>核心算法</h1><p>在探讨Nginx限速模块之前，我们先来看看网络传输中常用两个的流量控制算法：漏铜算法和令牌桶算法。</p>
-<h2 id="漏洞算法（leaky-bucket）"><a href="#漏洞算法（leaky-bucket）" class="headerlink" title="漏洞算法（leaky bucket）"></a>漏洞算法（leaky bucket）</h2><p>漏洞算法（leaky bucket）思想如图所示：<br>！<a href="/images/v2-2ff7a9dbc1242a4c1abf960efe116813_r.jpg"></a><br>一个形象的解释是：</p>
+      <p>Nginx限速模块探讨，引用：</p>
 <ul>
-<li>水（请求）从上方倒入水桶，从水桶下方流出（被处理）；</li>
-<li>来不及流出的水存在水桶中（缓冲），同时水桶中的水以<strong>固定速率</strong>流出</li>
+<li><a href="https://zhuanlan.zhihu.com/p/32391675" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32391675</a></li>
+<li><a href="http://tengine.taobao.org/book/index.html" target="_blank" rel="noopener">http://tengine.taobao.org/book/index.html</a></li>
 </ul>
+<h1 id="核心算法"><a href="#核心算法" class="headerlink" title="核心算法"></a>核心算法</h1><p>在探讨Nginx限速模块之前，我们先来看看网络传输中常用两个的流量控制算法：漏桶算法和令牌桶算法。</p>
+<h2 id="漏桶算法（leaky-bucket）"><a href="#漏桶算法（leaky-bucket）" class="headerlink" title="漏桶算法（leaky bucket）"></a>漏桶算法（leaky bucket）</h2><p>漏桶算法（leaky bucket）思想如图所示：<br><img src="/images/v2-2ff7a9dbc1242a4c1abf960efe116813_r.jpg" alt=""><br>一个形象的解释是：</p>
+<ul>
+<li>水（请求）从上方倒入水桶，从水桶下方流出（被处理）</li>
+<li>来不及流出的水存在水桶中（缓冲），同时水桶中的水以<strong>固定速率</strong>流出</li>
+<li>水桶满后，水溢出（丢弃）<br>这个算法的核心是：缓存请求、匀速处理、多余的请求直接丢弃</li>
+</ul>
+<h2 id="令牌桶算法（token-bucket）"><a href="#令牌桶算法（token-bucket）" class="headerlink" title="令牌桶算法（token bucket）"></a>令牌桶算法（token bucket）</h2><p>令牌桶算法（token bucket）思想如图所示：<br><img src="/images/v2-fe9b3489d9c7a462b5594faf2a80266b_r.jpg" alt=""><br>算法思想是：</p>
+<ul>
+<li>令牌以固定的速率产生，并缓存到令牌桶中</li>
+<li>令牌桶放满是，多余的令牌被丢弃</li>
+<li>请求要消耗等比例的令牌才能被处理</li>
+<li>令牌不够时，请求被缓存<br>相比漏桶算法，令牌桶算法不同之处在于它不但有一只“桶”，还有个队列，这个桶是用来存放令牌的，队列才是用来存放请求的。</li>
+</ul>
+<p>从作用上来说，漏桶算法和令牌桶算法最明显的区别就是是否允许<strong>突发流量（burst</strong>的处理，漏桶算法能够<strong>强行限制数据的实时传输（处理）速率</strong>，对突发流量不做额外处理；而令牌桶算法能够在<strong>限制数据的平均传输速率的同时允许某种程度的突发传输</strong>。</p>
+<p>Nginx按请求速率限速模块使用的是漏桶算法，即能够强行保证请求的实时处理速度不会超过设置的阀值。</p>
 
       
       <!-- reward -->
