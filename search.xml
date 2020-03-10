@@ -63,6 +63,9 @@
 <li><strong>load-balancer</strong>：负载均衡，实现特定的算法，在众多的后端服务器中，选择一个服务器出来作为某个请求的转发服务器。</li>
 </ul>
 ]]></content>
+      <tags>
+        <tag>Nginx</tag>
+      </tags>
   </entry>
   <entry>
     <title>Nginx限速模块探讨</title>
@@ -103,21 +106,33 @@
 <h1 id="源码剖析"><a href="#源码剖析" class="headerlink" title="源码剖析"></a>源码剖析</h1><p>具体内容省略，有兴趣的同学可以参看原文或参看源码</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文主要讲解了Nginx按请求速率限速模块的用法和原理，其中burst和nodelay参数是容易引起误解的，虽然可通过burst允许缓存处理突发请求，结合nodelay能够降低突发请求的处理时间，但是长期来看他们并不会提高吞吐量的上限，长期吞吐量的上限是由rate决定的。需要特别注意的事，burst设置了nodelay时，系统时间的QPS可能会超过rate设置的阀值。</p>
 ]]></content>
+      <tags>
+        <tag>Nginx</tag>
+      </tags>
   </entry>
   <entry>
     <title>ITIL思想</title>
     <url>/2020/03/07/ITIL%E6%80%9D%E6%83%B3/</url>
     <content><![CDATA[]]></content>
+      <tags>
+        <tag>ITIL</tag>
+      </tags>
   </entry>
   <entry>
     <title>K8s学习笔记</title>
     <url>/2020/02/22/K8s%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[]]></content>
+      <tags>
+        <tag>k8s</tag>
+      </tags>
   </entry>
   <entry>
     <title>MongoDB学习笔记</title>
     <url>/2020/02/22/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[]]></content>
+      <tags>
+        <tag>MongoDB</tag>
+      </tags>
   </entry>
   <entry>
     <title>纪念我的父亲</title>
@@ -223,6 +238,9 @@
 </li>
 </ul>
 ]]></content>
+      <tags>
+        <tag>SRE</tag>
+      </tags>
   </entry>
   <entry>
     <title>MarkDown常用语法</title>
@@ -292,11 +310,17 @@ st->op->cond
 cond(yes)->e
 cond(no)->op
 &</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script>]]></content>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
   </entry>
   <entry>
     <title>运维思考</title>
     <url>/2020/02/20/opsthink/</url>
     <content><![CDATA[<h1 id="运维管理思考"><a href="#运维管理思考" class="headerlink" title="运维管理思考"></a>运维管理思考</h1><h2 id="技术管理"><a href="#技术管理" class="headerlink" title="技术管理"></a>技术管理</h2>]]></content>
+      <tags>
+        <tag>ops</tag>
+      </tags>
   </entry>
   <entry>
     <title>AboutMe</title>
