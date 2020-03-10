@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chpiter.net/"/>
-  <updated>2020-03-10T02:33:04.766Z</updated>
+  <updated>2020-03-10T03:12:28.962Z</updated>
   <id>https://chpiter.net/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx原理</title>
+    <link href="https://chpiter.net/2020/03/10/Nginx%E5%8E%9F%E7%90%86/"/>
+    <id>https://chpiter.net/2020/03/10/Nginx%E5%8E%9F%E7%90%86/</id>
+    <published>2020-03-10T02:39:25.000Z</published>
+    <updated>2020-03-10T03:12:28.962Z</updated>
+    
+    <content type="html"><![CDATA[<p>引用：</p><ul><li><a href="http://ningg.top/nginx-series-principle/" target="_blank" rel="noopener">http://ningg.top/nginx-series-principle/</a></li></ul><h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><h2 id="Nginx的进程模型"><a href="#Nginx的进程模型" class="headerlink" title="Nginx的进程模型"></a>Nginx的进程模型</h2><p><img src="/images/nginx-multi-progress-model.png" alt=""><br>Nginx服务器，正常运行过程中：</p><ol><li><strong>多进程</strong>：1个Master进程、多个Worker进程；</li><li><strong>Master进程</strong>：管理多个Worker进程：<ol><li>对外接口：接收<strong>外部操作</strong>信号</li><li>对内转发：根据<strong>外部操作</strong>的不同，通过<strong>信号</strong>管理Worker</li><li>监控：监控Worker进程的运行状态，Worker进程异常终止后，自动重启Worker进程</li></ol></li><li><strong>Worker</strong>进程：所有Worker进程都是平等的：<ol><li>实际处理：网络请求，又Worker进程处理；</li><li>Worker进程数量：在nginx.conf中配置，一般设置为<strong>CPU核心数</strong>，充分利用CPU资源，同时避免进程数量过多，避免进程之间竞争CPU资源，增加上下文切换的损耗。</li></ol></li></ol><p>思考：</p><ol><li>请求是连接到Nginx，Master进程负责处理和转发？</li><li>如何选定哪个Worker进程处理请求？请求的处理结果，是否还要经过Master进程？</li></ol><p><img src="/images/nginx-master-worker-details.png" alt=""></p><p>HTTP连接建立和请求处理过程：</p><ol><li>Nginx启动时，Master进程，加载配置文件；</li><li>Master进程，初始化监听的socket；</li><li>Master进程，fork出多个Worker进程；</li><li>Worker进程，竞争新的连接，获胜方通过三次握手，建立Socket连接，并处理请求。</li></ol><p>Nginx高性能、高并发：</p><ol><li>Nginx采用：<strong>多进程</strong>+<strong>异步非阻塞</strong>方式（<strong>IO多路复用</strong>epool）</li><li>请求的完整过程：<ol><li>建立连接</li><li>读取请求：解析请求</li><li>处理请求</li><li>相应请求</li></ol></li><li>请求的完整过程，对应到低层，就是：读写socket事件</li></ol><h2 id="Nginx的事件处理模型"><a href="#Nginx的事件处理模型" class="headerlink" title="Nginx的事件处理模型"></a>Nginx的事件处理模型</h2><p>request：Nginx中的http请求。<br>基本的HTTP Web Server工作模式：</p><ol><li><strong>接受请求</strong>：逐行读取<strong>请求行</strong>和<strong>请求头</strong>，判断有请求体后，读取<strong>请求体</strong></li><li><strong>处理请求</strong></li><li><strong>返回响应</strong>：根据处理结果，生成相应的HTTP请求（<strong>响应行</strong>、<strong>响应头</strong>、<strong>响应体</strong>）</li></ol><p>Nginx也是这个套路，整体流程一致：<br><img src="/images/nginx-request-process-model.png" alt=""></p><h2 id="模块化体系结构"><a href="#模块化体系结构" class="headerlink" title="模块化体系结构"></a>模块化体系结构</h2><p><img src="/images/nginx-architecture.png" alt=""><br>nginx的模块根据其功能基本上可以分为以下几种类型：</p><ul><li><strong>event module</strong>：搭建了独立于操作系统的事件处理的框架，及提供了各具体时间的处理。包括ngx_events_module,ngx_event_core_module和ngx_epool_module等。nginx具体使用何种时间处理模块，这依赖于具体的操作系统和编译选项。</li><li><strong>phase handler</strong>：此类型的模块也被直接成为handler模块。主要负责处理客户端请求并产生待相应内容，比如ngx_http_static_module模块，负责客户端的静态页面请求处理并将对应的磁盘文件准备为响应内容输出。</li><li><strong>output filter</strong>：也被成为filter模块，主要是负责对输出的内容进行处理，可以对输出进行修改。例如，可以实现对输出的所有html页面增加预定义的footbar一类的工作，或者对输出的图片的URL进行替换之类的工作。</li><li><strong>upstream</strong>：upstream模块实现反向代理的功能，将真正的请求转发到后端服务器上，并从后端服务器上读取相应，发回客户端。upstream模块是一种特殊的handler，只不过相应内容不是真正由自己产生的，而是从后端服务器上读取的。</li><li><strong>load-balancer</strong>：负载均衡，实现特定的算法，在众多的后端服务器中，选择一个服务器出来作为某个请求的转发服务器。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;引用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://ningg.top/nginx-series-principle/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://ningg.top/nginx-series-principl
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Nginx限速模块探讨</title>
