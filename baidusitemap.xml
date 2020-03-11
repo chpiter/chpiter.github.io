@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chpiter.net/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/</loc>
+    <lastmod>2020-03-11</lastmod>
+  </url>  <url>
+    <loc>https://chpiter.net/2020/02/20/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>2020-03-11</lastmod>
+  </url>  <url>
     <loc>https://chpiter.net/2020/03/10/Nginx%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2020-03-10</lastmod>
+    <lastmod>2020-03-11</lastmod>
   </url>  <url>
     <loc>https://chpiter.net/2020/02/21/SRE%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
     <lastmod>2020-03-10</lastmod>
@@ -17,9 +23,6 @@
     <lastmod>2020-03-10</lastmod>
   </url>  <url>
     <loc>https://chpiter.net/2020/02/22/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2020-03-10</lastmod>
-  </url>  <url>
-    <loc>https://chpiter.net/2020/02/20/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2020-03-10</lastmod>
   </url>  <url>
     <loc>https://chpiter.net/2020/02/22/K8s%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>

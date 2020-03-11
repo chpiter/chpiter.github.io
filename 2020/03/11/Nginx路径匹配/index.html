@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    MarkDown常用语法 |  ChpiTer Blog
+    Nginx路径匹配 |  ChpiTer Blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -34,7 +34,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="markdown-MarkDown常用语法" class="article article-type-markdown" itemscope
+  <article id="nginx-location-Nginx路径匹配" class="article article-type-nginx-location" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -42,7 +42,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  MarkDown常用语法
+  Nginx路径匹配
 </h1>
   
 
@@ -51,8 +51,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/20/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/" class="article-date">
-  <time datetime="2020-02-20T06:38:04.000Z" itemprop="datePublished">2020-02-20</time>
+      <a href="/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/" class="article-date">
+  <time datetime="2020-03-11T01:04:51.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
       
       
@@ -62,7 +62,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">298字</span>
+            <span class="post-count">932字</span>
         </span>
     </span>
 
@@ -71,7 +71,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -82,6 +82,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -96,77 +98,31 @@
       
 
       
-      <p>一、标题<br><code># 一级标题</code><br><code>## 二级标题</code><br><code>### 三级标题</code><br><code>### 四级标题</code><br><code>##### 五级标题</code><br><code>###### 六级标题</code><br><strong>【最多六级】</strong></p>
-<p>二、字体<br><strong>加粗文字</strong><br><em>倾斜文字</em><br><strong><em>加粗倾斜文字</em></strong><br><del>删除线文字</del></p>
-<p>三、引用</p>
-<blockquote>
-<p>引用</p>
-<blockquote>
-<p>引用</p>
-<blockquote>
-<p>引用</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>四、分割线</p>
-<hr>
-<hr>
-<hr>
-<hr>
-<p>五、图片</p>
-<p>![图片alt](图片地址 ‘’图片title’’)</p>
-<p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg" alt="blockchain" title="区块链"></p>
-<p>六、超链接<br><a href="超链接地址" title="超链接title">超链接名</a><br>title可加可不加</p>
-<p>七、列表<br>无序列表</p>
+      <p>引用：</p>
 <ul>
-<li>a</li>
+<li><a href="http://ningg.top/nginx-series-practice-location/" target="_blank" rel="noopener">http://ningg.top/nginx-series-practice-location/</a></li>
 </ul>
-<ul>
-<li>b</li>
-</ul>
-<ul>
-<li>c</li>
-</ul>
-<p>有序列表</p>
+<h1 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h1><p>nginx反向代理，路径映射过程是什么？如何配置路径映射规则？</p>
+<h1 id="2-location路径匹配"><a href="#2-location路径匹配" class="headerlink" title="2. location路径匹配"></a>2. location路径匹配</h1><h2 id="2-1-匹配规则"><a href="#2-1-匹配规则" class="headerlink" title="2.1 匹配规则"></a>2.1 匹配规则</h2><p>location路径正则匹配<br>|符号|说明|<br>|—|—|<br>|<del>|正则匹配，区分大小写|<br>|</del>*|正则匹配，不区分大小写|<br>|^~|普通字符匹配，如果该选项匹配，则，只匹配该选项，不再向下匹配其他选项|<br>|=|普通字符匹配，精确匹配|<br>|@|定义一个命名的location，用于内部定向，例如error_page,try_files|</p>
+<h2 id="2-2-匹配优先级"><a href="#2-2-匹配优先级" class="headerlink" title="2.2 匹配优先级"></a>2.2 匹配优先级</h2><p>路径匹配，优先级：（跟location的书写顺序关系不大）</p>
 <ol>
-<li>a</li>
-<li>b</li>
-<li>c</li>
+<li><strong>精确匹配</strong>：=前缀的指令严格匹配这个查询。如果找到，停止搜索；</li>
+<li><strong>普通字符匹配</strong>：所有剩下的常规字符串，最长的匹配。如果这个匹配使用^~前缀，搜索停止；</li>
+<li><strong>正则匹配</strong>：正则表达式，在配置文件中定义的顺序，匹配到一个结果，搜索停止；</li>
+<li><strong>默认匹配</strong>：如果第3条规则产生匹配的话，结果被使用。否则，如同从第2条规则被使用。</li>
 </ol>
-<p>注意序号和内容之间的空格</p>
-<p>列表嵌套：上下级列表使用3个空格</p>
-<ul>
-<li>a<ul>
-<li>b<ul>
-<li>c</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>十、流程图</p>
-<p>`` <div id="flowchart-0" class="flow-chart"></div></p>
-<div id="flowchart-1" class="flow-chart"></div>
-
-<p>十一、表格</p>
-<p><code>|  表头   | 表头  |
-|  ----  | ----  |
-| 单元格  | 单元格 |
-| 单元格  | 单元格 |</code><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">`` st=>start: 开始
-`` op=>operation: My Operation
-`` cond=>condition: Yes or No?
-`` e=>end
-`` st->op->cond
-`` cond(yes)->e
-`` cond(no)->op
-`` &</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><textarea id="flowchart-1-code" style="display: none">st=>start: 开始
-op=>operation: My Operation
-cond=>condition: Yes or No?
-e=>end
-st->op->cond
-cond(yes)->e
-cond(no)->op
-&</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script></p>
+<h2 id="2-3-举例"><a href="#2-3-举例" class="headerlink" title="2.3 举例"></a>2.3 举例</h2><p>通过一个实例，简单说明一下匹配优先级：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">location  &#x3D; &#x2F; &#123;</span><br><span class="line">  # 精确匹配 &#x2F; ，主机名后面不能带任何字符串</span><br><span class="line">  [ configuration A ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location  &#x2F; &#123;</span><br><span class="line">  # 因为所有的地址都以 &#x2F; 开头，所以这条规则将匹配到所有请求</span><br><span class="line">  # 但是正则和最长字符串会优先匹配</span><br><span class="line">  [ configuration B ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;documents&#x2F; &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;documents&#x2F; 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration C ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ &#x2F;documents&#x2F;Abc &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;documents&#x2F; 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration CC ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ^~ &#x2F;images&#x2F; &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;images&#x2F; 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。</span><br><span class="line">  [ configuration D ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* \.(gif|jpg|jpeg)$ &#123;</span><br><span class="line">  # 匹配所有以 gif,jpg或jpeg 结尾的请求</span><br><span class="line">  # 然而，所有请求 &#x2F;images&#x2F; 下的图片会被 config D 处理，因为 ^~ 到达不了这一条正则</span><br><span class="line">  [ configuration E ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;images&#x2F; &#123;</span><br><span class="line">  # 字符匹配到 &#x2F;images&#x2F;，继续往下，会发现 ^~ 存在</span><br><span class="line">  [ configuration F ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;images&#x2F;abc &#123;</span><br><span class="line">  # 最长字符匹配到 &#x2F;images&#x2F;abc，继续往下，会发现 ^~ 存在</span><br><span class="line">  # F与G的放置顺序是没有关系的</span><br><span class="line">  [ configuration G ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ &#x2F;images&#x2F;abc&#x2F; &#123;</span><br><span class="line">  # 只有去掉 config D 才有效：先最长匹配 config G 开头的地址，继续往下搜索，匹配到这一条正则，采用</span><br><span class="line">    [ configuration H ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* &#x2F;js&#x2F;.*&#x2F;\.js</span><br></pre></td></tr></table></figure>
+<p>按照上面的location写法，以下的匹配示例成立：</p>
+<ol>
+<li>/ -&gt; config A：精确完全匹配，即使/index.html也匹配不了</li>
+<li>/downloads/download.html -&gt; config B：匹配B以后，往下没有任何匹配，采用B</li>
+<li>/images/1.gif -&gt; configuration D：匹配到F，往下匹配到D，停止往下</li>
+<li>/images/abc/def -&gt; config D：最长匹配到G，往下匹配D，停止往下你可以看到 任何以/images/开头的都会匹配到D并停止，FG写在这里是没有任何意义的，H是永远轮不到的，这里只是为了说明匹配顺序</li>
+<li>/documents/document.html -&gt; config C：匹配到C，往下没有任何匹配，采用C</li>
+<li>/documents/1.jpg -&gt; configuration E：匹配到C，往下正则匹配到E</li>
+<li>/documents/Abc.jpg -&gt; config CC：最长匹配到C，往下正则顺序匹配到CC，不会往下到E</li>
+</ol>
 
       
       <!-- reward -->
@@ -232,14 +188,14 @@ cond(no)->op
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chpiter.net/2020/02/20/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chpiter.net/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
 
 
     </footer>
@@ -250,19 +206,10 @@ cond(no)->op
   
   <nav class="article-nav">
     
-      <a href="/2020/02/21/SRE%E6%96%B9%E6%B3%95%E8%AE%BA/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            SRE方法论
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/02/20/opsthink/" class="article-nav-link">
+      <a href="/2020/03/10/Nginx%E9%85%8D%E7%BD%AE/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">运维思考</div>
+        <div class="article-nav-title">Nginx配置</div>
       </a>
     
   </nav>

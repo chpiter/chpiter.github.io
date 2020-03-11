@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Nginx路径匹配</title>
+    <url>/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/</url>
+    <content><![CDATA[<p>引用：</p>
+<ul>
+<li><a href="http://ningg.top/nginx-series-practice-location/" target="_blank" rel="noopener">http://ningg.top/nginx-series-practice-location/</a></li>
+</ul>
+<h1 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h1><p>nginx反向代理，路径映射过程是什么？如何配置路径映射规则？</p>
+<h1 id="2-location路径匹配"><a href="#2-location路径匹配" class="headerlink" title="2. location路径匹配"></a>2. location路径匹配</h1><h2 id="2-1-匹配规则"><a href="#2-1-匹配规则" class="headerlink" title="2.1 匹配规则"></a>2.1 匹配规则</h2><p>location路径正则匹配<br>|符号|说明|<br>|—|—|<br>|<del>|正则匹配，区分大小写|<br>|</del>*|正则匹配，不区分大小写|<br>|^~|普通字符匹配，如果该选项匹配，则，只匹配该选项，不再向下匹配其他选项|<br>|=|普通字符匹配，精确匹配|<br>|@|定义一个命名的location，用于内部定向，例如error_page,try_files|</p>
+<h2 id="2-2-匹配优先级"><a href="#2-2-匹配优先级" class="headerlink" title="2.2 匹配优先级"></a>2.2 匹配优先级</h2><p>路径匹配，优先级：（跟location的书写顺序关系不大）</p>
+<ol>
+<li><strong>精确匹配</strong>：=前缀的指令严格匹配这个查询。如果找到，停止搜索；</li>
+<li><strong>普通字符匹配</strong>：所有剩下的常规字符串，最长的匹配。如果这个匹配使用^~前缀，搜索停止；</li>
+<li><strong>正则匹配</strong>：正则表达式，在配置文件中定义的顺序，匹配到一个结果，搜索停止；</li>
+<li><strong>默认匹配</strong>：如果第3条规则产生匹配的话，结果被使用。否则，如同从第2条规则被使用。</li>
+</ol>
+<h2 id="2-3-举例"><a href="#2-3-举例" class="headerlink" title="2.3 举例"></a>2.3 举例</h2><p>通过一个实例，简单说明一下匹配优先级：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location  &#x3D; &#x2F; &#123;</span><br><span class="line">  # 精确匹配 &#x2F; ，主机名后面不能带任何字符串</span><br><span class="line">  [ configuration A ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location  &#x2F; &#123;</span><br><span class="line">  # 因为所有的地址都以 &#x2F; 开头，所以这条规则将匹配到所有请求</span><br><span class="line">  # 但是正则和最长字符串会优先匹配</span><br><span class="line">  [ configuration B ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;documents&#x2F; &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;documents&#x2F; 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration C ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ &#x2F;documents&#x2F;Abc &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;documents&#x2F; 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration CC ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ^~ &#x2F;images&#x2F; &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;images&#x2F; 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。</span><br><span class="line">  [ configuration D ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* \.(gif|jpg|jpeg)$ &#123;</span><br><span class="line">  # 匹配所有以 gif,jpg或jpeg 结尾的请求</span><br><span class="line">  # 然而，所有请求 &#x2F;images&#x2F; 下的图片会被 config D 处理，因为 ^~ 到达不了这一条正则</span><br><span class="line">  [ configuration E ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;images&#x2F; &#123;</span><br><span class="line">  # 字符匹配到 &#x2F;images&#x2F;，继续往下，会发现 ^~ 存在</span><br><span class="line">  [ configuration F ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;images&#x2F;abc &#123;</span><br><span class="line">  # 最长字符匹配到 &#x2F;images&#x2F;abc，继续往下，会发现 ^~ 存在</span><br><span class="line">  # F与G的放置顺序是没有关系的</span><br><span class="line">  [ configuration G ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ &#x2F;images&#x2F;abc&#x2F; &#123;</span><br><span class="line">  # 只有去掉 config D 才有效：先最长匹配 config G 开头的地址，继续往下搜索，匹配到这一条正则，采用</span><br><span class="line">    [ configuration H ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* &#x2F;js&#x2F;.*&#x2F;\.js</span><br></pre></td></tr></table></figure>
+<p>按照上面的location写法，以下的匹配示例成立：</p>
+<ol>
+<li>/ -&gt; config A：精确完全匹配，即使/index.html也匹配不了</li>
+<li>/downloads/download.html -&gt; config B：匹配B以后，往下没有任何匹配，采用B</li>
+<li>/images/1.gif -&gt; configuration D：匹配到F，往下匹配到D，停止往下</li>
+<li>/images/abc/def -&gt; config D：最长匹配到G，往下匹配D，停止往下你可以看到 任何以/images/开头的都会匹配到D并停止，FG写在这里是没有任何意义的，H是永远轮不到的，这里只是为了说明匹配顺序</li>
+<li>/documents/document.html -&gt; config C：匹配到C，往下没有任何匹配，采用C</li>
+<li>/documents/1.jpg -&gt; configuration E：匹配到C，往下正则匹配到E</li>
+<li>/documents/Abc.jpg -&gt; config CC：最长匹配到C，往下正则顺序匹配到CC，不会往下到E</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx配置</title>
     <url>/2020/03/10/Nginx%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="查看Nginx配置"><a href="#查看Nginx配置" class="headerlink" title="查看Nginx配置"></a>查看Nginx配置</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nginx -V</span><br><span class="line">nginx version: nginx&#x2F;1.8.0</span><br><span class="line">built by clang 7.0.0 (clang-700.0.72)</span><br><span class="line">built with OpenSSL 1.0.2d 9 Jul 2015</span><br><span class="line">TLS SNI support enabled</span><br><span class="line"> </span><br><span class="line">configure arguments:</span><br><span class="line">--prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;nginx&#x2F;1.8.0</span><br><span class="line">--with-http_ssl_module</span><br><span class="line">--with-pcre</span><br><span class="line">--with-ipv6</span><br><span class="line">--sbin-path&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;nginx&#x2F;1.8.0&#x2F;bin&#x2F;nginx</span><br><span class="line">--with-cc-opt&#x3D;&#39;-I&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;pcre&#x2F;8.37&#x2F;include -I&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;openssl&#x2F;1.0.2d_1&#x2F;include&#39;</span><br><span class="line">--with-ld-opt&#x3D;&#39;-L&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;pcre&#x2F;8.37&#x2F;lib -L&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;openssl&#x2F;1.0.2d_1&#x2F;lib&#39;</span><br><span class="line">--conf-path&#x3D;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">--pid-path&#x3D;&#x2F;usr&#x2F;local&#x2F;var&#x2F;run&#x2F;nginx.pid</span><br><span class="line">--lock-path&#x3D;&#x2F;usr&#x2F;local&#x2F;var&#x2F;run&#x2F;nginx.lock</span><br><span class="line">--http-client-body-temp-path&#x3D;&#x2F;usr&#x2F;local&#x2F;var&#x2F;run&#x2F;nginx&#x2F;client_body_temp</span><br><span class="line">--http-proxy-temp-path&#x3D;&#x2F;usr&#x2F;local&#x2F;var&#x2F;run&#x2F;nginx&#x2F;proxy_temp</span><br><span class="line">--http-fastcgi-temp-path&#x3D;&#x2F;usr&#x2F;local&#x2F;var&#x2F;run&#x2F;nginx&#x2F;fastcgi_temp</span><br><span class="line">--http-uwsgi-temp-path&#x3D;&#x2F;usr&#x2F;local&#x2F;var&#x2F;run&#x2F;nginx&#x2F;uwsgi_temp</span><br><span class="line">--http-scgi-temp-path&#x3D;&#x2F;usr&#x2F;local&#x2F;var&#x2F;run&#x2F;nginx&#x2F;scgi_temp</span><br><span class="line">--http-log-path&#x3D;&#x2F;usr&#x2F;local&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log</span><br><span class="line">--error-log-path&#x3D;&#x2F;usr&#x2F;local&#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log</span><br><span class="line">--with-http_gzip_static_module</span><br></pre></td></tr></table></figure>
@@ -44,6 +77,9 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upstream backend &#123;</span><br><span class="line">    server backend1.example.com       weight&#x3D;5;</span><br><span class="line">    server backend2.example.com:8080;</span><br><span class="line">    server unix:&#x2F;tmp&#x2F;backend3;</span><br><span class="line"> </span><br><span class="line">    server backup1.example.com:8080   backup;</span><br><span class="line">    server backup2.example.com:8080   backup;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">server &#123;</span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;backend;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
   </entry>
   <entry>
     <title>Nginx原理</title>
@@ -340,7 +376,13 @@
 </ul>
 <p>十、流程图</p>
 <p>`` <div id="flowchart-0" class="flow-chart"></div></p>
-<div id="flowchart-1" class="flow-chart"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">`` st=>start: 开始
+<div id="flowchart-1" class="flow-chart"></div>
+
+<p>十一、表格</p>
+<p><code>|  表头   | 表头  |
+|  ----  | ----  |
+| 单元格  | 单元格 |
+| 单元格  | 单元格 |</code><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">`` st=>start: 开始
 `` op=>operation: My Operation
 `` cond=>condition: Yes or No?
 `` e=>end
@@ -354,7 +396,8 @@ e=>end
 st->op->cond
 cond(yes)->e
 cond(no)->op
-&</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script>]]></content>
+&</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script></p>
+]]></content>
       <tags>
         <tag>markdown</tag>
       </tags>
