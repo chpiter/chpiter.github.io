@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Nginx路径匹配 |  ChpiTer Blog
+    Nginx健康检查 |  ChpiTer Blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -34,7 +34,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="nginx-location-Nginx路径匹配" class="article article-type-nginx-location" itemscope
+  <article id="nginx-health-check-Nginx健康检查" class="article article-type-nginx-health-check" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -42,7 +42,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Nginx路径匹配
+  Nginx健康检查
 </h1>
   
 
@@ -51,8 +51,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/" class="article-date">
-  <time datetime="2020-03-11T01:04:51.000Z" itemprop="datePublished">2020-03-11</time>
+      <a href="/2020/03/11/Nginx%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/" class="article-date">
+  <time datetime="2020-03-11T01:30:34.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
       
       
@@ -62,7 +62,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">932字</span>
+            <span class="post-count">1.1k字</span>
         </span>
     </span>
 
@@ -71,7 +71,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">3分钟</span>
+            <span class="post-count">4分钟</span>
         </span>
     </span>
 </div>
@@ -100,29 +100,49 @@
       
       <p>引用：</p>
 <ul>
-<li><a href="http://ningg.top/nginx-series-practice-location/" target="_blank" rel="noopener">http://ningg.top/nginx-series-practice-location/</a></li>
+<li><a href="http://ningg.top/nginx-series-health-check/" target="_blank" rel="noopener">http://ningg.top/nginx-series-health-check/</a></li>
 </ul>
-<h1 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h1><p>nginx反向代理，路径映射过程是什么？如何配置路径映射规则？</p>
-<h1 id="2-location路径匹配"><a href="#2-location路径匹配" class="headerlink" title="2. location路径匹配"></a>2. location路径匹配</h1><h2 id="2-1-匹配规则"><a href="#2-1-匹配规则" class="headerlink" title="2.1 匹配规则"></a>2.1 匹配规则</h2><p>location路径正则匹配<br>|符号|说明|<br>|—|—|<br>|<del>|正则匹配，区分大小写|<br>|</del>*|正则匹配，不区分大小写|<br>|^~|普通字符匹配，如果该选项匹配，则，只匹配该选项，不再向下匹配其他选项|<br>|=|普通字符匹配，精确匹配|<br>|@|定义一个命名的location，用于内部定向，例如error_page,try_files|</p>
-<h2 id="2-2-匹配优先级"><a href="#2-2-匹配优先级" class="headerlink" title="2.2 匹配优先级"></a>2.2 匹配优先级</h2><p>路径匹配，优先级：（跟location的书写顺序关系不大）</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p><strong>服务治理</strong>的一个重要任务是感知服务街店的变更，完成<strong>服务自动注册</strong>和<strong>异常节点的自动摘除</strong>。这就需要服务治理平台能够：<strong>及时</strong>，<strong>准确</strong>的感知service节点的健康状况。</p>
+<h1 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h1><p>Nginx提供了三种服务健康检查方案：</p>
 <ol>
-<li><strong>精确匹配</strong>：=前缀的指令严格匹配这个查询。如果找到，停止搜索；</li>
-<li><strong>普通字符匹配</strong>：所有剩下的常规字符串，最长的匹配。如果这个匹配使用^~前缀，搜索停止；</li>
-<li><strong>正则匹配</strong>：正则表达式，在配置文件中定义的顺序，匹配到一个结果，搜索停止；</li>
-<li><strong>默认匹配</strong>：如果第3条规则产生匹配的话，结果被使用。否则，如同从第2条规则被使用。</li>
+<li>TCP层检查方案：定时与后端服务简历一条<strong>tcp连接</strong>，连接建立成功则认为服务节点是健康的；</li>
+<li>HTTP层检查方案：TCP层检查有一定的局限性：<ol>
+<li>很多HTTP服务是有状态的，端口处于listen状态并不能代表服务已经完全预热（可以对外提供服务）；</li>
+<li>不能真实反映服务内部处理逻辑是否拥堵；</li>
+<li>这时可以选择http层健康检查，会向服务发送一个http请求<strong>GET / HTTP/1.0\r\n\r\n</strong>，返回状态是2xx或3xx时认为后端服务正常；</li>
 </ol>
-<h2 id="2-3-举例"><a href="#2-3-举例" class="headerlink" title="2.3 举例"></a>2.3 举例</h2><p>通过一个实例，简单说明一下匹配优先级：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">location  &#x3D; &#x2F; &#123;</span><br><span class="line">  # 精确匹配 &#x2F; ，主机名后面不能带任何字符串</span><br><span class="line">  [ configuration A ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location  &#x2F; &#123;</span><br><span class="line">  # 因为所有的地址都以 &#x2F; 开头，所以这条规则将匹配到所有请求</span><br><span class="line">  # 但是正则和最长字符串会优先匹配</span><br><span class="line">  [ configuration B ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;documents&#x2F; &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;documents&#x2F; 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration C ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ &#x2F;documents&#x2F;Abc &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;documents&#x2F; 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration CC ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ^~ &#x2F;images&#x2F; &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;images&#x2F; 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。</span><br><span class="line">  [ configuration D ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* \.(gif|jpg|jpeg)$ &#123;</span><br><span class="line">  # 匹配所有以 gif,jpg或jpeg 结尾的请求</span><br><span class="line">  # 然而，所有请求 &#x2F;images&#x2F; 下的图片会被 config D 处理，因为 ^~ 到达不了这一条正则</span><br><span class="line">  [ configuration E ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;images&#x2F; &#123;</span><br><span class="line">  # 字符匹配到 &#x2F;images&#x2F;，继续往下，会发现 ^~ 存在</span><br><span class="line">  [ configuration F ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;images&#x2F;abc &#123;</span><br><span class="line">  # 最长字符匹配到 &#x2F;images&#x2F;abc，继续往下，会发现 ^~ 存在</span><br><span class="line">  # F与G的放置顺序是没有关系的</span><br><span class="line">  [ configuration G ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ &#x2F;images&#x2F;abc&#x2F; &#123;</span><br><span class="line">  # 只有去掉 config D 才有效：先最长匹配 config G 开头的地址，继续往下搜索，匹配到这一条正则，采用</span><br><span class="line">    [ configuration H ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* &#x2F;js&#x2F;.*&#x2F;\.js</span><br></pre></td></tr></table></figure>
-<p>按照上面的location写法，以下的匹配示例成立：</p>
-<ol>
-<li>/ -&gt; config A：精确完全匹配，即使/index.html也匹配不了</li>
-<li>/downloads/download.html -&gt; config B：匹配B以后，往下没有任何匹配，采用B</li>
-<li>/images/1.gif -&gt; configuration D：匹配到F，往下匹配到D，停止往下</li>
-<li>/images/abc/def -&gt; config D：最长匹配到G，往下匹配D，停止往下你可以看到 任何以/images/开头的都会匹配到D并停止，FG写在这里是没有任何意义的，H是永远轮不到的，这里只是为了说明匹配顺序</li>
-<li>/documents/document.html -&gt; config C：匹配到C，往下没有任何匹配，采用C</li>
-<li>/documents/1.jpg -&gt; configuration E：匹配到C，往下正则匹配到E</li>
-<li>/documents/Abc.jpg -&gt; config CC：最长匹配到C，往下正则顺序匹配到CC，不会往下到E</li>
+</li>
+<li>自定义方案：可根据下文描述自定义检查方案。</li>
 </ol>
+<h1 id="配置参数详解"><a href="#配置参数详解" class="headerlink" title="配置参数详解"></a>配置参数详解</h1><p>一个常用的健康检查配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">check fall&#x3D;3 interval&#x3D;3000 rise&#x3D;2 timeout&#x3D;2000 type&#x3D;http;</span><br><span class="line">check_http_expect_alive http_2xx http_3xx ;</span><br><span class="line">check_http_send &quot;GET &#x2F;checkAlive HTTP&#x2F;1.0\r\n\r\n&quot; ;</span><br></pre></td></tr></table></figure>
+<p>下面针对每个配置，进行详细介绍：</p>
+<h2 id="check"><a href="#check" class="headerlink" title="check"></a>check</h2><p>check字段参数如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Syntax: check interval&#x3D;milliseconds [fall&#x3D;count] [rise&#x3D;count] [timeout&#x3D;milliseconds] [default_down&#x3D;true|false] [type&#x3D;tcp|http|ssl_hello|mysql|ajp] [port&#x3D;check_port]</span><br><span class="line">Default: 如果没有配置参数，默认值是：interval&#x3D;30000 fall&#x3D;5 rise&#x3D;2 timeout&#x3D;1000 default_down&#x3D;true type&#x3D;tcp</span><br></pre></td></tr></table></figure>
+<p>check字段各个参数含义如下：</p>
+<ul>
+<li>interval：向后端发送的健康检查包的间隔</li>
+<li>fall(fall_count)：如果连续失败次数达到fall_count，服务器就被认为是down</li>
+<li>rise(rise_count)：如果连续成功次数达到rise_count，服务器就被人为是up</li>
+<li>timeout：后端健康请求的超时时间</li>
+<li>default_down：设定初始时服务器的状态，如果是true，就说ing默认是down的，如果是false，就是up的。默认是true，也就是一开始服务器认为是不可用，要等健康检查包达到一定成功次数才会被认为是健康的</li>
+<li>type：健康检查包的类型，<ul>
+<li>tcp：简单的tcp连接，如果连接成功，就说明后端正常</li>
+<li>ssl_hello：发送一个初始的SSL hello包并接受服务器的SSL hello包</li>
+<li>http：发送HTTP请求，通过后端的回复包的状态来判断后端是否存活</li>
+<li>mysql：向mysql服务器连接，通过接收服务器的greeting包来判断后端是否存活</li>
+<li>ajp：向后端发送AJP协议的Cping包，通过接收Cpong包来判断后端是否存活</li>
+<li>port：指定后端服务器的检查端口。可以指定不同于真实服务的后端服务器的端口，比如后端提供的是443端口的应用，你可以去检查80端口的状态来判断后端健康状况。默认是0，标识跟后端server提供真实服务的端口一样。</li>
+</ul>
+</li>
+</ul>
+<h2 id="check-http-expext-alive"><a href="#check-http-expext-alive" class="headerlink" title="check_http_expext_alive"></a>check_http_expext_alive</h2><p>check_http_expect_alive 指定主动健康检查时HTTP回复的成功状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Syntax: check_http_expect_alive [ http_2xx | http_3xx | http_4xx | http_5xx ]</span><br><span class="line">Default: http_2xx | http_3xx</span><br></pre></td></tr></table></figure>
+
+<h2 id="check-http-send"><a href="#check-http-send" class="headerlink" title="check_http_send"></a>check_http_send</h2><p>check_http_send 配置HTTP健康检查包发送的请求内容<br>为了减少传输数据量，推荐采用“HEAD”方法。当采用长连接进行健康检查时，需要在该指令中添加keep-alive请求头，如：“HEAD / HTTP/1.1\r\nConnection:keep-alive\r\n\r\n”。同时，在采用”GET“方法的情况下，请求uri的size不宜过大，确保可以在1个interval内传输完成，否则会被健康检查模块视为后端服务器或网络异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Syntax: check_http_send http_packet</span><br><span class="line">Default: &quot;GET &#x2F; HTTP&#x2F;1.0\r\n\r\n&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream cluster1 &#123;</span><br><span class="line">        # simple round-robin</span><br><span class="line">        server 192.168.0.1:80;</span><br><span class="line">        server 192.168.0.2:80;</span><br><span class="line">        check interval&#x3D;3000 rise&#x3D;2 fall&#x3D;5 timeout&#x3D;1000 type&#x3D;http;</span><br><span class="line">        check_http_send &quot;HEAD &#x2F; HTTP&#x2F;1.0\r\n\r\n&quot;;</span><br><span class="line">        check_http_expect_alive http_2xx http_3xx;</span><br><span class="line">    &#125;</span><br><span class="line">    upstream cluster2 &#123;</span><br><span class="line">        # simple round-robin</span><br><span class="line">        server 192.168.0.3:80;</span><br><span class="line">        server 192.168.0.4:80;</span><br><span class="line">        check interval&#x3D;3000 rise&#x3D;2 fall&#x3D;5 timeout&#x3D;1000 type&#x3D;http;</span><br><span class="line">        check_keepalive_requests 100;</span><br><span class="line">        check_http_send &quot;HEAD &#x2F; HTTP&#x2F;1.1\r\nConnection: keep-alive\r\n\r\n&quot;;</span><br><span class="line">        check_http_expect_alive http_2xx http_3xx;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F;1 &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;cluster1;</span><br><span class="line">        &#125;</span><br><span class="line">        location &#x2F;2 &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;cluster2;</span><br><span class="line">        &#125;</span><br><span class="line">        location &#x2F;status &#123;</span><br><span class="line">            check_status;</span><br><span class="line">            access_log   off;</span><br><span class="line">            allow SOME.IP.ADD.RESS;</span><br><span class="line">            deny all;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -188,7 +208,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chpiter.net/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chpiter.net/2020/03/11/Nginx%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -206,19 +226,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/11/Nginx%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Nginx健康检查
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/03/10/Nginx%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+      <a href="/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Nginx配置</div>
+        <div class="article-nav-title">Nginx路径匹配</div>
       </a>
     
   </nav>
