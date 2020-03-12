@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chpiter.net/"/>
-  <updated>2020-03-11T02:28:46.947Z</updated>
+  <updated>2020-03-12T10:18:58.994Z</updated>
   <id>https://chpiter.net/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>清空收藏夹</title>
+    <link href="https://chpiter.net/2020/03/12/%E6%B8%85%E7%A9%BA%E6%94%B6%E8%97%8F%E5%A4%B9/"/>
+    <id>https://chpiter.net/2020/03/12/%E6%B8%85%E7%A9%BA%E6%94%B6%E8%97%8F%E5%A4%B9/</id>
+    <published>2020-03-12T10:17:19.000Z</published>
+    <updated>2020-03-12T10:18:58.994Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>“收藏即看过”！清理收藏夹内容，转移至博客，重新学习一遍！</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;“收藏即看过”！
+清理收藏夹内容，转移至博客，重新学习一遍！&lt;/code&gt;&lt;/pre&gt;
+      
+    
+    </summary>
+    
+    
+    
+      <category term="学习" scheme="https://chpiter.net/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>长连接KeepAlive</title>
+    <link href="https://chpiter.net/2020/03/11/%E9%95%BF%E8%BF%9E%E6%8E%A5KeepAlive/"/>
+    <id>https://chpiter.net/2020/03/11/%E9%95%BF%E8%BF%9E%E6%8E%A5KeepAlive/</id>
+    <published>2020-03-11T03:11:08.000Z</published>
+    <updated>2020-03-11T03:11:32.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+      <category term="tcp" scheme="https://chpiter.net/tags/tcp/"/>
+    
+      <category term="http" scheme="https://chpiter.net/tags/http/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx健康检查</title>
