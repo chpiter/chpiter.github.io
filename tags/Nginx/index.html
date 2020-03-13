@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Tag: nginx |  ChpiTer Blog
+    Tag: Nginx |  ChpiTer Blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -37,7 +37,7 @@
   <article class="articles">
     
     
-    <h1 class="page-type-title">#&nbspnginx</h1>
+    <h1 class="page-type-title">#&nbspNginx</h1>
     
     
   
@@ -52,16 +52,16 @@
     </div>
     <div class="archives">
       
-      <article class="archive-article archive-type-nginx-health-check">
+      <article class="archive-article archive-type-nginx-principle">
   <div class="archive-article-inner">
     <header class="archive-article-header">
-      <a href="/2020/03/11/Nginx%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/" class="archive-article-date">
-  <time datetime="2020-03-11T01:30:34.000Z" itemprop="datePublished">03/11</time>
+      <a href="/2020/03/10/Nginx%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  <time datetime="2020-03-10T02:39:25.000Z" itemprop="datePublished">03/10</time>
 </a>
        
 <h2 itemprop="name">
-  <a class="archive-article-title" href="/2020/03/11/Nginx%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/"
-    >Nginx健康检查</a
+  <a class="archive-article-title" href="/2020/03/10/Nginx%E5%8E%9F%E7%90%86/"
+    >Nginx原理</a
   >
 </h2>
   
@@ -70,7 +70,7 @@
     
     
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
 
     
   </div>
@@ -78,16 +78,16 @@
       
   
   
-      <article class="archive-article archive-type-nginx-location">
+      <article class="archive-article archive-type-nginx-limit">
   <div class="archive-article-inner">
     <header class="archive-article-header">
-      <a href="/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/" class="archive-article-date">
-  <time datetime="2020-03-11T01:04:51.000Z" itemprop="datePublished">03/11</time>
+      <a href="/2020/03/09/Nginx%E9%99%90%E9%80%9F%E6%A8%A1%E5%9D%97%E6%8E%A2%E8%AE%A8/" class="archive-article-date">
+  <time datetime="2020-03-09T09:59:04.000Z" itemprop="datePublished">03/09</time>
 </a>
        
 <h2 itemprop="name">
-  <a class="archive-article-title" href="/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/"
-    >Nginx路径匹配</a
+  <a class="archive-article-title" href="/2020/03/09/Nginx%E9%99%90%E9%80%9F%E6%A8%A1%E5%9D%97%E6%8E%A2%E8%AE%A8/"
+    >Nginx限速模块探讨</a
   >
 </h2>
   
@@ -96,33 +96,7 @@
     
     
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-nginx-conf">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/03/10/Nginx%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  <time datetime="2020-03-10T09:48:36.000Z" itemprop="datePublished">03/10</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2020/03/10/Nginx%E9%85%8D%E7%BD%AE/"
-    >Nginx配置</a
-  >
-</h2>
-  
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
 
     
   </div>
@@ -354,6 +328,51 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+  </div>
+</body>
+
+</html>efault-skin.css">
 <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
 
