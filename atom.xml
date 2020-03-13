@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chpiter.net/"/>
-  <updated>2020-03-13T10:24:43.055Z</updated>
+  <updated>2020-03-13T11:54:40.983Z</updated>
   <id>https://chpiter.net/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iptables详解及常用规则</title>
+    <link href="https://chpiter.net/2020/03/13/iptables%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%B8%B8%E7%94%A8%E8%A7%84%E5%88%99/"/>
+    <id>https://chpiter.net/2020/03/13/iptables%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%B8%B8%E7%94%A8%E8%A7%84%E5%88%99/</id>
+    <published>2020-03-13T10:25:48.000Z</published>
+    <updated>2020-03-13T11:54:40.983Z</updated>
+    
+    <content type="html"><![CDATA[<p>引用：</p><ul><li><a href="https://www.cnblogs.com/sunsky303/p/12327863.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunsky303/p/12327863.html</a></li></ul><h1 id="iptables简介"><a href="#iptables简介" class="headerlink" title="iptables简介"></a>iptables简介</h1><p>netfilter/iptables（简称iptables）组成linux平台下的包过滤防火墙，与大多数的linux软件一样，这个包过滤防火墙是免费的，它可以代替昂贵的商业防火墙解决方案，<strong>完成封包过滤、封包重定向和网络地址转换（NAT）等功能</strong>。</p><h2 id="iptables基础"><a href="#iptables基础" class="headerlink" title="iptables基础"></a>iptables基础</h2><p>规则（rules）其实就是网络管理员预定义的条件，规则一般的定位为“如果数据包头符合这样的条件，就这样处理这个数据包”。规则存储在内核空间的信息包过滤表中，这些规则分别指定了源地址、目的地址、传输协议（如TCP、UDP、ICP）和服务类型（如HTTP、FTP和SMTP等）等。当数据包与规则匹配时，iptables就根据规则所定义的方法来处理这些数据包，如方形（accept）、拒绝（reject）和丢弃（drop）等。匹配防火墙的主要工作就是添加、修改和删除这些规则。</p><h2 id="iptables和netfilter的关系："><a href="#iptables和netfilter的关系：" class="headerlink" title="iptables和netfilter的关系："></a>iptables和netfilter的关系：</h2><p>这是第一个要说的地方，iptables和netfilter的关系是一个很容易让人搞不清楚的问题。<strong>iptables只是linux防火墙的管理工具而已，位于/sbin/iptables。真正实现防火墙功能的事netfilter，它是linux内核中实现包过滤的内部结构</strong>。</p><h2 id="iptables传输数据包的过程"><a href="#iptables传输数据包的过程" class="headerlink" title="iptables传输数据包的过程"></a>iptables传输数据包的过程</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;引用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/sunsky303/p/12327863.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/sunsk
+      
+    
+    </summary>
+    
+    
+    
+      <category term="linux" scheme="https://chpiter.net/tags/linux/"/>
+    
+      <category term="iptables" scheme="https://chpiter.net/tags/iptables/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx优化长连接</title>
