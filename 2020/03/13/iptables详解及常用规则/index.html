@@ -62,7 +62,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.5k字</span>
+            <span class="post-count">2.1k字</span>
         </span>
     </span>
 
@@ -71,7 +71,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">5分钟</span>
+            <span class="post-count">7分钟</span>
         </span>
     </span>
 </div>
@@ -130,6 +130,12 @@
 <h3 id="第二种情况：转发数据流向"><a href="#第二种情况：转发数据流向" class="headerlink" title="第二种情况：转发数据流向"></a>第二种情况：转发数据流向</h3><p>来自外界的数据包达到防火墙后，首先被prerouting规则链处理，之后会进行路由选择，如果数据包的目的地址是其他外部地址（比如局域网用户通过网关访问QQ站点的数据包），则内核将其传递给forward链进行处理（是否转发或者拦截），然后再交给postrouting规则链（是都修改数据包的地址等）进行处理。</p>
 <h3 id="第三种情况：出站数据流向"><a href="#第三种情况：出站数据流向" class="headerlink" title="第三种情况：出站数据流向"></a>第三种情况：出站数据流向</h3><p>防火墙本机向外部地址发送的数据包（比如防火墙主机中测试公网DNS服务器时），首先被output规则链处理，之后进行路由选择，然后传递给postrouting规则链（是否修改数据包的地址等）进行处理。</p>
 <h2 id="管理和设置iptables规则"><a href="#管理和设置iptables规则" class="headerlink" title="管理和设置iptables规则"></a>管理和设置iptables规则</h2><p><img src="/images/7775566-fb35d0a138063159.jpg" alt=""><br><img src="/images/7775566-736f5a5882a69420.jpg" alt=""></p>
+<h3 id="iptables的基本语法格式"><a href="#iptables的基本语法格式" class="headerlink" title="iptables的基本语法格式"></a>iptables的基本语法格式</h3><p>iptables [-t 表名] 命令选项 [链名] [条件匹配] [-j 目标动作或跳转]<br>说明：表名、链名由于指定iptables命令所操作的表和链，命令选项用于指定管理iptables规则的方式（比如：插入、增加、删除、查看等）；条件匹配用于指定对符合什么样的条件的数据包进行处理；目标动作或跳转用于指定数据包的处理方式（比如允许通过、拒绝、丢弃、跳转给其他链处理）。</p>
+<h3 id="iptables命令的管理控制选项"><a href="#iptables命令的管理控制选项" class="headerlink" title="iptables命令的管理控制选项"></a>iptables命令的管理控制选项</h3><p>-A 在指定链的末尾添加（append）一条新的规则<br>-D 删除（delete）指定链中的某一条规则，可以按规则序号和内容删除<br>-I 在指定链中插入（insert）一条新的规则，默认在第一行添加<br>-R 修改、替换（replace）指定链中的某一条规则，可以按规则序号和内容替换<br>-L 列出（list）指定链中的所有的规则进行查看<br>-E 重命名用户定义的链，不改变链本身<br>-F 清空（flush）所有规则<br>-N 新建（new-chain）一条用户自己定义的规则链<br>-X 删除指定表中用户自定义的规则链（delete-chain）<br>-P 设置指定链的默认策略（policy）<br>-Z 将所有表的所有链的字节和数据包计数器清零<br>-n 使用数字形式（number）显示输出结果<br>-v 查看规则表详细信息（verbose）的信息<br>-V 查看版本（version）<br>-h 获取帮助（help）</p>
+<h3 id="防火墙处理数据包的四种方式"><a href="#防火墙处理数据包的四种方式" class="headerlink" title="防火墙处理数据包的四种方式"></a>防火墙处理数据包的四种方式</h3><p>Accept 允许数据包通过<br>Drop 直接丢弃数据包，不给任何回应信息<br>Reject 拒绝数据包通过，必要时会给数据发送端一个响应的信息<br>Log 在/var/log/messages文件中记录日志信息，然后将数据包传递给下一条规则</p>
+<h3 id="iptables防火墙规则的保存和恢复"><a href="#iptables防火墙规则的保存和恢复" class="headerlink" title="iptables防火墙规则的保存和恢复"></a>iptables防火墙规则的保存和恢复</h3><p>iptables-save把规则保存到文件中，再由目录rc.d下的脚本（/etc/rc.d/init.d/iptables）自动装载<br>使用命令iptables-save来保存规则。<br>一般用iptables-save &gt; /etc/sysconfig/iptables 生成保存规则的文件<br>也可以用 service iptables save，它能把规则自动保存在 /etc/sysconfig/iptables中。<br>当计算机启动时，rc.d下的脚本将用命令iptables-restore调用这个文件，从而自动恢复规则。</p>
+<h3 id="删除input链的第一条规则"><a href="#删除input链的第一条规则" class="headerlink" title="删除input链的第一条规则"></a>删除input链的第一条规则</h3><p>iptables -D input 1</p>
+<h3 id="iptables防火墙常用的策略"><a href="#iptables防火墙常用的策略" class="headerlink" title="iptables防火墙常用的策略"></a>iptables防火墙常用的策略</h3><p>1.</p>
 
       
       <!-- reward -->
