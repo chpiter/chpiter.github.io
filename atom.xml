@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chpiter.net/"/>
-  <updated>2020-03-14T17:19:32.276Z</updated>
+  <updated>2020-03-16T13:27:54.881Z</updated>
   <id>https://chpiter.net/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>技术团队的组织文化</title>
+    <link href="https://chpiter.net/2020/03/16/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%87%E5%8C%96/"/>
+    <id>https://chpiter.net/2020/03/16/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%87%E5%8C%96/</id>
+    <published>2020-03-16T12:36:25.000Z</published>
+    <updated>2020-03-16T13:27:54.881Z</updated>
+    
+    <content type="html"><![CDATA[<p>from: 58到家 刘晓飞</p><h1 id="团队文化"><a href="#团队文化" class="headerlink" title="团队文化"></a>团队文化</h1><p>文化建设不分团队大小。<br>团队的是非观，提倡什么、反对什么。<br>人是团队文化的核心。<br><strong>规章制度告诉我们什么不能做，文化倡导我们做什么。两者并不冲突。</strong></p><h1 id="怎样构建团队文化"><a href="#怎样构建团队文化" class="headerlink" title="怎样构建团队文化"></a>怎样构建团队文化</h1><ol><li>Teamleader要以身作则</li><li>要找对的人</li><li></li></ol><h1 id="Owner精神"><a href="#Owner精神" class="headerlink" title="Owner精神"></a>Owner精神</h1><h2 id="什么是Owner精神"><a href="#什么是Owner精神" class="headerlink" title="什么是Owner精神"></a>什么是Owner精神</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;from: 58到家 刘晓飞&lt;/p&gt;
+&lt;h1 id=&quot;团队文化&quot;&gt;&lt;a href=&quot;#团队文化&quot; class=&quot;headerlink&quot; title=&quot;团队文化&quot;&gt;&lt;/a&gt;团队文化&lt;/h1&gt;&lt;p&gt;文化建设不分团队大小。&lt;br&gt;团队的是非观，提倡什么、反对什么。&lt;br&gt;人是团队
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>iptables详解及常用规则</title>
