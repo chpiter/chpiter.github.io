@@ -8,9 +8,51 @@
 <h1 id="怎样构建团队文化"><a href="#怎样构建团队文化" class="headerlink" title="怎样构建团队文化"></a>怎样构建团队文化</h1><ol>
 <li>Teamleader要以身作则</li>
 <li>要找对的人</li>
-<li></li>
+<li>强调团队的价值和荣誉感，让员工有自豪感</li>
+<li>合理的考核和激励制度</li>
+<li>氛围、公平、成长、成就</li>
 </ol>
-<h1 id="Owner精神"><a href="#Owner精神" class="headerlink" title="Owner精神"></a>Owner精神</h1><h2 id="什么是Owner精神"><a href="#什么是Owner精神" class="headerlink" title="什么是Owner精神"></a>什么是Owner精神</h2>]]></content>
+<h1 id="Owner精神"><a href="#Owner精神" class="headerlink" title="Owner精神"></a>Owner精神</h1><ul>
+<li>有组织</li>
+<li>有思考 – 不仅是完成任务</li>
+<li>有目标</li>
+<li>有原则</li>
+<li>有执行</li>
+<li>敢决策</li>
+<li>敢担责</li>
+</ul>
+<h2 id="价值体现"><a href="#价值体现" class="headerlink" title="价值体现"></a>价值体现</h2><ul>
+<li>保持团持久的战斗力</li>
+<li>保持团队的凝聚力</li>
+<li>保持生产团队的自豪感</li>
+</ul>
+<h2 id="如何培养"><a href="#如何培养" class="headerlink" title="如何培养"></a>如何培养</h2><ul>
+<li>树立自身的owner精神</li>
+<li>给与充分信任 – 犯错不一定是坏事</li>
+<li>给予足够的关怀</li>
+<li>重贡献轻成就</li>
+<li>多建议少决策</li>
+<li>多鼓励少批评 – 要做到帮助性、建设性的批评</li>
+<li>分享团队成果 – 团队的荣辱与我相关</li>
+<li>贯宣公司战略</li>
+</ul>
+<h2 id="如何管理owner团队"><a href="#如何管理owner团队" class="headerlink" title="如何管理owner团队"></a>如何管理owner团队</h2><ul>
+<li>管理动作要一致</li>
+<li>坚决淘汰消极分子</li>
+<li>合理的考核制度</li>
+<li>不断强调团队的价值</li>
+<li>工作上学会放手（不放松）</li>
+<li>要做团队的保护伞</li>
+</ul>
+<h2 id="注意的问题"><a href="#注意的问题" class="headerlink" title="注意的问题"></a>注意的问题</h2><ul>
+<li>不要期望每个人都有owner精神</li>
+<li>要信任但要有监督</li>
+<li>学会放手但不要置身事外</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>管理</tag>
+      </tags>
   </entry>
   <entry>
     <title>iptables详解及常用规则</title>
@@ -52,8 +94,39 @@
 <h3 id="防火墙处理数据包的四种方式"><a href="#防火墙处理数据包的四种方式" class="headerlink" title="防火墙处理数据包的四种方式"></a>防火墙处理数据包的四种方式</h3><p>Accept 允许数据包通过<br>Drop 直接丢弃数据包，不给任何回应信息<br>Reject 拒绝数据包通过，必要时会给数据发送端一个响应的信息<br>Log 在/var/log/messages文件中记录日志信息，然后将数据包传递给下一条规则</p>
 <h3 id="iptables防火墙规则的保存和恢复"><a href="#iptables防火墙规则的保存和恢复" class="headerlink" title="iptables防火墙规则的保存和恢复"></a>iptables防火墙规则的保存和恢复</h3><p>iptables-save把规则保存到文件中，再由目录rc.d下的脚本（/etc/rc.d/init.d/iptables）自动装载<br>使用命令iptables-save来保存规则。<br>一般用iptables-save &gt; /etc/sysconfig/iptables 生成保存规则的文件<br>也可以用 service iptables save，它能把规则自动保存在 /etc/sysconfig/iptables中。<br>当计算机启动时，rc.d下的脚本将用命令iptables-restore调用这个文件，从而自动恢复规则。</p>
 <h3 id="删除input链的第一条规则"><a href="#删除input链的第一条规则" class="headerlink" title="删除input链的第一条规则"></a>删除input链的第一条规则</h3><p>iptables -D input 1</p>
-<h3 id="iptables防火墙常用的策略"><a href="#iptables防火墙常用的策略" class="headerlink" title="iptables防火墙常用的策略"></a>iptables防火墙常用的策略</h3><p>1.</p>
-]]></content>
+<h3 id="iptables防火墙常用的策略"><a href="#iptables防火墙常用的策略" class="headerlink" title="iptables防火墙常用的策略"></a>iptables防火墙常用的策略</h3><ol>
+<li><p>拒绝进入防火墙的所有ICMP协议数据包<br>iptables -I INPUT -p icmp -j REJECT</p>
+</li>
+<li><p>允许防火墙转发除了ICMP协议之外的所有数据包<br>iptables -A FORWARD -p !icmp -j ACCEPT<br>说明：使用“!”可以将条件取反</p>
+</li>
+<li><p>拒绝转发来自192.168.1.10主机的数据，允许转发来自192.168.0.0/16网段的数据<br>iptables -A FORWARD -s 192.168.1.11 -j REJECT<br>iptables -A FORWARD -s 192.168.0.0/16 -j ACCEPT<br>说明：注意要把拒绝的放在前面</p>
+</li>
+<li><p>丢弃从外网接口（eth1）进入防火墙本机的源地址为私网地址的数据包<br>iptables -A INPUT -i eth1 -s 192.168.0.0/16 -j DROP<br>iptables -A INPUT -i eth1 -s 172.16.0.0/12 -j DROP<br>iptables -A INPUT -i eth1 -s 10.0.0.0/8 -j DROP</p>
+</li>
+<li><p>封堵网段（192.168.1.0/24），两个两个小时候解封<br>iptables -I INPUT -s 192.168.1.0/24 -j DROP<br>iptabls -I FORWARD -s 192.168.1.0/24 -j DROP<br>at now 2 hours at&gt;iptables -D INPUT 1 at&gt; iptables -D FORWARD 1</p>
+</li>
+<li><p>只允许管理员从202.13.0.0/16网段使用SSH远程登录防火墙主机<br>iptables -A INPUT -p tcp –dport 22 -s 202.13.0.0/16 -j ACCEPT<br>iptables -A INPUT -p tcp –dport 22 -j DROP</p>
+</li>
+<li><p>允许本机开放从tcp端口20-1024提供的应用服务<br>iptables -A INPUT -p tcp –dport 20:1024 -j ACCEPT<br>iptables -A OUTPUT -p tcp –sport 20:1024 -j ACCEPT</p>
+</li>
+<li><p>允许转发来自192.168.0.0/16局域网段的DNS解析请求数据包<br>iptables -A FORWARD -s 192.168.0.0/16 -p udp –dport 53 -j ACCEPT<br>iptables -A FORWARD -d 192.168.0.0/16 -p udp –sport 53 -j ACCEPT</p>
+</li>
+<li><p>禁止其他主机ping防火墙主机，但是允许从防火墙上ping其他主机<br>iptables -I INPUT -p icmp –icmp-type Echo-Request -j DROP<br>iptables -I INPUT -p icmp –icmp-type Echo-Reply -j ACCEPT<br>iptables -I INPUT -p icmp –icmp-type destination-Unreachable -j ACCEPT</p>
+</li>
+<li><p>禁止转发来自MAC地址 00:0c:29:27:55:3F的主机的数据包<br>iptables -A FORWARD -m mac –mac-source 00:0c:29:27:55:3F -j DROP</p>
+</li>
+<li><p>允许防火墙主机对外开放TCP端口20、21、25、110以及被动模式FTP端口1250-1280<br>iptables -A INPUT -p tcp -m multiport –dport 20,21,25,110,1250:1280 -j ACCEPT</p>
+</li>
+<li><p>禁止转发源地址IP为192.168.1.20-192.168.1.99的TCP数据包<br>iptables -A FORWARD -p tcp -m iprange –src-range 192.168.1.20-192.168.1.99 -j DROP</p>
+</li>
+<li><p>禁止转发与正常TCP连接无关的非–syn请求数据包<br>iptables -A FORWARD -m state –state NEW -p tcp !–syn -j DROP<br>说明：“-m state”表示数据包的连接状态，“NEW”表示与任何连接无关</p>
+</li>
+<li><p>拒绝访问防火墙的新数据包，但允许响应连接或与已有连接相关的数据包<br>iptables -A INPUT -p tcp -m state –state NEW -j DROP<br>iptables -A INPUT -p tcp -m state –state ESTABLISHED,RELATED -j ACCEPT</p>
+</li>
+<li><p>只开放本机的Web服务（80）、FTP（20、21、20450-20480），放行外部主机发往服务器其他端口的应答数据包，将其他入栈数据包均予以丢弃处理<br>iptables -I INPUT -p tcp -m multiport –dport 20,21,80 -j ACCEPT<br>iptables -I INPUT -p tcp –dport 20450-20480 -j ACCEPT<br>iptables -I INPUT -p tcp -m state –state ESTABLISHED -j ACCEPT<br>iptables -P INPUT DROP</p>
+</li>
+</ol>
+<h3 id="常用iptables规则"><a href="#常用iptables规则" class="headerlink" title="常用iptables规则"></a>常用iptables规则</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 1. 删除所有现有规则</span><br><span class="line"></span><br><span class="line">iptables -F</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 2. 设置默认的 chain 策略</span><br><span class="line"></span><br><span class="line">iptables -P INPUT DROP</span><br><span class="line"></span><br><span class="line">iptables -P FORWARD DROP</span><br><span class="line"></span><br><span class="line">iptables -P OUTPUT DROP</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 3. 阻止某个特定的 IP 地址</span><br><span class="line"></span><br><span class="line">#BLOCK_THIS_IP&#x3D;&quot;x.x.x.x&quot;</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -s &quot;$BLOCK_THIS_IP&quot; -j DROP</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 4. 允许全部进来的（incoming）SSH</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 5. 只允许某个特定网络进来的 SSH</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp -s 192.168.200.0&#x2F;24 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 6. 允许进来的（incoming）HTTP</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 7. 多端口（允许进来的 SSH、HTTP 和 HTTPS）</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp -m multiport --sports 22,80,443 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 8. 允许出去的（outgoing）SSH</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 9. 允许外出的（outgoing）SSH，但仅访问某个特定的网络</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp -d 192.168.101.0&#x2F;24 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 10. 允许外出的（outgoing） HTTPS</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --sport 443 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 11. 对进来的 HTTPS 流量做负载均衡</span><br><span class="line"></span><br><span class="line">#iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 0 -j DNAT --to-destination 192.168.1.101:443</span><br><span class="line"></span><br><span class="line">#iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 1 -j DNAT --to-destination 192.168.1.102:443</span><br><span class="line"></span><br><span class="line">#iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 2 -j DNAT --to-destination 192.168.1.103:443</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 12. 从内部向外部 Ping</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 13. 从外部向内部 Ping</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 14. 允许环回（loopback）访问</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i lo -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o lo -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 15. 允许 packets 从内网访问外网</span><br><span class="line"></span><br><span class="line"># if eth1 is connected to external network (internet)</span><br><span class="line"></span><br><span class="line"># if eth0 is connected to internal network (192.168.1.x)</span><br><span class="line"></span><br><span class="line">iptables -A FORWARD -i eth0 -o eth1 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 16. 允许外出的  DNS</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -p udp -o eth0 --dport 53 -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p udp -i eth0 --sport 53 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 17. 允许 NIS 连接</span><br><span class="line"></span><br><span class="line"># rpcinfo -p | grep ypbind ; This port is 853 and 850</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p tcp --dport 111 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p udp --dport 111 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p tcp --dport 853 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p udp --dport 853 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p tcp --dport 850 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p udp --dport 850 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 18. 允许某个特定网络 rsync 进入本机</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp -s 192.168.101.0&#x2F;24 --dport 873 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 873 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 19. 仅允许来自某个特定网络的 MySQL 的链接</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp -s 192.168.200.0&#x2F;24 --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 3306 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 20. 允许 Sendmail 或 Postfix</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 25 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --sport 25 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 21. 允许 IMAP 和 IMAPS</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 143 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 143 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 993 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 993 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 22. 允许 POP3 和 POP3S</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 110 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 110 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 995 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 995 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 23. 防止 DoS 攻击</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p tcp --dport 80 -m limit --limit 25&#x2F;minute --limit-burst 100 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 24. 设置 422 端口转发到 22 端口</span><br><span class="line"></span><br><span class="line">#iptables -t nat -A PREROUTING -p tcp -d 192.168.102.37 --dport 422 -j DNAT --to 192.168.102.37:22</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 422 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 422 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 25. 为丢弃的包做日志（Log）</span><br><span class="line"></span><br><span class="line">iptables -N LOGGING</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -j LOGGING</span><br><span class="line"></span><br><span class="line">iptables -A LOGGING -m limit --limit 2&#x2F;min -j LOG --log-prefix &quot;IPTables Packet Dropped: &quot; --log-level 7</span><br><span class="line"></span><br><span class="line">iptables -A LOGGING -j DROP</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>linux</tag>
         <tag>iptables</tag>
