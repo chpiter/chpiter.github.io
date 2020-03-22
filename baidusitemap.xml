@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chpiter.net/2020/03/21/supervisor/</loc>
+    <lastmod>2020-03-22</lastmod>
+  </url>  <url>
     <loc>https://chpiter.net/2020/03/16/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%87%E5%8C%96/</loc>
     <lastmod>2020-03-21</lastmod>
   </url>  <url>
@@ -41,9 +44,6 @@
     <lastmod>2020-03-10</lastmod>
   </url>  <url>
     <loc>https://chpiter.net/2020/02/22/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2020-03-10</lastmod>
-  </url>  <url>
-    <loc>https://chpiter.net/2020/02/22/K8s%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2020-03-10</lastmod>
   </url>  <url>
     <loc>https://chpiter.net/2020/03/07/ITIL%E6%80%9D%E6%83%B3/</loc>

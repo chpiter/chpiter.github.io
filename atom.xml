@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chpiter.net/"/>
-  <updated>2020-03-21T04:23:24.379Z</updated>
+  <updated>2020-03-22T10:20:18.865Z</updated>
   <id>https://chpiter.net/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>supervisor</title>
+    <link href="https://chpiter.net/2020/03/21/supervisor/"/>
+    <id>https://chpiter.net/2020/03/21/supervisor/</id>
+    <published>2020-03-21T08:44:01.000Z</published>
+    <updated>2020-03-22T10:20:18.865Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="supervisor介绍"><a href="#supervisor介绍" class="headerlink" title="supervisor介绍"></a>supervisor介绍</h1><p>进程守护</p><h1 id="supervisor组件"><a href="#supervisor组件" class="headerlink" title="supervisor组件"></a>supervisor组件</h1><h2 id="supervisord"><a href="#supervisord" class="headerlink" title="supervisord"></a>supervisord</h2><p>supervisord是supervisor的服务端程序：启动supervisor程序，启动supervisor管理的子进程，响应来自client的请求，重启闪退或异常退出的子进程，把子进程的stderr或stdout记录到日志文件中，生成和处理event。</p><h2 id="supervisorctl"><a href="#supervisorctl" class="headerlink" title="supervisorctl"></a>supervisorctl</h2><p>supervisorctl是客户端程序，有一个类似shell的命令，可以查看子进程状态，启动、停止、重启子进程，获取running子进程的列表等。supervisorctl不仅可以连接到本机的supervd，还可以连接远程的supervisord，本机通过UNIX socke连接，远程通过TCP socket连接。supervisorctl和supervd之间的通信是通过XML_RPC完成的</p><h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><p>Web Server可以在界面上可以进城，Web Server是通过XML_RPC来实现的。</p><h2 id="XML-RPC接口"><a href="#XML-RPC接口" class="headerlink" title="XML_RPC接口"></a>XML_RPC接口</h2><p>用于远程调用的接口</p><h1 id="配置文件详解"><a href="#配置文件详解" class="headerlink" title="配置文件详解"></a>配置文件详解</h1><h2 id="unix-http-server"><a href="#unix-http-server" class="headerlink" title="[unix_http_server]"></a>[unix_http_server]</h2><table><thead><tr><th>参数选项</th><th>中文白话</th></tr></thead><tbody><tr><td>file=/tmp/supervisor.sock</td><td>socket文件的路径，supervisorctl用XML_RPC和supervisord通信就是通过它进行的。如果不设置的话，supervisorctl也就不能用了不设置的话，默认为none。 非必须设置</td></tr><tr><td>;chmod=0700</td><td>这个简单，就是修改上面的那个socket文件的权限为0700不设置的话，默认为0700。 非必须设置</td></tr><tr><td>;chown=nobody:nogroup</td><td>这个一样，修改上面的那个socket文件的属组为user.group不设置的话，默认为启动supervisord进程的用户及属组。非必须设置</td></tr><tr><td>;username=user</td><td>使用supervisorctl连接的时候，认证的用户不设置的话，默认为不需要用户。 非必须设置</td></tr><tr><td>;password=123</td><td>和上面的用户名对应的密码，可以直接使用明码，也可以使用SHA加密如：{SHA}82ab876d1387bfafe46cc1c8a2ef074eae50cb1d默认不设置。非必须设置</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;supervisor介绍&quot;&gt;&lt;a href=&quot;#supervisor介绍&quot; class=&quot;headerlink&quot; title=&quot;supervisor介绍&quot;&gt;&lt;/a&gt;supervisor介绍&lt;/h1&gt;&lt;p&gt;进程守护&lt;/p&gt;
+&lt;h1 id=&quot;supervisor组件&quot;
+      
+    
+    </summary>
+    
+    
+    
+      <category term="supervisor" scheme="https://chpiter.net/tags/supervisor/"/>
+    
+  </entry>
   
   <entry>
     <title>技术团队的组织文化</title>
@@ -293,23 +318,6 @@
     
     
       <category term="ITIL" scheme="https://chpiter.net/tags/ITIL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>K8s学习笔记</title>
-    <link href="https://chpiter.net/2020/02/22/K8s%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://chpiter.net/2020/02/22/K8s%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2020-02-22T12:26:00.000Z</published>
-    <updated>2020-03-10T03:19:11.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-      <category term="k8s" scheme="https://chpiter.net/tags/k8s/"/>
     
   </entry>
   
