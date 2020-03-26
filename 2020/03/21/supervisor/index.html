@@ -62,7 +62,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">5k字</span>
+            <span class="post-count">5.2k字</span>
         </span>
     </span>
 
@@ -71,7 +71,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">21分钟</span>
+            <span class="post-count">22分钟</span>
         </span>
     </span>
 </div>
@@ -565,6 +565,13 @@
 
 <h1 id="service文件"><a href="#service文件" class="headerlink" title="service文件"></a>service文件</h1><p>/lib/systemd/system/supervisord.service</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description&#x3D;Supervisord Daemon</span><br><span class="line">After&#x3D;network.target</span><br><span class="line">  </span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;forking</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;supervisord -c &#x2F;etc&#x2F;supervisord&#x2F;supervisord.conf</span><br><span class="line">ExecStop&#x3D;&#x2F;usr&#x2F;bin&#x2F;supervisorctl -c &#x2F;etc&#x2F;supervisord&#x2F;supervisord.conf shutdown</span><br><span class="line">ExecReload&#x3D;&#x2F;usr&#x2F;bin&#x2F;supervisorctl -c &#x2F;etc&#x2F;supervisord&#x2F;supervisord.conf reload</span><br><span class="line">killMode&#x3D;process</span><br><span class="line">Restart&#x3D;on-failure</span><br><span class="line">RestartSec&#x3D;5s</span><br><span class="line">  </span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure>
+
+<h1 id="supervisor集群管理开源项目"><a href="#supervisor集群管理开源项目" class="headerlink" title="supervisor集群管理开源项目"></a>supervisor集群管理开源项目</h1><p><a href="https://github.com/Gamegos/cesi" target="_blank" rel="noopener">cesi</a></p>
+<p>修改supervisord.conf配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[inet_http_server]</span><br><span class="line">port&#x3D;*:30000</span><br><span class="line">username&#x3D;admin</span><br><span class="line">password&#x3D;Centaur*123</span><br></pre></td></tr></table></figure>
+
+<p>安装cesi</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git epel-release</span><br><span class="line">yum install -y python34 python34-pip python34-venv</span><br><span class="line">export CESI_SETUP_PATH&#x3D;&#x2F;data&#x2F;cesi</span><br><span class="line">mkdir -p $&#123;CESI_SETUP_PATH&#125;</span><br><span class="line">cd $&#123;CESI_SETUP_PATH&#125;</span><br><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;gamegos&#x2F;cesi&#x2F;releases&#x2F;download&#x2F;v2.6.8&#x2F;cesi-extended.tar.gz -O cesi.tar.gz</span><br><span class="line">tar -xvf cesi.tar.gz</span><br><span class="line">python3 -m venv venv</span><br><span class="line">source venv&#x2F;bin&#x2F;activate</span><br><span class="line">yum install -y gcc libffi-devel python34-devel</span><br><span class="line">pip3 install -r requirements.txt</span><br><span class="line">python3 $&#123;CESI_SETUP_PATH&#125;&#x2F;cesi&#x2F;run.py --config-file $&#123;CESI_SETUP_PATH&#125;&#x2F;defaults&#x2F;cesi.conf.toml</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
