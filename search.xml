@@ -4,6 +4,10 @@
     <title>kubeadm实践</title>
     <url>/2020/04/07/kubeadm%E5%AE%9E%E8%B7%B5/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1>]]></content>
+      <tags>
+        <tag>k8s</tag>
+        <tag>kubeadm</tag>
+      </tags>
   </entry>
   <entry>
     <title>supervisor</title>

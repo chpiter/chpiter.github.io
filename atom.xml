@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chpiter.net/"/>
-  <updated>2020-04-07T02:33:08.692Z</updated>
+  <updated>2020-04-07T09:47:46.972Z</updated>
   <id>https://chpiter.net/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://chpiter.net/2020/04/07/kubeadm%E5%AE%9E%E8%B7%B5/"/>
     <id>https://chpiter.net/2020/04/07/kubeadm%E5%AE%9E%E8%B7%B5/</id>
     <published>2020-04-06T22:35:16.000Z</published>
-    <updated>2020-04-07T02:33:08.692Z</updated>
+    <updated>2020-04-07T09:47:46.972Z</updated>
     
     <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1>]]></content>
     
@@ -35,6 +35,10 @@
     </summary>
     
     
+    
+      <category term="k8s" scheme="https://chpiter.net/tags/k8s/"/>
+    
+      <category term="kubeadm" scheme="https://chpiter.net/tags/kubeadm/"/>
     
   </entry>
   
