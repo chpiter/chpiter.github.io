@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>kubeadm实践</title>
+    <url>/2020/04/07/kubeadm%E5%AE%9E%E8%B7%B5/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1>]]></content>
+  </entry>
+  <entry>
     <title>supervisor</title>
     <url>/2020/03/21/supervisor/</url>
     <content><![CDATA[<h1 id="supervisor介绍"><a href="#supervisor介绍" class="headerlink" title="supervisor介绍"></a>supervisor介绍</h1><p>进程守护</p>
