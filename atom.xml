@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chpiter.net/"/>
-  <updated>2020-04-07T11:49:36.822Z</updated>
+  <updated>2020-04-07T11:51:46.423Z</updated>
   <id>https://chpiter.net/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>kubeadm实践</title>
-    <link href="https://chpiter.net/2020/04/07/kubeadm%E5%AE%9E%E8%B7%B5/"/>
-    <id>https://chpiter.net/2020/04/07/kubeadm%E5%AE%9E%E8%B7%B5/</id>
+    <title>kubeadm概述</title>
+    <link href="https://chpiter.net/2020/04/07/kubeadm%E6%A6%82%E8%BF%B0/"/>
+    <id>https://chpiter.net/2020/04/07/kubeadm%E6%A6%82%E8%BF%B0/</id>
     <published>2020-04-06T22:35:16.000Z</published>
-    <updated>2020-04-07T11:49:36.822Z</updated>
+    <updated>2020-04-07T11:51:46.423Z</updated>
     
     <content type="html"><![CDATA[<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="https://www.52wiki.cn/Doc/Read/id/1687.html" target="_blank" rel="noopener">https://www.52wiki.cn/Doc/Read/id/1687.html</a></li><li><a href="https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/" target="_blank" rel="noopener">https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/</a></li><li><a href="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm/" target="_blank" rel="noopener">https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm/</a></li><li><a href="https://blog.51cto.com/crushlinux/2473003" target="_blank" rel="noopener">https://blog.51cto.com/crushlinux/2473003</a></li><li><a href="https://feisky.gitbooks.io/kubernetes/content/components/kubeadm.html" target="_blank" rel="noopener">https://feisky.gitbooks.io/kubernetes/content/components/kubeadm.html</a></li><li><a href="https://github.com/cookeem/kubeadm-ha" target="_blank" rel="noopener">https://github.com/cookeem/kubeadm-ha</a></li></ul><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>kubeadm 是一个工具，它提供了 <code>kubeadm init</code> 以及 <code>kubeadm join</code> 这两个命令作为快速创建 Kubernetes 集群的最佳实践。</p><p>kubeadm 通过执行必要的操作来启动和运行一个最小可用的集群。它被故意设计为只关心启动集群，而不是准备节点环境的工作。同样的，诸如安装各种各样的可有可无的插件，例如 Kubernetes 控制面板、监控解决方案以及特定云提供商的插件，这些都不在它负责的范围。</p><p>相反，我们期望由一个基于 Kubernetes 从更高层设计的更加合适的工具来做这些事情；并且，理想情况下，使用 kubeadm 作为所有部署的基础将会使得创建一个符合期望的集群变得容易。</p><p>换言之，kubeadm 是一个基础设施工具，简化 Kubernetes 集群的部署和创建，而基于 Kubernetes 高层的设计则不在 kubeadm 负责范围之内。</p><p>kubeadm 常用命令</p><ul><li>kubeadm init 启动一个 Kubernetes 主节点（master）</li><li>kubeadm join 启动一个 Kubernetes 工作节点并将其加入到集群</li><li>kubeadm upgrade 更新一个 Kubernetes 集群到最新版本</li><li>kubeadm config 如果你使用 kubeadm v1.7.x 或者更低版本，你需要对你的集群做一些配置以便使用 <code>kubeadm upgrade</code> 命令</li><li>kubeadm token 使用 <code>kubeadm join</code>来管理令牌</li><li>kubeadm reset 还原之前使用 <code>kubeadm init</code> 或者 <code>kubeadm join</code> 对节点产生的改变</li><li>kubeadm version 打印kubeadm版本信息</li><li>kubeadm alpha 预览一组可用的新功能以便从社区搜集反馈</li></ul>]]></content>
     

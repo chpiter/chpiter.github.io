@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>kubeadm实践</title>
-    <url>/2020/04/07/kubeadm%E5%AE%9E%E8%B7%B5/</url>
+    <title>kubeadm概述</title>
+    <url>/2020/04/07/kubeadm%E6%A6%82%E8%BF%B0/</url>
     <content><![CDATA[<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://www.52wiki.cn/Doc/Read/id/1687.html" target="_blank" rel="noopener">https://www.52wiki.cn/Doc/Read/id/1687.html</a></li>
 <li><a href="https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/" target="_blank" rel="noopener">https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/</a></li>
