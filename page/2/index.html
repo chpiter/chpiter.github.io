@@ -99,109 +99,11 @@
         <h1 id="kubeadm-init"><a href="#kubeadm-init" class="headerlink" title="kubeadm init"></a>kubeadm init</h1><ul>
 <li><p><a target="_blank" rel="noopener" href="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/">https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/</a></p>
 <p>  此命令初始化一个 Kubernetes 控制节点。</p>
-</li>
-</ul>
-<h2 id="“init”命令执行以下阶段"><a href="#“init”命令执行以下阶段" class="headerlink" title="“init”命令执行以下阶段"></a>“init”命令执行以下阶段</h2><ul>
-<li>preflight Run pre-flight checks</li>
-<li>kubelet-start Write kubelet settings and （re）start the kubelet</li>
-<li>certs Certificate generation<ul>
-<li>/ca Generate the self-signed Kubernetes CA to provision identities for other Kubernetes components</li>
-<li>/apiserver Generate the certificate for serving the Kubernetes API</li>
-<li>/apiserver-kubelet-client Generate the certificate for the API server to connect to kubelet</li>
-<li>/front-proxy-ca Generate theself-signed CA to provision identities for front proxy</li>
-<li>/front-proxy-client Generate the certificate for the front proxy client</li>
-<li>/etcd-ca Generate the self-signed CA to provision identities for etcd</li>
-<li>/etcd-server Generate the certificate for serving etcd</li>
-<li>/etcd-peer Generate the certificate for etcd nodes to communicate with each other</li>
-<li>/etcd-healthcheck-client Generate the certificate for liveness probes to healthcheck etcd</li>
-<li>/apiserver=etcd-client Generate the certificate for apiserver uses to access etcd</li>
-</ul>
-</li>
-<li>kubeconfig Genera all kubeconfig files necessary to establish the control plane and the admin kubeconfig file<ul>
-<li>/admin Generate a kubeconfig file for the admin to use and for kubeadm itself</li>
-<li>/kubelet Generate a kubeconfig file for the kubelet to use <em>only</em> forcluster bootstrapping purpose</li>
-<li>/controller-manager Generate a kubeconfig file for the controller manager to use</li>
-<li>/scheduler Generate a kubeconfig file for the scheduler to use</li>
-</ul>
-</li>
-<li>control-plane Generate all static Pod manifest files necessary to establish the control plane <ul>
-<li>/apiserver Generate the kube-apiserver static Pod manifest</li>
-<li>/controller-manager Generate the kube-controller-manager static pod manifest</li>
-<li>/scheduler Generate the kube-scheduler static pod manifest</li>
-</ul>
-</li>
-<li>etcd Generate static Pod manifest file for local etcd<ul>
-<li>/local Generate the static Pod manifest file for a local，single-node local etcd instance</li>
-</ul>
-</li>
-<li>upload-config Upload the kubeadm and kubelet configuration to a Configmap<ul>
-<li>/kubeadm Upload the kubeadm ClusterConfiguration to a configmap</li>
-<li>/kubelet Upload the kubelet component config to a configmap</li>
-</ul>
-</li>
-<li>upload-certs Upload certificates to kubeadm-certs</li>
-<li>mark-control-plane Mark a node as a control-plane</li>
-<li>bootstrap-token Generate bootstrap tokens used to join a node to a cluster</li>
-<li>addon Install required addons for passing Conformance tests<ul>
-<li>/coredns Install the CoreDNS addon to a Kubernetes cluster</li>
-<li>/kube-proxy Install the kube-proxy addon to a Kubernetes cluster</li>
-</ul>
-</li>
-</ul>
-<h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><ul>
-<li>-apiserver-advertise-address string<br>  API服务器所公布的其正在监听的IP地址。如果未设置，则使用默认网络接口</li>
-<li>-apiserver-bind-port int32 默认值：6443<br>  API服务器绑定的端口</li>
-<li>-apiserver-cert-extra-sans stringSlice<br>  用于API Server 服务器证书的可选附加主题备用名称（SAN）。可以是IP地址和DNS名称</li>
-<li>-cert-dir string 默认值：”/etcd/kubernetes/pki”<br>  保存和存储证书的路径</li>
-<li>-certificate-key string<br>  用于加密kubeadm-certs Secret 中的控制平面证书的密钥</li>
-<li>-config string<br>  kubeadm 配置文件的路径</li>
-<li>-control-plane-endpoint string<br>  为控制平面指定一个稳定的IP地址或DNS名称</li>
-<li>-cri-socket string<br>  要连接的CRI套接字的路径。如果为空，则kubeadm将尝试自动监测此值；仅当安装了多个CRI或具有非标准CRI插槽时，才使用此选项</li>
-<li>-dry-run<br>  不做任何更改，只输出将要执行的操作</li>
-<li>-k，–experimental-kustomize string<br>  用于存储kustomize为静态pod清单所提供的补丁的路径</li>
-<li>-feature-gates string<br>  一组用来描述各种功能特性的键值（key=value）对。选项是：IPv6DualStack=true|false (ALPHA - default=false)</li>
-<li>-h，–help<br>  init操作的帮助命令</li>
-<li>-ignore-preflight-errors stringSlice<br>  错误将显示为警告的检查列表；例如：IsPrivilegedUser,Swap。取值 all 时将忽略检查中的所有错误</li>
-<li>–image-repository string 默认值：”k8s.gcr.io”<br>  选择用于拉取控制平面镜像的默认仓库</li>
-<li>–kubernetes-version string<br>  为控制平面选择一个特定的 kubernetes 版本</li>
-<li>–node-name string<br>  指定节点的名称</li>
-<li>–pod-network-cidr string<br>  指明pod网络可以使用的IP地址段。如果设置了这个参数，控制平面将会为没一个节点自动分配CIDRs</li>
-<li>–service-cidr string<br>  为服务的虚拟IP地址指定另外的IP地址段</li>
-<li>–skip-certificate-key-print<br>  不要打印用于加密控制平面证书的密钥</li>
-<li>–skip-phases stringSlice<br>  要跳过的阶段列表</li>
-<li>–skip-token-print<br>  要跳过打印 <code>kubeadm init</code> 生成的默认引导令牌</li>
-<li>–token string<br>  这个令牌用于建立控制平面与工作节点间的双向通信，格式为 [a-z0-9]{6}.[a-z0-9]{16}</li>
-<li>–token-ttl duration<br>  令牌被自动删除之前的持续时间（例如 1s，2m，3h）。如果设置为0，则令牌将永不过期</li>
-<li>–upload-certs<br>  将控制平面证书上传到kubeadm-certs Secret</li>
-<li>–rootfs string<br>  [实验] 到 ‘真实’ 主机根文件系统的路径，<strong>从父命令继承的选项</strong></li>
-</ul>
-<h2 id="init命令的工作流程"><a href="#init命令的工作流程" class="headerlink" title="init命令的工作流程"></a>init命令的工作流程</h2><p><code>kubeadm init</code> 命令通过执行下列步骤来启动一个 kubernetes 控制平面节点</p>
-<ol>
-<li>在做出变更前运行一系列的预检项来验证系统状态。一些检查项目仅仅触发警告，其他的则会被视为错误并且推出kubeadm，除非问题得到解决或者用户指定了<br> –ignore-preflight-error=<list-of-error> 参数</li>
-<li>生成一个自签名的CA证书（或者使用现有的证书，如果提供的话）来为集群中的每一个组件建立身份标识。如果用户已经通过 <code>--cert-dir</code> 配置的证书目录（默认为 <code>/etc/kubernetes/pki</code>）提供了他们自己的CA证书以及/或者密钥，那么将会跳过这个步骤，正如文档 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#custom-certificates">使用自定义证书</a>所述。如果指定了 <code>--apiserver-cert-extra-sans</code> 参数，APIserver的证书将会有额外的SAN条目，如果必要的话，将会被转为小写。</li>
-<li>将 kubeconfig 文件写入 <code>/etc/kubernetes</code> 目录以便kubelet、controller-manager和scheduler用来连接到APIServer，它们每一个都有自己的身份标识，同时生成一个名为 <code>admin.conf</code> 的独立kubeconfig 文件，用于管理操作。</li>
-<li>为APIServer、controller-manager和scheduler生成静态POD的清单文件（manifest）。假设没有提供一个外部的etcd服务的话，也会为etcd生成一份额外的静态POD清单文件。</li>
-</ol>
-<p>静态POD的清单文件被写入到 <code>/etc/kubernetes/manifest</code> 目录；kubelet会监视这个目录以便在系统启动的时候创建pod。</p>
-<p>一旦控制平面的POD都运行起来，<code>kubeadm init</code>的工作流程就继续往下执行。</p>
-<ol>
-<li>对控制平面节点应用labels和taints标记以便不会在它上面运行其他的工作负载。</li>
-<li>生成令牌以便其他节点以后可以使用这个令牌向控制平面节点注册他们自己。（可先），用户可以通过 <code>--token</code> 提供一个令牌，正如文档 <img src="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/" alt="kubeadm token">所述。</li>
-<li>为了使得节点能够遵照<img src="https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/" alt="Bootstrap Tokens"> 和 <img src="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/" alt="LTS Bootstrap"> 这两份文档中描述的机制加入到集群中，kubeadm会执行所有的必要配置： -创建一份configmap提供添加集群节点所需的信息，并未该configmap设置相关的RBAC访问规则。-使得Bootstrap Tokens可以访问CSR签名API。-对新的CSR请求配置为自动签发。</li>
-</ol>
-<h2 id="在-kubeadm-中使用-init-phases"><a href="#在-kubeadm-中使用-init-phases" class="headerlink" title="在 kubeadm 中使用 init phases"></a>在 kubeadm 中使用 init phases</h2><p>Kubeadm 允许您使用 <code>kubeadm init phases</code> 命令分阶段创建控制平面节点。<br>要查看阶段和子阶段的有序列表，可以调用 <code>kubeadm init --help</code>。该列表将位于帮助屏幕的顶部，每个阶段旁边都有一个描述。注意，通过调用 <code>kubeadm init</code>， 所有阶段和子阶段都将按照此确切顺序执行。<br>某些阶段具有唯一的标志，因此，如果要查看可用选项的列表，请添加 <code>--help</code> ，例如：<br><code>sudo kubead init phase control=plane controller-manager --help</code><br>您也可以使用 <code>--help</code> 查看特定父阶段的子阶段列表：<br><code>sudo kubeadm init phase control-plane --help</code><br><code>kubeadm init</code> 还公开了一个名为 <code>--skip-phases</code> 的参数，该参数可用于跳过某些阶段。参数接受阶段名称列表，并且这些名称可以从上面的有序列表中获取。<br>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm init phase control-plane all --config&#x3D;configfile.yaml</span><br><span class="line">sudo kubeadm init phase etcd local --config&#x3D;configfile.yaml</span><br><span class="line"># 您现在可以修改控制平面和 etcd 清单文件</span><br><span class="line">sudo kubeadm init --skip-phases&#x3D;control-plane,etcd --config&#x3D;configfile.yaml</span><br></pre></td></tr></table></figure>
-<p>该示例将执行的操作是基于 configfile.yaml 中的配置在 <code>/etc/kubernetes/manifest</code> 中写入控制平面和etcd的清单文件。这允许您修改文件，然后使用 –skip-phases 跳过这些阶段。通过调用最后一个命令，您将使用自定义清单文件创造一个控制平面节点。</p>
-<h2 id="结合一个配置文件来使用kubeadm-init"><a href="#结合一个配置文件来使用kubeadm-init" class="headerlink" title="结合一个配置文件来使用kubeadm init"></a>结合一个配置文件来使用kubeadm init</h2><p>通过一份配置文件而不是使用命令行参数来配置 kubeadm init 命令是可能的，但是一些更加高级的功能只能通过配置文件设定。这份配置文件通过 –config 选项参数指定。<br>可以使用 <code>kubead config print</code> 命令打印出默认配置。<br><strong>推荐</strong>使用 <code>kubeadm config migrate</code> 命令将旧的 v1beta1 版本的配置迁移到 v1beta2 版本。</p>
-<h2 id="添加-kube-proxy-参数"><a href="#添加-kube-proxy-参数" class="headerlink" title="添加 kube-proxy 参数"></a>添加 kube-proxy 参数</h2><p>kubeadm配置中有关 kube-proxy 的说明请查看：<img src="https://godoc.org/k8s.io/kubernetes/pkg/proxy/apis/config#KubeProxyConfiguration" alt="-kube-proxy"><br>使用 kubeadm 启用IPVS模式的说明请查看： <img src="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/README.md" alt="-IPVS"></p>
-<h2 id="向控制平面组件传递自定义的命令行参数"><a href="#向控制平面组件传递自定义的命令行参数" class="headerlink" title="向控制平面组件传递自定义的命令行参数"></a>向控制平面组件传递自定义的命令行参数</h2><p>有关向控制平面组件传递命令行参数的说明请查看：<img src="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/control-plane-flags/" alt="控制平面命令行参数"></p>
-<h2 id="使用自定义的镜像"><a href="#使用自定义的镜像" class="headerlink" title="使用自定义的镜像"></a>使用自定义的镜像</h2><p>默认情况下，kubeadm会从 k8s.gcr.io 仓库拉取镜像。如果请求的Kubernetes 版本是 CI label（例如 ci/latest），则使用 gcr.io/kubernetes-ci-images。<br>您可以通过使用<img src="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file" alt="带有配置文件的kubeadm">来重写此操作。<br>允许的自定义功能有：</p>
-<ul>
-<li>使用其他的 imageRepository 来代替 k8s.gcr.io</li>
-<li>将 useHyperKubeImage 设置为 true，使用 HyperKube 镜像</li>
-<li>为etcd或DNS附件提供特定的 imageRepository 和 imageTag<br>请注意配置文件中的配置项 kubernetesVersion 或者命令行参数 –kubernetes-version 会影响到镜像的版本。</li>
-</ul>
-<h2 id="将控制平面证书上传到集群"><a href="#将控制平面证书上传到集群" class="headerlink" title="将控制平面证书上传到集群"></a>将控制平面证书上传到集群</h2>
+        
+          <p class="article-more-link">
+            <a href="/2020/04/08/kubeadm-command/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -251,20 +153,11 @@
 </ul>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>kubeadm 是一个工具，它提供了 <code>kubeadm init</code> 以及 <code>kubeadm join</code> 这两个命令作为快速创建 Kubernetes 集群的最佳实践。</p>
 <p>kubeadm 通过执行必要的操作来启动和运行一个最小可用的集群。它被故意设计为只关心启动集群，而不是准备节点环境的工作。同样的，诸如安装各种各样的可有可无的插件，例如 Kubernetes 控制面板、监控解决方案以及特定云提供商的插件，这些都不在它负责的范围。</p>
-<p>相反，我们期望由一个基于 Kubernetes 从更高层设计的更加合适的工具来做这些事情；并且，理想情况下，使用 kubeadm 作为所有部署的基础将会使得创建一个符合期望的集群变得容易。</p>
-<p>换言之，kubeadm 是一个基础设施工具，简化 Kubernetes 集群的部署和创建，而基于 Kubernetes 高层的设计则不在 kubeadm 负责范围之内。</p>
-<p>kubeadm 常用命令</p>
-<ul>
-<li>kubeadm init 启动一个 Kubernetes 主节点（master）</li>
-<li>kubeadm join 启动一个 Kubernetes 工作节点并将其加入到集群</li>
-<li>kubeadm upgrade 更新一个 Kubernetes 集群到最新版本</li>
-<li>kubeadm config 如果你使用 kubeadm v1.7.x 或者更低版本，你需要对你的集群做一些配置以便使用 <code>kubeadm upgrade</code> 命令</li>
-<li>kubeadm token 使用 <code>kubeadm join</code>来管理令牌</li>
-<li>kubeadm reset 还原之前使用 <code>kubeadm init</code> 或者 <code>kubeadm join</code> 对节点产生的改变</li>
-<li>kubeadm version 打印kubeadm版本信息</li>
-<li>kubeadm alpha 预览一组可用的新功能以便从社区搜集反馈</li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/04/07/kubeadm%E6%A6%82%E8%BF%B0/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -819,51 +712,11 @@
       
         <p>from: 58到家 刘晓飞</p>
 <h1 id="团队文化"><a href="#团队文化" class="headerlink" title="团队文化"></a>团队文化</h1><p>文化建设不分团队大小。<br>团队的是非观，提倡什么、反对什么。<br>人是团队文化的核心。<br><strong>规章制度告诉我们什么不能做，文化倡导我们做什么。两者并不冲突。</strong></p>
-<h1 id="怎样构建团队文化"><a href="#怎样构建团队文化" class="headerlink" title="怎样构建团队文化"></a>怎样构建团队文化</h1><ol>
-<li>Teamleader要以身作则</li>
-<li>要找对的人</li>
-<li>强调团队的价值和荣誉感，让员工有自豪感</li>
-<li>合理的考核和激励制度</li>
-<li>氛围、公平、成长、成就</li>
-</ol>
-<h1 id="Owner精神"><a href="#Owner精神" class="headerlink" title="Owner精神"></a>Owner精神</h1><ul>
-<li>有组织</li>
-<li>有思考 – 不仅是完成任务</li>
-<li>有目标</li>
-<li>有原则</li>
-<li>有执行</li>
-<li>敢决策</li>
-<li>敢担责</li>
-</ul>
-<h2 id="价值体现"><a href="#价值体现" class="headerlink" title="价值体现"></a>价值体现</h2><ul>
-<li>保持团持久的战斗力</li>
-<li>保持团队的凝聚力</li>
-<li>保持生产团队的自豪感</li>
-</ul>
-<h2 id="如何培养"><a href="#如何培养" class="headerlink" title="如何培养"></a>如何培养</h2><ul>
-<li>树立自身的owner精神</li>
-<li>给与充分信任 – 犯错不一定是坏事</li>
-<li>给予足够的关怀</li>
-<li>重贡献轻成就</li>
-<li>多建议少决策</li>
-<li>多鼓励少批评 – 要做到帮助性、建设性的批评</li>
-<li>分享团队成果 – 团队的荣辱与我相关</li>
-<li>贯宣公司战略</li>
-</ul>
-<h2 id="如何管理owner团队"><a href="#如何管理owner团队" class="headerlink" title="如何管理owner团队"></a>如何管理owner团队</h2><ul>
-<li>管理动作要一致</li>
-<li>坚决淘汰消极分子</li>
-<li>合理的考核制度</li>
-<li>不断强调团队的价值</li>
-<li>工作上学会放手（不放松）</li>
-<li>要做团队的保护伞</li>
-</ul>
-<h2 id="注意的问题"><a href="#注意的问题" class="headerlink" title="注意的问题"></a>注意的问题</h2><ul>
-<li>不要期望每个人都有owner精神</li>
-<li>要信任但要有监督</li>
-<li>学会放手但不要置身事外</li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/03/16/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%87%E5%8C%96/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -908,71 +761,11 @@
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunsky303/p/12327863.html">https://www.cnblogs.com/sunsky303/p/12327863.html</a></li>
 </ul>
 <h1 id="iptables简介"><a href="#iptables简介" class="headerlink" title="iptables简介"></a>iptables简介</h1><p>netfilter/iptables（简称iptables）组成linux平台下的包过滤防火墙，与大多数的linux软件一样，这个包过滤防火墙是免费的，它可以代替昂贵的商业防火墙解决方案，<strong>完成封包过滤、封包重定向和网络地址转换（NAT）等功能</strong>。</p>
-<h2 id="iptables基础"><a href="#iptables基础" class="headerlink" title="iptables基础"></a>iptables基础</h2><p>规则（rules）其实就是网络管理员预定义的条件，规则一般的定位为“如果数据包头符合这样的条件，就这样处理这个数据包”。规则存储在内核空间的信息包过滤表中，这些规则分别指定了源地址、目的地址、传输协议（如TCP、UDP、ICP）和服务类型（如HTTP、FTP和SMTP等）等。当数据包与规则匹配时，iptables就根据规则所定义的方法来处理这些数据包，如方形（accept）、拒绝（reject）和丢弃（drop）等。匹配防火墙的主要工作就是添加、修改和删除这些规则。</p>
-<h2 id="iptables和netfilter的关系："><a href="#iptables和netfilter的关系：" class="headerlink" title="iptables和netfilter的关系："></a>iptables和netfilter的关系：</h2><p>这是第一个要说的地方，iptables和netfilter的关系是一个很容易让人搞不清楚的问题。<strong>iptables只是linux防火墙的管理工具而已，位于/sbin/iptables。真正实现防火墙功能的事netfilter，它是linux内核中实现包过滤的内部结构</strong>。</p>
-<h2 id="iptables传输数据包的过程"><a href="#iptables传输数据包的过程" class="headerlink" title="iptables传输数据包的过程"></a>iptables传输数据包的过程</h2><ol>
-<li>当一个数据包进入网卡时，它首先进入prerouting链，内核根据数据包目的IP判断是否需要传送出去</li>
-<li>如果数据包就是进入本机的，它就会沿着图向下移动，到达input链。数据包到了input链后，任何进程都会收到它。本机上运行的程序可以发送书包，这些数据包会经过output链，然后到达postrouting链输出。</li>
-<li>如果数据包是要转发出去，且内核允许转发，数据包就会如图所示向右移动，经过forward链，然后到达postrouting链输出。<br><img src="/images/7775566-d1ad7de240451282.png"></li>
-</ol>
-<h2 id="iptables的规则表和链"><a href="#iptables的规则表和链" class="headerlink" title="iptables的规则表和链"></a>iptables的规则表和链</h2><p>表（tables）提供特定的功能，<strong>iptables内置了4个表，filter、nat、mangle和raw表，分别用于包过滤、网络地址转换、包重构（修改）和数据跟踪处理</strong>。<br>链（chains）是数据包传播的路径，每一条链其实就是众多规则中的一个检查清单，每一条链中可以由一条或者多条规则。当一个数据包达到一个链时，iptables就会从链中第一条规则开始检查，看该数据包是否满足规则所定义的条件。如果满足，系统就会根据该条规则所定义的方法处理数据包；否则iptables将继续检查下一条规则，如果该数据包不符合链中的任意一条规则，iptables就会根据该链预定义的默认策略来处理数据包。<br>iptables采用“表”和“链”的分层结构。在REHL5中是<strong>四张表五个链</strong>。下面罗列一下这四张表和五个链。注意一定要明白这些表和链的关系及作用。<br><img src="/images/7775566-5ec887df41cf1861.png"></p>
-<h2 id="规则表"><a href="#规则表" class="headerlink" title="规则表"></a>规则表</h2><h3 id="1-Filter表-—-三个链：-input、forward、output"><a href="#1-Filter表-—-三个链：-input、forward、output" class="headerlink" title="1. Filter表 — 三个链： input、forward、output"></a>1. Filter表 — 三个链： input、forward、output</h3><p>作用：过滤数据包<br>内核模块：iptables_filter</p>
-<h3 id="2-Nat表-—-三个链：-prerouting、postrouting、output"><a href="#2-Nat表-—-三个链：-prerouting、postrouting、output" class="headerlink" title="2. Nat表 — 三个链： prerouting、postrouting、output"></a>2. Nat表 — 三个链： prerouting、postrouting、output</h3><p>作用：用于网络地址转换<br>内核模块：iptables_nat</p>
-<h3 id="3-Mangle表-–-五个链：prerouting、postrouting、input、output、forward，即作用于全部链（chains）"><a href="#3-Mangle表-–-五个链：prerouting、postrouting、input、output、forward，即作用于全部链（chains）" class="headerlink" title="3. Mangle表 – 五个链：prerouting、postrouting、input、output、forward，即作用于全部链（chains）"></a>3. Mangle表 – 五个链：prerouting、postrouting、input、output、forward，即作用于全部链（chains）</h3><p>作用：修改数据包的服务类型、TTL，并且可以配置路由实现QPS<br>内核模块：iptables_mangle</p>
-<h3 id="4-Raw表-–-两个链：output、rerouting"><a href="#4-Raw表-–-两个链：output、rerouting" class="headerlink" title="4. Raw表 – 两个链：output、rerouting"></a>4. Raw表 – 两个链：output、rerouting</h3><p>作用：决定数据包是否被状态跟踪机制处理<br>内核模块：iptables_raw</p>
-<p><strong>重要/常用的事Filter和Nat表</strong></p>
-<h2 id="规则链"><a href="#规则链" class="headerlink" title="规则链"></a>规则链</h2><hr>
-<ol>
-<li>input — 进来的数据包应用此规则链中的策略</li>
-<li>output – 外出的数据包应用此规则链中的策略</li>
-<li>forward — 转发数据包时应用此规则链中的策略</li>
-<li>prerouting – 对数据包坐路由选择前应用此规则链中的规则</li>
-</ol>
-<p><strong>（记住！所有的数据包进来的时候都先由这个链处理）</strong><br>5. postrouting — 对数据包作路由选择后应用此规则链中的规则<br><strong>（所有的数据包出来的时候都先由这个链处理）</strong></p>
-<h2 id="规则表之间的优先顺序"><a href="#规则表之间的优先顺序" class="headerlink" title="规则表之间的优先顺序"></a>规则表之间的优先顺序</h2><p><strong>Raw –&gt; Mangle –&gt; Nat –&gt; Filter</strong></p>
-<p>规则链之间的优先顺序（分三种情况）：</p>
-<h3 id="第一种情况“入站数据流向"><a href="#第一种情况“入站数据流向" class="headerlink" title="第一种情况“入站数据流向"></a>第一种情况“入站数据流向</h3><p>从外界到达防火墙的数据包，先被prerouting规则处理（是否修改数据包地址等），之后会进行路由选择（判断该数据包应该发送何处），如果数据包的目的主机是防火墙本机（比如说Internet用户访问防火墙主机中的web服务器的数据包），那么内核将其传给input链进行处理（决定是否允许通过等），通过以后再交给系统上层的应用程序（比如Apache服务器）进行响应。</p>
-<h3 id="第二种情况：转发数据流向"><a href="#第二种情况：转发数据流向" class="headerlink" title="第二种情况：转发数据流向"></a>第二种情况：转发数据流向</h3><p>来自外界的数据包达到防火墙后，首先被prerouting规则链处理，之后会进行路由选择，如果数据包的目的地址是其他外部地址（比如局域网用户通过网关访问QQ站点的数据包），则内核将其传递给forward链进行处理（是否转发或者拦截），然后再交给postrouting规则链（是都修改数据包的地址等）进行处理。</p>
-<h3 id="第三种情况：出站数据流向"><a href="#第三种情况：出站数据流向" class="headerlink" title="第三种情况：出站数据流向"></a>第三种情况：出站数据流向</h3><p>防火墙本机向外部地址发送的数据包（比如防火墙主机中测试公网DNS服务器时），首先被output规则链处理，之后进行路由选择，然后传递给postrouting规则链（是否修改数据包的地址等）进行处理。</p>
-<h2 id="管理和设置iptables规则"><a href="#管理和设置iptables规则" class="headerlink" title="管理和设置iptables规则"></a>管理和设置iptables规则</h2><p><img src="/images/7775566-fb35d0a138063159.jpg"><br><img src="/images/7775566-736f5a5882a69420.jpg"></p>
-<h3 id="iptables的基本语法格式"><a href="#iptables的基本语法格式" class="headerlink" title="iptables的基本语法格式"></a>iptables的基本语法格式</h3><p>iptables [-t 表名] 命令选项 [链名] [条件匹配] [-j 目标动作或跳转]<br>说明：表名、链名由于指定iptables命令所操作的表和链，命令选项用于指定管理iptables规则的方式（比如：插入、增加、删除、查看等）；条件匹配用于指定对符合什么样的条件的数据包进行处理；目标动作或跳转用于指定数据包的处理方式（比如允许通过、拒绝、丢弃、跳转给其他链处理）。</p>
-<h3 id="iptables命令的管理控制选项"><a href="#iptables命令的管理控制选项" class="headerlink" title="iptables命令的管理控制选项"></a>iptables命令的管理控制选项</h3><p>-A 在指定链的末尾添加（append）一条新的规则<br>-D 删除（delete）指定链中的某一条规则，可以按规则序号和内容删除<br>-I 在指定链中插入（insert）一条新的规则，默认在第一行添加<br>-R 修改、替换（replace）指定链中的某一条规则，可以按规则序号和内容替换<br>-L 列出（list）指定链中的所有的规则进行查看<br>-E 重命名用户定义的链，不改变链本身<br>-F 清空（flush）所有规则<br>-N 新建（new-chain）一条用户自己定义的规则链<br>-X 删除指定表中用户自定义的规则链（delete-chain）<br>-P 设置指定链的默认策略（policy）<br>-Z 将所有表的所有链的字节和数据包计数器清零<br>-n 使用数字形式（number）显示输出结果<br>-v 查看规则表详细信息（verbose）的信息<br>-V 查看版本（version）<br>-h 获取帮助（help）</p>
-<h3 id="防火墙处理数据包的四种方式"><a href="#防火墙处理数据包的四种方式" class="headerlink" title="防火墙处理数据包的四种方式"></a>防火墙处理数据包的四种方式</h3><p>Accept 允许数据包通过<br>Drop 直接丢弃数据包，不给任何回应信息<br>Reject 拒绝数据包通过，必要时会给数据发送端一个响应的信息<br>Log 在/var/log/messages文件中记录日志信息，然后将数据包传递给下一条规则</p>
-<h3 id="iptables防火墙规则的保存和恢复"><a href="#iptables防火墙规则的保存和恢复" class="headerlink" title="iptables防火墙规则的保存和恢复"></a>iptables防火墙规则的保存和恢复</h3><p>iptables-save把规则保存到文件中，再由目录rc.d下的脚本（/etc/rc.d/init.d/iptables）自动装载<br>使用命令iptables-save来保存规则。<br>一般用iptables-save &gt; /etc/sysconfig/iptables 生成保存规则的文件<br>也可以用 service iptables save，它能把规则自动保存在 /etc/sysconfig/iptables中。<br>当计算机启动时，rc.d下的脚本将用命令iptables-restore调用这个文件，从而自动恢复规则。</p>
-<h3 id="删除input链的第一条规则"><a href="#删除input链的第一条规则" class="headerlink" title="删除input链的第一条规则"></a>删除input链的第一条规则</h3><p>iptables -D input 1</p>
-<h3 id="iptables防火墙常用的策略"><a href="#iptables防火墙常用的策略" class="headerlink" title="iptables防火墙常用的策略"></a>iptables防火墙常用的策略</h3><ol>
-<li><p>拒绝进入防火墙的所有ICMP协议数据包<br>iptables -I INPUT -p icmp -j REJECT</p>
-</li>
-<li><p>允许防火墙转发除了ICMP协议之外的所有数据包<br>iptables -A FORWARD -p !icmp -j ACCEPT<br>说明：使用“!”可以将条件取反</p>
-</li>
-<li><p>拒绝转发来自192.168.1.10主机的数据，允许转发来自192.168.0.0/16网段的数据<br>iptables -A FORWARD -s 192.168.1.11 -j REJECT<br>iptables -A FORWARD -s 192.168.0.0/16 -j ACCEPT<br>说明：注意要把拒绝的放在前面</p>
-</li>
-<li><p>丢弃从外网接口（eth1）进入防火墙本机的源地址为私网地址的数据包<br>iptables -A INPUT -i eth1 -s 192.168.0.0/16 -j DROP<br>iptables -A INPUT -i eth1 -s 172.16.0.0/12 -j DROP<br>iptables -A INPUT -i eth1 -s 10.0.0.0/8 -j DROP</p>
-</li>
-<li><p>封堵网段（192.168.1.0/24），两个两个小时候解封<br>iptables -I INPUT -s 192.168.1.0/24 -j DROP<br>iptabls -I FORWARD -s 192.168.1.0/24 -j DROP<br>at now 2 hours at&gt;iptables -D INPUT 1 at&gt; iptables -D FORWARD 1</p>
-</li>
-<li><p>只允许管理员从202.13.0.0/16网段使用SSH远程登录防火墙主机<br>iptables -A INPUT -p tcp –dport 22 -s 202.13.0.0/16 -j ACCEPT<br>iptables -A INPUT -p tcp –dport 22 -j DROP</p>
-</li>
-<li><p>允许本机开放从tcp端口20-1024提供的应用服务<br>iptables -A INPUT -p tcp –dport 20:1024 -j ACCEPT<br>iptables -A OUTPUT -p tcp –sport 20:1024 -j ACCEPT</p>
-</li>
-<li><p>允许转发来自192.168.0.0/16局域网段的DNS解析请求数据包<br>iptables -A FORWARD -s 192.168.0.0/16 -p udp –dport 53 -j ACCEPT<br>iptables -A FORWARD -d 192.168.0.0/16 -p udp –sport 53 -j ACCEPT</p>
-</li>
-<li><p>禁止其他主机ping防火墙主机，但是允许从防火墙上ping其他主机<br>iptables -I INPUT -p icmp –icmp-type Echo-Request -j DROP<br>iptables -I INPUT -p icmp –icmp-type Echo-Reply -j ACCEPT<br>iptables -I INPUT -p icmp –icmp-type destination-Unreachable -j ACCEPT</p>
-</li>
-<li><p>禁止转发来自MAC地址 00:0c:29:27:55:3F的主机的数据包<br>iptables -A FORWARD -m mac –mac-source 00:0c:29:27:55:3F -j DROP</p>
-</li>
-<li><p>允许防火墙主机对外开放TCP端口20、21、25、110以及被动模式FTP端口1250-1280<br>iptables -A INPUT -p tcp -m multiport –dport 20,21,25,110,1250:1280 -j ACCEPT</p>
-</li>
-<li><p>禁止转发源地址IP为192.168.1.20-192.168.1.99的TCP数据包<br>iptables -A FORWARD -p tcp -m iprange –src-range 192.168.1.20-192.168.1.99 -j DROP</p>
-</li>
-<li><p>禁止转发与正常TCP连接无关的非–syn请求数据包<br>iptables -A FORWARD -m state –state NEW -p tcp !–syn -j DROP<br>说明：“-m state”表示数据包的连接状态，“NEW”表示与任何连接无关</p>
-</li>
-<li><p>拒绝访问防火墙的新数据包，但允许响应连接或与已有连接相关的数据包<br>iptables -A INPUT -p tcp -m state –state NEW -j DROP<br>iptables -A INPUT -p tcp -m state –state ESTABLISHED,RELATED -j ACCEPT</p>
-</li>
-<li><p>只开放本机的Web服务（80）、FTP（20、21、20450-20480），放行外部主机发往服务器其他端口的应答数据包，将其他入栈数据包均予以丢弃处理<br>iptables -I INPUT -p tcp -m multiport –dport 20,21,80 -j ACCEPT<br>iptables -I INPUT -p tcp –dport 20450-20480 -j ACCEPT<br>iptables -I INPUT -p tcp -m state –state ESTABLISHED -j ACCEPT<br>iptables -P INPUT DROP</p>
-</li>
-</ol>
-<h3 id="常用iptables规则"><a href="#常用iptables规则" class="headerlink" title="常用iptables规则"></a>常用iptables规则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br></pre></td><td class="code"><pre><span class="line"># 1. 删除所有现有规则</span><br><span class="line"></span><br><span class="line">iptables -F</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 2. 设置默认的 chain 策略</span><br><span class="line"></span><br><span class="line">iptables -P INPUT DROP</span><br><span class="line"></span><br><span class="line">iptables -P FORWARD DROP</span><br><span class="line"></span><br><span class="line">iptables -P OUTPUT DROP</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 3. 阻止某个特定的 IP 地址</span><br><span class="line"></span><br><span class="line">#BLOCK_THIS_IP&#x3D;&quot;x.x.x.x&quot;</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -s &quot;$BLOCK_THIS_IP&quot; -j DROP</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 4. 允许全部进来的（incoming）SSH</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 5. 只允许某个特定网络进来的 SSH</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp -s 192.168.200.0&#x2F;24 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 6. 允许进来的（incoming）HTTP</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 7. 多端口（允许进来的 SSH、HTTP 和 HTTPS）</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp -m multiport --sports 22,80,443 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 8. 允许出去的（outgoing）SSH</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 9. 允许外出的（outgoing）SSH，但仅访问某个特定的网络</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp -d 192.168.101.0&#x2F;24 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 10. 允许外出的（outgoing） HTTPS</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --sport 443 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 11. 对进来的 HTTPS 流量做负载均衡</span><br><span class="line"></span><br><span class="line">#iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 0 -j DNAT --to-destination 192.168.1.101:443</span><br><span class="line"></span><br><span class="line">#iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 1 -j DNAT --to-destination 192.168.1.102:443</span><br><span class="line"></span><br><span class="line">#iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 2 -j DNAT --to-destination 192.168.1.103:443</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 12. 从内部向外部 Ping</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 13. 从外部向内部 Ping</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 14. 允许环回（loopback）访问</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i lo -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o lo -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 15. 允许 packets 从内网访问外网</span><br><span class="line"></span><br><span class="line"># if eth1 is connected to external network (internet)</span><br><span class="line"></span><br><span class="line"># if eth0 is connected to internal network (192.168.1.x)</span><br><span class="line"></span><br><span class="line">iptables -A FORWARD -i eth0 -o eth1 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 16. 允许外出的  DNS</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -p udp -o eth0 --dport 53 -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p udp -i eth0 --sport 53 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 17. 允许 NIS 连接</span><br><span class="line"></span><br><span class="line"># rpcinfo -p | grep ypbind ; This port is 853 and 850</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p tcp --dport 111 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p udp --dport 111 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p tcp --dport 853 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p udp --dport 853 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p tcp --dport 850 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p udp --dport 850 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 18. 允许某个特定网络 rsync 进入本机</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp -s 192.168.101.0&#x2F;24 --dport 873 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 873 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 19. 仅允许来自某个特定网络的 MySQL 的链接</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp -s 192.168.200.0&#x2F;24 --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 3306 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 20. 允许 Sendmail 或 Postfix</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 25 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --sport 25 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 21. 允许 IMAP 和 IMAPS</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 143 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 143 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 993 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 993 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 22. 允许 POP3 和 POP3S</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 110 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 110 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 995 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 995 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 23. 防止 DoS 攻击</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p tcp --dport 80 -m limit --limit 25&#x2F;minute --limit-burst 100 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 24. 设置 422 端口转发到 22 端口</span><br><span class="line"></span><br><span class="line">#iptables -t nat -A PREROUTING -p tcp -d 192.168.102.37 --dport 422 -j DNAT --to 192.168.102.37:22</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 422 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 422 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 25. 为丢弃的包做日志（Log）</span><br><span class="line"></span><br><span class="line">iptables -N LOGGING</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -j LOGGING</span><br><span class="line"></span><br><span class="line">iptables -A LOGGING -m limit --limit 2&#x2F;min -j LOG --log-prefix &quot;IPTables Packet Dropped: &quot; --log-level 7</span><br><span class="line"></span><br><span class="line">iptables -A LOGGING -j DROP</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2020/03/13/iptables%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%B8%B8%E7%94%A8%E8%A7%84%E5%88%99/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1158,25 +951,11 @@
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gotodsp/p/6366163.html">https://www.cnblogs.com/gotodsp/p/6366163.html</a></li>
 </ul>
 <h1 id="1-HTTP协议和TCP-IP协议的关系"><a href="#1-HTTP协议和TCP-IP协议的关系" class="headerlink" title="1. HTTP协议和TCP/IP协议的关系"></a>1. HTTP协议和TCP/IP协议的关系</h1><p>HTTP的长连接和短连接本质上是TCP长连接和短连接。HTTP属于应用层协议，在传输层使用TCP协议，在网络层使用IP协议。IP协议主要解决网络路由和寻址的问题，TCP协议主要解决如何在IP层之上可靠地传递数据包，使得网络上接收端收到发送端所发出的所有包，并且顺序与发送顺序一致。TCP协议是可靠地，面向连接的。</p>
-<h1 id="2-如何理解HTTP协议是无状态的"><a href="#2-如何理解HTTP协议是无状态的" class="headerlink" title="2. 如何理解HTTP协议是无状态的"></a>2. 如何理解HTTP协议是无状态的</h1><p>HTTP协议是无状态的，指的是协议对于事务处理没有记忆能力，服务器不知道客户端是什么状态。也就是说，打开一个服务器上的网页和上一次打开这个服务器上的网页之间没有任何联系。HTTP是一个无状态的面向连接的协议，无状态不代表HTTP不能保持TCP连接，更不能代表HTTP使用的是UDP协议（无连接）。</p>
-<h1 id="3-什么时候长连接、短连接？"><a href="#3-什么时候长连接、短连接？" class="headerlink" title="3. 什么时候长连接、短连接？"></a>3. 什么时候长连接、短连接？</h1><p>在HTTP/1.0中默认使用短连接。也就是说，客户端和服务器每进行一次HTTP操作，就建立一次连接，任务结束就中断连接。当客户端浏览器访问的某个HTML或其他类型的Web页中包含有其他的Web资源（如Javascript文件、图像文件、CSS文件等），每遇到这样一个Web资源，浏览器就会重新建立一个HTTP会话。<br>而从HTTP/1.1起，默认使用长连接，用以保持连接特性。使用长连接的HTTP协议，会在响应头加入这行代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connecti:keep-alive</span><br></pre></td></tr></table></figure>
-<p>在使用长连接的情况下，当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭，客户端再次访问这个服务器时，会继续使用这一条已经建立的连接。Keep-Alive不会永久保持连接，它有一个保持时间，可以在不同的服务器软件（如Apache）中设定这个时间。实现长连接需要客户端和服务端都支持长连接。<br>HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。</p>
-<h2 id="3-1-TCP连接"><a href="#3-1-TCP连接" class="headerlink" title="3.1 TCP连接"></a>3.1 TCP连接</h2><p>当网络通信时采用TCP协议时，在真正的读写操作之前，客户端与服务器端之间必须建立一个连接，当读写操作完成后，双方不再需要这个连接时可以释放这个连接。连接的建立依靠“三次握手，而释放则需要”四次握手，所以每个连接的建立都是需要资源消耗和时间消耗的。<br>经典的三次握手建立连接示意图：<br><img src="/images/keepalive-1.jpg"><br><img src="/images/593345-20170204231325729-1747734402.png"></p>
-<p>经典的四次握手关闭连接示意图：<br><img src="/images/keepalive-2.jpg"><br><img src="/images/593345-20170204231344745-1817753534.jpg"></p>
-<h2 id="3-2-TCP短连接"><a href="#3-2-TCP短连接" class="headerlink" title="3.2 TCP短连接"></a>3.2 TCP短连接</h2><p>模拟一下TCP短连接的情况：client向server发起连接请求，server接到请求，然后双方建立连接。client向server发送消息，server回应client，然后一次请求就完成了。这时候双方任意都可以发起close操作，不过一般都是client先发起close操作。上述可知，短连接一般只会在client/server间传递一次请求操作。<br>短连接的优点是：管理起来比较简单，存在的连接都是有用的连接，不需要额外的控制手段。</p>
-<h2 id="3-3-TCP长连接"><a href="#3-3-TCP长连接" class="headerlink" title="3.3 TCP长连接"></a>3.3 TCP长连接</h2><p>我们再模拟一次长连接的情况：client向server发起连接，server接受连接，双方建立连接，client与server完成一次请求后，它们之间的连接并不会主动关闭，后续的读写操作会继续使用这个连接。<br>TCP的保活功能主要为服务器应用提供。如果客户端已经消失而连接未断开，则会使得服务器上保留一个半开放的连接，而服务器又在等待来自客户端的数据，此时服务器将永远等待客户端的数据。保活功能就是试图在服务器端检测到这种半开放的连接。<br>如果一个给定的连接在两小时内没有任何动作，服务器就向客户发送一个探测报文，根据客户端主机响应探测4个客户端状态：</p>
-<ul>
-<li>客户主机依然正常运行，且服务器可达。此时客户的TCP响应正常，服务器将保活定时器复位。</li>
-<li>客户主机已经崩溃，并且关闭或者正在重启。上述情况下客户端都不能响应TCP。服务端将无法收到客户端对探测的响应。服务器总共发送10个这样的探测，每个间隔75秒。若服务器没有收到任何一个响应，它就认为客户端已经关闭并终止连接。</li>
-<li>客户端崩溃已经重新启动。服务器将收到一个对其保活探测的响应，这个响应是一个复位，使得服务器终止这个连接。</li>
-<li>客户端正常运行，但是服务器不可达。这种情况与第二种状态类似。</li>
-</ul>
-<h1 id="4-长连接和短连接的优点和缺点"><a href="#4-长连接和短连接的优点和缺点" class="headerlink" title="4. 长连接和短连接的优点和缺点"></a>4. 长连接和短连接的优点和缺点</h1><p>由上可以看出，长连接可以省去较多的TCP建立和关闭的操作，减少浪费，节约时间。对于频繁请求资源的客户端适合使用长连接。在长连接的应用场景下，client端一般不会主动关闭连接，当client与server之间的连接一直不关闭，随着客户端连接越来越多，server会保持过多连接，这时候server端需要采取一些策略，比如关闭一些长时间没有请求发生的连接，这样可以避免一些恶意连接导致server端服务受损；如果条件允许则可以限制每个客户端的最大长连接数，这样可以完全避免恶意的客户端拖垮整体后端服务。<br>短连接对于服务器来说管理较为简单，存在的连接都是有用的连接，不需要额外的控制手段。但如果客户端请求频繁，将在TCP的建立和关闭操作上浪费较多的时间和带宽。<br>长连接和短连接的产生在于client和server采取的关闭策略。不同的应用场景适合采用不同的策略。<br>由上可以看出，长连接可以省去较多的TCP建立和关闭的操作，减少浪费，节约时间。对于频繁请求资源的客户来说，较适合长连接。不过这里存在一个问题，存活功能的探测周期太长，还有就是它只是探测TCP连接的存活，属于比较斯文的做法，遇到恶意的连接时，保活功能就不够使了。在长连接的应用场景下，client端一般不会主动关闭它们之间的连接，client与server之间的连接如果一直不关闭的话，会存在一个问题，随着客户端连接数越来越多，server早晚有扛不住的时候，这时候server端需要采取一些策略，如关闭一些长时间没有读写时间发生的连接，这样可以避免一些恶意连接导致server端服务手段；如果条件再允许就可以以客户端为颗粒度，限制每个客户端的最大长连接，这样可以完全避免某个客户端连累后端服务。<br>短连接赋予服务器来说，管理较为简单，存在的连接都是有用的连接，不需要额外的控制手段。但如果客户请求频繁，将在TCP的建立和关闭操作上康菲时间和带宽。<br>长连接和短连接的产生在于client和server采取的关闭策略，具体的应用场景采用具体的策略，没有十全十美的选择，只有合适的选择。</p>
-<p>长连接短连接操作过程<br>短连接的操作步骤是：<br>建立连接——数据传输——关闭连接…建立连接——数据传输——关闭连接<br>长连接的操作步骤是：<br>建立连接——数据传输…（保持连接）…数据传输——关闭连接<br>什么时候用长连接，短连接？  　　<br>长连接多用于操作频繁，点对点的通讯，而且连接数不能太多情况，。每个TCP连接都需要三步握手，这需要时间，如果每个操作都是先连接，再操作的话那么处理速度会降低很多，所以每个操作完后都不断开，次处理时直接发送数据包就OK了，不用建立TCP连接。例如：数据库的连接用长连接， 如果用短连接频繁的通信会造成socket错误，而且频繁的socket 创建也是对资源的浪费。<br>而像WEB网站的http服务一般都用短链接，因为长连接对于服务端来说会耗费一定的资源，而像WEB网站这么频繁的成千上万甚至上亿客户端的连接用短连接会更省一些资源，如果用长连接，而且同时有成千上万的用户，如果每个用户都占用一个连接的话，那可想而知吧。所以并发量大，但每个用户无需频繁操作情况下需用短连好。</p>
-<p>http和socket之长连接和短连接区别<br><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/b68d2b26f5f4">http://www.jianshu.com/p/b68d2b26f5f4</a></p>
-<p>HTTP持久连接<br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5">https://zh.wikipedia.org/wiki/HTTP%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/03/11/%E9%95%BF%E8%BF%9E%E6%8E%A5KeepAlive/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1221,47 +1000,11 @@
 <li><a target="_blank" rel="noopener" href="http://ningg.top/nginx-series-health-check/">http://ningg.top/nginx-series-health-check/</a></li>
 </ul>
 <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p><strong>服务治理</strong>的一个重要任务是感知服务街店的变更，完成<strong>服务自动注册</strong>和<strong>异常节点的自动摘除</strong>。这就需要服务治理平台能够：<strong>及时</strong>，<strong>准确</strong>的感知service节点的健康状况。</p>
-<h1 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h1><p>Nginx提供了三种服务健康检查方案：</p>
-<ol>
-<li>TCP层检查方案：定时与后端服务简历一条<strong>tcp连接</strong>，连接建立成功则认为服务节点是健康的；</li>
-<li>HTTP层检查方案：TCP层检查有一定的局限性：<ol>
-<li>很多HTTP服务是有状态的，端口处于listen状态并不能代表服务已经完全预热（可以对外提供服务）；</li>
-<li>不能真实反映服务内部处理逻辑是否拥堵；</li>
-<li>这时可以选择http层健康检查，会向服务发送一个http请求<strong>GET / HTTP/1.0\r\n\r\n</strong>，返回状态是2xx或3xx时认为后端服务正常；</li>
-</ol>
-</li>
-<li>自定义方案：可根据下文描述自定义检查方案。</li>
-</ol>
-<h1 id="配置参数详解"><a href="#配置参数详解" class="headerlink" title="配置参数详解"></a>配置参数详解</h1><p>一个常用的健康检查配置如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">check fall&#x3D;3 interval&#x3D;3000 rise&#x3D;2 timeout&#x3D;2000 type&#x3D;http;</span><br><span class="line">check_http_expect_alive http_2xx http_3xx ;</span><br><span class="line">check_http_send &quot;GET &#x2F;checkAlive HTTP&#x2F;1.0\r\n\r\n&quot; ;</span><br></pre></td></tr></table></figure>
-<p>下面针对每个配置，进行详细介绍：</p>
-<h2 id="check"><a href="#check" class="headerlink" title="check"></a>check</h2><p>check字段参数如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Syntax: check interval&#x3D;milliseconds [fall&#x3D;count] [rise&#x3D;count] [timeout&#x3D;milliseconds] [default_down&#x3D;true|false] [type&#x3D;tcp|http|ssl_hello|mysql|ajp] [port&#x3D;check_port]</span><br><span class="line">Default: 如果没有配置参数，默认值是：interval&#x3D;30000 fall&#x3D;5 rise&#x3D;2 timeout&#x3D;1000 default_down&#x3D;true type&#x3D;tcp</span><br></pre></td></tr></table></figure>
-<p>check字段各个参数含义如下：</p>
-<ul>
-<li>interval：向后端发送的健康检查包的间隔</li>
-<li>fall(fall_count)：如果连续失败次数达到fall_count，服务器就被认为是down</li>
-<li>rise(rise_count)：如果连续成功次数达到rise_count，服务器就被人为是up</li>
-<li>timeout：后端健康请求的超时时间</li>
-<li>default_down：设定初始时服务器的状态，如果是true，就说ing默认是down的，如果是false，就是up的。默认是true，也就是一开始服务器认为是不可用，要等健康检查包达到一定成功次数才会被认为是健康的</li>
-<li>type：健康检查包的类型，<ul>
-<li>tcp：简单的tcp连接，如果连接成功，就说明后端正常</li>
-<li>ssl_hello：发送一个初始的SSL hello包并接受服务器的SSL hello包</li>
-<li>http：发送HTTP请求，通过后端的回复包的状态来判断后端是否存活</li>
-<li>mysql：向mysql服务器连接，通过接收服务器的greeting包来判断后端是否存活</li>
-<li>ajp：向后端发送AJP协议的Cping包，通过接收Cpong包来判断后端是否存活</li>
-<li>port：指定后端服务器的检查端口。可以指定不同于真实服务的后端服务器的端口，比如后端提供的是443端口的应用，你可以去检查80端口的状态来判断后端健康状况。默认是0，标识跟后端server提供真实服务的端口一样。</li>
-</ul>
-</li>
-</ul>
-<h2 id="check-http-expext-alive"><a href="#check-http-expext-alive" class="headerlink" title="check_http_expext_alive"></a>check_http_expext_alive</h2><p>check_http_expect_alive 指定主动健康检查时HTTP回复的成功状态：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Syntax: check_http_expect_alive [ http_2xx | http_3xx | http_4xx | http_5xx ]</span><br><span class="line">Default: http_2xx | http_3xx</span><br></pre></td></tr></table></figure>
-
-<h2 id="check-http-send"><a href="#check-http-send" class="headerlink" title="check_http_send"></a>check_http_send</h2><p>check_http_send 配置HTTP健康检查包发送的请求内容<br>为了减少传输数据量，推荐采用“HEAD”方法。当采用长连接进行健康检查时，需要在该指令中添加keep-alive请求头，如：“HEAD / HTTP/1.1\r\nConnection:keep-alive\r\n\r\n”。同时，在采用”GET“方法的情况下，请求uri的size不宜过大，确保可以在1个interval内传输完成，否则会被健康检查模块视为后端服务器或网络异常。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Syntax: check_http_send http_packet</span><br><span class="line">Default: &quot;GET &#x2F; HTTP&#x2F;1.0\r\n\r\n&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream cluster1 &#123;</span><br><span class="line">        # simple round-robin</span><br><span class="line">        server 192.168.0.1:80;</span><br><span class="line">        server 192.168.0.2:80;</span><br><span class="line">        check interval&#x3D;3000 rise&#x3D;2 fall&#x3D;5 timeout&#x3D;1000 type&#x3D;http;</span><br><span class="line">        check_http_send &quot;HEAD &#x2F; HTTP&#x2F;1.0\r\n\r\n&quot;;</span><br><span class="line">        check_http_expect_alive http_2xx http_3xx;</span><br><span class="line">    &#125;</span><br><span class="line">    upstream cluster2 &#123;</span><br><span class="line">        # simple round-robin</span><br><span class="line">        server 192.168.0.3:80;</span><br><span class="line">        server 192.168.0.4:80;</span><br><span class="line">        check interval&#x3D;3000 rise&#x3D;2 fall&#x3D;5 timeout&#x3D;1000 type&#x3D;http;</span><br><span class="line">        check_keepalive_requests 100;</span><br><span class="line">        check_http_send &quot;HEAD &#x2F; HTTP&#x2F;1.1\r\nConnection: keep-alive\r\n\r\n&quot;;</span><br><span class="line">        check_http_expect_alive http_2xx http_3xx;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F;1 &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;cluster1;</span><br><span class="line">        &#125;</span><br><span class="line">        location &#x2F;2 &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;cluster2;</span><br><span class="line">        &#125;</span><br><span class="line">        location &#x2F;status &#123;</span><br><span class="line">            check_status;</span><br><span class="line">            access_log   off;</span><br><span class="line">            allow SOME.IP.ADD.RESS;</span><br><span class="line">            deny all;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/03/11/Nginx%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1306,27 +1049,11 @@
 <li><a target="_blank" rel="noopener" href="http://ningg.top/nginx-series-practice-location/">http://ningg.top/nginx-series-practice-location/</a></li>
 </ul>
 <h1 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h1><p>nginx反向代理，路径映射过程是什么？如何配置路径映射规则？</p>
-<h1 id="2-location路径匹配"><a href="#2-location路径匹配" class="headerlink" title="2. location路径匹配"></a>2. location路径匹配</h1><h2 id="2-1-匹配规则"><a href="#2-1-匹配规则" class="headerlink" title="2.1 匹配规则"></a>2.1 匹配规则</h2><p>location路径正则匹配<br>|符号|说明|<br>|—|—|<br>|<del>|正则匹配，区分大小写|<br>|</del>*|正则匹配，不区分大小写|<br>|^~|普通字符匹配，如果该选项匹配，则，只匹配该选项，不再向下匹配其他选项|<br>|=|普通字符匹配，精确匹配|<br>|@|定义一个命名的location，用于内部定向，例如error_page,try_files|</p>
-<h2 id="2-2-匹配优先级"><a href="#2-2-匹配优先级" class="headerlink" title="2.2 匹配优先级"></a>2.2 匹配优先级</h2><p>路径匹配，优先级：（跟location的书写顺序关系不大）</p>
-<ol>
-<li><strong>精确匹配</strong>：=前缀的指令严格匹配这个查询。如果找到，停止搜索；</li>
-<li><strong>普通字符匹配</strong>：所有剩下的常规字符串，最长的匹配。如果这个匹配使用^~前缀，搜索停止；</li>
-<li><strong>正则匹配</strong>：正则表达式，在配置文件中定义的顺序，匹配到一个结果，搜索停止；</li>
-<li><strong>默认匹配</strong>：如果第3条规则产生匹配的话，结果被使用。否则，如同从第2条规则被使用。</li>
-</ol>
-<h2 id="2-3-举例"><a href="#2-3-举例" class="headerlink" title="2.3 举例"></a>2.3 举例</h2><p>通过一个实例，简单说明一下匹配优先级：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">location  &#x3D; &#x2F; &#123;</span><br><span class="line">  # 精确匹配 &#x2F; ，主机名后面不能带任何字符串</span><br><span class="line">  [ configuration A ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location  &#x2F; &#123;</span><br><span class="line">  # 因为所有的地址都以 &#x2F; 开头，所以这条规则将匹配到所有请求</span><br><span class="line">  # 但是正则和最长字符串会优先匹配</span><br><span class="line">  [ configuration B ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;documents&#x2F; &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;documents&#x2F; 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration C ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ &#x2F;documents&#x2F;Abc &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;documents&#x2F; 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration CC ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ^~ &#x2F;images&#x2F; &#123;</span><br><span class="line">  # 匹配任何以 &#x2F;images&#x2F; 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。</span><br><span class="line">  [ configuration D ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* \.(gif|jpg|jpeg)$ &#123;</span><br><span class="line">  # 匹配所有以 gif,jpg或jpeg 结尾的请求</span><br><span class="line">  # 然而，所有请求 &#x2F;images&#x2F; 下的图片会被 config D 处理，因为 ^~ 到达不了这一条正则</span><br><span class="line">  [ configuration E ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;images&#x2F; &#123;</span><br><span class="line">  # 字符匹配到 &#x2F;images&#x2F;，继续往下，会发现 ^~ 存在</span><br><span class="line">  [ configuration F ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location &#x2F;images&#x2F;abc &#123;</span><br><span class="line">  # 最长字符匹配到 &#x2F;images&#x2F;abc，继续往下，会发现 ^~ 存在</span><br><span class="line">  # F与G的放置顺序是没有关系的</span><br><span class="line">  [ configuration G ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ &#x2F;images&#x2F;abc&#x2F; &#123;</span><br><span class="line">  # 只有去掉 config D 才有效：先最长匹配 config G 开头的地址，继续往下搜索，匹配到这一条正则，采用</span><br><span class="line">    [ configuration H ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* &#x2F;js&#x2F;.*&#x2F;\.js</span><br></pre></td></tr></table></figure>
-<p>按照上面的location写法，以下的匹配示例成立：</p>
-<ol>
-<li>/ -&gt; config A：精确完全匹配，即使/index.html也匹配不了</li>
-<li>/downloads/download.html -&gt; config B：匹配B以后，往下没有任何匹配，采用B</li>
-<li>/images/1.gif -&gt; configuration D：匹配到F，往下匹配到D，停止往下</li>
-<li>/images/abc/def -&gt; config D：最长匹配到G，往下匹配D，停止往下你可以看到 任何以/images/开头的都会匹配到D并停止，FG写在这里是没有任何意义的，H是永远轮不到的，这里只是为了说明匹配顺序</li>
-<li>/documents/document.html -&gt; config C：匹配到C，往下没有任何匹配，采用C</li>
-<li>/documents/1.jpg -&gt; configuration E：匹配到C，往下正则匹配到E</li>
-<li>/documents/Abc.jpg -&gt; config CC：最长匹配到C，往下正则顺序匹配到CC，不会往下到E</li>
-</ol>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">

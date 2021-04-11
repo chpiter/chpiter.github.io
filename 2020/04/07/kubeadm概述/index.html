@@ -14,7 +14,7 @@
 <meta property="og:description" content="参考资料 https:&#x2F;&#x2F;www.52wiki.cn&#x2F;Doc&#x2F;Read&#x2F;id&#x2F;1687.html https:&#x2F;&#x2F;kubernetes.io&#x2F;zh&#x2F;docs&#x2F;setup&#x2F;production-environment&#x2F;tools&#x2F;kubeadm&#x2F;install-kubeadm&#x2F; https:&#x2F;&#x2F;kubernetes.io&#x2F;zh&#x2F;docs&#x2F;reference&#x2F;setup-tools&#x2F;kubeadm&#x2F;k">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-06T22:35:16.000Z">
-<meta property="article:modified_time" content="2020-04-07T11:51:46.423Z">
+<meta property="article:modified_time" content="2021-04-11T10:08:19.564Z">
 <meta property="article:author" content="ChpiTer">
 <meta property="article:tag" content="kubeadm">
 <meta property="article:tag" content="k8s">
@@ -107,6 +107,7 @@
 </ul>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>kubeadm 是一个工具，它提供了 <code>kubeadm init</code> 以及 <code>kubeadm join</code> 这两个命令作为快速创建 Kubernetes 集群的最佳实践。</p>
 <p>kubeadm 通过执行必要的操作来启动和运行一个最小可用的集群。它被故意设计为只关心启动集群，而不是准备节点环境的工作。同样的，诸如安装各种各样的可有可无的插件，例如 Kubernetes 控制面板、监控解决方案以及特定云提供商的插件，这些都不在它负责的范围。</p>
+<span id="more"></span>
 <p>相反，我们期望由一个基于 Kubernetes 从更高层设计的更加合适的工具来做这些事情；并且，理想情况下，使用 kubeadm 作为所有部署的基础将会使得创建一个符合期望的集群变得容易。</p>
 <p>换言之，kubeadm 是一个基础设施工具，简化 Kubernetes 集群的部署和创建，而基于 Kubernetes 高层的设计则不在 kubeadm 负责范围之内。</p>
 <p>kubeadm 常用命令</p>

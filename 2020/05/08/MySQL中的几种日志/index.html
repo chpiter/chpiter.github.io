@@ -6,15 +6,15 @@
   
   <title>MySQL中的几种日志 | ChpiTer Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;myseries&#x2F;p&#x2F;10728533.html  前言Mysql中有以下日志文件，分别是：  重做日志（redo log） 回滚日志（undo log） 二进制日志（binlog） 错误日志（errorlog） 慢查询日志（slow query log） 一般查询日志（general log） 中继日志（relay log）  其中 重做日志和回">
+  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;myseries&#x2F;p&#x2F;10728533.html  前言Mysql中有以下日志文件，分别是：  重做日志（redo log） 回滚日志（undo log） 二进制日志（binlog） 错误日志（errorlog） 慢查询日志（slow query log） 一般查询日志（general log） 中继日志（relay log）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL中的几种日志">
 <meta property="og:url" content="https://chpiter.net/2020/05/08/MySQL%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97/index.html">
 <meta property="og:site_name" content="ChpiTer Blog">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;myseries&#x2F;p&#x2F;10728533.html  前言Mysql中有以下日志文件，分别是：  重做日志（redo log） 回滚日志（undo log） 二进制日志（binlog） 错误日志（errorlog） 慢查询日志（slow query log） 一般查询日志（general log） 中继日志（relay log）  其中 重做日志和回">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;myseries&#x2F;p&#x2F;10728533.html  前言Mysql中有以下日志文件，分别是：  重做日志（redo log） 回滚日志（undo log） 二进制日志（binlog） 错误日志（errorlog） 慢查询日志（slow query log） 一般查询日志（general log） 中继日志（relay log）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-08T09:24:37.000Z">
-<meta property="article:modified_time" content="2020-05-25T10:03:44.000Z">
+<meta property="article:modified_time" content="2021-04-11T10:08:51.187Z">
 <meta property="article:author" content="ChpiTer">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -107,9 +107,9 @@
 <li>错误日志（errorlog）</li>
 <li>慢查询日志（slow query log）</li>
 <li>一般查询日志（general log）</li>
-<li>中继日志（relay log）</li>
+<li>中继日志（relay log）<span id="more"></span>
+其中 重做日志和回滚日志 与事务操作息息相关，二进制日志也与事务操作有一定的关系，这三种日志，对理解MySQL中的事务操作有着重要的意义。</li>
 </ol>
-<p>其中 重做日志和回滚日志 与事务操作息息相关，二进制日志也与事务操作有一定的关系，这三种日志，对理解MySQL中的事务操作有着重要的意义。</p>
 <h1 id="一、重做日志（redo-log）"><a href="#一、重做日志（redo-log）" class="headerlink" title="一、重做日志（redo log）"></a>一、重做日志（redo log）</h1><p>作用：<br>    确保事务的持久性。redo日志记录事务执行后的状态，用来恢复未写入data file的已成功事务更新的数据。防止在发生故障的时间点，尚有脏页未写入磁盘，在重启mysql服务的时候，根据redo log进行重做，从而达到事务的持久性这一特性。</p>
 <p>内容：<br>    物理格式的日志，记录的是物理数据页面的修改的信息，其redo log是顺序写入redo log file的物理文件中去的。</p>
 <p>什么时候产生：<br>    事务开始之后就产生redo log，redo log的落盘并不是随着事务的提交才写入的，而是在事务的执行过程中，便开始写入redo log文件中。</p>
