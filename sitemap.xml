@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chpiter.net/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/</loc>
+    
+    <lastmod>2021-04-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chpiter.net/2021/04/15/ceph/</loc>
+    
+    <lastmod>2021-04-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chpiter.net/2020/03/10/Nginx%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2021-04-11</lastmod>
@@ -214,7 +228,7 @@
 
   <url>
     <loc>https://chpiter.net/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -222,154 +236,154 @@
   
   <url>
     <loc>https://chpiter.net/tags/BCM/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/DRP/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/%E7%81%BE%E5%A4%87/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/ITIL/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/lvs/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/MongoDB/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/markdown/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/MySQL/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/nginx/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/keepalive/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/Nginx/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/SRE/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/kubeadm/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/k8s/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/ops/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/tcp/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/http/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/linux/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/iptables/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chpiter.net/tags/supervisor/</loc>
-    <lastmod>2021-04-11</lastmod>
+    <lastmod>2021-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

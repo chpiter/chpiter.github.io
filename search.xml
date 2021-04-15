@@ -1987,4 +1987,20 @@ show variables like &#39;%relay%&#39;;
         <tag>supervisor</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ceph</title>
+    <url>/2021/04/15/ceph/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>自动化创建OpenStack镜像研究</title>
+    <url>/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/</url>
+    <content><![CDATA[<p>There are several tools that are designed to automate image creation.</p>
+<ul>
+<li><a href="https://vault.centos.org/">https://vault.centos.org/</a></li>
+<li><a href="https://docs.openstack.org/image-guide/create-images-automatically.html">https://docs.openstack.org/image-guide/create-images-automatically.html</a></li>
+<li><a href="http://www.chenshake.com/do-a-centos-7-6-mirror-image-of-a/">http://www.chenshake.com/do-a-centos-7-6-mirror-image-of-a/</a><span id="more"></span></li>
+</ul>
+]]></content>
+  </entry>
 </search>
