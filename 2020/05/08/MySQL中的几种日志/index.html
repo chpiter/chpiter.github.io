@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MySQL中的几种日志 | ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;myseries&#x2F;p&#x2F;10728533.html  前言Mysql中有以下日志文件，分别是：  重做日志（redo log） 回滚日志（undo log） 二进制日志（binlog） 错误日志（errorlog） 慢查询日志（slow query log） 一般查询日志（general log） 中继日志（relay log）  其中 重做日志和回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL中的几种日志">
+<meta property="og:url" content="https://chpiter.github.io/2020/05/08/MySQL%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;myseries&#x2F;p&#x2F;10728533.html  前言Mysql中有以下日志文件，分别是：  重做日志（redo log） 回滚日志（undo log） 二进制日志（binlog） 错误日志（errorlog） 慢查询日志（slow query log） 一般查询日志（general log） 中继日志（relay log）  其中 重做日志和回">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-08T09:24:37.000Z">
+<meta property="article:modified_time" content="2024-04-12T07:23:54.063Z">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="mysql-log-MySQL中的几种日志" class="h-entry article article-type-mysql-log" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/08/MySQL%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97/" class="article-date">
+  <time class="dt-published" datetime="2020-05-08T09:24:37.000Z" itemprop="datePublished">2020-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MySQL中的几种日志
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/myseries/p/10728533.html">https://www.cnblogs.com/myseries/p/10728533.html</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Mysql中有以下日志文件，分别是：</p>
+<ol>
+<li>重做日志（redo log）</li>
+<li>回滚日志（undo log）</li>
+<li>二进制日志（binlog）</li>
+<li>错误日志（errorlog）</li>
+<li>慢查询日志（slow query log）</li>
+<li>一般查询日志（general log）</li>
+<li>中继日志（relay log）</li>
+</ol>
+<p>其中 重做日志和回滚日志 与事务操作息息相关，二进制日志也与事务操作有一定的关系，这三种日志，对理解MySQL中的事务操作有着重要的意义。</p>
+<h1 id="一、重做日志（redo-log）"><a href="#一、重做日志（redo-log）" class="headerlink" title="一、重做日志（redo log）"></a>一、重做日志（redo log）</h1><p>作用：<br>    确保事务的持久性。redo日志记录事务执行后的状态，用来恢复未写入data file的已成功事务更新的数据。防止在发生故障的时间点，尚有脏页未写入磁盘，在重启mysql服务的时候，根据redo log进行重做，从而达到事务的持久性这一特性。</p>
+<p>内容：<br>    物理格式的日志，记录的是物理数据页面的修改的信息，其redo log是顺序写入redo log file的物理文件中去的。</p>
+<p>什么时候产生：<br>    事务开始之后就产生redo log，redo log的落盘并不是随着事务的提交才写入的，而是在事务的执行过程中，便开始写入redo log文件中。</p>
+<p>什么时候释放：<br>    当对应事务的脏页写入磁盘之后，redo log的使命也就完成了，重做日志占用的空间就可以重用（被覆盖）。</p>
+<p>对应的物理文件：<br>    默认情况下，对应的物理文件位于数据库的data目录下的 ib_logfile1 &amp; ib_logfile2，<br>    innodb_log_group_home_dir 指定日志文件组所在的路径，默认 .&#x2F; ，表示在数据库的数据目录下。<br>    innodb_log_files_in_group 指定重做日志文件组中文件的数量，默认2</p>
+<p>关于文件的大小和数量，由以下两个参数配置：<br>    innodb_log_file_size 重做日志文件的大小。<br>    innodb_mirrored_log_groups 指定了日志镜像文件组的数量，默认1</p>
+<p>其他：<br>    很重要一点，redo log是什么时候写盘的？前面说了是在事务开始之后逐步写盘的。<br>    之所以说重做日志是在事务开始之后逐步写入重做日志文件，而不一定是事务提交才写入重做日志缓存，原因就是，重做日志有一个缓存区 innodb_log_buffer，innodb_log_buffer 的默认大小为8M，innodb存储引擎先将重做日志写入innodb_log_buffer中。<br>    然后会通过以下三种方式将innodb日志缓冲区的日志刷新到磁盘。<br>    Master Thread 每秒一次执行刷新innodb_log_buffer到重做日志文件。<br>    每个事务提交时会将重做日志刷新到重做日志文件。<br>    当重做日志缓存可用空间少于一半时，重做日志缓存被刷新到重做日志文件。<br>    由此可以看出，重做日志通过不止一种方式写入到磁盘，尤其是对于第一种方式，innodb_log_buffer 到重做日志文件是Master Thread线程的定时任务。<br>    因此重做日志的写盘，并不一定是随着事务的提交才写入重做日志文件的，而是随着事务的开始，逐步开始的。<br>    另外引用《MySQL技术内幕 innodb 存储引擎》（page37上的原话：<br>    即使某个事务还没有提交，innodb存储引擎仍然每秒会将重做日志缓存刷新到重做日志文件。<br>    这一点是必须要知道的，因为这可以很好的解释再大的事务的提交（commit）的时间也是很短暂的。</p>
+<pre><code>---
+</code></pre>
+<h1 id="二、回滚日志（undo-log）"><a href="#二、回滚日志（undo-log）" class="headerlink" title="二、回滚日志（undo log）"></a>二、回滚日志（undo log）</h1><p>作用：<br>    保证数据的原子性，保存了事务发生之前的数据的一个版本，可以用于回滚，同时可以提供多版本并发控制下的读（MVCC），也即非锁定读</p>
+<p>内容：<br>     逻辑格式的日志，在执行undo的时候，仅仅是将数据从逻辑上恢复至事务之前的状态，而不是从屋里页面上操作实现的，这一点是不同于redo log的。</p>
+<p>什么时候产生：<br>    事务开始之前，将当前是的版本生成undo log，undo 也会产生redo来保证undo log的可靠性</p>
+<p>什么时候释放：<br>    当事务提交之后，undo log并不能立马被删除，而是放入待清理的链表，由purge线程判断是否由其他事务在使用undo段中标的上一个事务之前的版本信息，决定是否可以清理undo log的日志空间。</p>
+<p>对应的物理文件：<br>    MySQL5.6之前，undo表空间位于共享表中间的回滚段中，共享表空间的默认名称是ibdata，位于数据文件目录中。<br>    MySQL5.6之后，undo表空间可以配置成独立的文件，但是前提需要在配置文件中配置，完成数据库初始化后生效且不可改变undo log文件的个数。<br>    如果初始化数据库之前没有进行相关的配置，那么就无法配置成独立的表空间了。</p>
+<p>关于MySQL5.7之后的独立undo表空间配置参数如下：<br>    innodb_undo_directory &#x3D; &#x2F;data&#x2F;undospace - undo独立表空间的存放目录<br>    innodb_undo_logs &#x3D; 128 - 回滚段为 128KB<br>    innodb_undo_tablespaces &#x3D; 4 -指定有4个undo log文件<br>    如果undo使用的共享表空间，这个共享表空间中又不仅仅是存储了undo的信息，共享表空间的默认为MySQL的数据库目录下面，其属性由参数 innodb_data_file_path 配置。<br>其他：<br>    undo是在事务开始之前保存的被修改数据的一个版本，产生undo日志的时候，同样会伴随类似于保护事务持久化机制的redolog的产生。<br>    默认情况下undo文件是保持在共享表空间的，也即ibdatafile文件中，当数据库中发生一些大的事务性操作的时候，要产生大量的undo信息，全部保存在共享表空间中。<br>    因此共享表空间可能会变的很大，默认情况下，也就是undo日志使用共享表空间的时候，被“撑大”的共享表空间是不会也不能自动收缩的。<br>    因为，MySQL5.7之后的“独立undo表空间“的配置就显得很有必要了。</p>
+<h1 id="三、二进制日志（binlog）"><a href="#三、二进制日志（binlog）" class="headerlink" title="三、二进制日志（binlog）"></a>三、二进制日志（binlog）</h1><p>作用：<br>    用于复制，在主从复制中，从库利用主库上的binlog进行重播，实现主从同步。<br>    用于数据库的基于时间点的还原。<br>内容：<br>    逻辑格式的日志，可以简单认为就是执行过的事务中的sql语句。<br>    但又不完全是sql语句这么简单，而是包括了执行的sql语句（增删改）反向的信息，也就意味着delete对应着delete本身和其反向的insert；update对应着update执行前后的版本的信息；insert对应着delete和insert本身的信息。<br>    在使用mysqlbinlog解析binlog之后一切都会真相大白。<br>    因此可以基于binlog做到类似于Oracle的闪回功能，其实都是依赖于binlog中的日志记录。<br>什么时候产生：<br>    事务提交的时候，一次性将事务中的sql语句（一个事务可能对应多个sql语句）按照一定的格式记录到binlog中。<br>    这里与redo log很明显的差异就是redo log并不一定是在事务提交的时候刷新到磁盘，redo log是在事务开始之后就逐步开始写入磁盘。<br>    因此对于事务的提交，即便是较大的事务，提交都是很快的，但是在开启了binlog的情况下，对于较大事务的提交，可能会变的比较慢一些。<br>    这是因为binlog是在事务提交的时候一次性写入造成的，这些可以通过测试验证。<br>什么时候释放：<br>    binlog的默认保持时间是由参数 expire_logs_day 配置，也就是说对于非活动的日志文件，在生成时间超过 expire_logs_day 的配置天数之后，会被自动删除。<br>都应的物理文件：<br>    配置文件的路径为log_bin_basename，binlog日志文件按照指定大小，当日志文件达到指定的最大的大小之后，进行滚动更新，生成新的日志文件。<br>    对于每个binlog日志文件，通过一个统一的index文件来组织。<br>其他：<br>    二进制日志的作用之一是还原数据库，这与redolog很类似，很多人混淆过，但是两者有本质的不同。<br>    作用不同：redo log是保持事务的持久性，是事务层面的，binlog作为还原的功能，是数据库层面的（当然也可以精确到事务层面），虽然都有还原的意思，但是其保护数据库的层次不一样。<br>    内容不同：redo log是物理日志，是数据页面的修改之后的物理记录，binlog是逻辑日志，可以简单认为记录的就是sql语句<br>    另外，两者日志产生的时间，可以释放的时间，在可释放的情况下清理机制，都是完全不同的。<br>    恢复数据时候的效率，基于物理日志的redo log恢复数据的效率要高于语句逻辑日志的binlog。<br>    关于事务提交时，redo log和binlog的写入顺序，为了保证主从复制时候的主从一致（当然也包括使用binlog进行基于时间点还原的情况），是要严格一致的，MySQL通过两阶段提交过程来完成事务的一致性的，也机redolog和binlog的一致性，理论上是先写redolog，再写binlog，两个日志都提交成功（刷入磁盘），事务才算真正的完成。</p>
+<h1 id="四、错误日志"><a href="#四、错误日志" class="headerlink" title="四、错误日志"></a>四、错误日志</h1><pre><code>错误日志记录着mysqld启动和停止，以及服务器在运行过程中发生的错误的相关信息，在默认情况下，系统记录错粗日志的功能时关闭的，错误信息被输出到标准错误输出。
+指定日志路径两种写法：
+    编辑 my.cnf 写入 log-error=[path]
+    通过命令参数错误日志 mysqld_safe=mysql -log-error=[path]
+</code></pre>
+<h1 id="五、普通查询日志（general-query-log）"><a href="#五、普通查询日志（general-query-log）" class="headerlink" title="五、普通查询日志（general query log）"></a>五、普通查询日志（general query log）</h1><pre><code>记录了服务器接收到的每一个查询或命令，无论这些查询或是命令是否正确甚至是否包含语法错误，general log都会将其记录下来，记录的格式为 &#123;Time, Id, Command, Argument&#125;。也正因为mysql服务器需要不断地记录日志，开启general log会产生不小的系统开销。因此，MySQL默认是吧general log关闭的。
+如果设置 set global log_output=&#39;table&#39; 的话，则日志结果会记录到general_log的表中，这表的默认引擎是CSV
+如果设置 set global log_output=file，设置 general log的日志文件路径：
+    set global general_log_file = &#39;、tmp/general.log&#39;
+    开启general log：set global general_log=on;
+    关闭general log：set global general_log=off;
+</code></pre>
+<h1 id="六、慢查询日志"><a href="#六、慢查询日志" class="headerlink" title="六、慢查询日志"></a>六、慢查询日志</h1><pre><code>慢日志记录执行时间过长和没有使用索引的查询语句，报错select、update、delete以及insert语句，慢日志只会记录执行成功的语句。
+1. 查看慢查询时间：
+   show variables like “long_query_time”;默认1s
+2. 查看慢查询配置情况：
+   show status like “%slow_queries%”;
+3. 查看慢查询日志路径：
+   show variables like “%slow%”;
+</code></pre>
+<h1 id="七、中继日志"><a href="#七、中继日志" class="headerlink" title="七、中继日志"></a>七、中继日志</h1><pre><code>从服务器I/O线程将主服务器的二进制日志读取过来记录到从服务器本地文件，然后从服务器SQL线程会读取replay-log日志的内容并应用到从服务器，从而是从服务器和主服务器的数据保持一致。
+查看relay-log配置参数：
+show variables like &#39;%relay%&#39;;
+- max_relay_log_size
+    relay log允许的最大值，如果该值为0，则默认值为 max_binlog_size(1G)
+    如果不为0，则 max_relay_log_size 则为最大的relay_log文件大小
+- relay_log
+    定义relay_log的位置和名称，如果值为空，则默认位置在数据文件的目录
+- relay_log_info_file
+    定义relay-log.info 的位置和名称
+    relay-log.info 记录 master 主库的binlog 的恢复位置和从库 relay_log 的位置
+- relay_log_purge
+    是否自动清空中继日志，默认值为1（启用）
+- relay_log_recovery
+    当slave从库当即后，加入relay-log损坏了，导致一部分中继日志没有处理，则自动放弃所有未执行的relay-log，并且重新从master上获取日志，这样就保证了relay-log的完整性。默认情况下改功能时关闭的，将relay_log_recovery的值设置为1时，可以再slave从库上开启改功能，建议开启。
+- sync_relay_log
+    当设置为1是，slave的I/O线程每次接收到master发送过来的binlog日志都要写入系统缓冲区，然后刷入relay_log中继日志里，这样是最安全的，因为在崩溃的时候，你最多会丢失一个事务，但会造成磁盘的大量I/O
+    当设置为0时，并不是马上就刷入中继日志里，而是由操作系统决定何时来写入，虽然安全降低了，但减少了大量的磁盘I/O操作，这个值默认是0，可以动态修改
+- sync_relay_log_info
+    这个参数和 sync_relay_log 参数一样
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/05/08/MySQL%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97/" data-id="cluwce6ph000ckcuf9adfbak6" data-title="MySQL中的几种日志" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/04/SRE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%91%E6%8E%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          SRE-分布式系统的监控
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/28/MySQL%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6%E3%80%81GTID-%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">MySQL二进制日志复制、GTID 复制与半同步复制</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Nginx路径匹配 | ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="引用：  http:&#x2F;&#x2F;ningg.top&#x2F;nginx-series-practice-location&#x2F;  1. 目标nginx反向代理，路径映射过程是什么？如何配置路径映射规则？ 2. location路径匹配2.1 匹配规则location路径正则匹配    符号 说明    ~ 正则匹配，区分大小写   ~* 正则匹配，不区分大小写   ^~ 普通字符匹配，如果该选项匹配，则，只匹配该选项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx路径匹配">
+<meta property="og:url" content="https://chpiter.github.io/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="引用：  http:&#x2F;&#x2F;ningg.top&#x2F;nginx-series-practice-location&#x2F;  1. 目标nginx反向代理，路径映射过程是什么？如何配置路径映射规则？ 2. location路径匹配2.1 匹配规则location路径正则匹配    符号 说明    ~ 正则匹配，区分大小写   ~* 正则匹配，不区分大小写   ^~ 普通字符匹配，如果该选项匹配，则，只匹配该选项">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-11T01:04:51.000Z">
+<meta property="article:modified_time" content="2024-04-12T07:23:54.188Z">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="nginx">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="nginx-location-Nginx路径匹配" class="h-entry article article-type-nginx-location" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/" class="article-date">
+  <time class="dt-published" datetime="2020-03-11T01:04:51.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Nginx路径匹配
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>引用：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://ningg.top/nginx-series-practice-location/">http://ningg.top/nginx-series-practice-location/</a></li>
+</ul>
+<h1 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h1><p>nginx反向代理，路径映射过程是什么？如何配置路径映射规则？</p>
+<h1 id="2-location路径匹配"><a href="#2-location路径匹配" class="headerlink" title="2. location路径匹配"></a>2. location路径匹配</h1><h2 id="2-1-匹配规则"><a href="#2-1-匹配规则" class="headerlink" title="2.1 匹配规则"></a>2.1 匹配规则</h2><p>location路径正则匹配</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>~</td>
+<td>正则匹配，区分大小写</td>
+</tr>
+<tr>
+<td>~*</td>
+<td>正则匹配，不区分大小写</td>
+</tr>
+<tr>
+<td>^~</td>
+<td>普通字符匹配，如果该选项匹配，则，只匹配该选项，不再向下匹配其他选项</td>
+</tr>
+<tr>
+<td>&#x3D;</td>
+<td>普通字符匹配，精确匹配</td>
+</tr>
+<tr>
+<td>@</td>
+<td>定义一个命名的location，用于内部定向，例如error_page,try_files</td>
+</tr>
+</tbody></table>
+<h2 id="2-2-匹配优先级"><a href="#2-2-匹配优先级" class="headerlink" title="2.2 匹配优先级"></a>2.2 匹配优先级</h2><p>路径匹配，优先级：（跟location的书写顺序关系不大）</p>
+<ol>
+<li><strong>精确匹配</strong>：&#x3D;前缀的指令严格匹配这个查询。如果找到，停止搜索；</li>
+<li><strong>普通字符匹配</strong>：所有剩下的常规字符串，最长的匹配。如果这个匹配使用^~前缀，搜索停止；</li>
+<li><strong>正则匹配</strong>：正则表达式，在配置文件中定义的顺序，匹配到一个结果，搜索停止；</li>
+<li><strong>默认匹配</strong>：如果第3条规则产生匹配的话，结果被使用。否则，如同从第2条规则被使用。</li>
+</ol>
+<h2 id="2-3-举例"><a href="#2-3-举例" class="headerlink" title="2.3 举例"></a>2.3 举例</h2><p>通过一个实例，简单说明一下匹配优先级：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">location  = / &#123;</span><br><span class="line">  # 精确匹配 / ，主机名后面不能带任何字符串</span><br><span class="line">  [ configuration A ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location  / &#123;</span><br><span class="line">  # 因为所有的地址都以 / 开头，所以这条规则将匹配到所有请求</span><br><span class="line">  # 但是正则和最长字符串会优先匹配</span><br><span class="line">  [ configuration B ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location /documents/ &#123;</span><br><span class="line">  # 匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration C ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ /documents/Abc &#123;</span><br><span class="line">  # 匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration CC ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ^~ /images/ &#123;</span><br><span class="line">  # 匹配任何以 /images/ 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。</span><br><span class="line">  [ configuration D ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* \.(gif|jpg|jpeg)$ &#123;</span><br><span class="line">  # 匹配所有以 gif,jpg或jpeg 结尾的请求</span><br><span class="line">  # 然而，所有请求 /images/ 下的图片会被 config D 处理，因为 ^~ 到达不了这一条正则</span><br><span class="line">  [ configuration E ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location /images/ &#123;</span><br><span class="line">  # 字符匹配到 /images/，继续往下，会发现 ^~ 存在</span><br><span class="line">  [ configuration F ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location /images/abc &#123;</span><br><span class="line">  # 最长字符匹配到 /images/abc，继续往下，会发现 ^~ 存在</span><br><span class="line">  # F与G的放置顺序是没有关系的</span><br><span class="line">  [ configuration G ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~ /images/abc/ &#123;</span><br><span class="line">  # 只有去掉 config D 才有效：先最长匹配 config G 开头的地址，继续往下搜索，匹配到这一条正则，采用</span><br><span class="line">    [ configuration H ]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">location ~* /js/.*/\.js</span><br></pre></td></tr></table></figure>
+<p>按照上面的location写法，以下的匹配示例成立：</p>
+<ol>
+<li>&#x2F; -&gt; config A：精确完全匹配，即使&#x2F;index.html也匹配不了</li>
+<li>&#x2F;downloads&#x2F;download.html -&gt; config B：匹配B以后，往下没有任何匹配，采用B</li>
+<li>&#x2F;images&#x2F;1.gif -&gt; configuration D：匹配到F，往下匹配到D，停止往下</li>
+<li>&#x2F;images&#x2F;abc&#x2F;def -&gt; config D：最长匹配到G，往下匹配D，停止往下你可以看到 任何以&#x2F;images&#x2F;开头的都会匹配到D并停止，FG写在这里是没有任何意义的，H是永远轮不到的，这里只是为了说明匹配顺序</li>
+<li>&#x2F;documents&#x2F;document.html -&gt; config C：匹配到C，往下没有任何匹配，采用C</li>
+<li>&#x2F;documents&#x2F;1.jpg -&gt; configuration E：匹配到C，往下正则匹配到E</li>
+<li>&#x2F;documents&#x2F;Abc.jpg -&gt; config CC：最长匹配到C，往下正则顺序匹配到CC，不会往下到E</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/" data-id="cluwce6ps000okcuf0d0l0q5u" data-title="Nginx路径匹配" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/11/Nginx%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Nginx健康检查
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/10/Nginx%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Nginx配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

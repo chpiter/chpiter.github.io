@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MySQL二进制日志复制、GTID 复制与半同步复制 | ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5e12eac4e51d454139376fbd  一、日志格式1、二进制日志格式MySQL 二进制日志是进行主从复制的基础，它记录了所有对 MySQL 数据库的修改时间，包括增删改查和表结构的修改。当前 MySQL 一共支持三种二进制日志格式，可以通过binlog-format 参数来进行控制，其可选值如下：  STATEMENT ：段格式。是 M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL二进制日志复制、GTID 复制与半同步复制">
+<meta property="og:url" content="https://chpiter.github.io/2020/04/28/MySQL%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6%E3%80%81GTID-%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5e12eac4e51d454139376fbd  一、日志格式1、二进制日志格式MySQL 二进制日志是进行主从复制的基础，它记录了所有对 MySQL 数据库的修改时间，包括增删改查和表结构的修改。当前 MySQL 一共支持三种二进制日志格式，可以通过binlog-format 参数来进行控制，其可选值如下：  STATEMENT ：段格式。是 M">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chpiter.github.io/images/16f79e5f936e3bb1.jpg">
+<meta property="og:image" content="https://chpiter.github.io/images/16f79e66883b446a.jpg">
+<meta property="og:image" content="https://chpiter.github.io/images/16f79e6bd3da08a0.jpg">
+<meta property="article:published_time" content="2020-04-28T15:44:00.000Z">
+<meta property="article:modified_time" content="2024-04-12T07:23:54.131Z">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chpiter.github.io/images/16f79e5f936e3bb1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="mysql-replication-MySQL二进制日志复制、GTID-复制与半同步复制" class="h-entry article article-type-mysql-replication" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/28/MySQL%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6%E3%80%81GTID-%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/" class="article-date">
+  <time class="dt-published" datetime="2020-04-28T15:44:00.000Z" itemprop="datePublished">2020-04-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MySQL二进制日志复制、GTID 复制与半同步复制
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5e12eac4e51d454139376fbd">https://juejin.im/post/5e12eac4e51d454139376fbd</a></li>
+</ul>
+<h1 id="一、日志格式"><a href="#一、日志格式" class="headerlink" title="一、日志格式"></a>一、日志格式</h1><h2 id="1、二进制日志格式"><a href="#1、二进制日志格式" class="headerlink" title="1、二进制日志格式"></a>1、二进制日志格式</h2><p>MySQL 二进制日志是进行主从复制的基础，它记录了所有对 MySQL 数据库的修改时间，包括增删改查和表结构的修改。当前 MySQL 一共支持三种二进制日志格式，可以通过binlog-format 参数来进行控制，其可选值如下：</p>
+<ul>
+<li>STATEMENT ：段格式。是 MySQL 最早支持的二进制日志格式。其记录的是实际执行修改的 SQL 语句，因此在进行批量修改时其所需要记录的数据量比较小，但对于 UUID() 或者其他依赖上下文的执行语句，可能会在主备上产生不一样的结果。</li>
+<li>ROW：行格式，是 MySQL 5.7 版本之后默认的二进制日志格式。其记录的事修改前后的数据，因此在批量修改时其需要记录的数据量比较大，但其安全性比较高，不会导致主备出现不一致的情况。同时因为 ROW 格式是在从库上直接应用更改后的数据，其还能减少锁的使用。</li>
+<li>MIXED：是以上两种日志的混合方式，默认采用段格式进行记录，当段格式不适用（如 UUID())，则默认采用ROW格式。</li>
+</ul>
+<p>  通常在主备之间网络情况良好的时候，可以优先考虑使用ROW格式，此时数据一致性最高，其次是 MIXED 格式。在设置 ROW 格式时，还有一个非常重要的参数 binlog_row_image:</p>
+<h2 id="2、binlog-row-image"><a href="#2、binlog-row-image" class="headerlink" title="2、binlog_row_image"></a>2、binlog_row_image</h2><p>  binlog_row_image 有以下三个可选值：</p>
+<pre><code>- full：默认值，记录行在修改前后所有列的值
+- minimal：只记录修改涉及列的值
+- noblob：与 full 类似，但如果 BLOB 或 TEXT 列没有修改，则不对其进行记录
+</code></pre>
+<p>binlog-format 与 binlog_row_image 的默认值可能在不同版本存在差异，可以使用以下命令进行查看。通常情况下，为了减少在主备复制中需要传输的数据量，可以将binlog_row_image  的值设置为 minimal 或 noblob。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#x27;binlog_format&#x27;;</span><br><span class="line">show variables like &#x27;binlog_row_image&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、基于二进制日志的复制"><a href="#二、基于二进制日志的复制" class="headerlink" title="二、基于二进制日志的复制"></a>二、基于二进制日志的复制</h1><h2 id="1、复制原理"><a href="#1、复制原理" class="headerlink" title="1、复制原理"></a>1、复制原理</h2><p>MySQL 的复制原理如下图所示：</p>
+<ul>
+<li>主库首先将变更写入到自己的二进制日志中；</li>
+<li>备库会启动一个 IO 线程，然后主动去主库节点上获取变更日志，并写入到自己的中继日志中</li>
+<li>之后从中继日志中读取变更事件，在从库上执行变更</li>
+<li>当备库和主库数据状态一直，备库的 IO 线程就会进入睡眠。当主库再次发生变更时，其会向备库发出信号，唤醒 IO 线程并再次进行工作</li>
+</ul>
+<p>如果没有进行任何配置，主库将在变更写入到二进制日志后，就会返回对客户端的响应，因此默认情况下的复制是完全异步的，主备之间可能会短暂存在数据不一致的情况。</p>
+<p><img src="/images/16f79e5f936e3bb1.jpg"></p>
+<h2 id="2、配置步骤"><a href="#2、配置步骤" class="headerlink" title="2、配置步骤"></a>2、配置步骤</h2><p>首先主节点需要开启二进制日志，并且在同一个复制环境下，主备节点的 server-id 需要不一样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id = 226</span><br><span class="line"># 开启二进制日志</span><br><span class="line">log-bin=mysql-bin</span><br></pre></td></tr></table></figure>
+
+<p>在从节点配置中继日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id = 227</span><br><span class="line"># 配置中继日志</span><br><span class="line">relay_log  = mysql-relay-bin</span><br><span class="line"># 为了保证数据的一致性，从节点应该设置为只读</span><br><span class="line">read_only = 1</span><br><span class="line"># 以下两个配置代表是否开启二进制日志，如果该从节点还作为其他备库的主节点，则开启，否则不用配置</span><br><span class="line">log-bin = mysql-bin</span><br><span class="line"># 是否将中继节点收到的复制事件写到自己的二进制日志中</span><br><span class="line">log_slave_updates = 1</span><br></pre></td></tr></table></figure>
+
+<p>登录主节点 MySQL 服务，创建用于进行复制的账号，并为其授予权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &#x27;repl&#x27;@&#x27;192.168.0.%&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;123456&#x27;; </span><br><span class="line">GRANT REPLICATION SLAVE on *.* TO &#x27;repl&#x27;@&#x27;192.168.0.%&#x27; ;</span><br></pre></td></tr></table></figure>
+
+<p>查看主节点二进制日志的状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW MASTER STATUS;</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| mysql-bin.000001 |      887 |              |                  |                   |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br></pre></td></tr></table></figure>
+<p>基于日志和偏移量，建立复制链路：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CHANGE MASTER TO MASTER_HOST=&#x27;192.168.0.226&#x27;,\</span><br><span class="line">         MASTER_USER=&#x27;repl&#x27;,    \</span><br><span class="line">        MASTER_PASSWORD=&#x27;123456&#x27;,\</span><br><span class="line">        MASTER_LOG_FILE=&#x27;mysql-bin.000001&#x27;,\</span><br><span class="line">        MASTER_LOG_POS=887;</span><br></pre></td></tr></table></figure>
+
+<p>开始复制：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">START SLAVE;</span><br></pre></td></tr></table></figure>
+
+<p>查看从节点复制状态，主要参数有 Slave_IO_Running 和 Slave_SQL_Running，其状态都为 Yes 标识用于复制的 IO 线程已经开启。Seconds_behind_Master 参数表示从节点复制的延迟量。此时可以再主库上进行任意更改，并在备库上查看情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW SLAVE STATUS\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 192.168.0.226</span><br><span class="line">                  Master_User: repl</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: mysql-bin.000001</span><br><span class="line">          Read_Master_Log_Pos: 887</span><br><span class="line">               Relay_Log_File: mysql-relay-bin.000002</span><br><span class="line">                Relay_Log_Pos: 322</span><br><span class="line">        Relay_Master_Log_File: mysql-bin.000001</span><br><span class="line">        #    Slave_IO_Running: Yes</span><br><span class="line">        #   Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 887</span><br><span class="line">              Relay_Log_Space: 530</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">     #  Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 226</span><br><span class="line">   #              Master_UUID: e1148574-bdd0-11e9-8873-0800273acbfd</span><br><span class="line">             Master_Info_File: mysql.slave_master_info</span><br><span class="line">                    SQL_Delay: 0</span><br><span class="line">          SQL_Remaining_Delay: NULL</span><br><span class="line">      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates</span><br><span class="line">           Master_Retry_Count: 86400</span><br><span class="line">                  Master_Bind:</span><br><span class="line">      Last_IO_Error_Timestamp:</span><br><span class="line">     Last_SQL_Error_Timestamp:</span><br><span class="line">               Master_SSL_Crl:</span><br><span class="line">           Master_SSL_Crlpath:</span><br><span class="line">           Retrieved_Gtid_Set:</span><br><span class="line">            Executed_Gtid_Set:</span><br><span class="line">                Auto_Position: 0</span><br><span class="line">         Replicate_Rewrite_DB:</span><br><span class="line">                 Channel_Name:</span><br><span class="line">           Master_TLS_Version:</span><br><span class="line">       Master_public_key_path:</span><br><span class="line">        Get_master_public_key: 0</span><br><span class="line">            Network_Namespace:</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、优缺点"><a href="#3、优缺点" class="headerlink" title="3、优缺点"></a>3、优缺点</h2><p>基于二进制日志的复制是 MySQL 最早使用的复制技术，因此 MySQL 对其支持比较完善，对执行修改的 SQL 语句几乎没有任何限制。其主要缺点是在一主多从的高可用复制架构中，如果主库发生宕机，此时想要自动通过从库的日志和偏移量来确定新的主库比较困难。</p>
+<h1 id="三、基于-GTID-的复制"><a href="#三、基于-GTID-的复制" class="headerlink" title="三、基于 GTID 的复制"></a>三、基于 GTID 的复制</h1><h2 id="1、GTID-简介"><a href="#1、GTID-简介" class="headerlink" title="1、GTID 简介"></a>1、GTID 简介</h2><p>MySQL 5.6 版本之后提供了一个新的复制模式：基于 GTID的复制。GTID 全称为 Global Transaction ID，即全局事务 ID。它由每个服务节点的唯一标识和其上的事务ID共同组成，格式为：server_uuid:transaction_id。通过 GTID，可以保证在主库上的每一个事务都能在备库上得到执行，不会存在任何疏漏。</p>
+<h2 id="2、配置步骤-1"><a href="#2、配置步骤-1" class="headerlink" title="2、配置步骤"></a>2、配置步骤</h2><p>主从服务器均增加以下 GTID 的配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gtid-mode = ON</span><br><span class="line"># 防止执行不受支持的语句，下文会有说明</span><br><span class="line">enforce-gtid-consistency = ON</span><br></pre></td></tr></table></figure>
+
+<p>如果配置过上面的基于二进制日志的复制，还需要再从服务器上执行一下命令，关闭原有复制链路：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STOP SLAVE IO_THREAD FOR CHANNEL &#x27;&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>建立新的基于 GTID 的复制链路，指定 MASTER_AUTO_POSITION &#x3D; 1 表示由程序来自动确认开始同步的GTID的位置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CHANGE MASTER TO MASTER_HOST=&#x27;192.168.0.226&#x27;,\</span><br><span class="line">        MASTER_USER=&#x27;repl&#x27;,</span><br><span class="line">        MASTER_PASSWORD=&#x27;123456&#x27;,</span><br><span class="line">        MASTER_AUTO_POSITION=1;</span><br></pre></td></tr></table></figure>
+
+<p>开始复制：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">START SLAVE;</span><br></pre></td></tr></table></figure>
+
+<p>在主节点上执行任意修改操作，并查看从节点状态，关键的输入如下：Retrieved_Gtid_Set 代表从主节点上接收到的两个事务，Executed_Gtid_Set 表示这两个事务已经在从库上得到执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW SLAVE STATUS\G</span><br><span class="line">....</span><br><span class="line">Master_UUID            : e1148574-bdd0-11e9-8873-0800273acbfd</span><br><span class="line">Retrieved_Gtid_Set    : e1148574-bdd0-11e9-8873-0800273acbfd:1-2</span><br><span class="line">Executed_Gtid_Set    : e1148574-bdd0-11e9-8873-0800273acbfd:1-2</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、优缺点-1"><a href="#3、优缺点-1" class="headerlink" title="3、优缺点"></a>3、优缺点</h2><p>GTID 复制的有点在于程序可以自动确认开始复制的GTID点。但其仍然存在以下限制：</p>
+<ul>
+<li>不支持 Create Table … Select 语句。因为在 ROW 格式下，改语句将会被记录为具有不同 GTID的两个事务，此时从服务器将无法正确处理。</li>
+<li>事务，过程，函数和触发器内部的 Create Temporary Table 和 Drop Temporary Table 语句均不受支持。</li>
+</ul>
+<p>为防止执行不受支持的语句，建议配置和上文配置一样，开启 enforce-gtid-consistency 属性，开启后在从库上执行以下不受支持的语句豆浆抛出一样并提示。</p>
+<h1 id="四、半同步复制"><a href="#四、半同步复制" class="headerlink" title="四、半同步复制"></a>四、半同步复制</h1><p>在上面我们介绍过，不论是基于二进制日志的复制还是基于 GTID 的复制，其本质上都是异步复制，假设从节点上还没有获取到二进制日志信息时主节点就宕机了，那么就会存在数据不一致的情况。想要解决这个问题可以通过配置半同步复制来实现：进行半同步复制时，主节点会等待至少一个从节点获取到二进制日志后才将事务的执行结果返回给客户端。具体配置步骤如下：</p>
+<h2 id="1、安装插件"><a href="#1、安装插件" class="headerlink" title="1、安装插件"></a>1、安装插件</h2><p>MySQL 从 5.5 之后开始以插件的形式支持半同步复制，所以需要先进行插件安装，命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 主节点上执行</span><br><span class="line">mysql&gt; INSTALL PLUGIN rpl_semi_sync_master SONAME &#x27;semisync_master.so&#x27;;</span><br><span class="line">-- 从节点上执行</span><br><span class="line">mysql&gt; INSTALL PLUGIN rpl_semi_sync_slave SONAME &#x27;semisync_slave.so&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>如果你的复制是基于高可用架构的，即从节点可能会在主节点宕机后成为新的主节点，而源主节点可能在失败恢复后成为从节点，那么为了保证半同步复制仍然有效，此时可以再主从节点上都安装主从插件。安装后使用以下命令查看是否安装成功：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT PLUGIN_NAME, PLUGIN_STATUS FROM INFORMATION_SCHEMA.PLUGINS WHERE PLUGIN_NAME LIKE &#x27;%semi%&#x27;;</span><br><span class="line">+----------------------+---------------+</span><br><span class="line">| PLUGIN_NAME          | PLUGIN_STATUS |</span><br><span class="line">+----------------------+---------------+</span><br><span class="line">| rpl_semi_sync_master | ACTIVE        |</span><br><span class="line">| rpl_semi_sync_slave  | ACTIVE        |</span><br><span class="line">+----------------------+---------------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、配置半同步复制"><a href="#2、配置半同步复制" class="headerlink" title="2、配置半同步复制"></a>2、配置半同步复制</h2><p>半同步复制可以基于日志复制或 GTID 复制开启，只需要在其原有配置上增加以下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 主节点上增加如下配置：</span><br><span class="line">plugin-load=rpl_semi_sync_master=semisync_master.so</span><br><span class="line">rpl_semi_sync_master_enabled=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 从节点上增加如下配置：</span><br><span class="line">plugin-load=rpl_semi_sync_slave=semisync_slave.so</span><br><span class="line">rpl_semi_sync_slave_enabled=1</span><br><span class="line"></span><br><span class="line"># 和上面提到的一样，如果是高可用架构下，则主从节点都可以增加主从配置：</span><br><span class="line">plugin-load = &quot;rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so&quot;</span><br><span class="line">rpl-semi-sync-master-enabled = 1</span><br><span class="line">rpl-semi-sync-slave-enabled = 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、启动复制"><a href="#3、启动复制" class="headerlink" title="3、启动复制"></a>3、启动复制</h2><p>安装二进制日志或 GTID 的方式正常启动复制极客，此时可以使用如下命令查看半同步日志是否正在执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 主节点</span><br><span class="line">mysql&gt; SHOW STATUS LIKE &#x27;Rpl_semi_sync_master_status&#x27;;</span><br><span class="line">+-----------------------------+-------+</span><br><span class="line">| Variable_name               | Value |</span><br><span class="line">+-----------------------------+-------+</span><br><span class="line">| Rpl_semi_sync_master_status | ON    |</span><br><span class="line">+-----------------------------+-------+</span><br><span class="line"></span><br><span class="line"># 从节点</span><br><span class="line">mysql&gt; SHOW STATUS LIKE &#x27;Rpl_semi_sync_slave_status&#x27;;</span><br><span class="line">+----------------------------+-------+</span><br><span class="line">| Variable_name              | Value |</span><br><span class="line">+----------------------------+-------+</span><br><span class="line">| Rpl_semi_sync_slave_status | ON    |</span><br><span class="line">+----------------------------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>值为 ON 代表半同步复制配置成功。</p>
+<h2 id="4、可选配置"><a href="#4、可选配置" class="headerlink" title="4、可选配置"></a>4、可选配置</h2><p>半同步日志还有以下两个可选配置，一个是 rpl_semi_sync_master_wait_for_slave_count，它表示主节点需要至少等待几个从节点复制完成，默认值为1，因为等待过多从节点可能会导致长时间的延迟，所以通常使用默认值即可。另一个常用参数是 rpl_semi_sync_master_wait_point ,他主要用于控制等待的时间点，它有以下两个可选值：</p>
+<ul>
+<li>AFTER_SYNC（默认值）：主服务器将每个事务写入其二进制日志，并将二进制日志同步到磁盘后开始进行等待。在收到从节点的确认后，才将事务提交给存储引擎并将结果返回给客户端。</li>
+<li>AFTER_COMMIT：主服务器将每个事务写入其二进制日志并同步到磁盘，然后将事务提交到存储引擎，提交后再进行等待。在收到从节点的确认后，才将结果返回给客户端。</li>
+</ul>
+<p>第二种方式是 MySQL 5.7.2 之前的默认方式，但这种方式会导致数据的丢失，所以在 5.7.2 版本之后引入了第一种方式作为默认方式，它可以实现无损复制（lossless replication），数据基本无丢失，因此 rpl_semi_sync_master_wait_point 参数通常也不用进行修改，采用默认值即可。想要查看当前版本该参数的值，可以使用如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW VARIABLES LIKE &#x27;rpl_semi_sync_master_wait_point&#x27;;</span><br><span class="line">+---------------------------------+------------+</span><br><span class="line">| Variable_name                   | Value      |</span><br><span class="line">+---------------------------------+------------+</span><br><span class="line">| rpl_semi_sync_master_wait_point | AFTER_SYNC |</span><br><span class="line">+---------------------------------+------------+</span><br></pre></td></tr></table></figure>
+<p>虽然半同步复制能够最大程度的避免数据的丢失，但是因为网络通讯会导致额外的等待时间的开销，所以尽量在低延迟的网络环境下使用，如处于同一机房的主机之间。</p>
+<h1 id="五、高可用架构"><a href="#五、高可用架构" class="headerlink" title="五、高可用架构"></a>五、高可用架构</h1><p>无论是主主复制架构，还是一主多从结构，单存依靠复制只能解决数据可靠性的问题，并不能解决系统高可用的问题，想要保证高可用，系统必须能够自动进行故障转移，即在主库宕机时，主动讲其它备库升级为主库。常用的有以下两种解决方案：</p>
+<h2 id="1、MMM"><a href="#1、MMM" class="headerlink" title="1、MMM"></a>1、MMM</h2><p>MMM（Master-Master replication manager for MySQL）是由 Perl 语言开发的一套支持双主故障切换以及双主日常管理的第三方软件。它包含两类角色：writer和reader，分别对应读写节点和只读节点。使用 MMM 管理的双主节点在同一时间上只允许一个进行写入操作，当 writer 节点出现宕机（假设是 Master1），程序会自动移除该节点上的读写 VIP，然后切换到 Master2，并设置 Master2 的read_only &#x3D; 0，即关闭只读限制，同时将所有Slave节点重新指向 Master2.</p>
+<p>除了管理双主节点，MMM也负责管理所有Slave节点，在出现宕机、复制延迟或复制错误，MMM会移除该节点的VIP，直至节点恢复正常、MMM高可用的架构示例图如下：<br><img src="/images/16f79e66883b446a.jpg"></p>
+<p>MMM结构的缺点在于虽然其能实现自动切换，但不会主动补齐丢失的数据，所以会存在数据不一致的风险。另外 MMM 的发布时间比较早，所以其也不支持 MySQL 最新的基于 GTID 的复制，如果你是用的是基于 GTID 的复制，则只能采用 MHA。</p>
+<h2 id="2、MHA"><a href="#2、MHA" class="headerlink" title="2、MHA"></a>2、MHA</h2><p>MHA（Master High Availability）是由Perl实现的一款高可用程序，相对于 MMM，它能尽量避免数据不一致的问题。它监控的是一主多从的复制架构，架构如下图所示：<br><img src="/images/16f79e6bd3da08a0.jpg"></p>
+<p>在 Master 节点宕机后，其处理流程如下：</p>
+<ol>
+<li>尝试从宕机Master中保存二进制日志</li>
+<li>找到含有最新中继日志的Slave</li>
+<li>把最新中继日志应用到其他实例，保证各实例数据一直</li>
+<li>应用从Master保存的二进制日志事件</li>
+<li>提升一个Slave为Master</li>
+<li>其他Slave向该新Master同步</li>
+</ol>
+<p>按照以上的处理流程，MHA能够最大程度的避免数据不一致的问题。但如果 Master 所在的服务器也宕机了，那么过程的第一步就会失败。在 MySQL 5.5 后，可以开启半同步复制来避免这个问题，从而可以保证数据的一致性和几乎无丢失。当然 MHA 集群也存在以下一些缺点：</p>
+<ul>
+<li>集群中所有节点之间需要开启SSH服务，所以会存在一定的安全影响</li>
+<li>没有实现 Slave 的高可用</li>
+<li>自带的脚本不足，例如虚拟IP的配置需要自己通过命令或者其他第三方软件来实现</li>
+<li>需要手动清理中继日志</li>
+</ul>
+<p>以上就是MMM和MHA架构的简单介绍。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/28/MySQL%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6%E3%80%81GTID-%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/" data-id="cluwce6pi000ekcuf2nh1450u" data-title="MySQL二进制日志复制、GTID 复制与半同步复制" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/08/MySQL%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          MySQL中的几种日志
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/27/SRE%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">SRE指导思想</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

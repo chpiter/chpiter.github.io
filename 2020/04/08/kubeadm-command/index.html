@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>kubeadm 常用命令行选项 | ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="kubeadm init https:&#x2F;&#x2F;kubernetes.io&#x2F;zh&#x2F;docs&#x2F;reference&#x2F;setup-tools&#x2F;kubeadm&#x2F;kubeadm-init&#x2F;   此命令初始化一个 Kubernetes 控制节点。   “init”命令执行以下阶段 preflight Run pre-flight checks kubelet-start Write kubelet settings">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubeadm 常用命令行选项">
+<meta property="og:url" content="https://chpiter.github.io/2020/04/08/kubeadm-command/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="kubeadm init https:&#x2F;&#x2F;kubernetes.io&#x2F;zh&#x2F;docs&#x2F;reference&#x2F;setup-tools&#x2F;kubeadm&#x2F;kubeadm-init&#x2F;   此命令初始化一个 Kubernetes 控制节点。   “init”命令执行以下阶段 preflight Run pre-flight checks kubelet-start Write kubelet settings">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/">
+<meta property="og:image" content="https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/">
+<meta property="og:image" content="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/">
+<meta property="og:image" content="https://godoc.org/k8s.io/kubernetes/pkg/proxy/apis/config#KubeProxyConfiguration">
+<meta property="og:image" content="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/README.md">
+<meta property="og:image" content="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/control-plane-flags/">
+<meta property="og:image" content="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file">
+<meta property="article:published_time" content="2020-04-07T23:46:22.000Z">
+<meta property="article:modified_time" content="2024-04-12T07:23:54.199Z">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="kubeadm">
+<meta property="article:tag" content="k8s">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="kubeadm-command-kubeadm-command" class="h-entry article article-type-kubeadm-command" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/08/kubeadm-command/" class="article-date">
+  <time class="dt-published" datetime="2020-04-07T23:46:22.000Z" itemprop="datePublished">2020-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      kubeadm 常用命令行选项
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="kubeadm-init"><a href="#kubeadm-init" class="headerlink" title="kubeadm init"></a>kubeadm init</h1><ul>
+<li><p><a target="_blank" rel="noopener" href="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/">https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/</a></p>
+<p>  此命令初始化一个 Kubernetes 控制节点。</p>
+</li>
+</ul>
+<h2 id="“init”命令执行以下阶段"><a href="#“init”命令执行以下阶段" class="headerlink" title="“init”命令执行以下阶段"></a>“init”命令执行以下阶段</h2><ul>
+<li>preflight Run pre-flight checks</li>
+<li>kubelet-start Write kubelet settings and （re）start the kubelet</li>
+<li>certs Certificate generation<ul>
+<li>&#x2F;ca Generate the self-signed Kubernetes CA to provision identities for other Kubernetes components</li>
+<li>&#x2F;apiserver Generate the certificate for serving the Kubernetes API</li>
+<li>&#x2F;apiserver-kubelet-client Generate the certificate for the API server to connect to kubelet</li>
+<li>&#x2F;front-proxy-ca Generate theself-signed CA to provision identities for front proxy</li>
+<li>&#x2F;front-proxy-client Generate the certificate for the front proxy client</li>
+<li>&#x2F;etcd-ca Generate the self-signed CA to provision identities for etcd</li>
+<li>&#x2F;etcd-server Generate the certificate for serving etcd</li>
+<li>&#x2F;etcd-peer Generate the certificate for etcd nodes to communicate with each other</li>
+<li>&#x2F;etcd-healthcheck-client Generate the certificate for liveness probes to healthcheck etcd</li>
+<li>&#x2F;apiserver&#x3D;etcd-client Generate the certificate for apiserver uses to access etcd</li>
+</ul>
+</li>
+<li>kubeconfig Genera all kubeconfig files necessary to establish the control plane and the admin kubeconfig file<ul>
+<li>&#x2F;admin Generate a kubeconfig file for the admin to use and for kubeadm itself</li>
+<li>&#x2F;kubelet Generate a kubeconfig file for the kubelet to use <em>only</em> forcluster bootstrapping purpose</li>
+<li>&#x2F;controller-manager Generate a kubeconfig file for the controller manager to use</li>
+<li>&#x2F;scheduler Generate a kubeconfig file for the scheduler to use</li>
+</ul>
+</li>
+<li>control-plane Generate all static Pod manifest files necessary to establish the control plane <ul>
+<li>&#x2F;apiserver Generate the kube-apiserver static Pod manifest</li>
+<li>&#x2F;controller-manager Generate the kube-controller-manager static pod manifest</li>
+<li>&#x2F;scheduler Generate the kube-scheduler static pod manifest</li>
+</ul>
+</li>
+<li>etcd Generate static Pod manifest file for local etcd<ul>
+<li>&#x2F;local Generate the static Pod manifest file for a local，single-node local etcd instance</li>
+</ul>
+</li>
+<li>upload-config Upload the kubeadm and kubelet configuration to a Configmap<ul>
+<li>&#x2F;kubeadm Upload the kubeadm ClusterConfiguration to a configmap</li>
+<li>&#x2F;kubelet Upload the kubelet component config to a configmap</li>
+</ul>
+</li>
+<li>upload-certs Upload certificates to kubeadm-certs</li>
+<li>mark-control-plane Mark a node as a control-plane</li>
+<li>bootstrap-token Generate bootstrap tokens used to join a node to a cluster</li>
+<li>addon Install required addons for passing Conformance tests<ul>
+<li>&#x2F;coredns Install the CoreDNS addon to a Kubernetes cluster</li>
+<li>&#x2F;kube-proxy Install the kube-proxy addon to a Kubernetes cluster</li>
+</ul>
+</li>
+</ul>
+<h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><ul>
+<li>-apiserver-advertise-address string<br>  API服务器所公布的其正在监听的IP地址。如果未设置，则使用默认网络接口</li>
+<li>-apiserver-bind-port int32 默认值：6443<br>  API服务器绑定的端口</li>
+<li>-apiserver-cert-extra-sans stringSlice<br>  用于API Server 服务器证书的可选附加主题备用名称（SAN）。可以是IP地址和DNS名称</li>
+<li>-cert-dir string 默认值：”&#x2F;etcd&#x2F;kubernetes&#x2F;pki”<br>  保存和存储证书的路径</li>
+<li>-certificate-key string<br>  用于加密kubeadm-certs Secret 中的控制平面证书的密钥</li>
+<li>-config string<br>  kubeadm 配置文件的路径</li>
+<li>-control-plane-endpoint string<br>  为控制平面指定一个稳定的IP地址或DNS名称</li>
+<li>-cri-socket string<br>  要连接的CRI套接字的路径。如果为空，则kubeadm将尝试自动监测此值；仅当安装了多个CRI或具有非标准CRI插槽时，才使用此选项</li>
+<li>-dry-run<br>  不做任何更改，只输出将要执行的操作</li>
+<li>-k，–experimental-kustomize string<br>  用于存储kustomize为静态pod清单所提供的补丁的路径</li>
+<li>-feature-gates string<br>  一组用来描述各种功能特性的键值（key&#x3D;value）对。选项是：IPv6DualStack&#x3D;true|false (ALPHA - default&#x3D;false)</li>
+<li>-h，–help<br>  init操作的帮助命令</li>
+<li>-ignore-preflight-errors stringSlice<br>  错误将显示为警告的检查列表；例如：IsPrivilegedUser,Swap。取值 all 时将忽略检查中的所有错误</li>
+<li>–image-repository string 默认值：”k8s.gcr.io”<br>  选择用于拉取控制平面镜像的默认仓库</li>
+<li>–kubernetes-version string<br>  为控制平面选择一个特定的 kubernetes 版本</li>
+<li>–node-name string<br>  指定节点的名称</li>
+<li>–pod-network-cidr string<br>  指明pod网络可以使用的IP地址段。如果设置了这个参数，控制平面将会为没一个节点自动分配CIDRs</li>
+<li>–service-cidr string<br>  为服务的虚拟IP地址指定另外的IP地址段</li>
+<li>–skip-certificate-key-print<br>  不要打印用于加密控制平面证书的密钥</li>
+<li>–skip-phases stringSlice<br>  要跳过的阶段列表</li>
+<li>–skip-token-print<br>  要跳过打印 <code>kubeadm init</code> 生成的默认引导令牌</li>
+<li>–token string<br>  这个令牌用于建立控制平面与工作节点间的双向通信，格式为 [a-z0-9]{6}.[a-z0-9]{16}</li>
+<li>–token-ttl duration<br>  令牌被自动删除之前的持续时间（例如 1s，2m，3h）。如果设置为0，则令牌将永不过期</li>
+<li>–upload-certs<br>  将控制平面证书上传到kubeadm-certs Secret</li>
+<li>–rootfs string<br>  [实验] 到 ‘真实’ 主机根文件系统的路径，<strong>从父命令继承的选项</strong></li>
+</ul>
+<h2 id="init命令的工作流程"><a href="#init命令的工作流程" class="headerlink" title="init命令的工作流程"></a>init命令的工作流程</h2><p><code>kubeadm init</code> 命令通过执行下列步骤来启动一个 kubernetes 控制平面节点</p>
+<ol>
+<li>在做出变更前运行一系列的预检项来验证系统状态。一些检查项目仅仅触发警告，其他的则会被视为错误并且推出kubeadm，除非问题得到解决或者用户指定了<br> –ignore-preflight-error&#x3D;<list-of-error> 参数</li>
+<li>生成一个自签名的CA证书（或者使用现有的证书，如果提供的话）来为集群中的每一个组件建立身份标识。如果用户已经通过 <code>--cert-dir</code> 配置的证书目录（默认为 <code>/etc/kubernetes/pki</code>）提供了他们自己的CA证书以及&#x2F;或者密钥，那么将会跳过这个步骤，正如文档 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#custom-certificates">使用自定义证书</a>所述。如果指定了 <code>--apiserver-cert-extra-sans</code> 参数，APIserver的证书将会有额外的SAN条目，如果必要的话，将会被转为小写。</li>
+<li>将 kubeconfig 文件写入 <code>/etc/kubernetes</code> 目录以便kubelet、controller-manager和scheduler用来连接到APIServer，它们每一个都有自己的身份标识，同时生成一个名为 <code>admin.conf</code> 的独立kubeconfig 文件，用于管理操作。</li>
+<li>为APIServer、controller-manager和scheduler生成静态POD的清单文件（manifest）。假设没有提供一个外部的etcd服务的话，也会为etcd生成一份额外的静态POD清单文件。</li>
+</ol>
+<p>静态POD的清单文件被写入到 <code>/etc/kubernetes/manifest</code> 目录；kubelet会监视这个目录以便在系统启动的时候创建pod。</p>
+<p>一旦控制平面的POD都运行起来，<code>kubeadm init</code>的工作流程就继续往下执行。</p>
+<ol>
+<li>对控制平面节点应用labels和taints标记以便不会在它上面运行其他的工作负载。</li>
+<li>生成令牌以便其他节点以后可以使用这个令牌向控制平面节点注册他们自己。（可先），用户可以通过 <code>--token</code> 提供一个令牌，正如文档 <img src="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/" alt="kubeadm token">所述。</li>
+<li>为了使得节点能够遵照<img src="https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/" alt="Bootstrap Tokens"> 和 <img src="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/" alt="LTS Bootstrap"> 这两份文档中描述的机制加入到集群中，kubeadm会执行所有的必要配置： -创建一份configmap提供添加集群节点所需的信息，并未该configmap设置相关的RBAC访问规则。-使得Bootstrap Tokens可以访问CSR签名API。-对新的CSR请求配置为自动签发。</li>
+</ol>
+<h2 id="在-kubeadm-中使用-init-phases"><a href="#在-kubeadm-中使用-init-phases" class="headerlink" title="在 kubeadm 中使用 init phases"></a>在 kubeadm 中使用 init phases</h2><p>Kubeadm 允许您使用 <code>kubeadm init phases</code> 命令分阶段创建控制平面节点。<br>要查看阶段和子阶段的有序列表，可以调用 <code>kubeadm init --help</code>。该列表将位于帮助屏幕的顶部，每个阶段旁边都有一个描述。注意，通过调用 <code>kubeadm init</code>， 所有阶段和子阶段都将按照此确切顺序执行。<br>某些阶段具有唯一的标志，因此，如果要查看可用选项的列表，请添加 <code>--help</code> ，例如：<br><code>sudo kubead init phase control=plane controller-manager --help</code><br>您也可以使用 <code>--help</code> 查看特定父阶段的子阶段列表：<br><code>sudo kubeadm init phase control-plane --help</code><br><code>kubeadm init</code> 还公开了一个名为 <code>--skip-phases</code> 的参数，该参数可用于跳过某些阶段。参数接受阶段名称列表，并且这些名称可以从上面的有序列表中获取。<br>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm init phase control-plane all --config=configfile.yaml</span><br><span class="line">sudo kubeadm init phase etcd local --config=configfile.yaml</span><br><span class="line"># 您现在可以修改控制平面和 etcd 清单文件</span><br><span class="line">sudo kubeadm init --skip-phases=control-plane,etcd --config=configfile.yaml</span><br></pre></td></tr></table></figure>
+<p>该示例将执行的操作是基于 configfile.yaml 中的配置在 <code>/etc/kubernetes/manifest</code> 中写入控制平面和etcd的清单文件。这允许您修改文件，然后使用 –skip-phases 跳过这些阶段。通过调用最后一个命令，您将使用自定义清单文件创造一个控制平面节点。</p>
+<h2 id="结合一个配置文件来使用kubeadm-init"><a href="#结合一个配置文件来使用kubeadm-init" class="headerlink" title="结合一个配置文件来使用kubeadm init"></a>结合一个配置文件来使用kubeadm init</h2><p>通过一份配置文件而不是使用命令行参数来配置 kubeadm init 命令是可能的，但是一些更加高级的功能只能通过配置文件设定。这份配置文件通过 –config 选项参数指定。<br>可以使用 <code>kubead config print</code> 命令打印出默认配置。<br><strong>推荐</strong>使用 <code>kubeadm config migrate</code> 命令将旧的 v1beta1 版本的配置迁移到 v1beta2 版本。</p>
+<h2 id="添加-kube-proxy-参数"><a href="#添加-kube-proxy-参数" class="headerlink" title="添加 kube-proxy 参数"></a>添加 kube-proxy 参数</h2><p>kubeadm配置中有关 kube-proxy 的说明请查看：<img src="https://godoc.org/k8s.io/kubernetes/pkg/proxy/apis/config#KubeProxyConfiguration" alt="-kube-proxy"><br>使用 kubeadm 启用IPVS模式的说明请查看： <img src="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/README.md" alt="-IPVS"></p>
+<h2 id="向控制平面组件传递自定义的命令行参数"><a href="#向控制平面组件传递自定义的命令行参数" class="headerlink" title="向控制平面组件传递自定义的命令行参数"></a>向控制平面组件传递自定义的命令行参数</h2><p>有关向控制平面组件传递命令行参数的说明请查看：<img src="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/control-plane-flags/" alt="控制平面命令行参数"></p>
+<h2 id="使用自定义的镜像"><a href="#使用自定义的镜像" class="headerlink" title="使用自定义的镜像"></a>使用自定义的镜像</h2><p>默认情况下，kubeadm会从 k8s.gcr.io 仓库拉取镜像。如果请求的Kubernetes 版本是 CI label（例如 ci&#x2F;latest），则使用 gcr.io&#x2F;kubernetes-ci-images。<br>您可以通过使用<img src="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file" alt="带有配置文件的kubeadm">来重写此操作。<br>允许的自定义功能有：</p>
+<ul>
+<li>使用其他的 imageRepository 来代替 k8s.gcr.io</li>
+<li>将 useHyperKubeImage 设置为 true，使用 HyperKube 镜像</li>
+<li>为etcd或DNS附件提供特定的 imageRepository 和 imageTag<br>请注意配置文件中的配置项 kubernetesVersion 或者命令行参数 –kubernetes-version 会影响到镜像的版本。</li>
+</ul>
+<h2 id="将控制平面证书上传到集群"><a href="#将控制平面证书上传到集群" class="headerlink" title="将控制平面证书上传到集群"></a>将控制平面证书上传到集群</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/08/kubeadm-command/" data-id="cluwce6q70016kcuf6kus0yop" data-title="kubeadm 常用命令行选项" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/13/LVS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          LVS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/07/kubeadm%E6%A6%82%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">kubeadm概述</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

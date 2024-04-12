@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>SRE指导思想 | ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一、拥抱风险没有百分之百可靠的服务，如果专注于提高服务的可靠性，对服务本身或者用户来说，结果不一定会更好甚至更差。极端的提高可靠性将会带来成本的大幅提升：过分追求稳定性限制了新功能的开发速度和产品交付速度，并且很大程度地增加了成本，反过来又减少了团队可以提供新功能的数量。另外，用户通常不会注意到一项服务在高可靠性和极端可靠性之间的差异，因为用户体验主要受较不可靠的组件主导，即木桶理论。基于这几点，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SRE指导思想">
+<meta property="og:url" content="https://chpiter.github.io/2020/04/27/SRE%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="一、拥抱风险没有百分之百可靠的服务，如果专注于提高服务的可靠性，对服务本身或者用户来说，结果不一定会更好甚至更差。极端的提高可靠性将会带来成本的大幅提升：过分追求稳定性限制了新功能的开发速度和产品交付速度，并且很大程度地增加了成本，反过来又减少了团队可以提供新功能的数量。另外，用户通常不会注意到一项服务在高可靠性和极端可靠性之间的差异，因为用户体验主要受较不可靠的组件主导，即木桶理论。基于这几点，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-27T07:28:51.000Z">
+<meta property="article:modified_time" content="2024-04-12T06:27:42.688Z">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="SRE">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="sre-think-SRE指导思想" class="h-entry article article-type-sre-think" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/27/SRE%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3/" class="article-date">
+  <time class="dt-published" datetime="2020-04-27T07:28:51.000Z" itemprop="datePublished">2020-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      SRE指导思想
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="一、拥抱风险"><a href="#一、拥抱风险" class="headerlink" title="一、拥抱风险"></a>一、拥抱风险</h1><p>没有百分之百可靠的服务，如果专注于提高服务的可靠性，对服务本身或者用户来说，结果不一定会更好甚至更差。极端的提高可靠性将会带来成本的大幅提升：过分追求稳定性限制了新功能的开发速度和产品交付速度，并且很大程度地增加了成本，反过来又减少了团队可以提供新功能的数量。<br>另外，用户通常不会注意到一项服务在高可靠性和极端可靠性之间的差异，因为用户体验主要受较不可靠的组件主导，即木桶理论。<br>基于这几点，SRE旨在寻求快速创新和高效的服务运营业务之间的风险的平衡，而不是简单的将服务在线时间最大化。这样一来，我们可以优化用户的整体体验，平衡系统的功能、服务和性能。</p>
+<h2 id="1、管理风险"><a href="#1、管理风险" class="headerlink" title="1、管理风险"></a>1、管理风险</h2><p>为了提高用户对系统的信息，我们要减少系统出现故障的几率。然而，经验表明，在构建系统的过程中，可靠性进一步提升的成本并不是线性增加的—-可靠性的下一个改进可能比之前的改进成本增加100倍。高昂的成本主要体现在：</p>
+<ul>
+<li>冗余物理服务器&#x2F;计算资源的成本</li>
+</ul>
+<p>通过投入冗余设备，我们可以进行常规的系统离线或其他预料之外的维护性操作。又或者可以利用一些空间来存储奇偶校验码块，以此来提供一定程度的数据持久性保证。</p>
+<ul>
+<li>机会成本</li>
+</ul>
+<p>这类成本由一个组织承担。当该组织分配工程资源来构建减少风险的系统或功能，而非哪些用户直接可用的功能时需要成本这些成本。这些工程师不能再从事为终端用户设计新功能和新产品的工作。</p>
+<p>在SRE团队中，我们管理服务的可靠性很大程度上是通过管理风险来进行的。我们是将风险作为一个连续体来认知的。我们的目标是：明确地将运维风险与业务风险对应起来。我们会努力提高一项服务的可靠性，但不会超过该服务需要的可靠性。也就是说，当设定一个可用性目标为99.99%时，我们即使要超过这个目标，也不会超过太多，否则会浪费为系统增加新功能、清理技术债务或降低运营成本的机会。从某种意义上来说，我们把可用性目标同时看做风险的上限和下限。这种表达方式的主要优势在于它可以促进团队进行明确的、深思熟虑的风险讨论。</p>
+<h2 id="2、度量服务的风险"><a href="#2、度量服务的风险" class="headerlink" title="2、度量服务的风险"></a>2、度量服务的风险</h2><p>Google 标准做法是通过一个客观的指标来体现一个待优化的系统属性。通过设立这样一个目标，我们可以客观的评价目前的系统表现以及追踪一段时间内的改进和退步。对于服务风险而言，单一的性能指标不能代表所有潜在的因素。服务故障可能会有很多潜在的影响，这些因素的一部分可能很难被合理的度量。为了使这个问题再我们运行的各种类型的系统中易于处理，并且保持一致，我们选择主要关注计划外停机这个指标。</p>
+<p>对于大多数服务而言，最直接的能够代表风险承受能力的指标就是对于计划外停机时间的可接受水平。计划外停机时间是由服务预期的可用性水平所体现的，通常用提供“9”系列的数字来体现。</p>
+<ul>
+<li>基于时间的可用性<br>可用性 &#x3D; 系统正常运行时间&#x2F;（系统正常运行时间+停机时间）</li>
+<li>合计可用性<br>可用性 &#x3D; 成功请求数&#x2F;总的请求数</li>
+</ul>
+<p>使用请求成功率指标量化计划外停机时间使得这种指标更适合在不直接服务终端用户的系统中使用。、</p>
+<p>通常，我们会为一项服务设定季度性的可用性目标，每周甚至每天对性能进行跟踪。我们通过寻找、跟踪和调整重要的、不可避免的偏差来使服务达到一个高层次的可用性目标。</p>
+<h2 id="3、服务的风险容忍度"><a href="#3、服务的风险容忍度" class="headerlink" title="3、服务的风险容忍度"></a>3、服务的风险容忍度</h2><p>在一个正式的环境或安全关键的系统中，服务的风险容忍度通常是直接根据基本产品或服务的定义建立的。</p>
+<h3 id="1）消费者服务的风险容忍度"><a href="#1）消费者服务的风险容忍度" class="headerlink" title="1）消费者服务的风险容忍度"></a>1）消费者服务的风险容忍度</h3><p>消费者服务对应的产品团队，负责了解用户和业务，通过这个软对来讨论服务的可靠性要求。</p>
+<p>  因素：</p>
+<ul>
+<li>需要的可用性水平是什么？</li>
+<li>不同类型的失败对服务有不同的影响吗？</li>
+<li>我们如何使用服务成本来帮助在风险曲线上定位这个服务？</li>
+<li>有哪些其他重要的服务指标需要考虑？</li>
+</ul>
+<p>  可用性目标：</p>
+<ul>
+<li>用户期望的服务水平是什么？</li>
+<li>这项服务是否直接关系到收入？</li>
+<li>这是一个有偿服务，还是免费服务？</li>
+<li>如果市场上有竞争对手，那些竞争对手提供的服务水平如何？</li>
+<li>这项服务是针对消费者还是企业？</li>
+</ul>
+<p>  故障的类型：</p>
+<ul>
+<li>我们的业务对于服务的停机时间的容忍程度有多高？</li>
+<li>持续的低故障率或者偶尔发生的全网中断哪一个更糟糕？<br>  这两种类型的故障可能会导致绝对数量上完全相同的错误被返回，但可能对于业务的影响相差很大。</li>
+</ul>
+<p>  成本：</p>
+<ul>
+<li>构建和运维可用性再多一个“9”的系统，收益会增加多少？</li>
+<li>额外的收入是否能够抵消为了达到这一可靠性水平所付出的成本？<br>  当我们无法简单的解释可靠性和收入的关系时，可能会更难设置这些目标。</li>
+</ul>
+<h3 id="2）基础设施服务的风险容忍度"><a href="#2）基础设施服务的风险容忍度" class="headerlink" title="2）基础设施服务的风险容忍度"></a>2）基础设施服务的风险容忍度</h3><p>构建和运维基础设施组件的要求在许多方面是不同于消费者服务的。一个根本的区别是，基础设施组件有多个客户，而他们通常有很多不同的需求。</p>
+<ul>
+<li><p>可用性目标水平<br>不同的用户服务，其基础设施的可用性目标水平不一致，风险容忍度可能相当不同。讷讷够同时满足多种情况的要求的一种方法是将所有基础设置服务做得极为可靠。但在实际情况中，这些基础设置服务往往需要占用大量资源，超高可靠性的代价通常是非常昂贵的。</p>
+</li>
+<li><p>故障类型</p>
+</li>
+<li><p>成本</p>
+</li>
+</ul>
+<h1 id="二、服务质量"><a href="#二、服务质量" class="headerlink" title="二、服务质量"></a>二、服务质量</h1><h2 id="1、-服务质量术语"><a href="#1、-服务质量术语" class="headerlink" title="1、 服务质量术语"></a>1、 服务质量术语</h2><ol>
+<li>SLI，服务质量指标</li>
+</ol>
+<p>SLI 是指服务质量指标（indicator）：该服务的某项服务质量的一个具体量化指标。<br>大部分用户服务都将请求延迟作为一个关键SLI，其他的常见SLI包括错误率，系统吞吐量等等。这些度量通常是汇总过的：在某一个度量时间范围内将原始数据收集起来，计算速率、平均值、百分比等汇总数据。</p>
+<ol start="2">
+<li>SLO，服务质量目标</li>
+</ol>
+<p>SLO 是服务质量目标（Objective）：服务的某个SLI的目标值，或者目标范围。SLO的定义是SLI ≤ 目标值或者范围下线 ≤ SLI ≤ 范围上限。</p>
+<ol start="3">
+<li>SLA，服务质量协议</li>
+</ol>
+<p>SLA是服务质量协议（Agreement）：指服务与用户之间的一个明确的，或者不明确的协议，描述了在达到或者没有达到SLO之后的一个后果。这些后果可能是财务方面的（退款或者罚款），也可能是其他类型的。<br>SRE通常不会参与SLA的书写，因为SLA是与业务产品的决策紧密相关的。但是，SRE确实会参与帮助避免触发SLA中的惩罚性条款。同时SRE会参与制定具体的SLI：很明显，提供一个客户的方式来度量SLO是很重要的，否则大家就会产生分歧。<br>并不是所有的服务都有SLA，尤其是免费提供的服务。但是免费提供的服务如果出现不可用的情况，可能仍然会产生一系列的后果。所以不管服务是否具有SLA，定义SLI和SLO，并且用它们来管理服务质量都是很有价值的。</p>
+<h2 id="2、指标在实践中的应用"><a href="#2、指标在实践中的应用" class="headerlink" title="2、指标在实践中的应用"></a>2、指标在实践中的应用</h2><h3 id="1）关键性SLI选择"><a href="#1）关键性SLI选择" class="headerlink" title="1）关键性SLI选择"></a>1）关键性SLI选择</h3><p>我们不应该将监控系统中的所有指标全部定义为SLI；只有理解用户对系统的真实需求才能真正决定哪些指标是否有用。指标过多会影响对那些真正重要的指标的关注，而选择指标过少则会导致某些重要的系统行为被忽略。<br>常见的服务，一般SLI通常会归类为以下几种：</p>
+<ul>
+<li>用户可见的服务系统，例如用户访问的Web站点服务，通常关心其可用性、延迟、以及吞吐量。</li>
+<li>存储系统，通常强调延迟、可用性和数据持久性</li>
+<li>大数据系统，一般关心吞吐量、延迟</li>
+</ul>
+<h3 id="2）指标的收集"><a href="#2）指标的收集" class="headerlink" title="2）指标的收集"></a>2）指标的收集</h3><p>利用监控系统，大部分指标数据都在服务器端被收集。或者利用某种日志分析系统，例如分析日志中HTTP 500所占的比例。客户端的数据的收集，也是有必要的，否则可能会错失一些不影响服务端但是对用户产生影响的指标。</p>
+<h3 id="3）汇总"><a href="#3）汇总" class="headerlink" title="3）汇总"></a>3）汇总</h3><p>为了简化和使数据更可用，我们经常需要汇总原始度量数据。但是汇总过程应该非常小心。</p>
+<blockquote>
+<p>某些指标的汇总看起来是很简单的，例如每秒服务请求的数量，但是即使这种简单度量也需要在某个度量时间范围内进行汇总。该度量值是应该每秒获取一次，还是每分钟内的平均值？后者可能会掩盖仅仅持续几秒的一次请求峰值。假设某个系统在偶数秒处理200个请求，在其他时间请求为0。该服务与持续每秒处理100个请求的服务平均负载是一样的，但是在即时负载上却是两倍。同样的，平均请求延迟可能看起来很简单，但是却掩盖了一个重要的细节；很可能大部分请求都是很快的，但是长尾请求速度却很慢。</p>
+</blockquote>
+<h3 id="4）指标的标准化"><a href="#4）指标的标准化" class="headerlink" title="4）指标的标准化"></a>4）指标的标准化</h3><p>我们建议标准化一些常见的SLI，以避免每次都要重新评估它们。任何一个符合标准定义模板的服务可以不需要再次自己定义SLI。</p>
+<ul>
+<li>汇总间隔：每1分钟汇总一次</li>
+<li>汇总范围：集群中的全部任务</li>
+<li>度量频率：每10秒一次</li>
+<li>包含哪些请求：从黑核监控任务发来的HTTP GET请求</li>
+<li>数据如何获取：通过监控系统获取服务器端信息得到</li>
+<li>数据访问延迟：从收到请求到最后一个字节被发出</li>
+</ul>
+<p>为了节约成本，应该为常见的指标构建一套可以重用的SLI模板，从而使得理解每个SLI更简单。</p>
+<h2 id="3、目标在实践中的应用"><a href="#3、目标在实践中的应用" class="headerlink" title="3、目标在实践中的应用"></a>3、目标在实践中的应用</h2><p>我们应该从思考（或调研）用户最关心的方面入手，而非从现在什么能度量入手。用户真正关心的部分经常是度量起来很困难的，甚至是不可能的，所以我们需要以某种形式近似。然而，如果我们只是从可以简单度量的数值入手，最终的SLO的作用就会很有限。因此，与其选择指标，再想出对应的目标，不如从想要的目标返乡推导出具体的指标。</p>
+<h3 id="1）目标的定义"><a href="#1）目标的定义" class="headerlink" title="1）目标的定义"></a>1）目标的定义</h3><p>为了更清晰的定义，SLO应该具体指出它们是如何被度量的，以及其有效条件。例如，我们可能说：</p>
+<ul>
+<li>99% 的 Get RPC 调用会在小于 100ms 的时间内完成（包括全部后端服务器）</li>
+<li>99% 的 Get RPC 会在 100ms 内完成</li>
+</ul>
+<p>如果性能曲线也很重要的话，我们可以指定多个SLO目标：</p>
+<ul>
+<li>90% 的 Get RPC 会在 1ms内完成</li>
+<li>99% 的Get RPC 会在 10ms 内完成</li>
+<li>99.9% 的 Get RPC 会在 100ms 内完成</li>
+</ul>
+<p>如果我们同时具有批处理业务（关注吞吐量）以及在线交互用户（关注延迟），name可能应该为每种负载指定单独的SLO：</p>
+<ul>
+<li>95% 的批处理用户 Set RPC 应该在1s内完成</li>
+<li>99% 的交互式用户Set RPC，并且RPC负载小于1KB的应该在10ms内完成</li>
+</ul>
+<p>要求SLO能够被100%满足是不正确，也是不现实的：过于强调这个会降低创新和部署的速度，增加一些成本过高、过于保守的方案。更好的方案是使用错误预算（对达不到SLO的容忍度），以天或者以周为单位计量。高层管理者可能同时也需要按月度或者季度的评估。（错误预算其实就是保证达到其他SLO的一个SLO！）</p>
+<p>SLO不达标的频率可以用来与错误预算进行对比，利用这两个数值的差值可以知道新版本的发布。</p>
+<h3 id="2）目标的选择"><a href="#2）目标的选择" class="headerlink" title="2）目标的选择"></a>2）目标的选择</h3><p>选择目标SLO不是一个纯粹的技术活动，因为这里还涉及产品和业务层面的决策，SLI和SLO（甚至SLA）的选择都应该直接反应该决策。同样的，有时候可能可以牺牲某些产品特性，以便满足人员、上线时间、硬件可用性，以及资金的限制。SRE应该积极参与这类讨论，提供有关可行性和风险性的建议，下面列出了一个有用的讨论：</p>
+<ul>
+<li>不要仅仅以目前的状态为基础选择目标，更要从全局出发，否则可能会导致团队被迫长期运维一个过时的系统，没有时间去推动架构重构等任务。</li>
+<li>保持简单。SLI过于复杂的汇总模式可能会覆盖某种系统性能的变化，同时也更难以理解。</li>
+<li>避免绝对值。虽然要求系统可以在没有任何延迟增长的情况下无限扩张，或者“永远”可能是很诱人的，但是这样的要求是不切实际的。就算有一个系统能够做到这一点，它也需要花很长的时间和成本来设计和构建，同时运维也很复杂。最关键的是，这可能比用户可以接受的标准要高太多。</li>
+<li>SLO越少越好。应该仅仅选择足够的SLO来覆盖系统属性，一定要确保每一个SLO都是必不可少的：如果我们无法针对某个SLO达标问题说服开发团队，那么可能这个SLO就是不必要的。然而，不是所有的产品属性都能用SLO表达，用户的“满意度”就很难。</li>
+<li>不要追求完美。我们可以随着时间流逝了解系统腥味之后优化SLO的定义。刚开始可以以一个宋丹的目标开始，主键收紧。这比一开始制定一个困难的目标，在出现问题时放松要好得多。</li>
+</ul>
+<p>SLO可以成为SRE和产品团队划分工作优先级的重要参考，因为SLO代表了用户体验的成都。好的SLO是对开发团队有效的、可行的激励机制。但是一个没有经过精心调校的SLO会导致浪费，某团队可能需要付出很大代价来维护一个过于激进的SLO，而如果SLO过于宋丹，则会导致产品效果很差。SLO是一个很重要的杠杆：要小心使用。</p>
+<h3 id="3）控制手段"><a href="#3）控制手段" class="headerlink" title="3）控制手段"></a>3）控制手段</h3><p>SLI和SLO在决策系统运行时也非常有用：</p>
+<ul>
+<li>监控并且度量系统的SLI</li>
+<li>比较SLI和SLO，以决定是否需要执行操作</li>
+<li>如果需要执行操作，则要决定究竟什么操作需要被执行，以便满足目标</li>
+<li>执行这些操作</li>
+</ul>
+<h3 id="4）SLO可以建立用户预期"><a href="#4）SLO可以建立用户预期" class="headerlink" title="4）SLO可以建立用户预期"></a>4）SLO可以建立用户预期</h3><p>通过公布SLO可以设置用户对系统行为的预期。用户经常希望知道他们可以预期的服务质量，以便理解该服务是否能够满足他们的要求。</p>
+<ul>
+<li>留出一定的安全区</li>
+<li>实际SLO不要过高</li>
+</ul>
+<h2 id="4、协议在实践中的应用"><a href="#4、协议在实践中的应用" class="headerlink" title="4、协议在实践中的应用"></a>4、协议在实践中的应用</h2><p>起草一份SLA需要业务部门和法务部门选择合适的后果条款。SRE在这个过程中的作用是帮助这些部门理解SLA的SLO达标的概率和困难程度。需要针对SLO的建议也同样适用于SLA。最好在用户宣传方面保持保守，因为受众越广，修改和删除一个不合适或者很困难达到的SLA就越困难。</p>
+<h1 id="三、减少琐事"><a href="#三、减少琐事" class="headerlink" title="三、减少琐事"></a>三、减少琐事</h1><h2 id="1、琐事的定义"><a href="#1、琐事的定义" class="headerlink" title="1、琐事的定义"></a>1、琐事的定义</h2><p>什么是琐事？琐事就是运维服务中手动性的，重复性的，可以被自动化、战术性，没有持久价值的工作。而且，琐事与服务呈线性关系的增长。并不是每件琐事都有以上全部特性，但是每件琐事都满足下列一个或多个属性：</p>
+<ul>
+<li>手动性</li>
+<li>重复性</li>
+<li>可以被自动化的</li>
+<li>战术性的</li>
+<li>没有持久价值</li>
+<li>与服务同步线性增长</li>
+</ul>
+<h2 id="2、为什么琐事越少越好"><a href="#2、为什么琐事越少越好" class="headerlink" title="2、为什么琐事越少越好"></a>2、为什么琐事越少越好</h2><p>SRE的一个公开目标是保持每个SRE的工作时间中运维工作（即琐事）的比例低于50%。SRE至少花50%的时间在工程项目上，以减少未来的琐事或增加服务功能。增加服务功能包括提高可靠性、性能，或利用率，同时也会进一步消除琐事。</p>
+<p>SRE公开50%这个目标是因为如果不加以控制，琐事会变得越来越多，以至于迅速占据我们每个人100%的时间。减少琐事和扩大服务规模的工作就是SRE中的E（Engineering）。对工程工作的关注使SRE可以再服务规模扩大的同时减少人数，并且比单纯的研发团队和单纯的运维工作团队能更有效的管理服务的秘诀。</p>
+<p>不仅如此，招聘新的SRE时，我们也会引用上下文提及的50%规则，承诺新员工不会专门进行运维工作。我们通过禁止SRE组织或者其中任何小团队退化为专门从事运维工作的组织来实现这个承诺。</p>
+<h3 id="琐事的计算"><a href="#琐事的计算" class="headerlink" title="琐事的计算"></a>琐事的计算</h3><p>如果我们想要将一个SRE花在琐事上的时间限制在50%，应该如何分配时间呢？<br>任何一个SRE在参与on-call时都会承担一定程度的琐事。一个典型的SRE每个周期中会有一周主on-call和一周副on-call的工作。因为，在一个六个人的轮流周期中，没六周中至少有两周需要专注于on-call和中断性事务的处理，这意味着潜在的琐事的最小值是一个SRE的工作时间的2&#x2F;6，也就是33%。如果是八人轮值，name最小值就是2&#x2F;8，即25%。<br>与此计算相一致，来自SRE的数据显示，琐事的最大来源就是中断性工作。另一个主要来源是on-call，紧随其后的事发布和数据更新。及时Google的发布和数据更新过程通常是高度自动化的，这个部分仍有许多改进空间。<br>当某个SRE报告自己承担了过量的琐事时，这通常意味着管理者需要在团队中更均衡地分布琐事负荷，同时应该鼓励该SRE找到自己满意的工程项目</p>
+<h2 id="3、什么是工程工作"><a href="#3、什么是工程工作" class="headerlink" title="3、什么是工程工作"></a>3、什么是工程工作</h2><p>工程工作是一种新颖的、本质上需要主观判断的工作。它是符合长期策略的，会对你的服务进行长久性的改善的工作。工程工作通常是有创新性和创造性的，着重通过设计来解决问题，解决方案越通用越好。工程工作有助于使该团队或是整个SRE组织在维持同等人员配备的情况下接手更大或更多的服务。<br>典型的SRE活动分为如下几类：</p>
+<ul>
+<li>软件工程</li>
+<li>系统工程</li>
+<li>琐事</li>
+<li>流程负担</li>
+</ul>
+<h2 id="4、辩证看待琐事"><a href="#4、辩证看待琐事" class="headerlink" title="4、辩证看待琐事"></a>4、辩证看待琐事</h2><p>琐事不会总是让每个人都不开心，特别是不太多的时候。已知的和重复性的工作有一种让人平静的功效。完成这些事可以带来一种满足感和快速胜利感。琐事可能是低风险低压力的活动，有些员工甚至喜欢做这种类型的工作。</p>
+<p>琐事的存在并不总是坏事，但是每个人都必须清楚，在SRE所扮演的角色中，一定数量的琐事是不可避免的，这其实是任何工程类工作都具有的特点。少量的琐事存在不是什么大问题。但是一旦琐事的数量变多，就又害了。如果琐事特别繁重，那就应该非常担忧，大声抱怨。在许多琐事有害的原因中，有如下因素需要考虑：</p>
+<ul>
+<li>职业停滞：如果花在工程项目上的时间太少，你的职业发展会变慢，甚至停滞</li>
+<li>士气低落：过多的琐事会导致过度劳累、厌倦和不满</li>
+<li>造成误解：确保SRE的工程实践，如果琐事过多，会破坏SRE这种角色，造成误解</li>
+<li>进展缓慢：琐事过多导致团队生产力下降，SRE忙于手工操作，新功能的发布就会变慢</li>
+<li>开创先例：如果SRE过于愿意承担琐事，研发同事就更强项羽加入更多的琐事，有时候甚至将本来应该由研发团队承担的运维工作转给SRE来承担。其他团队也会开始指望SRE接受这样的工作</li>
+<li>促进摩擦产生：如果团队中的琐事太多，其实就是在鼓励团队中最好的工程师开始发现更有价值的工作</li>
+<li>违反承诺：为了项目工程而入职的新员工，以及转入SRE工作的老员工，会有被欺骗的感觉，不利于团队的士气</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/27/SRE%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3/" data-id="cluwce6pz000wkcuf164w0bsq" data-title="SRE指导思想" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/28/MySQL%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6%E3%80%81GTID-%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          MySQL二进制日志复制、GTID 复制与半同步复制
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/19/LVS%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">LVS操作实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

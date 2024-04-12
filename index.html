@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="ChpiTer Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ChpiTer Blog">
+<meta property="og:url" content="https://chpiter.github.io/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="ChpiTer Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="ChpiTer">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="ceph-ceph" class="h-entry article article-type-ceph" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/15/ceph/" class="article-date">
+  <time class="dt-published" datetime="2021-04-15T10:18:00.000Z" itemprop="datePublished">2021-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/15/ceph/">ceph</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2021/04/15/ceph/" data-id="cluwce6q10010kcufetcsfprm" data-title="ceph" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="auto_create_openstack_image-自动化创建OpenStack镜像研究" class="h-entry article article-type-auto_create_openstack_image" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/" class="article-date">
+  <time class="dt-published" datetime="2021-04-15T10:17:34.000Z" itemprop="datePublished">2021-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>There are several tools that are designed to automate image creation.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://vault.centos.org/">https://vault.centos.org/</a></li>
+<li><a target="_blank" rel="noopener" href="http://cloud.centos.org/centos/7/images/">http://cloud.centos.org/centos/7/images/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.openstack.org/image-guide">https://docs.openstack.org/image-guide</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.chenshake.com/do-a-centos-7-6-mirror-image-of-a/">http://www.chenshake.com/do-a-centos-7-6-mirror-image-of-a/</a>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/" data-id="cluwce6qe001jkcuf3tpg9jdo" data-title="自动化创建OpenStack镜像研究" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="​itil-5-itil-5" class="h-entry article article-type-​itil-5" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/11/itil-5/" class="article-date">
+  <time class="dt-published" datetime="2021-04-11T09:19:59.000Z" itemprop="datePublished">2021-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>随着企业规模的扩张，企业IT系统正变得越来越复杂，其管理难度也在逐步增加。自信到企业业务发展以来，经过20多年的发展，从早期的OA、CRM到后来的ERP，再到今天DCS等系统，企业信息化进程一再深入，业务自动化程度大幅提高，极大的提升了企业运转效率。而作为一系列业务系统的支撑，企业对IT系统的管理确不够重视，长久以来，企业管理者“重建设，轻运维”，“重技术，轻管理”的思维导致了IT系统与业务系统的长期脱节，当业务系统变得越来越复杂，累赘到IT系统已经无法灵活适应企业业务的调整需求。同时，由于企业的IT系统建设没有一个清洗的规划，也导致企业IT运维成本居高不下，“救火式”的人工IT运维普遍存在。这种低效的IT运维模式不断严重影响企业业务运转效率，也降低了企业竞争力，已无法适应新时代企业的发展需求。企业需要更高效的IT运维管理系统来支撑企业的发展。</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/04/11/itil-5/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2021/04/11/itil-5/" data-id="cluwce6q50014kcuf1rmng886" data-title="细说ITIL的五个服务支持流程" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="DRP-DRP" class="h-entry article article-type-DRP" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/07/15/DRP/" class="article-date">
+  <time class="dt-published" datetime="2020-07-15T12:55:10.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/07/15/DRP/">灾备切换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/159435704">https://zhuanlan.zhihu.com/p/159435704</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/07/15/DRP/" data-id="cluwce6p30002kcufctj641ql" data-title="灾备切换" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="BCM-BCM" class="h-entry article article-type-BCM" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/07/15/BCM/" class="article-date">
+  <time class="dt-published" datetime="2020-07-15T09:08:35.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/157287793">https://zhuanlan.zhihu.com/p/157287793</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大多数企业在某些时候，不得不对可能破坏或威胁其日常业务运作的事件作出回应。<strong>一个成功的企业连续性管理（BCM）的程序，能够应对任何潜在的干扰反应，是组织必不可少的；</strong>完善的业务连续性管理系统（BCMS）不仅能帮助你的组织从灾难中恢复，也将防止可能出现的任何运作中断（例如错过了最后交期，困扰客户，或者直接的经济损失而带来的声誉损失等）。</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/07/15/BCM/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/07/15/BCM/" data-id="cluwce6p50003kcuf2pod1pyl" data-title="如何持续改进业务连续性管理体系" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="sre-monitor-SRE-分布式系统的监控" class="h-entry article article-type-sre-monitor" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/06/04/SRE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%91%E6%8E%A7/" class="article-date">
+  <time class="dt-published" datetime="2020-06-04T01:34:45.000Z" itemprop="datePublished">2020-06-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/06/04/SRE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%91%E6%8E%A7/">SRE-分布式系统的监控</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="1、术语定义"><a href="#1、术语定义" class="headerlink" title="1、术语定义"></a>1、术语定义</h1><ul>
+<li>监控（monitoring）：收集、处理、汇总，并且显示关于某个系统的实时量化数据，例如请求的数量和类型，错误的数量和类型，以及处理用时，应用服务器的存活时间等。</li>
+<li>白盒监控（white-box monitoring）：依靠系统内部暴露的一些性能指标进行监控。包括日志分析、Java虚拟机提供的监控接口，或者一个列出内部统计数据的HTTP接口进行监控。</li>
+<li>黑盒监控（black-box monitoring）：通过测试某种外部用户可见的系统行为进行监控。</li>
+<li>监控后台（dashboard）：提供某个服务核心指标一览服务的应用程序。该应用程序可能会提供过滤功能、选择功能，但是最主要的功能时用来显示系统最重要的指标。该程序同时可以显示相应团队的一些信息，包括目前工单的数量、高优先级的Bug列表、目前的on-call工程师和最近进行的生产发布等。</li>
+<li>警报（alert）：目标对象是某个人法向某个系统地址的一个通知。目的地可以包括工单系统、Email系统，或者某个传呼机。相应的，这些警报被分类为：工单、Email警报，以及紧急警报（page—）。</li>
+<li>根源问题（root case）：系统中的某种缺陷。这个缺陷如果被修复，就可以保证这种问题不会再以同样的方式发生。</li>
+<li>节点或者机器（node、machine）：指的是物理机、虚拟机，或者容器内运行的某个实例。</li>
+<li>推送（push）：关于某个服务正在运行的软件或者其配置文件的任何改动。</li>
+</ul>
+<h1 id="2、为什么要监控"><a href="#2、为什么要监控" class="headerlink" title="2、为什么要监控"></a>2、为什么要监控</h1><ul>
+<li>分析长期趋势：数据库目前的数据量，以及增长速度。又例如每日活跃用户的数量增长的速度。跨时间范围的比较，或者是观察实验组与控制组之间的区别。</li>
+<li>处理故障报警</li>
+<li>构建监控后台页面</li>
+<li>临时性的回溯分析（在线调试）</li>
+</ul>
+<h1 id="3、对监控系统设置合理的预期"><a href="#3、对监控系统设置合理的预期" class="headerlink" title="3、对监控系统设置合理的预期"></a>3、对监控系统设置合理的预期</h1><ul>
+<li>专职人员负责持续优化和改进监控系统</li>
+<li>监控系统规则遵循简单的原则</li>
+<li>不建议在监控系统中维护较为复杂的依赖关系</li>
+</ul>
+<h1 id="4、现象与原因"><a href="#4、现象与原因" class="headerlink" title="4、现象与原因"></a>4、现象与原因</h1><p>监控系统应该解决两个问题：什么东西出现故障，以及为什么出故障。<br>现象与原因的示例：<br><img src="/images/NeatReader-1591255832407.png"></p>
+<p>现象与原因的区分是构建信噪比高的监控系统时最重要的概念。</p>
+<h1 id="5、黑盒监控与白盒监控"><a href="#5、黑盒监控与白盒监控" class="headerlink" title="5、黑盒监控与白盒监控"></a>5、黑盒监控与白盒监控</h1><p>黑盒监控与白盒监控最简单的区别是：黑盒监控是面向现象的，代表了目前正在发生（而非预测会发生的）的问题，即系统现在有故障。百合监控则大量依赖对系统内部信息的检测，如系统日志、抓取提供指标的HTTP节点等。白盒监控系统因此可以检测到即将发生的问题以及那些重试锁掩盖的问题等。</p>
+<h1 id="6、4个黄金指标"><a href="#6、4个黄金指标" class="headerlink" title="6、4个黄金指标"></a>6、4个黄金指标</h1><ul>
+<li>延迟</li>
+<li>流量</li>
+<li>错误</li>
+<li>饱和度</li>
+</ul>
+<h1 id="7、关于长尾问题"><a href="#7、关于长尾问题" class="headerlink" title="7、关于长尾问题"></a>7、关于长尾问题</h1><p>采用直方图的形式，比如：延迟为 0<del>10ms之间的请求数量有多少，30</del>100ms之间，100~300之间等。将直方图的边界定义为指数型增长是直观展现请求分布的最好方式。</p>
+<h1 id="8、度量指标时采用合适的精度"><a href="#8、度量指标时采用合适的精度" class="headerlink" title="8、度量指标时采用合适的精度"></a>8、度量指标时采用合适的精度</h1><h1 id="9、简化，知道不能再简化"><a href="#9、简化，知道不能再简化" class="headerlink" title="9、简化，知道不能再简化"></a>9、简化，知道不能再简化</h1><p>设计监控系统时一定要追求简化：</p>
+<ul>
+<li>那些最能反映真实故障的规则应该越简单越好，可预测性强，非常可靠</li>
+<li>那些不常用的数据收集、汇总，以及警报配置应该定时删除</li>
+<li>收集到的信息，但是没有暴露给任何监控台，或者被任何警报规则使用的应该定时删除</li>
+</ul>
+<h1 id="10、监控系统的长期维护"><a href="#10、监控系统的长期维护" class="headerlink" title="10、监控系统的长期维护"></a>10、监控系统的长期维护</h1><p>在现代生产环境中，监控系统需要跟随不断演变的软件一起变化，软件经常重构，负载特性和性能目标也经常变化。</p>
+<h1 id="11、小结"><a href="#11、小结" class="headerlink" title="11、小结"></a>11、小结</h1><p>健康的监控和警报系统应该是非常简单、易于理解的。紧急警报应该关注于现象，针对原因的一些启发性分析应该作为调试过程中的补充，而不应该进行报警。监控的技术栈层面越高，监控现象越容易，但是监控某些子系统（如数据库）的饱和度和性能参数可能要在该子系统内部直接进行。Email警报的价值通常极为有限，很容易变成噪声。我们应该倾向于构建一个良好的监控后台页面，直接显示所有的非紧急的异常情况。</p>
+<p>长远来看，要建立一个成功的on-call轮值体系，以及构建一个稳定的产品需要选择那些正在发生和即将发生的问题来进行报警，设置一个可以实际达到的合理目标，保证监控系统可以支持快速的问题定位与检测。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/06/04/SRE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%91%E6%8E%A7/" data-id="cluwce6px000ukcufdx1cfxxn" data-title="SRE-分布式系统的监控" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="mysql-log-MySQL中的几种日志" class="h-entry article article-type-mysql-log" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/08/MySQL%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97/" class="article-date">
+  <time class="dt-published" datetime="2020-05-08T09:24:37.000Z" itemprop="datePublished">2020-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/08/MySQL%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97/">MySQL中的几种日志</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/myseries/p/10728533.html">https://www.cnblogs.com/myseries/p/10728533.html</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Mysql中有以下日志文件，分别是：</p>
+<ol>
+<li>重做日志（redo log）</li>
+<li>回滚日志（undo log）</li>
+<li>二进制日志（binlog）</li>
+<li>错误日志（errorlog）</li>
+<li>慢查询日志（slow query log）</li>
+<li>一般查询日志（general log）</li>
+<li>中继日志（relay log）</li>
+</ol>
+<p>其中 重做日志和回滚日志 与事务操作息息相关，二进制日志也与事务操作有一定的关系，这三种日志，对理解MySQL中的事务操作有着重要的意义。</p>
+<h1 id="一、重做日志（redo-log）"><a href="#一、重做日志（redo-log）" class="headerlink" title="一、重做日志（redo log）"></a>一、重做日志（redo log）</h1><p>作用：<br>    确保事务的持久性。redo日志记录事务执行后的状态，用来恢复未写入data file的已成功事务更新的数据。防止在发生故障的时间点，尚有脏页未写入磁盘，在重启mysql服务的时候，根据redo log进行重做，从而达到事务的持久性这一特性。</p>
+<p>内容：<br>    物理格式的日志，记录的是物理数据页面的修改的信息，其redo log是顺序写入redo log file的物理文件中去的。</p>
+<p>什么时候产生：<br>    事务开始之后就产生redo log，redo log的落盘并不是随着事务的提交才写入的，而是在事务的执行过程中，便开始写入redo log文件中。</p>
+<p>什么时候释放：<br>    当对应事务的脏页写入磁盘之后，redo log的使命也就完成了，重做日志占用的空间就可以重用（被覆盖）。</p>
+<p>对应的物理文件：<br>    默认情况下，对应的物理文件位于数据库的data目录下的 ib_logfile1 &amp; ib_logfile2，<br>    innodb_log_group_home_dir 指定日志文件组所在的路径，默认 .&#x2F; ，表示在数据库的数据目录下。<br>    innodb_log_files_in_group 指定重做日志文件组中文件的数量，默认2</p>
+<p>关于文件的大小和数量，由以下两个参数配置：<br>    innodb_log_file_size 重做日志文件的大小。<br>    innodb_mirrored_log_groups 指定了日志镜像文件组的数量，默认1</p>
+<p>其他：<br>    很重要一点，redo log是什么时候写盘的？前面说了是在事务开始之后逐步写盘的。<br>    之所以说重做日志是在事务开始之后逐步写入重做日志文件，而不一定是事务提交才写入重做日志缓存，原因就是，重做日志有一个缓存区 innodb_log_buffer，innodb_log_buffer 的默认大小为8M，innodb存储引擎先将重做日志写入innodb_log_buffer中。<br>    然后会通过以下三种方式将innodb日志缓冲区的日志刷新到磁盘。<br>    Master Thread 每秒一次执行刷新innodb_log_buffer到重做日志文件。<br>    每个事务提交时会将重做日志刷新到重做日志文件。<br>    当重做日志缓存可用空间少于一半时，重做日志缓存被刷新到重做日志文件。<br>    由此可以看出，重做日志通过不止一种方式写入到磁盘，尤其是对于第一种方式，innodb_log_buffer 到重做日志文件是Master Thread线程的定时任务。<br>    因此重做日志的写盘，并不一定是随着事务的提交才写入重做日志文件的，而是随着事务的开始，逐步开始的。<br>    另外引用《MySQL技术内幕 innodb 存储引擎》（page37上的原话：<br>    即使某个事务还没有提交，innodb存储引擎仍然每秒会将重做日志缓存刷新到重做日志文件。<br>    这一点是必须要知道的，因为这可以很好的解释再大的事务的提交（commit）的时间也是很短暂的。</p>
+<pre><code>---
+</code></pre>
+<h1 id="二、回滚日志（undo-log）"><a href="#二、回滚日志（undo-log）" class="headerlink" title="二、回滚日志（undo log）"></a>二、回滚日志（undo log）</h1><p>作用：<br>    保证数据的原子性，保存了事务发生之前的数据的一个版本，可以用于回滚，同时可以提供多版本并发控制下的读（MVCC），也即非锁定读</p>
+<p>内容：<br>     逻辑格式的日志，在执行undo的时候，仅仅是将数据从逻辑上恢复至事务之前的状态，而不是从屋里页面上操作实现的，这一点是不同于redo log的。</p>
+<p>什么时候产生：<br>    事务开始之前，将当前是的版本生成undo log，undo 也会产生redo来保证undo log的可靠性</p>
+<p>什么时候释放：<br>    当事务提交之后，undo log并不能立马被删除，而是放入待清理的链表，由purge线程判断是否由其他事务在使用undo段中标的上一个事务之前的版本信息，决定是否可以清理undo log的日志空间。</p>
+<p>对应的物理文件：<br>    MySQL5.6之前，undo表空间位于共享表中间的回滚段中，共享表空间的默认名称是ibdata，位于数据文件目录中。<br>    MySQL5.6之后，undo表空间可以配置成独立的文件，但是前提需要在配置文件中配置，完成数据库初始化后生效且不可改变undo log文件的个数。<br>    如果初始化数据库之前没有进行相关的配置，那么就无法配置成独立的表空间了。</p>
+<p>关于MySQL5.7之后的独立undo表空间配置参数如下：<br>    innodb_undo_directory &#x3D; &#x2F;data&#x2F;undospace - undo独立表空间的存放目录<br>    innodb_undo_logs &#x3D; 128 - 回滚段为 128KB<br>    innodb_undo_tablespaces &#x3D; 4 -指定有4个undo log文件<br>    如果undo使用的共享表空间，这个共享表空间中又不仅仅是存储了undo的信息，共享表空间的默认为MySQL的数据库目录下面，其属性由参数 innodb_data_file_path 配置。<br>其他：<br>    undo是在事务开始之前保存的被修改数据的一个版本，产生undo日志的时候，同样会伴随类似于保护事务持久化机制的redolog的产生。<br>    默认情况下undo文件是保持在共享表空间的，也即ibdatafile文件中，当数据库中发生一些大的事务性操作的时候，要产生大量的undo信息，全部保存在共享表空间中。<br>    因此共享表空间可能会变的很大，默认情况下，也就是undo日志使用共享表空间的时候，被“撑大”的共享表空间是不会也不能自动收缩的。<br>    因为，MySQL5.7之后的“独立undo表空间“的配置就显得很有必要了。</p>
+<h1 id="三、二进制日志（binlog）"><a href="#三、二进制日志（binlog）" class="headerlink" title="三、二进制日志（binlog）"></a>三、二进制日志（binlog）</h1><p>作用：<br>    用于复制，在主从复制中，从库利用主库上的binlog进行重播，实现主从同步。<br>    用于数据库的基于时间点的还原。<br>内容：<br>    逻辑格式的日志，可以简单认为就是执行过的事务中的sql语句。<br>    但又不完全是sql语句这么简单，而是包括了执行的sql语句（增删改）反向的信息，也就意味着delete对应着delete本身和其反向的insert；update对应着update执行前后的版本的信息；insert对应着delete和insert本身的信息。<br>    在使用mysqlbinlog解析binlog之后一切都会真相大白。<br>    因此可以基于binlog做到类似于Oracle的闪回功能，其实都是依赖于binlog中的日志记录。<br>什么时候产生：<br>    事务提交的时候，一次性将事务中的sql语句（一个事务可能对应多个sql语句）按照一定的格式记录到binlog中。<br>    这里与redo log很明显的差异就是redo log并不一定是在事务提交的时候刷新到磁盘，redo log是在事务开始之后就逐步开始写入磁盘。<br>    因此对于事务的提交，即便是较大的事务，提交都是很快的，但是在开启了binlog的情况下，对于较大事务的提交，可能会变的比较慢一些。<br>    这是因为binlog是在事务提交的时候一次性写入造成的，这些可以通过测试验证。<br>什么时候释放：<br>    binlog的默认保持时间是由参数 expire_logs_day 配置，也就是说对于非活动的日志文件，在生成时间超过 expire_logs_day 的配置天数之后，会被自动删除。<br>都应的物理文件：<br>    配置文件的路径为log_bin_basename，binlog日志文件按照指定大小，当日志文件达到指定的最大的大小之后，进行滚动更新，生成新的日志文件。<br>    对于每个binlog日志文件，通过一个统一的index文件来组织。<br>其他：<br>    二进制日志的作用之一是还原数据库，这与redolog很类似，很多人混淆过，但是两者有本质的不同。<br>    作用不同：redo log是保持事务的持久性，是事务层面的，binlog作为还原的功能，是数据库层面的（当然也可以精确到事务层面），虽然都有还原的意思，但是其保护数据库的层次不一样。<br>    内容不同：redo log是物理日志，是数据页面的修改之后的物理记录，binlog是逻辑日志，可以简单认为记录的就是sql语句<br>    另外，两者日志产生的时间，可以释放的时间，在可释放的情况下清理机制，都是完全不同的。<br>    恢复数据时候的效率，基于物理日志的redo log恢复数据的效率要高于语句逻辑日志的binlog。<br>    关于事务提交时，redo log和binlog的写入顺序，为了保证主从复制时候的主从一致（当然也包括使用binlog进行基于时间点还原的情况），是要严格一致的，MySQL通过两阶段提交过程来完成事务的一致性的，也机redolog和binlog的一致性，理论上是先写redolog，再写binlog，两个日志都提交成功（刷入磁盘），事务才算真正的完成。</p>
+<h1 id="四、错误日志"><a href="#四、错误日志" class="headerlink" title="四、错误日志"></a>四、错误日志</h1><pre><code>错误日志记录着mysqld启动和停止，以及服务器在运行过程中发生的错误的相关信息，在默认情况下，系统记录错粗日志的功能时关闭的，错误信息被输出到标准错误输出。
+指定日志路径两种写法：
+    编辑 my.cnf 写入 log-error=[path]
+    通过命令参数错误日志 mysqld_safe=mysql -log-error=[path]
+</code></pre>
+<h1 id="五、普通查询日志（general-query-log）"><a href="#五、普通查询日志（general-query-log）" class="headerlink" title="五、普通查询日志（general query log）"></a>五、普通查询日志（general query log）</h1><pre><code>记录了服务器接收到的每一个查询或命令，无论这些查询或是命令是否正确甚至是否包含语法错误，general log都会将其记录下来，记录的格式为 &#123;Time, Id, Command, Argument&#125;。也正因为mysql服务器需要不断地记录日志，开启general log会产生不小的系统开销。因此，MySQL默认是吧general log关闭的。
+如果设置 set global log_output=&#39;table&#39; 的话，则日志结果会记录到general_log的表中，这表的默认引擎是CSV
+如果设置 set global log_output=file，设置 general log的日志文件路径：
+    set global general_log_file = &#39;、tmp/general.log&#39;
+    开启general log：set global general_log=on;
+    关闭general log：set global general_log=off;
+</code></pre>
+<h1 id="六、慢查询日志"><a href="#六、慢查询日志" class="headerlink" title="六、慢查询日志"></a>六、慢查询日志</h1><pre><code>慢日志记录执行时间过长和没有使用索引的查询语句，报错select、update、delete以及insert语句，慢日志只会记录执行成功的语句。
+1. 查看慢查询时间：
+   show variables like “long_query_time”;默认1s
+2. 查看慢查询配置情况：
+   show status like “%slow_queries%”;
+3. 查看慢查询日志路径：
+   show variables like “%slow%”;
+</code></pre>
+<h1 id="七、中继日志"><a href="#七、中继日志" class="headerlink" title="七、中继日志"></a>七、中继日志</h1><pre><code>从服务器I/O线程将主服务器的二进制日志读取过来记录到从服务器本地文件，然后从服务器SQL线程会读取replay-log日志的内容并应用到从服务器，从而是从服务器和主服务器的数据保持一致。
+查看relay-log配置参数：
+show variables like &#39;%relay%&#39;;
+- max_relay_log_size
+    relay log允许的最大值，如果该值为0，则默认值为 max_binlog_size(1G)
+    如果不为0，则 max_relay_log_size 则为最大的relay_log文件大小
+- relay_log
+    定义relay_log的位置和名称，如果值为空，则默认位置在数据文件的目录
+- relay_log_info_file
+    定义relay-log.info 的位置和名称
+    relay-log.info 记录 master 主库的binlog 的恢复位置和从库 relay_log 的位置
+- relay_log_purge
+    是否自动清空中继日志，默认值为1（启用）
+- relay_log_recovery
+    当slave从库当即后，加入relay-log损坏了，导致一部分中继日志没有处理，则自动放弃所有未执行的relay-log，并且重新从master上获取日志，这样就保证了relay-log的完整性。默认情况下改功能时关闭的，将relay_log_recovery的值设置为1时，可以再slave从库上开启改功能，建议开启。
+- sync_relay_log
+    当设置为1是，slave的I/O线程每次接收到master发送过来的binlog日志都要写入系统缓冲区，然后刷入relay_log中继日志里，这样是最安全的，因为在崩溃的时候，你最多会丢失一个事务，但会造成磁盘的大量I/O
+    当设置为0时，并不是马上就刷入中继日志里，而是由操作系统决定何时来写入，虽然安全降低了，但减少了大量的磁盘I/O操作，这个值默认是0，可以动态修改
+- sync_relay_log_info
+    这个参数和 sync_relay_log 参数一样
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/05/08/MySQL%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97/" data-id="cluwce6ph000ckcuf9adfbak6" data-title="MySQL中的几种日志" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="mysql-replication-MySQL二进制日志复制、GTID-复制与半同步复制" class="h-entry article article-type-mysql-replication" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/28/MySQL%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6%E3%80%81GTID-%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/" class="article-date">
+  <time class="dt-published" datetime="2020-04-28T15:44:00.000Z" itemprop="datePublished">2020-04-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/28/MySQL%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6%E3%80%81GTID-%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/">MySQL二进制日志复制、GTID 复制与半同步复制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5e12eac4e51d454139376fbd">https://juejin.im/post/5e12eac4e51d454139376fbd</a></li>
+</ul>
+<h1 id="一、日志格式"><a href="#一、日志格式" class="headerlink" title="一、日志格式"></a>一、日志格式</h1><h2 id="1、二进制日志格式"><a href="#1、二进制日志格式" class="headerlink" title="1、二进制日志格式"></a>1、二进制日志格式</h2><p>MySQL 二进制日志是进行主从复制的基础，它记录了所有对 MySQL 数据库的修改时间，包括增删改查和表结构的修改。当前 MySQL 一共支持三种二进制日志格式，可以通过binlog-format 参数来进行控制，其可选值如下：</p>
+<ul>
+<li>STATEMENT ：段格式。是 MySQL 最早支持的二进制日志格式。其记录的是实际执行修改的 SQL 语句，因此在进行批量修改时其所需要记录的数据量比较小，但对于 UUID() 或者其他依赖上下文的执行语句，可能会在主备上产生不一样的结果。</li>
+<li>ROW：行格式，是 MySQL 5.7 版本之后默认的二进制日志格式。其记录的事修改前后的数据，因此在批量修改时其需要记录的数据量比较大，但其安全性比较高，不会导致主备出现不一致的情况。同时因为 ROW 格式是在从库上直接应用更改后的数据，其还能减少锁的使用。</li>
+<li>MIXED：是以上两种日志的混合方式，默认采用段格式进行记录，当段格式不适用（如 UUID())，则默认采用ROW格式。</li>
+</ul>
+<p>  通常在主备之间网络情况良好的时候，可以优先考虑使用ROW格式，此时数据一致性最高，其次是 MIXED 格式。在设置 ROW 格式时，还有一个非常重要的参数 binlog_row_image:</p>
+<h2 id="2、binlog-row-image"><a href="#2、binlog-row-image" class="headerlink" title="2、binlog_row_image"></a>2、binlog_row_image</h2><p>  binlog_row_image 有以下三个可选值：</p>
+<pre><code>- full：默认值，记录行在修改前后所有列的值
+- minimal：只记录修改涉及列的值
+- noblob：与 full 类似，但如果 BLOB 或 TEXT 列没有修改，则不对其进行记录
+</code></pre>
+<p>binlog-format 与 binlog_row_image 的默认值可能在不同版本存在差异，可以使用以下命令进行查看。通常情况下，为了减少在主备复制中需要传输的数据量，可以将binlog_row_image  的值设置为 minimal 或 noblob。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#x27;binlog_format&#x27;;</span><br><span class="line">show variables like &#x27;binlog_row_image&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、基于二进制日志的复制"><a href="#二、基于二进制日志的复制" class="headerlink" title="二、基于二进制日志的复制"></a>二、基于二进制日志的复制</h1><h2 id="1、复制原理"><a href="#1、复制原理" class="headerlink" title="1、复制原理"></a>1、复制原理</h2><p>MySQL 的复制原理如下图所示：</p>
+<ul>
+<li>主库首先将变更写入到自己的二进制日志中；</li>
+<li>备库会启动一个 IO 线程，然后主动去主库节点上获取变更日志，并写入到自己的中继日志中</li>
+<li>之后从中继日志中读取变更事件，在从库上执行变更</li>
+<li>当备库和主库数据状态一直，备库的 IO 线程就会进入睡眠。当主库再次发生变更时，其会向备库发出信号，唤醒 IO 线程并再次进行工作</li>
+</ul>
+<p>如果没有进行任何配置，主库将在变更写入到二进制日志后，就会返回对客户端的响应，因此默认情况下的复制是完全异步的，主备之间可能会短暂存在数据不一致的情况。</p>
+<p><img src="/images/16f79e5f936e3bb1.jpg"></p>
+<h2 id="2、配置步骤"><a href="#2、配置步骤" class="headerlink" title="2、配置步骤"></a>2、配置步骤</h2><p>首先主节点需要开启二进制日志，并且在同一个复制环境下，主备节点的 server-id 需要不一样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id = 226</span><br><span class="line"># 开启二进制日志</span><br><span class="line">log-bin=mysql-bin</span><br></pre></td></tr></table></figure>
+
+<p>在从节点配置中继日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id = 227</span><br><span class="line"># 配置中继日志</span><br><span class="line">relay_log  = mysql-relay-bin</span><br><span class="line"># 为了保证数据的一致性，从节点应该设置为只读</span><br><span class="line">read_only = 1</span><br><span class="line"># 以下两个配置代表是否开启二进制日志，如果该从节点还作为其他备库的主节点，则开启，否则不用配置</span><br><span class="line">log-bin = mysql-bin</span><br><span class="line"># 是否将中继节点收到的复制事件写到自己的二进制日志中</span><br><span class="line">log_slave_updates = 1</span><br></pre></td></tr></table></figure>
+
+<p>登录主节点 MySQL 服务，创建用于进行复制的账号，并为其授予权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &#x27;repl&#x27;@&#x27;192.168.0.%&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;123456&#x27;; </span><br><span class="line">GRANT REPLICATION SLAVE on *.* TO &#x27;repl&#x27;@&#x27;192.168.0.%&#x27; ;</span><br></pre></td></tr></table></figure>
+
+<p>查看主节点二进制日志的状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW MASTER STATUS;</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| mysql-bin.000001 |      887 |              |                  |                   |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br></pre></td></tr></table></figure>
+<p>基于日志和偏移量，建立复制链路：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CHANGE MASTER TO MASTER_HOST=&#x27;192.168.0.226&#x27;,\</span><br><span class="line">         MASTER_USER=&#x27;repl&#x27;,    \</span><br><span class="line">        MASTER_PASSWORD=&#x27;123456&#x27;,\</span><br><span class="line">        MASTER_LOG_FILE=&#x27;mysql-bin.000001&#x27;,\</span><br><span class="line">        MASTER_LOG_POS=887;</span><br></pre></td></tr></table></figure>
+
+<p>开始复制：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">START SLAVE;</span><br></pre></td></tr></table></figure>
+
+<p>查看从节点复制状态，主要参数有 Slave_IO_Running 和 Slave_SQL_Running，其状态都为 Yes 标识用于复制的 IO 线程已经开启。Seconds_behind_Master 参数表示从节点复制的延迟量。此时可以再主库上进行任意更改，并在备库上查看情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW SLAVE STATUS\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 192.168.0.226</span><br><span class="line">                  Master_User: repl</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: mysql-bin.000001</span><br><span class="line">          Read_Master_Log_Pos: 887</span><br><span class="line">               Relay_Log_File: mysql-relay-bin.000002</span><br><span class="line">                Relay_Log_Pos: 322</span><br><span class="line">        Relay_Master_Log_File: mysql-bin.000001</span><br><span class="line">        #    Slave_IO_Running: Yes</span><br><span class="line">        #   Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB:</span><br><span class="line">          Replicate_Ignore_DB:</span><br><span class="line">           Replicate_Do_Table:</span><br><span class="line">       Replicate_Ignore_Table:</span><br><span class="line">      Replicate_Wild_Do_Table:</span><br><span class="line">  Replicate_Wild_Ignore_Table:</span><br><span class="line">                   Last_Errno: 0</span><br><span class="line">                   Last_Error:</span><br><span class="line">                 Skip_Counter: 0</span><br><span class="line">          Exec_Master_Log_Pos: 887</span><br><span class="line">              Relay_Log_Space: 530</span><br><span class="line">              Until_Condition: None</span><br><span class="line">               Until_Log_File:</span><br><span class="line">                Until_Log_Pos: 0</span><br><span class="line">           Master_SSL_Allowed: No</span><br><span class="line">           Master_SSL_CA_File:</span><br><span class="line">           Master_SSL_CA_Path:</span><br><span class="line">              Master_SSL_Cert:</span><br><span class="line">            Master_SSL_Cipher:</span><br><span class="line">               Master_SSL_Key:</span><br><span class="line">     #  Seconds_Behind_Master: 0</span><br><span class="line">Master_SSL_Verify_Server_Cert: No</span><br><span class="line">                Last_IO_Errno: 0</span><br><span class="line">                Last_IO_Error:</span><br><span class="line">               Last_SQL_Errno: 0</span><br><span class="line">               Last_SQL_Error:</span><br><span class="line">  Replicate_Ignore_Server_Ids:</span><br><span class="line">             Master_Server_Id: 226</span><br><span class="line">   #              Master_UUID: e1148574-bdd0-11e9-8873-0800273acbfd</span><br><span class="line">             Master_Info_File: mysql.slave_master_info</span><br><span class="line">                    SQL_Delay: 0</span><br><span class="line">          SQL_Remaining_Delay: NULL</span><br><span class="line">      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates</span><br><span class="line">           Master_Retry_Count: 86400</span><br><span class="line">                  Master_Bind:</span><br><span class="line">      Last_IO_Error_Timestamp:</span><br><span class="line">     Last_SQL_Error_Timestamp:</span><br><span class="line">               Master_SSL_Crl:</span><br><span class="line">           Master_SSL_Crlpath:</span><br><span class="line">           Retrieved_Gtid_Set:</span><br><span class="line">            Executed_Gtid_Set:</span><br><span class="line">                Auto_Position: 0</span><br><span class="line">         Replicate_Rewrite_DB:</span><br><span class="line">                 Channel_Name:</span><br><span class="line">           Master_TLS_Version:</span><br><span class="line">       Master_public_key_path:</span><br><span class="line">        Get_master_public_key: 0</span><br><span class="line">            Network_Namespace:</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、优缺点"><a href="#3、优缺点" class="headerlink" title="3、优缺点"></a>3、优缺点</h2><p>基于二进制日志的复制是 MySQL 最早使用的复制技术，因此 MySQL 对其支持比较完善，对执行修改的 SQL 语句几乎没有任何限制。其主要缺点是在一主多从的高可用复制架构中，如果主库发生宕机，此时想要自动通过从库的日志和偏移量来确定新的主库比较困难。</p>
+<h1 id="三、基于-GTID-的复制"><a href="#三、基于-GTID-的复制" class="headerlink" title="三、基于 GTID 的复制"></a>三、基于 GTID 的复制</h1><h2 id="1、GTID-简介"><a href="#1、GTID-简介" class="headerlink" title="1、GTID 简介"></a>1、GTID 简介</h2><p>MySQL 5.6 版本之后提供了一个新的复制模式：基于 GTID的复制。GTID 全称为 Global Transaction ID，即全局事务 ID。它由每个服务节点的唯一标识和其上的事务ID共同组成，格式为：server_uuid:transaction_id。通过 GTID，可以保证在主库上的每一个事务都能在备库上得到执行，不会存在任何疏漏。</p>
+<h2 id="2、配置步骤-1"><a href="#2、配置步骤-1" class="headerlink" title="2、配置步骤"></a>2、配置步骤</h2><p>主从服务器均增加以下 GTID 的配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gtid-mode = ON</span><br><span class="line"># 防止执行不受支持的语句，下文会有说明</span><br><span class="line">enforce-gtid-consistency = ON</span><br></pre></td></tr></table></figure>
+
+<p>如果配置过上面的基于二进制日志的复制，还需要再从服务器上执行一下命令，关闭原有复制链路：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STOP SLAVE IO_THREAD FOR CHANNEL &#x27;&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>建立新的基于 GTID 的复制链路，指定 MASTER_AUTO_POSITION &#x3D; 1 表示由程序来自动确认开始同步的GTID的位置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CHANGE MASTER TO MASTER_HOST=&#x27;192.168.0.226&#x27;,\</span><br><span class="line">        MASTER_USER=&#x27;repl&#x27;,</span><br><span class="line">        MASTER_PASSWORD=&#x27;123456&#x27;,</span><br><span class="line">        MASTER_AUTO_POSITION=1;</span><br></pre></td></tr></table></figure>
+
+<p>开始复制：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">START SLAVE;</span><br></pre></td></tr></table></figure>
+
+<p>在主节点上执行任意修改操作，并查看从节点状态，关键的输入如下：Retrieved_Gtid_Set 代表从主节点上接收到的两个事务，Executed_Gtid_Set 表示这两个事务已经在从库上得到执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW SLAVE STATUS\G</span><br><span class="line">....</span><br><span class="line">Master_UUID            : e1148574-bdd0-11e9-8873-0800273acbfd</span><br><span class="line">Retrieved_Gtid_Set    : e1148574-bdd0-11e9-8873-0800273acbfd:1-2</span><br><span class="line">Executed_Gtid_Set    : e1148574-bdd0-11e9-8873-0800273acbfd:1-2</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、优缺点-1"><a href="#3、优缺点-1" class="headerlink" title="3、优缺点"></a>3、优缺点</h2><p>GTID 复制的有点在于程序可以自动确认开始复制的GTID点。但其仍然存在以下限制：</p>
+<ul>
+<li>不支持 Create Table … Select 语句。因为在 ROW 格式下，改语句将会被记录为具有不同 GTID的两个事务，此时从服务器将无法正确处理。</li>
+<li>事务，过程，函数和触发器内部的 Create Temporary Table 和 Drop Temporary Table 语句均不受支持。</li>
+</ul>
+<p>为防止执行不受支持的语句，建议配置和上文配置一样，开启 enforce-gtid-consistency 属性，开启后在从库上执行以下不受支持的语句豆浆抛出一样并提示。</p>
+<h1 id="四、半同步复制"><a href="#四、半同步复制" class="headerlink" title="四、半同步复制"></a>四、半同步复制</h1><p>在上面我们介绍过，不论是基于二进制日志的复制还是基于 GTID 的复制，其本质上都是异步复制，假设从节点上还没有获取到二进制日志信息时主节点就宕机了，那么就会存在数据不一致的情况。想要解决这个问题可以通过配置半同步复制来实现：进行半同步复制时，主节点会等待至少一个从节点获取到二进制日志后才将事务的执行结果返回给客户端。具体配置步骤如下：</p>
+<h2 id="1、安装插件"><a href="#1、安装插件" class="headerlink" title="1、安装插件"></a>1、安装插件</h2><p>MySQL 从 5.5 之后开始以插件的形式支持半同步复制，所以需要先进行插件安装，命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 主节点上执行</span><br><span class="line">mysql&gt; INSTALL PLUGIN rpl_semi_sync_master SONAME &#x27;semisync_master.so&#x27;;</span><br><span class="line">-- 从节点上执行</span><br><span class="line">mysql&gt; INSTALL PLUGIN rpl_semi_sync_slave SONAME &#x27;semisync_slave.so&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>如果你的复制是基于高可用架构的，即从节点可能会在主节点宕机后成为新的主节点，而源主节点可能在失败恢复后成为从节点，那么为了保证半同步复制仍然有效，此时可以再主从节点上都安装主从插件。安装后使用以下命令查看是否安装成功：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT PLUGIN_NAME, PLUGIN_STATUS FROM INFORMATION_SCHEMA.PLUGINS WHERE PLUGIN_NAME LIKE &#x27;%semi%&#x27;;</span><br><span class="line">+----------------------+---------------+</span><br><span class="line">| PLUGIN_NAME          | PLUGIN_STATUS |</span><br><span class="line">+----------------------+---------------+</span><br><span class="line">| rpl_semi_sync_master | ACTIVE        |</span><br><span class="line">| rpl_semi_sync_slave  | ACTIVE        |</span><br><span class="line">+----------------------+---------------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、配置半同步复制"><a href="#2、配置半同步复制" class="headerlink" title="2、配置半同步复制"></a>2、配置半同步复制</h2><p>半同步复制可以基于日志复制或 GTID 复制开启，只需要在其原有配置上增加以下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 主节点上增加如下配置：</span><br><span class="line">plugin-load=rpl_semi_sync_master=semisync_master.so</span><br><span class="line">rpl_semi_sync_master_enabled=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 从节点上增加如下配置：</span><br><span class="line">plugin-load=rpl_semi_sync_slave=semisync_slave.so</span><br><span class="line">rpl_semi_sync_slave_enabled=1</span><br><span class="line"></span><br><span class="line"># 和上面提到的一样，如果是高可用架构下，则主从节点都可以增加主从配置：</span><br><span class="line">plugin-load = &quot;rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so&quot;</span><br><span class="line">rpl-semi-sync-master-enabled = 1</span><br><span class="line">rpl-semi-sync-slave-enabled = 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、启动复制"><a href="#3、启动复制" class="headerlink" title="3、启动复制"></a>3、启动复制</h2><p>安装二进制日志或 GTID 的方式正常启动复制极客，此时可以使用如下命令查看半同步日志是否正在执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 主节点</span><br><span class="line">mysql&gt; SHOW STATUS LIKE &#x27;Rpl_semi_sync_master_status&#x27;;</span><br><span class="line">+-----------------------------+-------+</span><br><span class="line">| Variable_name               | Value |</span><br><span class="line">+-----------------------------+-------+</span><br><span class="line">| Rpl_semi_sync_master_status | ON    |</span><br><span class="line">+-----------------------------+-------+</span><br><span class="line"></span><br><span class="line"># 从节点</span><br><span class="line">mysql&gt; SHOW STATUS LIKE &#x27;Rpl_semi_sync_slave_status&#x27;;</span><br><span class="line">+----------------------------+-------+</span><br><span class="line">| Variable_name              | Value |</span><br><span class="line">+----------------------------+-------+</span><br><span class="line">| Rpl_semi_sync_slave_status | ON    |</span><br><span class="line">+----------------------------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>值为 ON 代表半同步复制配置成功。</p>
+<h2 id="4、可选配置"><a href="#4、可选配置" class="headerlink" title="4、可选配置"></a>4、可选配置</h2><p>半同步日志还有以下两个可选配置，一个是 rpl_semi_sync_master_wait_for_slave_count，它表示主节点需要至少等待几个从节点复制完成，默认值为1，因为等待过多从节点可能会导致长时间的延迟，所以通常使用默认值即可。另一个常用参数是 rpl_semi_sync_master_wait_point ,他主要用于控制等待的时间点，它有以下两个可选值：</p>
+<ul>
+<li>AFTER_SYNC（默认值）：主服务器将每个事务写入其二进制日志，并将二进制日志同步到磁盘后开始进行等待。在收到从节点的确认后，才将事务提交给存储引擎并将结果返回给客户端。</li>
+<li>AFTER_COMMIT：主服务器将每个事务写入其二进制日志并同步到磁盘，然后将事务提交到存储引擎，提交后再进行等待。在收到从节点的确认后，才将结果返回给客户端。</li>
+</ul>
+<p>第二种方式是 MySQL 5.7.2 之前的默认方式，但这种方式会导致数据的丢失，所以在 5.7.2 版本之后引入了第一种方式作为默认方式，它可以实现无损复制（lossless replication），数据基本无丢失，因此 rpl_semi_sync_master_wait_point 参数通常也不用进行修改，采用默认值即可。想要查看当前版本该参数的值，可以使用如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW VARIABLES LIKE &#x27;rpl_semi_sync_master_wait_point&#x27;;</span><br><span class="line">+---------------------------------+------------+</span><br><span class="line">| Variable_name                   | Value      |</span><br><span class="line">+---------------------------------+------------+</span><br><span class="line">| rpl_semi_sync_master_wait_point | AFTER_SYNC |</span><br><span class="line">+---------------------------------+------------+</span><br></pre></td></tr></table></figure>
+<p>虽然半同步复制能够最大程度的避免数据的丢失，但是因为网络通讯会导致额外的等待时间的开销，所以尽量在低延迟的网络环境下使用，如处于同一机房的主机之间。</p>
+<h1 id="五、高可用架构"><a href="#五、高可用架构" class="headerlink" title="五、高可用架构"></a>五、高可用架构</h1><p>无论是主主复制架构，还是一主多从结构，单存依靠复制只能解决数据可靠性的问题，并不能解决系统高可用的问题，想要保证高可用，系统必须能够自动进行故障转移，即在主库宕机时，主动讲其它备库升级为主库。常用的有以下两种解决方案：</p>
+<h2 id="1、MMM"><a href="#1、MMM" class="headerlink" title="1、MMM"></a>1、MMM</h2><p>MMM（Master-Master replication manager for MySQL）是由 Perl 语言开发的一套支持双主故障切换以及双主日常管理的第三方软件。它包含两类角色：writer和reader，分别对应读写节点和只读节点。使用 MMM 管理的双主节点在同一时间上只允许一个进行写入操作，当 writer 节点出现宕机（假设是 Master1），程序会自动移除该节点上的读写 VIP，然后切换到 Master2，并设置 Master2 的read_only &#x3D; 0，即关闭只读限制，同时将所有Slave节点重新指向 Master2.</p>
+<p>除了管理双主节点，MMM也负责管理所有Slave节点，在出现宕机、复制延迟或复制错误，MMM会移除该节点的VIP，直至节点恢复正常、MMM高可用的架构示例图如下：<br><img src="/images/16f79e66883b446a.jpg"></p>
+<p>MMM结构的缺点在于虽然其能实现自动切换，但不会主动补齐丢失的数据，所以会存在数据不一致的风险。另外 MMM 的发布时间比较早，所以其也不支持 MySQL 最新的基于 GTID 的复制，如果你是用的是基于 GTID 的复制，则只能采用 MHA。</p>
+<h2 id="2、MHA"><a href="#2、MHA" class="headerlink" title="2、MHA"></a>2、MHA</h2><p>MHA（Master High Availability）是由Perl实现的一款高可用程序，相对于 MMM，它能尽量避免数据不一致的问题。它监控的是一主多从的复制架构，架构如下图所示：<br><img src="/images/16f79e6bd3da08a0.jpg"></p>
+<p>在 Master 节点宕机后，其处理流程如下：</p>
+<ol>
+<li>尝试从宕机Master中保存二进制日志</li>
+<li>找到含有最新中继日志的Slave</li>
+<li>把最新中继日志应用到其他实例，保证各实例数据一直</li>
+<li>应用从Master保存的二进制日志事件</li>
+<li>提升一个Slave为Master</li>
+<li>其他Slave向该新Master同步</li>
+</ol>
+<p>按照以上的处理流程，MHA能够最大程度的避免数据不一致的问题。但如果 Master 所在的服务器也宕机了，那么过程的第一步就会失败。在 MySQL 5.5 后，可以开启半同步复制来避免这个问题，从而可以保证数据的一致性和几乎无丢失。当然 MHA 集群也存在以下一些缺点：</p>
+<ul>
+<li>集群中所有节点之间需要开启SSH服务，所以会存在一定的安全影响</li>
+<li>没有实现 Slave 的高可用</li>
+<li>自带的脚本不足，例如虚拟IP的配置需要自己通过命令或者其他第三方软件来实现</li>
+<li>需要手动清理中继日志</li>
+</ul>
+<p>以上就是MMM和MHA架构的简单介绍。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/28/MySQL%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6%E3%80%81GTID-%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6/" data-id="cluwce6pi000ekcuf2nh1450u" data-title="MySQL二进制日志复制、GTID 复制与半同步复制" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="sre-think-SRE指导思想" class="h-entry article article-type-sre-think" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/27/SRE%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3/" class="article-date">
+  <time class="dt-published" datetime="2020-04-27T07:28:51.000Z" itemprop="datePublished">2020-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/27/SRE%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3/">SRE指导思想</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="一、拥抱风险"><a href="#一、拥抱风险" class="headerlink" title="一、拥抱风险"></a>一、拥抱风险</h1><p>没有百分之百可靠的服务，如果专注于提高服务的可靠性，对服务本身或者用户来说，结果不一定会更好甚至更差。极端的提高可靠性将会带来成本的大幅提升：过分追求稳定性限制了新功能的开发速度和产品交付速度，并且很大程度地增加了成本，反过来又减少了团队可以提供新功能的数量。<br>另外，用户通常不会注意到一项服务在高可靠性和极端可靠性之间的差异，因为用户体验主要受较不可靠的组件主导，即木桶理论。<br>基于这几点，SRE旨在寻求快速创新和高效的服务运营业务之间的风险的平衡，而不是简单的将服务在线时间最大化。这样一来，我们可以优化用户的整体体验，平衡系统的功能、服务和性能。</p>
+<h2 id="1、管理风险"><a href="#1、管理风险" class="headerlink" title="1、管理风险"></a>1、管理风险</h2><p>为了提高用户对系统的信息，我们要减少系统出现故障的几率。然而，经验表明，在构建系统的过程中，可靠性进一步提升的成本并不是线性增加的—-可靠性的下一个改进可能比之前的改进成本增加100倍。高昂的成本主要体现在：</p>
+<ul>
+<li>冗余物理服务器&#x2F;计算资源的成本</li>
+</ul>
+<p>通过投入冗余设备，我们可以进行常规的系统离线或其他预料之外的维护性操作。又或者可以利用一些空间来存储奇偶校验码块，以此来提供一定程度的数据持久性保证。</p>
+<ul>
+<li>机会成本</li>
+</ul>
+<p>这类成本由一个组织承担。当该组织分配工程资源来构建减少风险的系统或功能，而非哪些用户直接可用的功能时需要成本这些成本。这些工程师不能再从事为终端用户设计新功能和新产品的工作。</p>
+<p>在SRE团队中，我们管理服务的可靠性很大程度上是通过管理风险来进行的。我们是将风险作为一个连续体来认知的。我们的目标是：明确地将运维风险与业务风险对应起来。我们会努力提高一项服务的可靠性，但不会超过该服务需要的可靠性。也就是说，当设定一个可用性目标为99.99%时，我们即使要超过这个目标，也不会超过太多，否则会浪费为系统增加新功能、清理技术债务或降低运营成本的机会。从某种意义上来说，我们把可用性目标同时看做风险的上限和下限。这种表达方式的主要优势在于它可以促进团队进行明确的、深思熟虑的风险讨论。</p>
+<h2 id="2、度量服务的风险"><a href="#2、度量服务的风险" class="headerlink" title="2、度量服务的风险"></a>2、度量服务的风险</h2><p>Google 标准做法是通过一个客观的指标来体现一个待优化的系统属性。通过设立这样一个目标，我们可以客观的评价目前的系统表现以及追踪一段时间内的改进和退步。对于服务风险而言，单一的性能指标不能代表所有潜在的因素。服务故障可能会有很多潜在的影响，这些因素的一部分可能很难被合理的度量。为了使这个问题再我们运行的各种类型的系统中易于处理，并且保持一致，我们选择主要关注计划外停机这个指标。</p>
+<p>对于大多数服务而言，最直接的能够代表风险承受能力的指标就是对于计划外停机时间的可接受水平。计划外停机时间是由服务预期的可用性水平所体现的，通常用提供“9”系列的数字来体现。</p>
+<ul>
+<li>基于时间的可用性<br>可用性 &#x3D; 系统正常运行时间&#x2F;（系统正常运行时间+停机时间）</li>
+<li>合计可用性<br>可用性 &#x3D; 成功请求数&#x2F;总的请求数</li>
+</ul>
+<p>使用请求成功率指标量化计划外停机时间使得这种指标更适合在不直接服务终端用户的系统中使用。、</p>
+<p>通常，我们会为一项服务设定季度性的可用性目标，每周甚至每天对性能进行跟踪。我们通过寻找、跟踪和调整重要的、不可避免的偏差来使服务达到一个高层次的可用性目标。</p>
+<h2 id="3、服务的风险容忍度"><a href="#3、服务的风险容忍度" class="headerlink" title="3、服务的风险容忍度"></a>3、服务的风险容忍度</h2><p>在一个正式的环境或安全关键的系统中，服务的风险容忍度通常是直接根据基本产品或服务的定义建立的。</p>
+<h3 id="1）消费者服务的风险容忍度"><a href="#1）消费者服务的风险容忍度" class="headerlink" title="1）消费者服务的风险容忍度"></a>1）消费者服务的风险容忍度</h3><p>消费者服务对应的产品团队，负责了解用户和业务，通过这个软对来讨论服务的可靠性要求。</p>
+<p>  因素：</p>
+<ul>
+<li>需要的可用性水平是什么？</li>
+<li>不同类型的失败对服务有不同的影响吗？</li>
+<li>我们如何使用服务成本来帮助在风险曲线上定位这个服务？</li>
+<li>有哪些其他重要的服务指标需要考虑？</li>
+</ul>
+<p>  可用性目标：</p>
+<ul>
+<li>用户期望的服务水平是什么？</li>
+<li>这项服务是否直接关系到收入？</li>
+<li>这是一个有偿服务，还是免费服务？</li>
+<li>如果市场上有竞争对手，那些竞争对手提供的服务水平如何？</li>
+<li>这项服务是针对消费者还是企业？</li>
+</ul>
+<p>  故障的类型：</p>
+<ul>
+<li>我们的业务对于服务的停机时间的容忍程度有多高？</li>
+<li>持续的低故障率或者偶尔发生的全网中断哪一个更糟糕？<br>  这两种类型的故障可能会导致绝对数量上完全相同的错误被返回，但可能对于业务的影响相差很大。</li>
+</ul>
+<p>  成本：</p>
+<ul>
+<li>构建和运维可用性再多一个“9”的系统，收益会增加多少？</li>
+<li>额外的收入是否能够抵消为了达到这一可靠性水平所付出的成本？<br>  当我们无法简单的解释可靠性和收入的关系时，可能会更难设置这些目标。</li>
+</ul>
+<h3 id="2）基础设施服务的风险容忍度"><a href="#2）基础设施服务的风险容忍度" class="headerlink" title="2）基础设施服务的风险容忍度"></a>2）基础设施服务的风险容忍度</h3><p>构建和运维基础设施组件的要求在许多方面是不同于消费者服务的。一个根本的区别是，基础设施组件有多个客户，而他们通常有很多不同的需求。</p>
+<ul>
+<li><p>可用性目标水平<br>不同的用户服务，其基础设施的可用性目标水平不一致，风险容忍度可能相当不同。讷讷够同时满足多种情况的要求的一种方法是将所有基础设置服务做得极为可靠。但在实际情况中，这些基础设置服务往往需要占用大量资源，超高可靠性的代价通常是非常昂贵的。</p>
+</li>
+<li><p>故障类型</p>
+</li>
+<li><p>成本</p>
+</li>
+</ul>
+<h1 id="二、服务质量"><a href="#二、服务质量" class="headerlink" title="二、服务质量"></a>二、服务质量</h1><h2 id="1、-服务质量术语"><a href="#1、-服务质量术语" class="headerlink" title="1、 服务质量术语"></a>1、 服务质量术语</h2><ol>
+<li>SLI，服务质量指标</li>
+</ol>
+<p>SLI 是指服务质量指标（indicator）：该服务的某项服务质量的一个具体量化指标。<br>大部分用户服务都将请求延迟作为一个关键SLI，其他的常见SLI包括错误率，系统吞吐量等等。这些度量通常是汇总过的：在某一个度量时间范围内将原始数据收集起来，计算速率、平均值、百分比等汇总数据。</p>
+<ol start="2">
+<li>SLO，服务质量目标</li>
+</ol>
+<p>SLO 是服务质量目标（Objective）：服务的某个SLI的目标值，或者目标范围。SLO的定义是SLI ≤ 目标值或者范围下线 ≤ SLI ≤ 范围上限。</p>
+<ol start="3">
+<li>SLA，服务质量协议</li>
+</ol>
+<p>SLA是服务质量协议（Agreement）：指服务与用户之间的一个明确的，或者不明确的协议，描述了在达到或者没有达到SLO之后的一个后果。这些后果可能是财务方面的（退款或者罚款），也可能是其他类型的。<br>SRE通常不会参与SLA的书写，因为SLA是与业务产品的决策紧密相关的。但是，SRE确实会参与帮助避免触发SLA中的惩罚性条款。同时SRE会参与制定具体的SLI：很明显，提供一个客户的方式来度量SLO是很重要的，否则大家就会产生分歧。<br>并不是所有的服务都有SLA，尤其是免费提供的服务。但是免费提供的服务如果出现不可用的情况，可能仍然会产生一系列的后果。所以不管服务是否具有SLA，定义SLI和SLO，并且用它们来管理服务质量都是很有价值的。</p>
+<h2 id="2、指标在实践中的应用"><a href="#2、指标在实践中的应用" class="headerlink" title="2、指标在实践中的应用"></a>2、指标在实践中的应用</h2><h3 id="1）关键性SLI选择"><a href="#1）关键性SLI选择" class="headerlink" title="1）关键性SLI选择"></a>1）关键性SLI选择</h3><p>我们不应该将监控系统中的所有指标全部定义为SLI；只有理解用户对系统的真实需求才能真正决定哪些指标是否有用。指标过多会影响对那些真正重要的指标的关注，而选择指标过少则会导致某些重要的系统行为被忽略。<br>常见的服务，一般SLI通常会归类为以下几种：</p>
+<ul>
+<li>用户可见的服务系统，例如用户访问的Web站点服务，通常关心其可用性、延迟、以及吞吐量。</li>
+<li>存储系统，通常强调延迟、可用性和数据持久性</li>
+<li>大数据系统，一般关心吞吐量、延迟</li>
+</ul>
+<h3 id="2）指标的收集"><a href="#2）指标的收集" class="headerlink" title="2）指标的收集"></a>2）指标的收集</h3><p>利用监控系统，大部分指标数据都在服务器端被收集。或者利用某种日志分析系统，例如分析日志中HTTP 500所占的比例。客户端的数据的收集，也是有必要的，否则可能会错失一些不影响服务端但是对用户产生影响的指标。</p>
+<h3 id="3）汇总"><a href="#3）汇总" class="headerlink" title="3）汇总"></a>3）汇总</h3><p>为了简化和使数据更可用，我们经常需要汇总原始度量数据。但是汇总过程应该非常小心。</p>
+<blockquote>
+<p>某些指标的汇总看起来是很简单的，例如每秒服务请求的数量，但是即使这种简单度量也需要在某个度量时间范围内进行汇总。该度量值是应该每秒获取一次，还是每分钟内的平均值？后者可能会掩盖仅仅持续几秒的一次请求峰值。假设某个系统在偶数秒处理200个请求，在其他时间请求为0。该服务与持续每秒处理100个请求的服务平均负载是一样的，但是在即时负载上却是两倍。同样的，平均请求延迟可能看起来很简单，但是却掩盖了一个重要的细节；很可能大部分请求都是很快的，但是长尾请求速度却很慢。</p>
+</blockquote>
+<h3 id="4）指标的标准化"><a href="#4）指标的标准化" class="headerlink" title="4）指标的标准化"></a>4）指标的标准化</h3><p>我们建议标准化一些常见的SLI，以避免每次都要重新评估它们。任何一个符合标准定义模板的服务可以不需要再次自己定义SLI。</p>
+<ul>
+<li>汇总间隔：每1分钟汇总一次</li>
+<li>汇总范围：集群中的全部任务</li>
+<li>度量频率：每10秒一次</li>
+<li>包含哪些请求：从黑核监控任务发来的HTTP GET请求</li>
+<li>数据如何获取：通过监控系统获取服务器端信息得到</li>
+<li>数据访问延迟：从收到请求到最后一个字节被发出</li>
+</ul>
+<p>为了节约成本，应该为常见的指标构建一套可以重用的SLI模板，从而使得理解每个SLI更简单。</p>
+<h2 id="3、目标在实践中的应用"><a href="#3、目标在实践中的应用" class="headerlink" title="3、目标在实践中的应用"></a>3、目标在实践中的应用</h2><p>我们应该从思考（或调研）用户最关心的方面入手，而非从现在什么能度量入手。用户真正关心的部分经常是度量起来很困难的，甚至是不可能的，所以我们需要以某种形式近似。然而，如果我们只是从可以简单度量的数值入手，最终的SLO的作用就会很有限。因此，与其选择指标，再想出对应的目标，不如从想要的目标返乡推导出具体的指标。</p>
+<h3 id="1）目标的定义"><a href="#1）目标的定义" class="headerlink" title="1）目标的定义"></a>1）目标的定义</h3><p>为了更清晰的定义，SLO应该具体指出它们是如何被度量的，以及其有效条件。例如，我们可能说：</p>
+<ul>
+<li>99% 的 Get RPC 调用会在小于 100ms 的时间内完成（包括全部后端服务器）</li>
+<li>99% 的 Get RPC 会在 100ms 内完成</li>
+</ul>
+<p>如果性能曲线也很重要的话，我们可以指定多个SLO目标：</p>
+<ul>
+<li>90% 的 Get RPC 会在 1ms内完成</li>
+<li>99% 的Get RPC 会在 10ms 内完成</li>
+<li>99.9% 的 Get RPC 会在 100ms 内完成</li>
+</ul>
+<p>如果我们同时具有批处理业务（关注吞吐量）以及在线交互用户（关注延迟），name可能应该为每种负载指定单独的SLO：</p>
+<ul>
+<li>95% 的批处理用户 Set RPC 应该在1s内完成</li>
+<li>99% 的交互式用户Set RPC，并且RPC负载小于1KB的应该在10ms内完成</li>
+</ul>
+<p>要求SLO能够被100%满足是不正确，也是不现实的：过于强调这个会降低创新和部署的速度，增加一些成本过高、过于保守的方案。更好的方案是使用错误预算（对达不到SLO的容忍度），以天或者以周为单位计量。高层管理者可能同时也需要按月度或者季度的评估。（错误预算其实就是保证达到其他SLO的一个SLO！）</p>
+<p>SLO不达标的频率可以用来与错误预算进行对比，利用这两个数值的差值可以知道新版本的发布。</p>
+<h3 id="2）目标的选择"><a href="#2）目标的选择" class="headerlink" title="2）目标的选择"></a>2）目标的选择</h3><p>选择目标SLO不是一个纯粹的技术活动，因为这里还涉及产品和业务层面的决策，SLI和SLO（甚至SLA）的选择都应该直接反应该决策。同样的，有时候可能可以牺牲某些产品特性，以便满足人员、上线时间、硬件可用性，以及资金的限制。SRE应该积极参与这类讨论，提供有关可行性和风险性的建议，下面列出了一个有用的讨论：</p>
+<ul>
+<li>不要仅仅以目前的状态为基础选择目标，更要从全局出发，否则可能会导致团队被迫长期运维一个过时的系统，没有时间去推动架构重构等任务。</li>
+<li>保持简单。SLI过于复杂的汇总模式可能会覆盖某种系统性能的变化，同时也更难以理解。</li>
+<li>避免绝对值。虽然要求系统可以在没有任何延迟增长的情况下无限扩张，或者“永远”可能是很诱人的，但是这样的要求是不切实际的。就算有一个系统能够做到这一点，它也需要花很长的时间和成本来设计和构建，同时运维也很复杂。最关键的是，这可能比用户可以接受的标准要高太多。</li>
+<li>SLO越少越好。应该仅仅选择足够的SLO来覆盖系统属性，一定要确保每一个SLO都是必不可少的：如果我们无法针对某个SLO达标问题说服开发团队，那么可能这个SLO就是不必要的。然而，不是所有的产品属性都能用SLO表达，用户的“满意度”就很难。</li>
+<li>不要追求完美。我们可以随着时间流逝了解系统腥味之后优化SLO的定义。刚开始可以以一个宋丹的目标开始，主键收紧。这比一开始制定一个困难的目标，在出现问题时放松要好得多。</li>
+</ul>
+<p>SLO可以成为SRE和产品团队划分工作优先级的重要参考，因为SLO代表了用户体验的成都。好的SLO是对开发团队有效的、可行的激励机制。但是一个没有经过精心调校的SLO会导致浪费，某团队可能需要付出很大代价来维护一个过于激进的SLO，而如果SLO过于宋丹，则会导致产品效果很差。SLO是一个很重要的杠杆：要小心使用。</p>
+<h3 id="3）控制手段"><a href="#3）控制手段" class="headerlink" title="3）控制手段"></a>3）控制手段</h3><p>SLI和SLO在决策系统运行时也非常有用：</p>
+<ul>
+<li>监控并且度量系统的SLI</li>
+<li>比较SLI和SLO，以决定是否需要执行操作</li>
+<li>如果需要执行操作，则要决定究竟什么操作需要被执行，以便满足目标</li>
+<li>执行这些操作</li>
+</ul>
+<h3 id="4）SLO可以建立用户预期"><a href="#4）SLO可以建立用户预期" class="headerlink" title="4）SLO可以建立用户预期"></a>4）SLO可以建立用户预期</h3><p>通过公布SLO可以设置用户对系统行为的预期。用户经常希望知道他们可以预期的服务质量，以便理解该服务是否能够满足他们的要求。</p>
+<ul>
+<li>留出一定的安全区</li>
+<li>实际SLO不要过高</li>
+</ul>
+<h2 id="4、协议在实践中的应用"><a href="#4、协议在实践中的应用" class="headerlink" title="4、协议在实践中的应用"></a>4、协议在实践中的应用</h2><p>起草一份SLA需要业务部门和法务部门选择合适的后果条款。SRE在这个过程中的作用是帮助这些部门理解SLA的SLO达标的概率和困难程度。需要针对SLO的建议也同样适用于SLA。最好在用户宣传方面保持保守，因为受众越广，修改和删除一个不合适或者很困难达到的SLA就越困难。</p>
+<h1 id="三、减少琐事"><a href="#三、减少琐事" class="headerlink" title="三、减少琐事"></a>三、减少琐事</h1><h2 id="1、琐事的定义"><a href="#1、琐事的定义" class="headerlink" title="1、琐事的定义"></a>1、琐事的定义</h2><p>什么是琐事？琐事就是运维服务中手动性的，重复性的，可以被自动化、战术性，没有持久价值的工作。而且，琐事与服务呈线性关系的增长。并不是每件琐事都有以上全部特性，但是每件琐事都满足下列一个或多个属性：</p>
+<ul>
+<li>手动性</li>
+<li>重复性</li>
+<li>可以被自动化的</li>
+<li>战术性的</li>
+<li>没有持久价值</li>
+<li>与服务同步线性增长</li>
+</ul>
+<h2 id="2、为什么琐事越少越好"><a href="#2、为什么琐事越少越好" class="headerlink" title="2、为什么琐事越少越好"></a>2、为什么琐事越少越好</h2><p>SRE的一个公开目标是保持每个SRE的工作时间中运维工作（即琐事）的比例低于50%。SRE至少花50%的时间在工程项目上，以减少未来的琐事或增加服务功能。增加服务功能包括提高可靠性、性能，或利用率，同时也会进一步消除琐事。</p>
+<p>SRE公开50%这个目标是因为如果不加以控制，琐事会变得越来越多，以至于迅速占据我们每个人100%的时间。减少琐事和扩大服务规模的工作就是SRE中的E（Engineering）。对工程工作的关注使SRE可以再服务规模扩大的同时减少人数，并且比单纯的研发团队和单纯的运维工作团队能更有效的管理服务的秘诀。</p>
+<p>不仅如此，招聘新的SRE时，我们也会引用上下文提及的50%规则，承诺新员工不会专门进行运维工作。我们通过禁止SRE组织或者其中任何小团队退化为专门从事运维工作的组织来实现这个承诺。</p>
+<h3 id="琐事的计算"><a href="#琐事的计算" class="headerlink" title="琐事的计算"></a>琐事的计算</h3><p>如果我们想要将一个SRE花在琐事上的时间限制在50%，应该如何分配时间呢？<br>任何一个SRE在参与on-call时都会承担一定程度的琐事。一个典型的SRE每个周期中会有一周主on-call和一周副on-call的工作。因为，在一个六个人的轮流周期中，没六周中至少有两周需要专注于on-call和中断性事务的处理，这意味着潜在的琐事的最小值是一个SRE的工作时间的2&#x2F;6，也就是33%。如果是八人轮值，name最小值就是2&#x2F;8，即25%。<br>与此计算相一致，来自SRE的数据显示，琐事的最大来源就是中断性工作。另一个主要来源是on-call，紧随其后的事发布和数据更新。及时Google的发布和数据更新过程通常是高度自动化的，这个部分仍有许多改进空间。<br>当某个SRE报告自己承担了过量的琐事时，这通常意味着管理者需要在团队中更均衡地分布琐事负荷，同时应该鼓励该SRE找到自己满意的工程项目</p>
+<h2 id="3、什么是工程工作"><a href="#3、什么是工程工作" class="headerlink" title="3、什么是工程工作"></a>3、什么是工程工作</h2><p>工程工作是一种新颖的、本质上需要主观判断的工作。它是符合长期策略的，会对你的服务进行长久性的改善的工作。工程工作通常是有创新性和创造性的，着重通过设计来解决问题，解决方案越通用越好。工程工作有助于使该团队或是整个SRE组织在维持同等人员配备的情况下接手更大或更多的服务。<br>典型的SRE活动分为如下几类：</p>
+<ul>
+<li>软件工程</li>
+<li>系统工程</li>
+<li>琐事</li>
+<li>流程负担</li>
+</ul>
+<h2 id="4、辩证看待琐事"><a href="#4、辩证看待琐事" class="headerlink" title="4、辩证看待琐事"></a>4、辩证看待琐事</h2><p>琐事不会总是让每个人都不开心，特别是不太多的时候。已知的和重复性的工作有一种让人平静的功效。完成这些事可以带来一种满足感和快速胜利感。琐事可能是低风险低压力的活动，有些员工甚至喜欢做这种类型的工作。</p>
+<p>琐事的存在并不总是坏事，但是每个人都必须清楚，在SRE所扮演的角色中，一定数量的琐事是不可避免的，这其实是任何工程类工作都具有的特点。少量的琐事存在不是什么大问题。但是一旦琐事的数量变多，就又害了。如果琐事特别繁重，那就应该非常担忧，大声抱怨。在许多琐事有害的原因中，有如下因素需要考虑：</p>
+<ul>
+<li>职业停滞：如果花在工程项目上的时间太少，你的职业发展会变慢，甚至停滞</li>
+<li>士气低落：过多的琐事会导致过度劳累、厌倦和不满</li>
+<li>造成误解：确保SRE的工程实践，如果琐事过多，会破坏SRE这种角色，造成误解</li>
+<li>进展缓慢：琐事过多导致团队生产力下降，SRE忙于手工操作，新功能的发布就会变慢</li>
+<li>开创先例：如果SRE过于愿意承担琐事，研发同事就更强项羽加入更多的琐事，有时候甚至将本来应该由研发团队承担的运维工作转给SRE来承担。其他团队也会开始指望SRE接受这样的工作</li>
+<li>促进摩擦产生：如果团队中的琐事太多，其实就是在鼓励团队中最好的工程师开始发现更有价值的工作</li>
+<li>违反承诺：为了项目工程而入职的新员工，以及转入SRE工作的老员工，会有被欺骗的感觉，不利于团队的士气</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/27/SRE%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3/" data-id="cluwce6pz000wkcuf164w0bsq" data-title="SRE指导思想" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="lvs-practice-LVS操作实践" class="h-entry article article-type-lvs-practice" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/19/LVS%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5/" class="article-date">
+  <time class="dt-published" datetime="2020-04-19T10:08:02.000Z" itemprop="datePublished">2020-04-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/19/LVS%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5/">LVS操作实践</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/liwei0526vip/article/details/103104496">https://blog.csdn.net/liwei0526vip/article/details/103104496</a></li>
+</ul>
+<h1 id="一、实验环境说明"><a href="#一、实验环境说明" class="headerlink" title="一、实验环境说明"></a>一、实验环境说明</h1><p>我们知道 LVS 工作模式有DR、NAT、Tunnel 模式，这篇文章中会针对每个模式进行实践操作，通过实验来更深入理解工作原理。我们需要3台服务器来进行模拟。</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/04/19/LVS%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/19/LVS%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5/" data-id="cluwce6pc0007kcuf9nkn1dvl" data-title="LVS操作实践" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

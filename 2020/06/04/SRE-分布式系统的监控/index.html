@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>SRE-分布式系统的监控 | ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1、术语定义 监控（monitoring）：收集、处理、汇总，并且显示关于某个系统的实时量化数据，例如请求的数量和类型，错误的数量和类型，以及处理用时，应用服务器的存活时间等。 白盒监控（white-box monitoring）：依靠系统内部暴露的一些性能指标进行监控。包括日志分析、Java虚拟机提供的监控接口，或者一个列出内部统计数据的HTTP接口进行监控。 黑盒监控（black-box mo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SRE-分布式系统的监控">
+<meta property="og:url" content="https://chpiter.github.io/2020/06/04/SRE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%91%E6%8E%A7/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="1、术语定义 监控（monitoring）：收集、处理、汇总，并且显示关于某个系统的实时量化数据，例如请求的数量和类型，错误的数量和类型，以及处理用时，应用服务器的存活时间等。 白盒监控（white-box monitoring）：依靠系统内部暴露的一些性能指标进行监控。包括日志分析、Java虚拟机提供的监控接口，或者一个列出内部统计数据的HTTP接口进行监控。 黑盒监控（black-box mo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chpiter.github.io/images/NeatReader-1591255832407.png">
+<meta property="article:published_time" content="2020-06-04T01:34:45.000Z">
+<meta property="article:modified_time" content="2024-04-12T06:27:42.686Z">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="SRE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chpiter.github.io/images/NeatReader-1591255832407.png">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="sre-monitor-SRE-分布式系统的监控" class="h-entry article article-type-sre-monitor" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/06/04/SRE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%91%E6%8E%A7/" class="article-date">
+  <time class="dt-published" datetime="2020-06-04T01:34:45.000Z" itemprop="datePublished">2020-06-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      SRE-分布式系统的监控
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="1、术语定义"><a href="#1、术语定义" class="headerlink" title="1、术语定义"></a>1、术语定义</h1><ul>
+<li>监控（monitoring）：收集、处理、汇总，并且显示关于某个系统的实时量化数据，例如请求的数量和类型，错误的数量和类型，以及处理用时，应用服务器的存活时间等。</li>
+<li>白盒监控（white-box monitoring）：依靠系统内部暴露的一些性能指标进行监控。包括日志分析、Java虚拟机提供的监控接口，或者一个列出内部统计数据的HTTP接口进行监控。</li>
+<li>黑盒监控（black-box monitoring）：通过测试某种外部用户可见的系统行为进行监控。</li>
+<li>监控后台（dashboard）：提供某个服务核心指标一览服务的应用程序。该应用程序可能会提供过滤功能、选择功能，但是最主要的功能时用来显示系统最重要的指标。该程序同时可以显示相应团队的一些信息，包括目前工单的数量、高优先级的Bug列表、目前的on-call工程师和最近进行的生产发布等。</li>
+<li>警报（alert）：目标对象是某个人法向某个系统地址的一个通知。目的地可以包括工单系统、Email系统，或者某个传呼机。相应的，这些警报被分类为：工单、Email警报，以及紧急警报（page—）。</li>
+<li>根源问题（root case）：系统中的某种缺陷。这个缺陷如果被修复，就可以保证这种问题不会再以同样的方式发生。</li>
+<li>节点或者机器（node、machine）：指的是物理机、虚拟机，或者容器内运行的某个实例。</li>
+<li>推送（push）：关于某个服务正在运行的软件或者其配置文件的任何改动。</li>
+</ul>
+<h1 id="2、为什么要监控"><a href="#2、为什么要监控" class="headerlink" title="2、为什么要监控"></a>2、为什么要监控</h1><ul>
+<li>分析长期趋势：数据库目前的数据量，以及增长速度。又例如每日活跃用户的数量增长的速度。跨时间范围的比较，或者是观察实验组与控制组之间的区别。</li>
+<li>处理故障报警</li>
+<li>构建监控后台页面</li>
+<li>临时性的回溯分析（在线调试）</li>
+</ul>
+<h1 id="3、对监控系统设置合理的预期"><a href="#3、对监控系统设置合理的预期" class="headerlink" title="3、对监控系统设置合理的预期"></a>3、对监控系统设置合理的预期</h1><ul>
+<li>专职人员负责持续优化和改进监控系统</li>
+<li>监控系统规则遵循简单的原则</li>
+<li>不建议在监控系统中维护较为复杂的依赖关系</li>
+</ul>
+<h1 id="4、现象与原因"><a href="#4、现象与原因" class="headerlink" title="4、现象与原因"></a>4、现象与原因</h1><p>监控系统应该解决两个问题：什么东西出现故障，以及为什么出故障。<br>现象与原因的示例：<br><img src="/images/NeatReader-1591255832407.png"></p>
+<p>现象与原因的区分是构建信噪比高的监控系统时最重要的概念。</p>
+<h1 id="5、黑盒监控与白盒监控"><a href="#5、黑盒监控与白盒监控" class="headerlink" title="5、黑盒监控与白盒监控"></a>5、黑盒监控与白盒监控</h1><p>黑盒监控与白盒监控最简单的区别是：黑盒监控是面向现象的，代表了目前正在发生（而非预测会发生的）的问题，即系统现在有故障。百合监控则大量依赖对系统内部信息的检测，如系统日志、抓取提供指标的HTTP节点等。白盒监控系统因此可以检测到即将发生的问题以及那些重试锁掩盖的问题等。</p>
+<h1 id="6、4个黄金指标"><a href="#6、4个黄金指标" class="headerlink" title="6、4个黄金指标"></a>6、4个黄金指标</h1><ul>
+<li>延迟</li>
+<li>流量</li>
+<li>错误</li>
+<li>饱和度</li>
+</ul>
+<h1 id="7、关于长尾问题"><a href="#7、关于长尾问题" class="headerlink" title="7、关于长尾问题"></a>7、关于长尾问题</h1><p>采用直方图的形式，比如：延迟为 0<del>10ms之间的请求数量有多少，30</del>100ms之间，100~300之间等。将直方图的边界定义为指数型增长是直观展现请求分布的最好方式。</p>
+<h1 id="8、度量指标时采用合适的精度"><a href="#8、度量指标时采用合适的精度" class="headerlink" title="8、度量指标时采用合适的精度"></a>8、度量指标时采用合适的精度</h1><h1 id="9、简化，知道不能再简化"><a href="#9、简化，知道不能再简化" class="headerlink" title="9、简化，知道不能再简化"></a>9、简化，知道不能再简化</h1><p>设计监控系统时一定要追求简化：</p>
+<ul>
+<li>那些最能反映真实故障的规则应该越简单越好，可预测性强，非常可靠</li>
+<li>那些不常用的数据收集、汇总，以及警报配置应该定时删除</li>
+<li>收集到的信息，但是没有暴露给任何监控台，或者被任何警报规则使用的应该定时删除</li>
+</ul>
+<h1 id="10、监控系统的长期维护"><a href="#10、监控系统的长期维护" class="headerlink" title="10、监控系统的长期维护"></a>10、监控系统的长期维护</h1><p>在现代生产环境中，监控系统需要跟随不断演变的软件一起变化，软件经常重构，负载特性和性能目标也经常变化。</p>
+<h1 id="11、小结"><a href="#11、小结" class="headerlink" title="11、小结"></a>11、小结</h1><p>健康的监控和警报系统应该是非常简单、易于理解的。紧急警报应该关注于现象，针对原因的一些启发性分析应该作为调试过程中的补充，而不应该进行报警。监控的技术栈层面越高，监控现象越容易，但是监控某些子系统（如数据库）的饱和度和性能参数可能要在该子系统内部直接进行。Email警报的价值通常极为有限，很容易变成噪声。我们应该倾向于构建一个良好的监控后台页面，直接显示所有的非紧急的异常情况。</p>
+<p>长远来看，要建立一个成功的on-call轮值体系，以及构建一个稳定的产品需要选择那些正在发生和即将发生的问题来进行报警，设置一个可以实际达到的合理目标，保证监控系统可以支持快速的问题定位与检测。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/06/04/SRE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%91%E6%8E%A7/" data-id="cluwce6px000ukcufdx1cfxxn" data-title="SRE-分布式系统的监控" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/15/BCM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          如何持续改进业务连续性管理体系
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/08/MySQL%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">MySQL中的几种日志</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Nginx优化长连接 | ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="引用：  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;sunsky303&#x2F;p&#x2F;10648861.html  一、nginx之tcp_nooush、tcp_nodelay、snefile1. TCP_NODELAY怎么强制socket在它的缓冲区里发送数据？一个解决方案是TCP堆栈的TCP_NODELAY选项。这样就可以使缓冲区中的数据立即发送出去。Nginx的TCP_NODELAY选项使得在打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx优化长连接">
+<meta property="og:url" content="https://chpiter.github.io/2020/03/13/Nginx%E4%BC%98%E5%8C%96%E9%95%BF%E8%BF%9E%E6%8E%A5/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="引用：  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;sunsky303&#x2F;p&#x2F;10648861.html  一、nginx之tcp_nooush、tcp_nodelay、snefile1. TCP_NODELAY怎么强制socket在它的缓冲区里发送数据？一个解决方案是TCP堆栈的TCP_NODELAY选项。这样就可以使缓冲区中的数据立即发送出去。Nginx的TCP_NODELAY选项使得在打">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-13T02:04:04.000Z">
+<meta property="article:modified_time" content="2024-04-12T06:27:42.679Z">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="keepalive">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="nginx-keepalive-Nginx优化长连接" class="h-entry article article-type-nginx-keepalive" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/13/Nginx%E4%BC%98%E5%8C%96%E9%95%BF%E8%BF%9E%E6%8E%A5/" class="article-date">
+  <time class="dt-published" datetime="2020-03-13T02:04:04.000Z" itemprop="datePublished">2020-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Nginx优化长连接
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>引用：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunsky303/p/10648861.html">https://www.cnblogs.com/sunsky303/p/10648861.html</a></li>
+</ul>
+<h1 id="一、nginx之tcp-nooush、tcp-nodelay、snefile"><a href="#一、nginx之tcp-nooush、tcp-nodelay、snefile" class="headerlink" title="一、nginx之tcp_nooush、tcp_nodelay、snefile"></a>一、nginx之tcp_nooush、tcp_nodelay、snefile</h1><h2 id="1-TCP-NODELAY"><a href="#1-TCP-NODELAY" class="headerlink" title="1. TCP_NODELAY"></a>1. TCP_NODELAY</h2><p>怎么强制socket在它的缓冲区里发送数据？<br>一个解决方案是TCP堆栈的TCP_NODELAY选项。这样就可以使缓冲区中的数据立即发送出去。<br>Nginx的TCP_NODELAY选项使得在打开一个新的socket时增加了TCP_NODELAY选项。但这时会造成一种情况：<br>终端应用程序每产生一次操作就会发送一个包，而典型情况下下一个包会拥有一个字节的数据以及40个字节长的包头，于是产生4000%的过载，很轻易的能令网络发生拥塞。<strong>为了避免这种情况，TCP堆栈实现了等待数据0.2秒钟，因此操作后它不会发送一个数据包，而是将这段时间内的数据打成一个大的包。这一机制是由Nagle算法保证。</strong></p>
+<p>Nagle化后来成了一种标准并且立即在因特网上得以实现。它现在已经成为默认配置了，但是有些场合下把这一选项关掉也是合乎需要的。现在假设某个应用程序发出了一个请求，希望发送小块数据。我们可以选择立即发送数据或者等待产生更多的数据然后再一次发送两种策略。<br>如果我们马上发送数据，那么交互性的以及客户&#x2F;服务器型的应用程序将极大地受益。如果请求立即发出那么响应时间也会快一些。**以上操作可以通过设置套接字的TCP_NODELAY &#x3D; on 选项来完成，这样就禁用了Nagle算法。（不需要等待0.2s）</p>
+<h2 id="2-TCP-NOPUSH"><a href="#2-TCP-NOPUSH" class="headerlink" title="2. TCP_NOPUSH"></a>2. TCP_NOPUSH</h2><p>在nginx中，tcp_nopush配置和tcp_nodelay“互斥”。<strong>它可以配置一次发送数据的包大小。也就是说，它不是按时间累计0.2秒后发送包，而是当宝累计到一定大小后就发送。</strong><br><strong>注：在nginx中，tcp_nopush必须和sendfile搭配使用。</strong></p>
+<h2 id="3-sendfile"><a href="#3-sendfile" class="headerlink" title="3. sendfile"></a>3. sendfile</h2><p>现在流行的web服务器里面都提供sendfile选项用来提高服务器性能，那到底sendfile是什么，怎么影响性能的呢？<br>sendfile实际上是linux2.0+以后推出的一个系统调用，web服务器可以通过调整自身的配置来决定是否利用sendfile这个系统调用。先来看一下不用sendfile的传统网络传输过程：<br>read(file,tmp_buf,len);<br>write(socket,rmp_buf,len);</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">硬盘 &gt;&gt; kernel buffer &gt;&gt; user buffer &gt;&gt; kernel socket buffer &gt;&gt; 协议栈</span><br></pre></td></tr></table></figure>
+<p>1）一般来说一个网络应用是通过读硬盘数据，然后写数据到socket来完成网络传输的。上面的2行代码解释了这一点，不过上面2行简单的代码掩盖了低层的很多操作。来看看低层是怎么执行的：</p>
+<ol>
+<li>系统调用read()产生一个上下文切换，从user mode切换到kernel mode，然后DMA执行拷贝，把文件数据从硬盘读到一个kernel buffer里。</li>
+<li>数据从kernel buffer拷贝到user mode，然后系统调用read()返回，这时又产生一个上下文切换：从kernel mode切换到user mode。</li>
+<li>系统调用write()产生一个上下文切换：从user mode切换到kernel mode，然后把步骤2读到user buffer的数据拷贝到kernel buffer（数据第2次拷贝到kernel buffer），不过这次是个不同的kernel buffer，这个buffer和socket相关联。</li>
+<li>系统调用write()返回，产生一个上下文切换：从kernel mode切换到user mode（第4次切换了），然后DMA从kernel buffer拷贝数据到协议产（第4次拷贝了）。<br>上面4个步骤有4次切换，4次拷贝，我们发现如果能减少切换次数和拷贝次数将会有效提升性能。在kernel2.0+版本中，系统调用sendfile()就是用来简化上面步骤提升性能的。<br><strong>sendfile()不但能减少切换次数，还能减少拷贝次数。</strong><br>2）再来看下sendfile()来进行网络传输的过程：<br>sendfile(socket,file,len);<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">硬盘 &gt;&gt; kernel buffer（快速拷贝到kernel socket buffer） &gt;&gt; 协议栈</span><br></pre></td></tr></table></figure></li>
+<li>系统调用sendfile()通过DMA把硬盘数据拷贝到kernel buffer，然后数据被kernel直接拷贝到另外一个socket相关的kernel buffer。这里没有user mode和kernel mode之间的切换，在kernel中直接完成了一个buffer到另一个buffer的拷贝。</li>
+<li>DMA把数据从kernel buffer直接拷贝给协议栈，没有切换，也不需要数据从user mode拷贝到kernel mode，因为数据就在kernel中。<br>  步骤减少了，切换减少了，拷贝减少了，自然性能就提升了。这就是为什么说在Nginx配置文件里打开sendfile on选项能提高web server性能的原因。</li>
+</ol>
+<p>  <strong>综上，这三个参数都应该配置成on：sendfile on;tcp_nopush on;tcp_nodelay on;</strong></p>
+<h1 id="二、-nginx长连接-keepalive"><a href="#二、-nginx长连接-keepalive" class="headerlink" title="二、 nginx长连接-keepalive"></a>二、 nginx长连接-keepalive</h1><p>当时用nginx作为反向代理时，为了支持长连接，需要做到两点：</p>
+<ul>
+<li>从client到nginx的连接是长连接</li>
+<li>从nginx到server的连接是长连接</li>
+</ul>
+<h2 id="1、保持和client的长连接："><a href="#1、保持和client的长连接：" class="headerlink" title="1、保持和client的长连接："></a>1、保持和client的长连接：</h2><p>默认情况下，nginx已经自动开启了对client连接的keep alive支持（同时client发送的HTTP请求要求keep alive）。一般场景可以直接使用，但是对于一些比较特殊的场景，还是有必要调整个别参数（keepalive_timeout和keepalive_requests）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">    keepalive_timeout 120s 120s;</span><br><span class="line">    keepalive_requests 10000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1）keepalive_timeout</p>
+<ol>
+<li>第一个参数：设置keep-alive客户端连接在服务器端保持开启的超时值（默认75s）；值为0会禁用keep-alive客户端连接；</li>
+<li>第二个参数：可选，在响应的header域中设置一个值“Keep-Alive: timeout&#x3D;time”；通常可以不用设置；<br>注：keepalive_timeout默认75s，一般情况下够用，对于一些请求比较大的内部服务器通讯的场景，适当加大为120s或者300s；</li>
+</ol>
+<p>2）keepalive_requests<br>keepalive_requests指令用于<strong>设置一个keep-alive连接上可以服务的请求的最大数量，当最大请求数量达到时，连接被关闭。默认是100</strong>。这个参数的真实含义，是指一个keep alive建立之后，nginx就会为这个连接设置一个计数器，记录这个keep alive的长连接上已经接收并处理的客户端请求的数量。如果达到这个参数设置的最大值时，则nginx会强行关闭这个长连接，逼迫客户端不得不重新建立新的长连接。<br>大多数情况下当QPS（每秒请求数）不是很高时，默认值100凑活够用。但是，对于一些QPS比较高（比如超过10000QPS，甚至达到3k，5k设置更高）的场景，默认的100就显得太低。<br>简单计算一下，QPS&#x3D;10000时，客户端每秒发送10000个请求（通常建立有多个长连接），每个连接只能最多跑1000次请求，意味着平均每秒钟重新新建100个连接。因此，就会发现有大量的TIME_WAIT的socket连接（即使此时keep alive已经在client和nginx之间生效）。<strong>因为对于QPS较高的场景，非常有必要加大这个参数，以避免大量连接被生成再抛弃的情况，减少TIME_WAIT。</strong></p>
+<h2 id="2、保持和server的长连接"><a href="#2、保持和server的长连接" class="headerlink" title="2、保持和server的长连接"></a>2、保持和server的长连接</h2><p>为了让nginx和后端server（nginx成为upstream）之间保持长连接，典型设置如下：（<strong>默认nginx访问后端都是用的短连接（HTTP1.0），一个请求来了，nginx新开一个端口和后端建立连接，后端执行完毕后主动关闭该链接</strong>）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream  BACKEND &#123;</span><br><span class="line">        server   192.168.0.1：8080  weight=1 max_fails=2 fail_timeout=30s;</span><br><span class="line">        server   192.168.0.2：8080  weight=1 max_fails=2 fail_timeout=30s;</span><br><span class="line">        keepalive 300;        // 这个很重要！</span><br><span class="line">    &#125;</span><br><span class="line">server &#123;</span><br><span class="line">        listen 8080 default_server;</span><br><span class="line">        server_name &quot;&quot;;</span><br><span class="line">        location /  &#123;</span><br><span class="line">            proxy_pass http://BACKEND;</span><br><span class="line">            proxy_set_header Host  $Host;</span><br><span class="line">            proxy_set_header x-forwarded-for $remote_addr;</span><br><span class="line">            proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">            add_header Cache-Control no-store;</span><br><span class="line">            add_header Pragma  no-cache;</span><br><span class="line">            proxy_http_version 1.1;         // 这两个最好也设置</span><br><span class="line">            proxy_set_header Connection &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1）location中有两个参数需要设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        location /  &#123;</span><br><span class="line">            proxy_http_version 1.1; // 这两个最好也设置</span><br><span class="line">            proxy_set_header Connection &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HTTP协议中对长连接的支持是从1.1版本之后才有的，因为最好通过proxy_http_version指令设置为“1.1；<br>而“Connection” header应该被清理。清理的意思，我的理解，是清理从client过来的http header，因为即使client和nginx之间是短连接，nginx和upstream之间也是可以开启长连接的。这种情况下必须清理来自client请求中的“Connection” header。</p>
+<p>2）upstream中的keepalive设置<br>次数keepalive的含义不是开启、关闭长连接的开关，也不是用来设置超时的timeout；更不是设置长连接池的最大连接数。官方解释：</p>
+<ol>
+<li>The connections parameter sets the maximum number of idle keepalive connections to upstream servers connections（<strong>设置到upstream服务器的空闲keepalive连接的最大数量</strong>）</li>
+<li>When this number is exceeded, the least recently used connections are closed. （<strong>当这个数量被突破时，最近使用最少的连接将被关闭</strong>）</li>
+<li>It should be particularly noted that the keepalive directive does not limit the total number of connections to upstream servers that an nginx worker process can open.（<strong>特别提醒：keepalive指令不会限制一个nginx worker进程到upstream服务器连接的总数量</strong>）<br>我们先假设一个场景：有一个HTTP服务，作为upstream服务器接收请求，响应时间为100毫秒。如果要达到10000 QPS的性能，就需要在nginx和upstream服务器之间建立大约1000条HTTP连接。nginx为此建立连接池，然后请求过来时为每个请求分配一个连接，请求结束时回收连接到连接池中，连接的状态也就更改为idle。我们再假设这个upstream服务器的keepalive参数值比较小，比如常见的10：<br>A、假设请求和响应是均匀而平稳的，那么这1000条连接应该都是一放回连接池就立即被后续请求申请使用，线程池中的idle线程会非常少，趋近于零，不会造成连接数量反复震荡。<br>B、现实中请求和响应不可能平稳，我们以10毫秒为一个单位，来看连接的情况（逐一场景是1000个线程+100毫秒响应时间，每秒有10000个请求完成），我们假设应答始终都是平稳的，只是请求不平稳，第一个10毫秒只有50，第二个10毫秒有150：</li>
+<li>下一个10毫秒，有100个连接结束请求回收连接到连接池，但是假设此时请求不均匀10毫秒内没有预计的100个请求进来，而是只有50个请求。注意此时连接池回收了100个连接又分配出去50个连接，因此连接池内有50个空闲连接。</li>
+<li>然后注意看keepalive&#x3D;10的设置，这意味着连接池中最多容许保留有10个控线连接。因为nginx不得不将这50个空闲连接中的40个关闭，只保留10个。</li>
+<li>再下一个10毫秒，有150个请求进来，有100个请求结束任务释放连接。150-100&#x3D;50，孔雀50个连接，减掉前面连接池保留的10个空闲连接，nginx不得不新建40个新连接来满足要求。<br>C、同样，如果假设响应不均衡也会出现上面的连接数波动情况。</li>
+</ol>
+<p>造成连接数量反复震荡的一个推手，就是keepalive这个最大空闲连接数。毕竟连接池中的1000个连接在频繁利用时，出现短时间内多余10个空闲连接的概率是在太高。<strong>因此为了避免出现上面的连接震荡，必须考虑加大这个参数</strong>，比如上面的场景如果将keepalive设置为100或者200，就可以非常有效的缓冲请求和应答不均。</p>
+<p>总结：<br>keepalive这个参数一定要小心设置，尤其对于QPS比较高的场景，推荐先做一下估算（<strong>容量规划</strong>），根据QPS和平均响应时间答题能计算出需要的长连接的数量。比如前面1000QPS和100毫秒响应时间就可以推算出需要的长连接数量大概是1000.然后将keepalive设置为这个长连接数量的10%到30%。比较懒的同学，可以直接设置为keepalive&#x3D;1000之类的，一般都是OK的。</p>
+<h2 id="3、综上，出现大量TIME-WAIT的情况："><a href="#3、综上，出现大量TIME-WAIT的情况：" class="headerlink" title="3、综上，出现大量TIME_WAIT的情况："></a>3、综上，出现大量TIME_WAIT的情况：</h2><p>1）导致nginx端出现大量TIME_WAIT的情况有两种：</p>
+<ul>
+<li>keepalive_requests设置比较小，高并发下超过此值后nginx会强制关闭和客户端保持的keepalive长连接；（主动关闭连接后导致nginx出现TIME_WAIT）</li>
+<li>keepalive设置的比较小（空闲数太小），导致高并发下nginx会频繁的出现连接数震荡（超过该值会关闭连接），不停的关闭、开启和后端server保持的keepalive长连接<br>2）导致后端server端出现大量TIME_WAIT的情况：<br>nginx没有打开和后端的长连接，即：没有设置proxy_http_version 1.1和proxy_set_header Connection “”；从而导致后端server每次关闭连接，高并发下就会出现server端出现大量TIME_WAIT。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/03/13/Nginx%E4%BC%98%E5%8C%96%E9%95%BF%E8%BF%9E%E6%8E%A5/" data-id="cluwce6pn000jkcufat79gtsg" data-title="Nginx优化长连接" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/13/iptables%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%B8%B8%E7%94%A8%E8%A7%84%E5%88%99/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          iptables详解及常用规则
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/12/%E6%B8%85%E7%A9%BA%E6%94%B6%E8%97%8F%E5%A4%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">清空收藏夹</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

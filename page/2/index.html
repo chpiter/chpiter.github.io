@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="ChpiTer Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ChpiTer Blog">
+<meta property="og:url" content="https://chpiter.github.io/page/2/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="ChpiTer Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="ChpiTer">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="nginx-Nginx" class="h-entry article article-type-nginx" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/15/Nginx/" class="article-date">
+  <time class="dt-published" datetime="2020-04-15T00:53:37.000Z" itemprop="datePublished">2020-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/15/Nginx/">Nginx</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://www.nginx.cn/doc/index.html">https://www.nginx.cn/doc/index.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/15/Nginx/" data-id="cluwce6pk000hkcufh8k92ecv" data-title="Nginx" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="lvs-LVS" class="h-entry article article-type-lvs" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/13/LVS/" class="article-date">
+  <time class="dt-published" datetime="2020-04-13T14:25:27.000Z" itemprop="datePublished">2020-04-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/13/LVS/">LVS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/liwei0526vip/article/details/103104393">https://blog.csdn.net/liwei0526vip/article/details/103104393</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/liwei0526vip/article/details/103104483">https://blog.csdn.net/liwei0526vip/article/details/103104483</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/liwei0526vip/article/details/103104496">https://blog.csdn.net/liwei0526vip/article/details/103104496</a></li>
+</ul>
+<h1 id="一、netfilter基本原理"><a href="#一、netfilter基本原理" class="headerlink" title="一、netfilter基本原理"></a>一、netfilter基本原理</h1><p>LVS 是基于 Linux 内核中 netfilter 框架实现的负载均衡系统，所以要学习 LVS 之前必须要先简单了解 netfilter 基本工作原理。netfilter 其实很复杂也很重要，平时我们说的 Linux 防火墙就是 netfilter，不过我们平时操作的都是 iptables，iptables 只是用户控件编写和传递规则的工具而已，真正工作的是 netfilter。通过下图可以简单了解下 netfilter 的工作机制：</p>
+<p><img src="/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwM25ldGZpbHRlci5wbmc.jfif"></p>
+<p>netfilter 是内核态的 Linux 防火墙机制，作为一个通用、抽象的框架，提供了一整套的 hook 函数管理机制，提供诸如数据包过滤、网络地址转换、基于协议类型的连接跟踪的功能。</p>
+<p>通俗点将，就是 netfilter 提供了一种机制，可以在数据包流经过程中，根据规则设置若干个关卡（hook函数）来执行相关的操作。netfilter 总共设置了5个点，包括：PREROUTING\INPUT\FORWARD\OUTPUT\POSTROUTING</p>
+<ul>
+<li>PREROUTING：刚刚进入网络层，还未进行路由查找的包，通过此处</li>
+<li>INPUT：通过路由查找，确定发往本机的包，通过此处</li>
+<li>FORWARD：经过路由查找，要转发的包，在 POSTROUTING之前</li>
+<li>OUTPUT：从本机进程刚发的包，通过此处</li>
+<li>POSTROUTING：进入网络层已经经过路由查找，确定转发，将要离开本设备的包，通过此处</li>
+</ul>
+<p>当一个数据包进入网卡，经过链路层之后进入网络层就会到达 PREROUTING ，接着根据目标IP地址进行路由查找，如果目标IP是本机，数据包继续传递到 INPUT 上，经过协议栈后根据目标端口将数据送到响应的应用程序；应用程序处理请求后将响应数据包发送到 OUTPUT 上，最终通过 POSTROUTING 后发送出网卡。如果目标IP不是本机，而且服务器开启了forward 参数，就会将数据包传递送给 FORWARD 上，最后通过 POSTROUTING 后发送出网卡。</p>
+<h1 id="二、LVS基本原理"><a href="#二、LVS基本原理" class="headerlink" title="二、LVS基本原理"></a>二、LVS基本原理</h1><p>LVS是基于 netfilter 框架，主要工作于 INPUT 链上，在 INPUT 上注册 <code>ip_vs_in</code> HOOK 函数，进行 IPVS 主流程，大概原理如图所示：</p>
+<p><img src="/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwNGlwdnMucG5n.jfif"></p>
+<ul>
+<li>当用户访问 <a target="_blank" rel="noopener" href="http://www.sina.com.cn/">www.sina.com.cn</a> 时，用户数据通过层层网络，最后通过交换机进入 LVS 服务器网卡，并进入内核网络层。</li>
+<li>进入 PREROUTING 后经过路由查找，确定访问的目的 VIP 是本机 IP 地址，所以数据包进入到 INPUT 链上</li>
+<li>IPVS 是工作在 INPUT 链上，会根据访问的 <code>vip+port</code> 判断请求是否 IPVS 服务，如果是则调用注册的 IPVS HOOK 函数，进行 IPVS 相关主流程，强行修改数据包的相关数据，并将数据包发往 POSTROUTING 链上。</li>
+<li>POSTROUTING  上收到数据包后，根据目标 IP 地址（后端服务器），通过路由选路，将数据包最终发往后端的服务器上。</li>
+</ul>
+<p>开源 LVS 版本有3中工作模式，每种模式的工作原理截然不同，各种模式有各自的优缺点，分别适合不同的应用场景，不过最终本质的功能都是能够实现均衡的流量调度和良好的扩展性。主要包括以下三种模式：</p>
+<ul>
+<li>DR模式</li>
+<li>NAT模式</li>
+<li>Tunnel模式</li>
+</ul>
+<p>另外必要要说的模式是FULLNAT，这个模式在开源版本中是没有的，代码没有合并进入内核主线版本。后面单独介绍 FullNAT 模式。</p>
+<h1 id="三、DR-模式实现原理"><a href="#三、DR-模式实现原理" class="headerlink" title="三、DR 模式实现原理"></a>三、DR 模式实现原理</h1><p>LVS 基本原理中描述的比较简单，表述的是比较通用的流程。下面针对 DR 模式的具体实现原理，详细阐述 DR 模式是如何工作的。</p>
+<p><img src="/images/20200319150450262.png"></p>
+<p>其实 DR 模式是最常用的工作模式，因为它强大的性能。下边以一次请求和响应数据流的过程来秒数 DR 模式的具体原理</p>
+<h2 id="实现原理与过程"><a href="#实现原理与过程" class="headerlink" title="实现原理与过程"></a>实现原理与过程</h2><ul>
+<li>① 当客户端请求 <a target="_blank" rel="noopener" href="http://www.sina.com.cn/">www.sina.com.cn</a> 主页，经过 DNS 解析到 IP 后，向新浪服务器发送请求数据，数据包经过层层网络到达新浪负载均衡 LVS 服务器，到达 LVS 网卡时的数据包：源 IP 是客户端 IP 地址 CIP，目的 IP 是新浪对外的服务器 IP 地址，也就是说 VIP；此时源 MAC 地址是 CMAC，其实是 LVS 连接的路由器的 MAC 地址（为了容易理解记为 CMAC），目标 MAC 地址是 VIP 对应的 MAC，记为 VMAC。</li>
+<li>② 数据包到达网卡后，经过链路层到达 PREROUTING 未知（刚进入网络层），查找路由发现目标 IP 是 LVS 的 VIP，就会递送到 INPUT 链上，此时数据包 MAC、IP、Port 都没有修改。</li>
+<li>③ 数据包到达 INPUT 链，INPUT 是 LVS 主要工作的位置。此时 LVS 会根据目的 IP 和 Port 来确认是否是 LVS 定义的服务，如果是定义过的 VIP 服务，就会根据配置的 Service 信息，从 RealServer 中选择一个作为后端服务器 RS1，然后以 RS1 作为目标查找 Out 方向的路由，确定下一跳信息以及数据包要通过哪个网卡发出。最后将数据包通过 INET_HOOK 到 OUTPUT 链上（Out 方向刚从四层进入网络层）。</li>
+<li>④ 数据包通过 POSTROUTING 链后，从网络层转到链路层，将目的 MAC 地址修改为 RealServer 服务器 MAC 地址，记为 RMAC；而源 MAC 地址修改为 LVS与 RS 同网段的 selfIP 对应的 MAC 地址，记为 DMAC。此时，数据包通过交换机转发给 RealServer 服务器。</li>
+<li>⑤ 请求数据包到达 RealServer 服务器后，链路层检查目的 MAC 是自己网卡地址。到了网络层，查找路由，目的 IP 是 VIP（lo 上配置 VIP），判定是本机主机的数据包。经过协议栈后拷贝至应用程序（比如这里是 nginx 服务器），nginx 响应请求后，产生响应数据包。以目的 VIP 为 dst 查找 Out 路由，确定下一跳信息和发送网卡设备信息，发送数据包。此时数据包源、目的 IP 分别是 VIP、CIP，而源 MAC 地址是 RS1 的RMAC，目的 MAC 地址是下一跳（路由器）的 MAC地址，记为 CMAC，然后数据包通过 RS1 相连的路由器转发给真正客户端。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">从整个过程可以看出，DR模式LVS逻辑非常简单，数据包通过路由方式直接转发给RS，而且响应数据包时由RS服务器直接发送给客户端，不经过LVS。我们知道一般请求数据包会比较小，响应报文较大，经过LVS的数据包基本上都是小包，上述几条因素是LVS的DR模式性能强大的主要原因。</span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点和使用场景"><a href="#优缺点和使用场景" class="headerlink" title="优缺点和使用场景"></a>优缺点和使用场景</h2><ul>
+<li>DR模式的优点<ol>
+<li>响应数据不经过lvs，性能高</li>
+<li>对数据包修改小，信息保存完整（携带客户端源IP）</li>
+</ol>
+</li>
+<li>DR模式的缺点<ol>
+<li>lvs与rs必须在同一个物理网络，不支持跨机房</li>
+<li>rs上必须配置lo和其他内核参数</li>
+<li>不支持端口映射</li>
+</ol>
+</li>
+<li>DR模式的使用场景<br>  如果对性能要求非常高，可以首选DR模式，而且可以穿透客户端源IP地址。</li>
+</ul>
+<h1 id="四、NAT-模式实现原理"><a href="#四、NAT-模式实现原理" class="headerlink" title="四、NAT 模式实现原理"></a>四、NAT 模式实现原理</h1><p>lvs的第二种工作模式是NAT模式，下图详细介绍了数据包从客户端进入lvs后转发到rs，后经rs再次将响应数据转发给lvs，由lvs将数据包回复给客户端的整个过程。<br><img src="/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwNm5hdC5wbmc.jfif"></p>
+<h2 id="实现原理与过程-1"><a href="#实现原理与过程-1" class="headerlink" title="实现原理与过程"></a>实现原理与过程</h2><ul>
+<li>① 用户请求数据包经过层层网络，到达lvs网卡，此时数据包源IP是CIP，目的IP是VIP。</li>
+<li>② 经过网卡进入网络层 PREROUTING 位置，根据目的的IP查找路由，确认是本机IP，将数据包转发到 INPUT 上，此时源、目的的IP都未发生变化。</li>
+<li>③ 到达lvs后，通过目的的IP和目的port查找是否为LVS服务。若是IPVS服务，则会选择一个RS作为后端服务器，将数据包的目的IP修改为RIP，并以RIP为目的IP查找路由信息，确定下一跳和出口信息，将数据包转发至output上。</li>
+<li>④ 修改后的数据包经过 POSTROUTING 和链路层处理后，到达RS服务器，此时的数据包源IP是CIP，目的IP是RIP</li>
+<li>⑤ 到达RS服务器的数据包经过链路层和网络层检查后，被送往用户空间nginx程序。nginx程序处理完毕，发送响应数据包，由于RS上默认网关配置为lvs设备IP，所以nginx服务器会将数据包转发至下一跳，也就是说lvs服务器。此时数据包源IP是RIP，目的IP是CIP。</li>
+<li>⑥ lvs服务器收到RS响应数据包后，根据路由查找，发现目的IP不是本机IP，而且lvs服务器开启了转发模式，所以讲数据包转发给forward链，此处数据包未作修改。</li>
+<li>⑦ lvs收到响应数据保护后，根据目的IP和目的port查找服务和连接表，将源IP改为VIP，通过路由查找，确定下一跳和出口信息，将数据包发送至网关，经过复杂的网络到达用户客户端，最红完成了一次请求和响应的交互。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NAT模式双向流量都经过LVS，因此NAT模式性能会存在一定的瓶颈。不过与其他模式区别的事，NAT支持端口映射，且支持Windows操作系统。</span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点和使用场景-1"><a href="#优缺点和使用场景-1" class="headerlink" title="优缺点和使用场景"></a>优缺点和使用场景</h2><ul>
+<li>NAT模式的优点<ol>
+<li>能够支持windows操作系统</li>
+<li>支持端口映射。如果rs端口与vport不一致，lvs除了修改目的ip，也会修改dport以支持端口映射</li>
+</ol>
+</li>
+<li>NAT模式的缺点<ol>
+<li>后端rs需要配置网关</li>
+<li>双向流量对lvs负载压力比较大</li>
+</ol>
+</li>
+<li>NAT模式的使用场景<br>  windows系统，使用lvs，必须选择lvs模式。</li>
+</ul>
+<h1 id="五、Tunnel-模式实现原理"><a href="#五、Tunnel-模式实现原理" class="headerlink" title="五、Tunnel 模式实现原理"></a>五、Tunnel 模式实现原理</h1><p>Tunnel 模式在国内使用比较少。它也是一种单臂的模式，只有请求数据会经过lvs，响应数据直接从后端服务器发送给客户端，性能也很强大，同时支持跨机房。</p>
+<p><img src="/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwN3R1bm5lbC5wbmc.jfif"></p>
+<h2 id="实现原理与过程-2"><a href="#实现原理与过程-2" class="headerlink" title="实现原理与过程"></a>实现原理与过程</h2><ul>
+<li>① 用户请求数据包经过层层网络，到达lvs网卡，此时数据包源IP是cip，目的IP是VIP。</li>
+<li>② 经过网卡进入网络层 PREROUTIONG 位置，根据目的ip查找路由，确认是本机IP，将数据包转发到INPUT链上，到达lvs，此时源、目的ip<br>都未发生变化。</li>
+<li>③ 到达lvs后，通过目的ip和目的port查找是否为IPVS服务。若是IPVS服务，则会选择一个rs作为后端服务器，以rip为目的ip查找路由信息，确定下一跳、dev等信息，然后IP头部前边额外增加一个IP头（以dip为源，rip为目的ip），将数据包转发至OUTPUT 上。</li>
+<li>④ 数据包根据路由信息最终经过lvs网卡，发送至路由器网关，通过网络到达后端服务器。</li>
+<li>⑤ 后端服务器收到数据包后，ipip模块将Tunnel头部卸载，正常看到源ip是cip，目的ip是vip，由于在tunl0上配置vip，路由查找后判定为本机ip，送往应用程序。应用程序nginx正常响应数据后以vip为源ip，cip为目的ip的数据包发送至网卡，最终到达客户。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tunnel模式具备DR模式的高性能，又支持跨机房访问，听起来比较完美。不过国内运营商有一定特色型，比如RS的响应数据包的源IP为VIP，VIP与后端服务器可能存在跨运营商的情况，有可能被运营商的策略封掉。</span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点和使用场景-2"><a href="#优缺点和使用场景-2" class="headerlink" title="优缺点和使用场景"></a>优缺点和使用场景</h2><ul>
+<li>Tunnel模式的优点<ol>
+<li>单臂模式，对lvs负载压力小</li>
+<li>对数据包修改脚下，信息保存完整</li>
+<li>可跨机房（国内实现有难度）</li>
+</ol>
+</li>
+<li>Tunnel模式的缺点<ol>
+<li>需要在后端服务器安装配置ipip模块</li>
+<li>需要在后端服务器tunl0配置vip</li>
+<li>隧道头部的加入可能导致分片，影响服务器性能</li>
+<li>隧道头部IP地址固定，后端服务器网卡hash可能不均</li>
+<li>不支持端口映射</li>
+</ol>
+</li>
+<li>Tunnel模式的使用场景<br>  理论上，如果对转发性能要求很高，且有跨机房需求，Tunnel可能是较好的选择。</li>
+</ul>
+<h1 id="六、涉及的概念术语"><a href="#六、涉及的概念术语" class="headerlink" title="六、涉及的概念术语"></a>六、涉及的概念术语</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CIP：Client IP，表示的是客户端 IP 地址。</span><br><span class="line">VIP：Virtual IP，表示负载均衡对外提供访问的 IP 地址，一般负载均衡 IP 都会通过 Virtual IP 实现高可用。</span><br><span class="line">RIP：RealServer IP，表示负载均衡后端的真实服务器 IP 地址。</span><br><span class="line">DIP：Director IP，表示负载均衡与后端服务器通信的 IP 地址。</span><br><span class="line">CMAC：客户端的 MAC 地址，准确的应该是 LVS 连接的路由器的 MAC 地址。</span><br><span class="line">VMAC：负载均衡 LVS 的 VIP 对应的 MAC 地址。</span><br><span class="line">DMAC：负载均衡 LVS 的 DIP 对应的 MAC 地址。</span><br><span class="line">RMAC：后端真实服务器的 RIP 地址对应的 MAC 地址。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/13/LVS/" data-id="cluwce6pb0006kcuf4j4qar9g" data-title="LVS" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="kubeadm-command-kubeadm-command" class="h-entry article article-type-kubeadm-command" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/08/kubeadm-command/" class="article-date">
+  <time class="dt-published" datetime="2020-04-07T23:46:22.000Z" itemprop="datePublished">2020-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/08/kubeadm-command/">kubeadm 常用命令行选项</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="kubeadm-init"><a href="#kubeadm-init" class="headerlink" title="kubeadm init"></a>kubeadm init</h1><ul>
+<li><p><a target="_blank" rel="noopener" href="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/">https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/</a></p>
+<p>  此命令初始化一个 Kubernetes 控制节点。</p>
+</li>
+</ul>
+<h2 id="“init”命令执行以下阶段"><a href="#“init”命令执行以下阶段" class="headerlink" title="“init”命令执行以下阶段"></a>“init”命令执行以下阶段</h2><ul>
+<li>preflight Run pre-flight checks</li>
+<li>kubelet-start Write kubelet settings and （re）start the kubelet</li>
+<li>certs Certificate generation<ul>
+<li>&#x2F;ca Generate the self-signed Kubernetes CA to provision identities for other Kubernetes components</li>
+<li>&#x2F;apiserver Generate the certificate for serving the Kubernetes API</li>
+<li>&#x2F;apiserver-kubelet-client Generate the certificate for the API server to connect to kubelet</li>
+<li>&#x2F;front-proxy-ca Generate theself-signed CA to provision identities for front proxy</li>
+<li>&#x2F;front-proxy-client Generate the certificate for the front proxy client</li>
+<li>&#x2F;etcd-ca Generate the self-signed CA to provision identities for etcd</li>
+<li>&#x2F;etcd-server Generate the certificate for serving etcd</li>
+<li>&#x2F;etcd-peer Generate the certificate for etcd nodes to communicate with each other</li>
+<li>&#x2F;etcd-healthcheck-client Generate the certificate for liveness probes to healthcheck etcd</li>
+<li>&#x2F;apiserver&#x3D;etcd-client Generate the certificate for apiserver uses to access etcd</li>
+</ul>
+</li>
+<li>kubeconfig Genera all kubeconfig files necessary to establish the control plane and the admin kubeconfig file<ul>
+<li>&#x2F;admin Generate a kubeconfig file for the admin to use and for kubeadm itself</li>
+<li>&#x2F;kubelet Generate a kubeconfig file for the kubelet to use <em>only</em> forcluster bootstrapping purpose</li>
+<li>&#x2F;controller-manager Generate a kubeconfig file for the controller manager to use</li>
+<li>&#x2F;scheduler Generate a kubeconfig file for the scheduler to use</li>
+</ul>
+</li>
+<li>control-plane Generate all static Pod manifest files necessary to establish the control plane <ul>
+<li>&#x2F;apiserver Generate the kube-apiserver static Pod manifest</li>
+<li>&#x2F;controller-manager Generate the kube-controller-manager static pod manifest</li>
+<li>&#x2F;scheduler Generate the kube-scheduler static pod manifest</li>
+</ul>
+</li>
+<li>etcd Generate static Pod manifest file for local etcd<ul>
+<li>&#x2F;local Generate the static Pod manifest file for a local，single-node local etcd instance</li>
+</ul>
+</li>
+<li>upload-config Upload the kubeadm and kubelet configuration to a Configmap<ul>
+<li>&#x2F;kubeadm Upload the kubeadm ClusterConfiguration to a configmap</li>
+<li>&#x2F;kubelet Upload the kubelet component config to a configmap</li>
+</ul>
+</li>
+<li>upload-certs Upload certificates to kubeadm-certs</li>
+<li>mark-control-plane Mark a node as a control-plane</li>
+<li>bootstrap-token Generate bootstrap tokens used to join a node to a cluster</li>
+<li>addon Install required addons for passing Conformance tests<ul>
+<li>&#x2F;coredns Install the CoreDNS addon to a Kubernetes cluster</li>
+<li>&#x2F;kube-proxy Install the kube-proxy addon to a Kubernetes cluster</li>
+</ul>
+</li>
+</ul>
+<h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><ul>
+<li>-apiserver-advertise-address string<br>  API服务器所公布的其正在监听的IP地址。如果未设置，则使用默认网络接口</li>
+<li>-apiserver-bind-port int32 默认值：6443<br>  API服务器绑定的端口</li>
+<li>-apiserver-cert-extra-sans stringSlice<br>  用于API Server 服务器证书的可选附加主题备用名称（SAN）。可以是IP地址和DNS名称</li>
+<li>-cert-dir string 默认值：”&#x2F;etcd&#x2F;kubernetes&#x2F;pki”<br>  保存和存储证书的路径</li>
+<li>-certificate-key string<br>  用于加密kubeadm-certs Secret 中的控制平面证书的密钥</li>
+<li>-config string<br>  kubeadm 配置文件的路径</li>
+<li>-control-plane-endpoint string<br>  为控制平面指定一个稳定的IP地址或DNS名称</li>
+<li>-cri-socket string<br>  要连接的CRI套接字的路径。如果为空，则kubeadm将尝试自动监测此值；仅当安装了多个CRI或具有非标准CRI插槽时，才使用此选项</li>
+<li>-dry-run<br>  不做任何更改，只输出将要执行的操作</li>
+<li>-k，–experimental-kustomize string<br>  用于存储kustomize为静态pod清单所提供的补丁的路径</li>
+<li>-feature-gates string<br>  一组用来描述各种功能特性的键值（key&#x3D;value）对。选项是：IPv6DualStack&#x3D;true|false (ALPHA - default&#x3D;false)</li>
+<li>-h，–help<br>  init操作的帮助命令</li>
+<li>-ignore-preflight-errors stringSlice<br>  错误将显示为警告的检查列表；例如：IsPrivilegedUser,Swap。取值 all 时将忽略检查中的所有错误</li>
+<li>–image-repository string 默认值：”k8s.gcr.io”<br>  选择用于拉取控制平面镜像的默认仓库</li>
+<li>–kubernetes-version string<br>  为控制平面选择一个特定的 kubernetes 版本</li>
+<li>–node-name string<br>  指定节点的名称</li>
+<li>–pod-network-cidr string<br>  指明pod网络可以使用的IP地址段。如果设置了这个参数，控制平面将会为没一个节点自动分配CIDRs</li>
+<li>–service-cidr string<br>  为服务的虚拟IP地址指定另外的IP地址段</li>
+<li>–skip-certificate-key-print<br>  不要打印用于加密控制平面证书的密钥</li>
+<li>–skip-phases stringSlice<br>  要跳过的阶段列表</li>
+<li>–skip-token-print<br>  要跳过打印 <code>kubeadm init</code> 生成的默认引导令牌</li>
+<li>–token string<br>  这个令牌用于建立控制平面与工作节点间的双向通信，格式为 [a-z0-9]{6}.[a-z0-9]{16}</li>
+<li>–token-ttl duration<br>  令牌被自动删除之前的持续时间（例如 1s，2m，3h）。如果设置为0，则令牌将永不过期</li>
+<li>–upload-certs<br>  将控制平面证书上传到kubeadm-certs Secret</li>
+<li>–rootfs string<br>  [实验] 到 ‘真实’ 主机根文件系统的路径，<strong>从父命令继承的选项</strong></li>
+</ul>
+<h2 id="init命令的工作流程"><a href="#init命令的工作流程" class="headerlink" title="init命令的工作流程"></a>init命令的工作流程</h2><p><code>kubeadm init</code> 命令通过执行下列步骤来启动一个 kubernetes 控制平面节点</p>
+<ol>
+<li>在做出变更前运行一系列的预检项来验证系统状态。一些检查项目仅仅触发警告，其他的则会被视为错误并且推出kubeadm，除非问题得到解决或者用户指定了<br> –ignore-preflight-error&#x3D;<list-of-error> 参数</li>
+<li>生成一个自签名的CA证书（或者使用现有的证书，如果提供的话）来为集群中的每一个组件建立身份标识。如果用户已经通过 <code>--cert-dir</code> 配置的证书目录（默认为 <code>/etc/kubernetes/pki</code>）提供了他们自己的CA证书以及&#x2F;或者密钥，那么将会跳过这个步骤，正如文档 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#custom-certificates">使用自定义证书</a>所述。如果指定了 <code>--apiserver-cert-extra-sans</code> 参数，APIserver的证书将会有额外的SAN条目，如果必要的话，将会被转为小写。</li>
+<li>将 kubeconfig 文件写入 <code>/etc/kubernetes</code> 目录以便kubelet、controller-manager和scheduler用来连接到APIServer，它们每一个都有自己的身份标识，同时生成一个名为 <code>admin.conf</code> 的独立kubeconfig 文件，用于管理操作。</li>
+<li>为APIServer、controller-manager和scheduler生成静态POD的清单文件（manifest）。假设没有提供一个外部的etcd服务的话，也会为etcd生成一份额外的静态POD清单文件。</li>
+</ol>
+<p>静态POD的清单文件被写入到 <code>/etc/kubernetes/manifest</code> 目录；kubelet会监视这个目录以便在系统启动的时候创建pod。</p>
+<p>一旦控制平面的POD都运行起来，<code>kubeadm init</code>的工作流程就继续往下执行。</p>
+<ol>
+<li>对控制平面节点应用labels和taints标记以便不会在它上面运行其他的工作负载。</li>
+<li>生成令牌以便其他节点以后可以使用这个令牌向控制平面节点注册他们自己。（可先），用户可以通过 <code>--token</code> 提供一个令牌，正如文档 <img src="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/" alt="kubeadm token">所述。</li>
+<li>为了使得节点能够遵照<img src="https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/" alt="Bootstrap Tokens"> 和 <img src="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/" alt="LTS Bootstrap"> 这两份文档中描述的机制加入到集群中，kubeadm会执行所有的必要配置： -创建一份configmap提供添加集群节点所需的信息，并未该configmap设置相关的RBAC访问规则。-使得Bootstrap Tokens可以访问CSR签名API。-对新的CSR请求配置为自动签发。</li>
+</ol>
+<h2 id="在-kubeadm-中使用-init-phases"><a href="#在-kubeadm-中使用-init-phases" class="headerlink" title="在 kubeadm 中使用 init phases"></a>在 kubeadm 中使用 init phases</h2><p>Kubeadm 允许您使用 <code>kubeadm init phases</code> 命令分阶段创建控制平面节点。<br>要查看阶段和子阶段的有序列表，可以调用 <code>kubeadm init --help</code>。该列表将位于帮助屏幕的顶部，每个阶段旁边都有一个描述。注意，通过调用 <code>kubeadm init</code>， 所有阶段和子阶段都将按照此确切顺序执行。<br>某些阶段具有唯一的标志，因此，如果要查看可用选项的列表，请添加 <code>--help</code> ，例如：<br><code>sudo kubead init phase control=plane controller-manager --help</code><br>您也可以使用 <code>--help</code> 查看特定父阶段的子阶段列表：<br><code>sudo kubeadm init phase control-plane --help</code><br><code>kubeadm init</code> 还公开了一个名为 <code>--skip-phases</code> 的参数，该参数可用于跳过某些阶段。参数接受阶段名称列表，并且这些名称可以从上面的有序列表中获取。<br>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm init phase control-plane all --config=configfile.yaml</span><br><span class="line">sudo kubeadm init phase etcd local --config=configfile.yaml</span><br><span class="line"># 您现在可以修改控制平面和 etcd 清单文件</span><br><span class="line">sudo kubeadm init --skip-phases=control-plane,etcd --config=configfile.yaml</span><br></pre></td></tr></table></figure>
+<p>该示例将执行的操作是基于 configfile.yaml 中的配置在 <code>/etc/kubernetes/manifest</code> 中写入控制平面和etcd的清单文件。这允许您修改文件，然后使用 –skip-phases 跳过这些阶段。通过调用最后一个命令，您将使用自定义清单文件创造一个控制平面节点。</p>
+<h2 id="结合一个配置文件来使用kubeadm-init"><a href="#结合一个配置文件来使用kubeadm-init" class="headerlink" title="结合一个配置文件来使用kubeadm init"></a>结合一个配置文件来使用kubeadm init</h2><p>通过一份配置文件而不是使用命令行参数来配置 kubeadm init 命令是可能的，但是一些更加高级的功能只能通过配置文件设定。这份配置文件通过 –config 选项参数指定。<br>可以使用 <code>kubead config print</code> 命令打印出默认配置。<br><strong>推荐</strong>使用 <code>kubeadm config migrate</code> 命令将旧的 v1beta1 版本的配置迁移到 v1beta2 版本。</p>
+<h2 id="添加-kube-proxy-参数"><a href="#添加-kube-proxy-参数" class="headerlink" title="添加 kube-proxy 参数"></a>添加 kube-proxy 参数</h2><p>kubeadm配置中有关 kube-proxy 的说明请查看：<img src="https://godoc.org/k8s.io/kubernetes/pkg/proxy/apis/config#KubeProxyConfiguration" alt="-kube-proxy"><br>使用 kubeadm 启用IPVS模式的说明请查看： <img src="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/README.md" alt="-IPVS"></p>
+<h2 id="向控制平面组件传递自定义的命令行参数"><a href="#向控制平面组件传递自定义的命令行参数" class="headerlink" title="向控制平面组件传递自定义的命令行参数"></a>向控制平面组件传递自定义的命令行参数</h2><p>有关向控制平面组件传递命令行参数的说明请查看：<img src="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/control-plane-flags/" alt="控制平面命令行参数"></p>
+<h2 id="使用自定义的镜像"><a href="#使用自定义的镜像" class="headerlink" title="使用自定义的镜像"></a>使用自定义的镜像</h2><p>默认情况下，kubeadm会从 k8s.gcr.io 仓库拉取镜像。如果请求的Kubernetes 版本是 CI label（例如 ci&#x2F;latest），则使用 gcr.io&#x2F;kubernetes-ci-images。<br>您可以通过使用<img src="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file" alt="带有配置文件的kubeadm">来重写此操作。<br>允许的自定义功能有：</p>
+<ul>
+<li>使用其他的 imageRepository 来代替 k8s.gcr.io</li>
+<li>将 useHyperKubeImage 设置为 true，使用 HyperKube 镜像</li>
+<li>为etcd或DNS附件提供特定的 imageRepository 和 imageTag<br>请注意配置文件中的配置项 kubernetesVersion 或者命令行参数 –kubernetes-version 会影响到镜像的版本。</li>
+</ul>
+<h2 id="将控制平面证书上传到集群"><a href="#将控制平面证书上传到集群" class="headerlink" title="将控制平面证书上传到集群"></a>将控制平面证书上传到集群</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/08/kubeadm-command/" data-id="cluwce6q70016kcuf6kus0yop" data-title="kubeadm 常用命令行选项" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="kubeadm-general-kubeadm概述" class="h-entry article article-type-kubeadm-general" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/07/kubeadm%E6%A6%82%E8%BF%B0/" class="article-date">
+  <time class="dt-published" datetime="2020-04-06T22:35:16.000Z" itemprop="datePublished">2020-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/07/kubeadm%E6%A6%82%E8%BF%B0/">kubeadm概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.52wiki.cn/Doc/Read/id/1687.html">https://www.52wiki.cn/Doc/Read/id/1687.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/</a></li>
+<li><a target="_blank" rel="noopener" href="https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm/">https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.51cto.com/crushlinux/2473003">https://blog.51cto.com/crushlinux/2473003</a></li>
+<li><a target="_blank" rel="noopener" href="https://feisky.gitbooks.io/kubernetes/content/components/kubeadm.html">https://feisky.gitbooks.io/kubernetes/content/components/kubeadm.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cookeem/kubeadm-ha">https://github.com/cookeem/kubeadm-ha</a></li>
+</ul>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>kubeadm 是一个工具，它提供了 <code>kubeadm init</code> 以及 <code>kubeadm join</code> 这两个命令作为快速创建 Kubernetes 集群的最佳实践。</p>
+<p>kubeadm 通过执行必要的操作来启动和运行一个最小可用的集群。它被故意设计为只关心启动集群，而不是准备节点环境的工作。同样的，诸如安装各种各样的可有可无的插件，例如 Kubernetes 控制面板、监控解决方案以及特定云提供商的插件，这些都不在它负责的范围。<br>相反，我们期望由一个基于 Kubernetes 从更高层设计的更加合适的工具来做这些事情；并且，理想情况下，使用 kubeadm 作为所有部署的基础将会使得创建一个符合期望的集群变得容易。</p>
+<p>换言之，kubeadm 是一个基础设施工具，简化 Kubernetes 集群的部署和创建，而基于 Kubernetes 高层的设计则不在 kubeadm 负责范围之内。</p>
+<p>kubeadm 常用命令</p>
+<ul>
+<li>kubeadm init 启动一个 Kubernetes 主节点（master）</li>
+<li>kubeadm join 启动一个 Kubernetes 工作节点并将其加入到集群</li>
+<li>kubeadm upgrade 更新一个 Kubernetes 集群到最新版本</li>
+<li>kubeadm config 如果你使用 kubeadm v1.7.x 或者更低版本，你需要对你的集群做一些配置以便使用 <code>kubeadm upgrade</code> 命令</li>
+<li>kubeadm token 使用 <code>kubeadm join</code>来管理令牌</li>
+<li>kubeadm reset 还原之前使用 <code>kubeadm init</code> 或者 <code>kubeadm join</code> 对节点产生的改变</li>
+<li>kubeadm version 打印kubeadm版本信息</li>
+<li>kubeadm alpha 预览一组可用的新功能以便从社区搜集反馈</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/07/kubeadm%E6%A6%82%E8%BF%B0/" data-id="cluwce6q80018kcuf357vbl02" data-title="kubeadm概述" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="supervisor-supervisor" class="h-entry article article-type-supervisor" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/21/supervisor/" class="article-date">
+  <time class="dt-published" datetime="2020-03-21T08:44:01.000Z" itemprop="datePublished">2020-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/21/supervisor/">supervisor</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="supervisor介绍"><a href="#supervisor介绍" class="headerlink" title="supervisor介绍"></a>supervisor介绍</h1><p>进程守护</p>
+<h1 id="supervisor组件"><a href="#supervisor组件" class="headerlink" title="supervisor组件"></a>supervisor组件</h1><h2 id="supervisord"><a href="#supervisord" class="headerlink" title="supervisord"></a>supervisord</h2><p>supervisord是supervisor的服务端程序：启动supervisor程序，启动supervisor管理的子进程，响应来自client的请求，重启闪退或异常退出的子进程，把子进程的stderr或stdout记录到日志文件中，生成和处理event。</p>
+<h2 id="supervisorctl"><a href="#supervisorctl" class="headerlink" title="supervisorctl"></a>supervisorctl</h2><p>supervisorctl是客户端程序，有一个类似shell的命令，可以查看子进程状态，启动、停止、重启子进程，获取running子进程的列表等。supervisorctl不仅可以连接到本机的supervd，还可以连接远程的supervisord，本机通过UNIX socke连接，远程通过TCP socket连接。supervisorctl和supervd之间的通信是通过XML_RPC完成的</p>
+<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><p>Web Server可以在界面上可以进城，Web Server是通过XML_RPC来实现的。</p>
+<h2 id="XML-RPC接口"><a href="#XML-RPC接口" class="headerlink" title="XML_RPC接口"></a>XML_RPC接口</h2><p>用于远程调用的接口</p>
+<h1 id="配置文件详解"><a href="#配置文件详解" class="headerlink" title="配置文件详解"></a>配置文件详解</h1><h2 id="unix-http-server"><a href="#unix-http-server" class="headerlink" title="[unix_http_server]"></a>[unix_http_server]</h2><table>
+<thead>
+<tr>
+<th>参数选项</th>
+<th>中文白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file=/tmp/supervisor.sock</td>
+<td>socket文件的路径，supervisorctl用XML_RPC和supervisord通信就是通过它进行的。如果不设置的话，supervisorctl也就不能用了不设置的话，默认为none。 非必须设置</td>
+</tr>
+<tr>
+<td>;chmod=0700</td>
+<td>这个简单，就是修改上面的那个socket文件的权限为0700不设置的话，默认为0700。 非必须设置</td>
+</tr>
+<tr>
+<td>;chown=nobody:nogroup</td>
+<td>这个一样，修改上面的那个socket文件的属组为user.group不设置的话，默认为启动supervisord进程的用户及属组。非必须设置</td>
+</tr>
+<tr>
+<td>;username=user</td>
+<td>使用supervisorctl连接的时候，认证的用户不设置的话，默认为不需要用户。 非必须设置</td>
+</tr>
+<tr>
+<td>;password=123</td>
+<td>和上面的用户名对应的密码，可以直接使用明码，也可以使用SHA加密如：{SHA}82ab876d1387bfafe46cc1c8a2ef074eae50cb1d默认不设置。非必须设置</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="inet-http-server"><a href="#inet-http-server" class="headerlink" title="[inet_http_server]"></a>[inet_http_server]</h2><table>
+<thead>
+<tr>
+<th>参数选项</th>
+<th>中文白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>;port=127.0.0.1:9001</td>
+<td>这个是侦听的IP和端口，侦听所有IP用 :9001或*:9001。 这个必须设置，只要上面的[inet_http_server]开启了，就必须设置它</td>
+</tr>
+<tr>
+<td>;username=user</td>
+<td>这个和上面的uinx_http_server一个样。非必须设置</td>
+</tr>
+<tr>
+<td>;password=123</td>
+<td>这个也一个样。非必须设置</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="supervisord-1"><a href="#supervisord-1" class="headerlink" title="[supervisord]"></a>[supervisord]</h2><table>
+<thead>
+<tr>
+<th>参数选项</th>
+<th>中文白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>logfile=/tmp/supervisord.log</td>
+<td>这个是supervisord这个主进程的日志路径，注意和子进程的日志不搭嘎。默认路径$CWD/supervisord.log，$CWD是当前目录。。非必须设置</td>
+</tr>
+<tr>
+<td>logfile_maxbytes=50MB</td>
+<td>这个是上面那个日志文件的最大的大小，当超过50M的时候，会生成一个新的日志文件。当设置为0时，表示不限制文件大小默认值是50M，非必须设置。</td>
+</tr>
+<tr>
+<td>logfile_backups=10</td>
+<td>日志文件保持的数量，上面的日志文件大于50M时，就会生成一个新文件。文件数量大于10时，最初的老文件被新文件覆盖，文件数量将保持为10当设置为0时，表示不限制文件的数量。默认情况下为10。。。非必须设置</td>
+</tr>
+<tr>
+<td>loglevel=info</td>
+<td>日志级别，有critical, error, warn, info, debug, trace, or blather等。默认为info。。。非必须设置项</td>
+</tr>
+<tr>
+<td>pidfile=/tmp/supervisord.pid</td>
+<td>supervisord的pid文件路径。默认为$CWD/supervisord.pid。。。非必须设置</td>
+</tr>
+<tr>
+<td>nodaemon=false</td>
+<td>如果是true，supervisord进程将在前台运行。默认为false，也就是后台以守护进程运行。。。非必须设置</td>
+</tr>
+<tr>
+<td>minfds=1024</td>
+<td>这个是最少系统空闲的文件描述符，低于这个值supervisor将不会启动。系统的文件描述符在这里设置cat /proc/sys/fs/file-max。默认情况下为1024。。。非必须设置</td>
+</tr>
+<tr>
+<td>minprocs=200</td>
+<td>最小可用的进程描述符，低于这个值supervisor也将不会正常启动。ulimit  -u这个命令，可以查看linux下面用户的最大进程数。默认为200。。。非必须设置</td>
+</tr>
+<tr>
+<td>;umask=022</td>
+<td>进程创建文件的掩码。默认为022。。非必须设置项</td>
+</tr>
+<tr>
+<td>;user=chrism</td>
+<td>这个参数可以设置一个非root用户，当我们以root用户启动supervisord之后。我这里面设置的这个用户，也可以对supervisord进行管理。默认情况是不设置。。。非必须设置项</td>
+</tr>
+<tr>
+<td>;identifier=supervisor</td>
+<td>这个参数是supervisord的标识符，主要是给XML_RPC用的。当你有多个supervisor的时候，而且想调用XML_RPC统一管理，就需要为每个supervisor设置不同的标识符了。默认是supervisord。。。非必需设置</td>
+</tr>
+<tr>
+<td>;directory=/tmp</td>
+<td>这个参数是当supervisord作为守护进程运行的时候，设置这个参数的话，启动supervisord进程之前，会先切换到这个目录。默认不设置。。。非必须设置</td>
+</tr>
+<tr>
+<td>;nocleanup=true</td>
+<td>这个参数当为false的时候，会在supervisord进程启动的时候，把以前子进程产生的日志文件(路径为AUTO的情况下)清除掉。有时候咱们想要看历史日志，当然不想日志被清除了。所以可以设置为true。默认是false，有调试需求的同学可以设置为true。。。非必须设置</td>
+</tr>
+<tr>
+<td>;childlogdir=/tmp</td>
+<td>当子进程日志路径为AUTO的时候，子进程日志文件的存放路径。默认路径是这个东西，执行下面的这个命令看看就OK了，处理的东西就默认路径python -c &quot;import tempfile;print tempfile.gettempdir()&quot;。非必须设置</td>
+</tr>
+<tr>
+<td>;environment=KEY=&quot;value&quot;</td>
+<td>这个是用来设置环境变量的，supervisord在linux中启动默认继承了linux的环境变量，在这里可以设置supervisord进程特有的其他环境变量。supervisord启动子进程时，子进程会拷贝父进程的内存空间内容。 所以设置的这些环境变量也会被子进程继承。小例子：environment=name=&quot;haha&quot;,age=&quot;hehe&quot;。默认为不设置。。。非必须设置</td>
+</tr>
+<tr>
+<td>;strip_ansi=false</td>
+<td>这个选项如果设置为true，会清除子进程日志中的所有ANSI 序列。什么是ANSI序列呢？就是我们的\n,\t这些东西。默认为false。。。非必须设置</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="rpcinterface-supervisor"><a href="#rpcinterface-supervisor" class="headerlink" title="[rpcinterface:supervisor]"></a>[rpcinterface:supervisor]</h2><table>
+<thead>
+<tr>
+<th>参数选项</th>
+<th>中文白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>serverurl=unix:///tmp/supervisor.sock</td>
+<td>这个是supervisorctl本地连接supervisord的时候，本地UNIX socket路径，注意这个是和前面的[unix_http_server]对应的默认值就是unix:///tmp/supervisor.sock 非必须设置</td>
+</tr>
+<tr>
+<td>;serverurl=http://127.0.0.1:9001</td>
+<td>这个是supervisorctl远程连接supervisord的时候，用到的TCP socket路径注意这个和前面的[inet_http_server]对应。默认就是http://127.0.0.1:9001 非必须项</td>
+</tr>
+<tr>
+<td>;username=chris</td>
+<td>用户名默认空。非必须设置</td>
+</tr>
+<tr>
+<td>;password=123</td>
+<td>密码默认空。。非必须设置</td>
+</tr>
+<tr>
+<td>;prompt=mysupervisor</td>
+<td>输入用户名密码时候的提示符默认supervisor。。非必须设置</td>
+</tr>
+<tr>
+<td>;history_file=~/.sc_history</td>
+<td>这个参数和shell中的history类似，我们可以用上下键来查找前面执行过的命令。默认是no file的。。所以我们想要有这种功能，必须指定一个文件。。。非必须设置</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="program-theprogramname"><a href="#program-theprogramname" class="headerlink" title="[program:theprogramname]"></a>[program:theprogramname]</h2><table>
+<thead>
+<tr>
+<th>参数选项</th>
+<th>中文白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>;command=/bin/cat</td>
+<td>这个就是我们的要启动进程的命令路径了，可以带参数例子：/home/test.py -a 'hehe'有一点需要注意的是，我们的command只能是那种在终端运行的进程，不能是守护进程。这个想想也知道了，比如说command=service httpd start。httpd这个进程被linux的service管理了，我们的supervisor再去启动这个命令。这已经不是严格意义的子进程了。这个是个必须设置的项</td>
+</tr>
+<tr>
+<td>;process_name=%(program_name)s</td>
+<td>这个是进程名，如果我们下面的numprocs参数为1的话，就不用管这个参数了，它默认值%(program_name)s也就是上面的那个program冒号后面的名字，但是如果numprocs为多个的话，那就不能这么干了。想想也知道，不可能每个进程都用同一个进程名吧。</td>
+</tr>
+<tr>
+<td>;numprocs=1</td>
+<td>启动进程的数目。当不为1时，就是进程池的概念，注意process_name的设置。默认为1    。。非必须设置</td>
+</tr>
+<tr>
+<td>;directory=/tmp</td>
+<td>进程运行前，会前切换到这个目录。默认不设置。。。非必须设置</td>
+</tr>
+<tr>
+<td>;umask=022</td>
+<td>进程掩码，默认none，非必须</td>
+</tr>
+<tr>
+<td>;priority=999</td>
+<td>子进程启动关闭优先级，优先级低的，最先启动，关闭的时候最后关闭。默认值为999。非必须设置</td>
+</tr>
+<tr>
+<td>;autostart=true</td>
+<td>如果是true的话，子进程将在supervisord启动后被自动启动。默认就是true。非必须设置</td>
+</tr>
+<tr>
+<td>;autorestart=unexpected</td>
+<td>这个是设置子进程挂掉后自动重启的情况，有三个选项，false,unexpected 和true。如果为false的时候，无论什么情况下，都不会被重新启动，如果为unexpected，只有当进程的退出码不在下面的exitcodes里面定义的退出码的时候，才会被自动重启。当为true的时候，只要子进程挂掉，将会被无条件的重启</td>
+</tr>
+<tr>
+<td>;startsecs=1</td>
+<td>这个选项是子进程启动多少秒之后，此时状态如果是running，则我们认为启动成功了。默认值为1 。。非必须设置</td>
+</tr>
+<tr>
+<td>;startretries=3</td>
+<td>当进程启动失败后，最大尝试启动的次数。。当超过3次后，supervisor将把此进程的状态置为FAIL。默认值为3 。。非必须设置</td>
+</tr>
+<tr>
+<td>;exitcodes=0,2</td>
+<td>注意和上面的的autorestart=unexpected对应。。exitcodes里面的定义的退出码是expected的。</td>
+</tr>
+<tr>
+<td>;stopsignal=QUIT</td>
+<td>进程停止信号，可以为TERM, HUP, INT, QUIT, KILL, USR1, or USR2等信号默认为TERM 。。当用设定的信号去干掉进程，退出码会被认为是expected。非必须设置</td>
+</tr>
+<tr>
+<td>;stopwaitsecs=10</td>
+<td>这个是当我们向子进程发送stopsignal信号后，到系统返回信息给supervisord，所等待的最大时间。 超过这个时间，supervisord会向该子进程发送一个强制kill的信号。默认为10秒。。非必须设置</td>
+</tr>
+<tr>
+<td>;stopasgroup=false</td>
+<td>这个东西主要用于，supervisord管理的子进程，这个子进程本身还有子进程。那么我们如果仅仅干掉supervisord的子进程的话，子进程的子进程有可能会变成孤儿进程。所以咱们可以设置可个选项，把整个该子进程的整个进程组都干掉。 设置为true的话，一般killasgroup也会被设置为true。需要注意的是，该选项发送的是stop信号。默认为false。。非必须设置。。</td>
+</tr>
+<tr>
+<td>;killasgroup=false</td>
+<td>这个和上面的stopasgroup类似，不过发送的是kill信号</td>
+</tr>
+<tr>
+<td>;user=chrism</td>
+<td>如果supervisord是root启动，我们在这里设置这个非root用户，可以用来管理该program。默认不设置。。。非必须设置项</td>
+</tr>
+<tr>
+<td>;redirect_stderr=true</td>
+<td>如果为true，则stderr的日志会被写入stdout日志文件中默认为false，非必须设置</td>
+</tr>
+<tr>
+<td>;stdout_logfile=/a/path</td>
+<td>子进程的stdout的日志路径，可以指定路径，AUTO，none等三个选项。设置为none的话，将没有日志产生。设置为AUTO的话，将随机找一个地方生成日志文件，而且当supervisord重新启动的时候，以前的日志文件会被清空。当 redirect_stderr=true的时候，sterr也会写进这个日志文件</td>
+</tr>
+<tr>
+<td>;stdout_logfile_maxbytes=1MB</td>
+<td>日志文件最大大小，和[supervisord]中定义的一样。默认为50</td>
+</tr>
+<tr>
+<td>;stdout_logfile_backups=10</td>
+<td>和[supervisord]定义的一样。默认10</td>
+</tr>
+<tr>
+<td>;stdout_capture_maxbytes=1MB</td>
+<td>这个东西是设定capture管道的大小，当值不为0的时候，子进程可以从stdout发送信息，而supervisor可以根据信息，发送相应的event。默认为0，为0的时候表达关闭管道。。。非必须项</td>
+</tr>
+<tr>
+<td>;stdout_events_enabled=false</td>
+<td>当设置为ture的时候，当子进程由stdout向文件描述符中写日志的时候，将触发supervisord发送PROCESS_LOG_STDOUT类型的event。默认为false。。。非必须设置</td>
+</tr>
+<tr>
+<td>;stderr_logfile=/a/path</td>
+<td>这个东西是设置stderr写的日志路径，当redirect_stderr=true。这个就不用设置了，设置了也是白搭。因为它会被写入stdout_logfile的同一个文件中。默认为AUTO，也就是随便找个地存，supervisord重启被清空。。非必须设置</td>
+</tr>
+<tr>
+<td>;stderr_logfile_maxbytes=1MB</td>
+<td>这个出现好几次了，就不重复了</td>
+</tr>
+<tr>
+<td>;stderr_logfile_backups=10</td>
+<td>这个也是</td>
+</tr>
+<tr>
+<td>;stderr_capture_maxbytes=1MB</td>
+<td>这个一样，和stdout_capture一样。 默认为0，关闭状态</td>
+</tr>
+<tr>
+<td>;stderr_events_enabled=false</td>
+<td>这个也是一样，默认为false</td>
+</tr>
+<tr>
+<td>;environment=A=&quot;1&quot;,B=&quot;2&quot;</td>
+<td>这个是该子进程的环境变量，和别的子进程是不共享的</td>
+</tr>
+<tr>
+<td>;serverurl=AUTO</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="eventlistener-theeventlistenername"><a href="#eventlistener-theeventlistenername" class="headerlink" title="[eventlistener:theeventlistenername]"></a>[eventlistener:theeventlistenername]</h2><table>
+<thead>
+<tr>
+<th>参数选项</th>
+<th>中文白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>;command=/bin/eventlistener</td>
+<td>这个和上面的program一样，表示listener的可执行文件的路径</td>
+</tr>
+<tr>
+<td>;process_name=%(program_name)s</td>
+<td>这个也一样，进程名，当下面的numprocs为多个的时候，才需要。否则默认就OK了</td>
+</tr>
+<tr>
+<td>;numprocs=1</td>
+<td>相同的listener启动的个数</td>
+</tr>
+<tr>
+<td>;events=EVENT</td>
+<td>event事件的类型，也就是说，只有写在这个地方的事件类型。才会被发送</td>
+</tr>
+<tr>
+<td>;buffer_size=10</td>
+<td>这个是event队列缓存大小，单位不太清楚，楼主猜测应该是个吧。当buffer超过10的时候，最旧的event将会被清除，并把新的event放进去。默认值为10。。非必须选项</td>
+</tr>
+<tr>
+<td>;directory=/tmp</td>
+<td>进程执行前，会切换到这个目录下执行默认为不切换。。。非必须</td>
+</tr>
+<tr>
+<td>;umask=022</td>
+<td>淹没，默认为none，不说了</td>
+</tr>
+<tr>
+<td>;priority=-1</td>
+<td>启动优先级，默认-1，也不扯了</td>
+</tr>
+<tr>
+<td>;autostart=true</td>
+<td>是否随supervisord启动一起启动，默认true</td>
+</tr>
+<tr>
+<td>;autorestart=unexpected</td>
+<td>是否自动重启，和program一个样，分true,false,unexpected等，注意unexpected和exitcodes的关系</td>
+</tr>
+<tr>
+<td>;startsecs=1</td>
+<td>也是一样，进程启动后跑了几秒钟，才被认定为成功启动，默认1</td>
+</tr>
+<tr>
+<td>;startretries=3</td>
+<td>失败最大尝试次数，默认3</td>
+</tr>
+<tr>
+<td>;exitcodes=0,2</td>
+<td>期望或者说预料中的进程退出码，</td>
+</tr>
+<tr>
+<td>;stopsignal=QUIT</td>
+<td>干掉进程的信号，默认为TERM，比如设置为QUIT，那么如果QUIT来干这个进程那么会被认为是正常维护，退出码也被认为是expected中的</td>
+</tr>
+<tr>
+<td>;stopwaitsecs=10</td>
+<td>max num secs to wait b4 SIGKILL (default 10)</td>
+</tr>
+<tr>
+<td>;stopasgroup=false</td>
+<td>send stop signal to the UNIX process group (default false)</td>
+</tr>
+<tr>
+<td>;killasgroup=false</td>
+<td>SIGKILL the UNIX process group (def false)</td>
+</tr>
+<tr>
+<td>;user=chrism</td>
+<td>设置普通用户，可以用来管理该listener进程。默认为空。。非必须设置</td>
+</tr>
+<tr>
+<td>;redirect_stderr=true</td>
+<td>为true的话，stderr的log会并入stdout的log里面。默认为false。。。非必须设置</td>
+</tr>
+<tr>
+<td>;stdout_logfile=/a/path</td>
+<td>这个不说了，好几遍了</td>
+</tr>
+<tr>
+<td>;stdout_logfile_maxbytes=1MB</td>
+<td>这个也是</td>
+</tr>
+<tr>
+<td>;stdout_logfile_backups=10</td>
+<td>这个也是</td>
+</tr>
+<tr>
+<td>;stdout_events_enabled=false</td>
+<td>这个其实是错的，listener是不能发送event</td>
+</tr>
+<tr>
+<td>;stderr_logfile=/a/path</td>
+<td>这个也是</td>
+</tr>
+<tr>
+<td>;stderr_logfile_maxbytes=1MB</td>
+<td>这个也是</td>
+</tr>
+<tr>
+<td>;stderr_logfile_backups</td>
+<td>这个不说了</td>
+</tr>
+<tr>
+<td>;stderr_events_enabled=false</td>
+<td>这个也是错的，listener不能发送event</td>
+</tr>
+<tr>
+<td>;environment=A=&quot;1&quot;,B=&quot;2&quot;</td>
+<td>这个是该子进程的环境变量。默认为空。。。非必须设置</td>
+</tr>
+<tr>
+<td>;serverurl=AUTO</td>
+<td>override serverurl computation (childutils)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="group-thegroupname"><a href="#group-thegroupname" class="headerlink" title="[group:thegroupname]"></a>[group:thegroupname]</h2><p>这个东西就是给programs分组，划分到组里面的program。我们就不用一个一个去操作了，我们可以对组名进行统一的操作。 注意：program被划分到组里面之后，就相当于原来的配置从supervisor的配置文件里消失了。。。supervisor只会对组进行管理，而不再会对组里面的单个program进行管理了</p>
+<table>
+<thead>
+<tr>
+<th>参数选项</th>
+<th>中文白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>;programs=progname1,progname2</td>
+<td>组成员，用逗号分开。这个是个必须的设置项</td>
+</tr>
+<tr>
+<td>;priority=999</td>
+<td>优先级，相对于组和组之间说的默认999。。非必须选项</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="include"><a href="#include" class="headerlink" title="[include]"></a>[include]</h2><p>这个东西挺有用的，当我们要管理的进程很多的时候，写在一个文件里面就有点大了。我们可以把配置信息写到多个文件中，然后include过来</p>
+<table>
+<thead>
+<tr>
+<th>参数选项</th>
+<th>中文白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>;files = relative/directory/*.ini</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="配置文件实例"><a href="#配置文件实例" class="headerlink" title="配置文件实例"></a>配置文件实例</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[program:wfpconfigsystem]</span><br><span class="line">environment=PATH=&quot;/data/java/jdk1.7.0_79/bin:%(ENV_PATH)s&quot;</span><br><span class="line">command=java -jar -server -Xms5G -Xmx5G -XX:MaxPermSize=2G -XX:+AggressiveOpts -XX:MaxDirectMemorySize=2G -Xss256k -XX:+AggressiveOpts -XX:+UseBiasedLocking -XX:+UseFastAccessorMethods -XX:+DisableExplicitGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=75 /data/wfpconfigsystem/ecloud-wfp-1.0.0.jar NoLoadCache</span><br><span class="line">;process_name=%(program_name)s ; process_name expr (default %(program_name)s)</span><br><span class="line">numprocs=1                    ; number of processes copies to start (def 1)</span><br><span class="line">directory=/data/wfpconfigsystem</span><br><span class="line">;umask=022                     ; umask for process (default None)</span><br><span class="line">;priority=999                  ; the relative start priority (default 999)</span><br><span class="line">autostart=true                ; start at supervisord start (default: true)</span><br><span class="line">autorestart=true</span><br><span class="line">startsecs=1                   ; # of secs prog must stay up to be running (def. 1)</span><br><span class="line">startretries=3                ; max # of serial start failures when starting (default 3)</span><br><span class="line">;autorestart=unexpected        ; when to restart if exited after running (def: unexpected)</span><br><span class="line">;exitcodes=0                   ; &#x27;expected&#x27; exit codes used with autorestart (default 0)</span><br><span class="line">;stopsignal=QUIT               ; signal used to kill process (default TERM)</span><br><span class="line">;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)</span><br><span class="line">;stopasgroup=false             ; send stop signal to the UNIX process group (default false)</span><br><span class="line">;killasgroup=false             ; SIGKILL the UNIX process group (def false)</span><br><span class="line">;user=chrism                   ; setuid to this UNIX account to run the program</span><br><span class="line">redirect_stderr=true          ; redirect proc stderr to stdout (default false)</span><br><span class="line">stdout_logfile=/data/wfpconfigsystem/supervisord.log</span><br><span class="line">;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)</span><br><span class="line">;stdout_logfile_backups=10     ; # of stdout logfile backups (0 means none, default 10)</span><br><span class="line">;stdout_capture_maxbytes=1MB   ; number of bytes in &#x27;capturemode&#x27; (default 0)</span><br><span class="line">;stdout_events_enabled=false   ; emit events on stdout writes (default false)</span><br><span class="line">;stdout_syslog=false           ; send stdout to syslog with process name (default false)</span><br><span class="line">;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO</span><br><span class="line">;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)</span><br><span class="line">;stderr_logfile_backups=10     ; # of stderr logfile backups (0 means none, default 10)</span><br><span class="line">;stderr_capture_maxbytes=1MB   ; number of bytes in &#x27;capturemode&#x27; (default 0)</span><br><span class="line">;stderr_events_enabled=false   ; emit events on stderr writes (default false)</span><br><span class="line">;stderr_syslog=false           ; send stderr to syslog with process name (default false)</span><br><span class="line">;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions (def no adds)</span><br><span class="line">;serverurl=AUTO </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[program:whitelist-sync]</span><br><span class="line">environment=JAVA_HOME=&quot;/data/java/jdk1.8.0_144&quot;</span><br><span class="line">command=/data/java/jdk1.8.0_144/jre/bin/java -jar /data/whitelist-sync/sync-whitelist-0.0.1-SNAPSHOT.jar</span><br><span class="line">;process_name=%(program_name)s ; process_name expr (default %(program_name)s)</span><br><span class="line">numprocs=1                    ; number of processes copies to start (def 1)</span><br><span class="line">directory=/data/whitelist-sync</span><br><span class="line">;umask=022                     ; umask for process (default None)</span><br><span class="line">;priority=999                  ; the relative start priority (default 999)</span><br><span class="line">autostart=true                ; start at supervisord start (default: true)</span><br><span class="line">autorestart=true</span><br><span class="line">startsecs=1                   ; # of secs prog must stay up to be running (def. 1)</span><br><span class="line">startretries=3                ; max # of serial start failures when starting (default 3)</span><br><span class="line">;autorestart=unexpected        ; when to restart if exited after running (def: unexpected)</span><br><span class="line">;exitcodes=0                   ; &#x27;expected&#x27; exit codes used with autorestart (default 0)</span><br><span class="line">;stopsignal=QUIT               ; signal used to kill process (default TERM)</span><br><span class="line">;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)</span><br><span class="line">;stopasgroup=false             ; send stop signal to the UNIX process group (default false)</span><br><span class="line">;killasgroup=false             ; SIGKILL the UNIX process group (def false)</span><br><span class="line">;user=chrism                   ; setuid to this UNIX account to run the program</span><br><span class="line">redirect_stderr=true          ; redirect proc stderr to stdout (default false)</span><br><span class="line">stdout_logfile=/data/whitelist-sync/supervisord.log</span><br><span class="line">;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)</span><br><span class="line">;stdout_logfile_backups=10     ; # of stdout logfile backups (0 means none, default 10)</span><br><span class="line">;stdout_capture_maxbytes=1MB   ; number of bytes in &#x27;capturemode&#x27; (default 0)</span><br><span class="line">;stdout_events_enabled=false   ; emit events on stdout writes (default false)</span><br><span class="line">;stdout_syslog=false           ; send stdout to syslog with process name (default false)</span><br><span class="line">;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO</span><br><span class="line">;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)</span><br><span class="line">;stderr_logfile_backups=10     ; # of stderr logfile backups (0 means none, default 10)</span><br><span class="line">;stderr_capture_maxbytes=1MB   ; number of bytes in &#x27;capturemode&#x27; (default 0)</span><br><span class="line">;stderr_events_enabled=false   ; emit events on stderr writes (default false)</span><br><span class="line">;stderr_syslog=false           ; send stderr to syslog with process name (default false)</span><br><span class="line">;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions (def no adds)</span><br><span class="line">;serverurl=AUTO                ; override serverurl computation (childutils)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[program:EdbmigrationFileService]</span><br><span class="line">environment=ASPNETCORE_ENVIRONMENT=Production</span><br><span class="line">environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false</span><br><span class="line">command=/usr/bin/dotnet /data/EdbmigrationFileService/EdbmigrationFileService.dll</span><br><span class="line">;process_name=%(program_name)s ; process_name expr (default %(program_name)s)</span><br><span class="line">numprocs=1                    ; number of processes copies to start (def 1)</span><br><span class="line">directory=/data/EdbmigrationFileService</span><br><span class="line">;umask=022                     ; umask for process (default None)</span><br><span class="line">;priority=999                  ; the relative start priority (default 999)</span><br><span class="line">autostart=true                ; start at supervisord start (default: true)</span><br><span class="line">autorestart=true</span><br><span class="line">startsecs=1                   ; # of secs prog must stay up to be running (def. 1)</span><br><span class="line">startretries=3                ; max # of serial start failures when starting (default 3)</span><br><span class="line">;autorestart=unexpected        ; when to restart if exited after running (def: unexpected)</span><br><span class="line">;exitcodes=0                   ; &#x27;expected&#x27; exit codes used with autorestart (default 0)</span><br><span class="line">;stopsignal=QUIT               ; signal used to kill process (default TERM)</span><br><span class="line">;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)</span><br><span class="line">;stopasgroup=false             ; send stop signal to the UNIX process group (default false)</span><br><span class="line">;killasgroup=false             ; SIGKILL the UNIX process group (def false)</span><br><span class="line">;user=chrism                   ; setuid to this UNIX account to run the program</span><br><span class="line">redirect_stderr=true          ; redirect proc stderr to stdout (default false)</span><br><span class="line">stdout_logfile=/data/EdbmigrationFileService/supervisord.log</span><br><span class="line">;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)</span><br><span class="line">;stdout_logfile_backups=10     ; # of stdout logfile backups (0 means none, default 10)</span><br><span class="line">;stdout_capture_maxbytes=1MB   ; number of bytes in &#x27;capturemode&#x27; (default 0)</span><br><span class="line">;stdout_events_enabled=false   ; emit events on stdout writes (default false)</span><br><span class="line">;stdout_syslog=false           ; send stdout to syslog with process name (default false)</span><br><span class="line">;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO</span><br><span class="line">;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)</span><br><span class="line">;stderr_logfile_backups=10     ; # of stderr logfile backups (0 means none, default 10)</span><br><span class="line">;stderr_capture_maxbytes=1MB   ; number of bytes in &#x27;capturemode&#x27; (default 0)</span><br><span class="line">;stderr_events_enabled=false   ; emit events on stderr writes (default false)</span><br><span class="line">;stderr_syslog=false           ; send stderr to syslog with process name (default false)</span><br><span class="line">;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions (def no adds)</span><br><span class="line">;serverurl=AUTO                ; override serverurl computation (childutils)</span><br></pre></td></tr></table></figure>
+
+<h1 id="service文件"><a href="#service文件" class="headerlink" title="service文件"></a>service文件</h1><p>&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;supervisord.service</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Supervisord Daemon</span><br><span class="line">After=network.target</span><br><span class="line">  </span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/usr/bin/supervisord -c /etc/supervisord/supervisord.conf</span><br><span class="line">ExecStop=/usr/bin/supervisorctl -c /etc/supervisord/supervisord.conf shutdown</span><br><span class="line">ExecReload=/usr/bin/supervisorctl -c /etc/supervisord/supervisord.conf reload</span><br><span class="line">killMode=process</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=5s</span><br><span class="line">  </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<h1 id="supervisor集群管理开源项目"><a href="#supervisor集群管理开源项目" class="headerlink" title="supervisor集群管理开源项目"></a>supervisor集群管理开源项目</h1><p><a target="_blank" rel="noopener" href="https://github.com/Gamegos/cesi">cesi</a></p>
+<p>修改supervisord.conf配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[inet_http_server]</span><br><span class="line">port=*:30000</span><br><span class="line">username=admin</span><br><span class="line">password=Centaur*123</span><br></pre></td></tr></table></figure>
+
+<p>安装cesi</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git epel-release</span><br><span class="line">yum install -y python34 python34-pip python34-venv</span><br><span class="line">export CESI_SETUP_PATH=/data/cesi</span><br><span class="line">mkdir -p $&#123;CESI_SETUP_PATH&#125;</span><br><span class="line">cd $&#123;CESI_SETUP_PATH&#125;</span><br><span class="line">wget https://github.com/gamegos/cesi/releases/download/v2.6.8/cesi-extended.tar.gz -O cesi.tar.gz</span><br><span class="line">tar -xvf cesi.tar.gz</span><br><span class="line">python3 -m venv venv</span><br><span class="line">source venv/bin/activate</span><br><span class="line">yum install -y gcc libffi-devel python34-devel</span><br><span class="line">pip3 install -r requirements.txt</span><br><span class="line">python3 $&#123;CESI_SETUP_PATH&#125;/cesi/run.py --config-file $&#123;CESI_SETUP_PATH&#125;/defaults/cesi.conf.toml</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/03/21/supervisor/" data-id="cluwce6qa001bkcuf0uhxc4it" data-title="supervisor" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="team-culture-技术团队的组织文化" class="h-entry article article-type-team-culture" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/16/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%87%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2020-03-16T12:36:25.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/16/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%87%E5%8C%96/">技术团队的组织文化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>from: 58到家 刘晓飞</p>
+<h1 id="团队文化"><a href="#团队文化" class="headerlink" title="团队文化"></a>团队文化</h1><p>文化建设不分团队大小。<br>团队的是非观，提倡什么、反对什么。<br>人是团队文化的核心。<br><strong>规章制度告诉我们什么不能做，文化倡导我们做什么。两者并不冲突。</strong></p>
+<h1 id="怎样构建团队文化"><a href="#怎样构建团队文化" class="headerlink" title="怎样构建团队文化"></a>怎样构建团队文化</h1><ol>
+<li>Teamleader要以身作则</li>
+<li>要找对的人</li>
+<li>强调团队的价值和荣誉感，让员工有自豪感</li>
+<li>合理的考核和激励制度</li>
+<li>氛围、公平、成长、成就</li>
+</ol>
+<h1 id="Owner精神"><a href="#Owner精神" class="headerlink" title="Owner精神"></a>Owner精神</h1><ul>
+<li>有组织</li>
+<li>有思考 – 不仅是完成任务</li>
+<li>有目标</li>
+<li>有原则</li>
+<li>有执行</li>
+<li>敢决策</li>
+<li>敢担责</li>
+</ul>
+<h2 id="价值体现"><a href="#价值体现" class="headerlink" title="价值体现"></a>价值体现</h2><ul>
+<li>保持团持久的战斗力</li>
+<li>保持团队的凝聚力</li>
+<li>保持生产团队的自豪感</li>
+</ul>
+<h2 id="如何培养"><a href="#如何培养" class="headerlink" title="如何培养"></a>如何培养</h2><ul>
+<li>树立自身的owner精神</li>
+<li>给与充分信任 – 犯错不一定是坏事</li>
+<li>给予足够的关怀</li>
+<li>重贡献轻成就</li>
+<li>多建议少决策</li>
+<li>多鼓励少批评 – 要做到帮助性、建设性的批评</li>
+<li>分享团队成果 – 团队的荣辱与我相关</li>
+<li>贯宣公司战略</li>
+</ul>
+<h2 id="如何管理owner团队"><a href="#如何管理owner团队" class="headerlink" title="如何管理owner团队"></a>如何管理owner团队</h2><ul>
+<li>管理动作要一致</li>
+<li>坚决淘汰消极分子</li>
+<li>合理的考核制度</li>
+<li>不断强调团队的价值</li>
+<li>工作上学会放手（不放松）</li>
+<li>要做团队的保护伞</li>
+</ul>
+<h2 id="注意的问题"><a href="#注意的问题" class="headerlink" title="注意的问题"></a>注意的问题</h2><ul>
+<li>不要期望每个人都有owner精神</li>
+<li>要信任但要有监督</li>
+<li>学会放手但不要置身事外</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/03/16/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%87%E5%8C%96/" data-id="cluwce6qb001ckcuf3pkw17ex" data-title="技术团队的组织文化" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="iptables-iptables详解及常用规则" class="h-entry article article-type-iptables" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/13/iptables%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%B8%B8%E7%94%A8%E8%A7%84%E5%88%99/" class="article-date">
+  <time class="dt-published" datetime="2020-03-13T10:25:48.000Z" itemprop="datePublished">2020-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/13/iptables%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%B8%B8%E7%94%A8%E8%A7%84%E5%88%99/">iptables详解及常用规则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>引用：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunsky303/p/12327863.html">https://www.cnblogs.com/sunsky303/p/12327863.html</a></li>
+</ul>
+<h1 id="iptables简介"><a href="#iptables简介" class="headerlink" title="iptables简介"></a>iptables简介</h1><p>netfilter&#x2F;iptables（简称iptables）组成linux平台下的包过滤防火墙，与大多数的linux软件一样，这个包过滤防火墙是免费的，它可以代替昂贵的商业防火墙解决方案，<strong>完成封包过滤、封包重定向和网络地址转换（NAT）等功能</strong>。</p>
+<h2 id="iptables基础"><a href="#iptables基础" class="headerlink" title="iptables基础"></a>iptables基础</h2><p>规则（rules）其实就是网络管理员预定义的条件，规则一般的定位为“如果数据包头符合这样的条件，就这样处理这个数据包”。规则存储在内核空间的信息包过滤表中，这些规则分别指定了源地址、目的地址、传输协议（如TCP、UDP、ICP）和服务类型（如HTTP、FTP和SMTP等）等。当数据包与规则匹配时，iptables就根据规则所定义的方法来处理这些数据包，如方形（accept）、拒绝（reject）和丢弃（drop）等。匹配防火墙的主要工作就是添加、修改和删除这些规则。</p>
+<h2 id="iptables和netfilter的关系："><a href="#iptables和netfilter的关系：" class="headerlink" title="iptables和netfilter的关系："></a>iptables和netfilter的关系：</h2><p>这是第一个要说的地方，iptables和netfilter的关系是一个很容易让人搞不清楚的问题。<strong>iptables只是linux防火墙的管理工具而已，位于&#x2F;sbin&#x2F;iptables。真正实现防火墙功能的事netfilter，它是linux内核中实现包过滤的内部结构</strong>。</p>
+<h2 id="iptables传输数据包的过程"><a href="#iptables传输数据包的过程" class="headerlink" title="iptables传输数据包的过程"></a>iptables传输数据包的过程</h2><ol>
+<li>当一个数据包进入网卡时，它首先进入prerouting链，内核根据数据包目的IP判断是否需要传送出去</li>
+<li>如果数据包就是进入本机的，它就会沿着图向下移动，到达input链。数据包到了input链后，任何进程都会收到它。本机上运行的程序可以发送书包，这些数据包会经过output链，然后到达postrouting链输出。</li>
+<li>如果数据包是要转发出去，且内核允许转发，数据包就会如图所示向右移动，经过forward链，然后到达postrouting链输出。<br><img src="/images/7775566-d1ad7de240451282.png"></li>
+</ol>
+<h2 id="iptables的规则表和链"><a href="#iptables的规则表和链" class="headerlink" title="iptables的规则表和链"></a>iptables的规则表和链</h2><p>表（tables）提供特定的功能，<strong>iptables内置了4个表，filter、nat、mangle和raw表，分别用于包过滤、网络地址转换、包重构（修改）和数据跟踪处理</strong>。<br>链（chains）是数据包传播的路径，每一条链其实就是众多规则中的一个检查清单，每一条链中可以由一条或者多条规则。当一个数据包达到一个链时，iptables就会从链中第一条规则开始检查，看该数据包是否满足规则所定义的条件。如果满足，系统就会根据该条规则所定义的方法处理数据包；否则iptables将继续检查下一条规则，如果该数据包不符合链中的任意一条规则，iptables就会根据该链预定义的默认策略来处理数据包。<br>iptables采用“表”和“链”的分层结构。在REHL5中是<strong>四张表五个链</strong>。下面罗列一下这四张表和五个链。注意一定要明白这些表和链的关系及作用。<br><img src="/images/7775566-5ec887df41cf1861.png"></p>
+<h2 id="规则表"><a href="#规则表" class="headerlink" title="规则表"></a>规则表</h2><h3 id="1-Filter表-—-三个链：-input、forward、output"><a href="#1-Filter表-—-三个链：-input、forward、output" class="headerlink" title="1. Filter表 — 三个链： input、forward、output"></a>1. Filter表 — 三个链： input、forward、output</h3><p>作用：过滤数据包<br>内核模块：iptables_filter</p>
+<h3 id="2-Nat表-—-三个链：-prerouting、postrouting、output"><a href="#2-Nat表-—-三个链：-prerouting、postrouting、output" class="headerlink" title="2. Nat表 — 三个链： prerouting、postrouting、output"></a>2. Nat表 — 三个链： prerouting、postrouting、output</h3><p>作用：用于网络地址转换<br>内核模块：iptables_nat</p>
+<h3 id="3-Mangle表-–-五个链：prerouting、postrouting、input、output、forward，即作用于全部链（chains）"><a href="#3-Mangle表-–-五个链：prerouting、postrouting、input、output、forward，即作用于全部链（chains）" class="headerlink" title="3. Mangle表 – 五个链：prerouting、postrouting、input、output、forward，即作用于全部链（chains）"></a>3. Mangle表 – 五个链：prerouting、postrouting、input、output、forward，即作用于全部链（chains）</h3><p>作用：修改数据包的服务类型、TTL，并且可以配置路由实现QPS<br>内核模块：iptables_mangle</p>
+<h3 id="4-Raw表-–-两个链：output、rerouting"><a href="#4-Raw表-–-两个链：output、rerouting" class="headerlink" title="4. Raw表 – 两个链：output、rerouting"></a>4. Raw表 – 两个链：output、rerouting</h3><p>作用：决定数据包是否被状态跟踪机制处理<br>内核模块：iptables_raw</p>
+<p><strong>重要&#x2F;常用的事Filter和Nat表</strong></p>
+<h2 id="规则链"><a href="#规则链" class="headerlink" title="规则链"></a>规则链</h2><hr>
+<ol>
+<li>input — 进来的数据包应用此规则链中的策略</li>
+<li>output – 外出的数据包应用此规则链中的策略</li>
+<li>forward — 转发数据包时应用此规则链中的策略</li>
+<li>prerouting – 对数据包坐路由选择前应用此规则链中的规则<br><strong>（记住！所有的数据包进来的时候都先由这个链处理）</strong></li>
+<li>postrouting — 对数据包作路由选择后应用此规则链中的规则<br><strong>（所有的数据包出来的时候都先由这个链处理）</strong></li>
+</ol>
+<h2 id="规则表之间的优先顺序"><a href="#规则表之间的优先顺序" class="headerlink" title="规则表之间的优先顺序"></a>规则表之间的优先顺序</h2><p><strong>Raw –&gt; Mangle –&gt; Nat –&gt; Filter</strong></p>
+<p>规则链之间的优先顺序（分三种情况）：</p>
+<h3 id="第一种情况“入站数据流向"><a href="#第一种情况“入站数据流向" class="headerlink" title="第一种情况“入站数据流向"></a>第一种情况“入站数据流向</h3><p>从外界到达防火墙的数据包，先被prerouting规则处理（是否修改数据包地址等），之后会进行路由选择（判断该数据包应该发送何处），如果数据包的目的主机是防火墙本机（比如说Internet用户访问防火墙主机中的web服务器的数据包），那么内核将其传给input链进行处理（决定是否允许通过等），通过以后再交给系统上层的应用程序（比如Apache服务器）进行响应。</p>
+<h3 id="第二种情况：转发数据流向"><a href="#第二种情况：转发数据流向" class="headerlink" title="第二种情况：转发数据流向"></a>第二种情况：转发数据流向</h3><p>来自外界的数据包达到防火墙后，首先被prerouting规则链处理，之后会进行路由选择，如果数据包的目的地址是其他外部地址（比如局域网用户通过网关访问QQ站点的数据包），则内核将其传递给forward链进行处理（是否转发或者拦截），然后再交给postrouting规则链（是都修改数据包的地址等）进行处理。</p>
+<h3 id="第三种情况：出站数据流向"><a href="#第三种情况：出站数据流向" class="headerlink" title="第三种情况：出站数据流向"></a>第三种情况：出站数据流向</h3><p>防火墙本机向外部地址发送的数据包（比如防火墙主机中测试公网DNS服务器时），首先被output规则链处理，之后进行路由选择，然后传递给postrouting规则链（是否修改数据包的地址等）进行处理。</p>
+<h2 id="管理和设置iptables规则"><a href="#管理和设置iptables规则" class="headerlink" title="管理和设置iptables规则"></a>管理和设置iptables规则</h2><p><img src="/images/7775566-fb35d0a138063159.jpg"><br><img src="/images/7775566-736f5a5882a69420.jpg"></p>
+<h3 id="iptables的基本语法格式"><a href="#iptables的基本语法格式" class="headerlink" title="iptables的基本语法格式"></a>iptables的基本语法格式</h3><p>iptables [-t 表名] 命令选项 [链名] [条件匹配] [-j 目标动作或跳转]<br>说明：表名、链名由于指定iptables命令所操作的表和链，命令选项用于指定管理iptables规则的方式（比如：插入、增加、删除、查看等）；条件匹配用于指定对符合什么样的条件的数据包进行处理；目标动作或跳转用于指定数据包的处理方式（比如允许通过、拒绝、丢弃、跳转给其他链处理）。</p>
+<h3 id="iptables命令的管理控制选项"><a href="#iptables命令的管理控制选项" class="headerlink" title="iptables命令的管理控制选项"></a>iptables命令的管理控制选项</h3><p>-A 在指定链的末尾添加（append）一条新的规则<br>-D 删除（delete）指定链中的某一条规则，可以按规则序号和内容删除<br>-I 在指定链中插入（insert）一条新的规则，默认在第一行添加<br>-R 修改、替换（replace）指定链中的某一条规则，可以按规则序号和内容替换<br>-L 列出（list）指定链中的所有的规则进行查看<br>-E 重命名用户定义的链，不改变链本身<br>-F 清空（flush）所有规则<br>-N 新建（new-chain）一条用户自己定义的规则链<br>-X 删除指定表中用户自定义的规则链（delete-chain）<br>-P 设置指定链的默认策略（policy）<br>-Z 将所有表的所有链的字节和数据包计数器清零<br>-n 使用数字形式（number）显示输出结果<br>-v 查看规则表详细信息（verbose）的信息<br>-V 查看版本（version）<br>-h 获取帮助（help）</p>
+<h3 id="防火墙处理数据包的四种方式"><a href="#防火墙处理数据包的四种方式" class="headerlink" title="防火墙处理数据包的四种方式"></a>防火墙处理数据包的四种方式</h3><p>Accept 允许数据包通过<br>Drop 直接丢弃数据包，不给任何回应信息<br>Reject 拒绝数据包通过，必要时会给数据发送端一个响应的信息<br>Log 在&#x2F;var&#x2F;log&#x2F;messages文件中记录日志信息，然后将数据包传递给下一条规则</p>
+<h3 id="iptables防火墙规则的保存和恢复"><a href="#iptables防火墙规则的保存和恢复" class="headerlink" title="iptables防火墙规则的保存和恢复"></a>iptables防火墙规则的保存和恢复</h3><p>iptables-save把规则保存到文件中，再由目录rc.d下的脚本（&#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;iptables）自动装载<br>使用命令iptables-save来保存规则。<br>一般用iptables-save &gt; &#x2F;etc&#x2F;sysconfig&#x2F;iptables 生成保存规则的文件<br>也可以用 service iptables save，它能把规则自动保存在 &#x2F;etc&#x2F;sysconfig&#x2F;iptables中。<br>当计算机启动时，rc.d下的脚本将用命令iptables-restore调用这个文件，从而自动恢复规则。</p>
+<h3 id="删除input链的第一条规则"><a href="#删除input链的第一条规则" class="headerlink" title="删除input链的第一条规则"></a>删除input链的第一条规则</h3><p>iptables -D input 1</p>
+<h3 id="iptables防火墙常用的策略"><a href="#iptables防火墙常用的策略" class="headerlink" title="iptables防火墙常用的策略"></a>iptables防火墙常用的策略</h3><ol>
+<li><p>拒绝进入防火墙的所有ICMP协议数据包<br>iptables -I INPUT -p icmp -j REJECT</p>
+</li>
+<li><p>允许防火墙转发除了ICMP协议之外的所有数据包<br>iptables -A FORWARD -p !icmp -j ACCEPT<br>说明：使用“!”可以将条件取反</p>
+</li>
+<li><p>拒绝转发来自192.168.1.10主机的数据，允许转发来自192.168.0.0&#x2F;16网段的数据<br>iptables -A FORWARD -s 192.168.1.11 -j REJECT<br>iptables -A FORWARD -s 192.168.0.0&#x2F;16 -j ACCEPT<br>说明：注意要把拒绝的放在前面</p>
+</li>
+<li><p>丢弃从外网接口（eth1）进入防火墙本机的源地址为私网地址的数据包<br>iptables -A INPUT -i eth1 -s 192.168.0.0&#x2F;16 -j DROP<br>iptables -A INPUT -i eth1 -s 172.16.0.0&#x2F;12 -j DROP<br>iptables -A INPUT -i eth1 -s 10.0.0.0&#x2F;8 -j DROP</p>
+</li>
+<li><p>封堵网段（192.168.1.0&#x2F;24），两个两个小时候解封<br>iptables -I INPUT -s 192.168.1.0&#x2F;24 -j DROP<br>iptabls -I FORWARD -s 192.168.1.0&#x2F;24 -j DROP<br>at now 2 hours at&gt;iptables -D INPUT 1 at&gt; iptables -D FORWARD 1</p>
+</li>
+<li><p>只允许管理员从202.13.0.0&#x2F;16网段使用SSH远程登录防火墙主机<br>iptables -A INPUT -p tcp –dport 22 -s 202.13.0.0&#x2F;16 -j ACCEPT<br>iptables -A INPUT -p tcp –dport 22 -j DROP</p>
+</li>
+<li><p>允许本机开放从tcp端口20-1024提供的应用服务<br>iptables -A INPUT -p tcp –dport 20:1024 -j ACCEPT<br>iptables -A OUTPUT -p tcp –sport 20:1024 -j ACCEPT</p>
+</li>
+<li><p>允许转发来自192.168.0.0&#x2F;16局域网段的DNS解析请求数据包<br>iptables -A FORWARD -s 192.168.0.0&#x2F;16 -p udp –dport 53 -j ACCEPT<br>iptables -A FORWARD -d 192.168.0.0&#x2F;16 -p udp –sport 53 -j ACCEPT</p>
+</li>
+<li><p>禁止其他主机ping防火墙主机，但是允许从防火墙上ping其他主机<br>iptables -I INPUT -p icmp –icmp-type Echo-Request -j DROP<br>iptables -I INPUT -p icmp –icmp-type Echo-Reply -j ACCEPT<br>iptables -I INPUT -p icmp –icmp-type destination-Unreachable -j ACCEPT</p>
+</li>
+<li><p>禁止转发来自MAC地址 00:0c:29:27:55:3F的主机的数据包<br>iptables -A FORWARD -m mac –mac-source 00:0c:29:27:55:3F -j DROP</p>
+</li>
+<li><p>允许防火墙主机对外开放TCP端口20、21、25、110以及被动模式FTP端口1250-1280<br>iptables -A INPUT -p tcp -m multiport –dport 20,21,25,110,1250:1280 -j ACCEPT</p>
+</li>
+<li><p>禁止转发源地址IP为192.168.1.20-192.168.1.99的TCP数据包<br>iptables -A FORWARD -p tcp -m iprange –src-range 192.168.1.20-192.168.1.99 -j DROP</p>
+</li>
+<li><p>禁止转发与正常TCP连接无关的非–syn请求数据包<br>iptables -A FORWARD -m state –state NEW -p tcp !–syn -j DROP<br>说明：“-m state”表示数据包的连接状态，“NEW”表示与任何连接无关</p>
+</li>
+<li><p>拒绝访问防火墙的新数据包，但允许响应连接或与已有连接相关的数据包<br>iptables -A INPUT -p tcp -m state –state NEW -j DROP<br>iptables -A INPUT -p tcp -m state –state ESTABLISHED,RELATED -j ACCEPT</p>
+</li>
+<li><p>只开放本机的Web服务（80）、FTP（20、21、20450-20480），放行外部主机发往服务器其他端口的应答数据包，将其他入栈数据包均予以丢弃处理<br>iptables -I INPUT -p tcp -m multiport –dport 20,21,80 -j ACCEPT<br>iptables -I INPUT -p tcp –dport 20450-20480 -j ACCEPT<br>iptables -I INPUT -p tcp -m state –state ESTABLISHED -j ACCEPT<br>iptables -P INPUT DROP</p>
+</li>
+</ol>
+<h3 id="常用iptables规则"><a href="#常用iptables规则" class="headerlink" title="常用iptables规则"></a>常用iptables规则</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br></pre></td><td class="code"><pre><span class="line"># 1. 删除所有现有规则</span><br><span class="line"></span><br><span class="line">iptables -F</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 2. 设置默认的 chain 策略</span><br><span class="line"></span><br><span class="line">iptables -P INPUT DROP</span><br><span class="line"></span><br><span class="line">iptables -P FORWARD DROP</span><br><span class="line"></span><br><span class="line">iptables -P OUTPUT DROP</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 3. 阻止某个特定的 IP 地址</span><br><span class="line"></span><br><span class="line">#BLOCK_THIS_IP=&quot;x.x.x.x&quot;</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -s &quot;$BLOCK_THIS_IP&quot; -j DROP</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 4. 允许全部进来的（incoming）SSH</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 5. 只允许某个特定网络进来的 SSH</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp -s 192.168.200.0/24 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 6. 允许进来的（incoming）HTTP</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 7. 多端口（允许进来的 SSH、HTTP 和 HTTPS）</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp -m multiport --sports 22,80,443 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 8. 允许出去的（outgoing）SSH</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 9. 允许外出的（outgoing）SSH，但仅访问某个特定的网络</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp -d 192.168.101.0/24 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 10. 允许外出的（outgoing） HTTPS</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --sport 443 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 11. 对进来的 HTTPS 流量做负载均衡</span><br><span class="line"></span><br><span class="line">#iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 0 -j DNAT --to-destination 192.168.1.101:443</span><br><span class="line"></span><br><span class="line">#iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 1 -j DNAT --to-destination 192.168.1.102:443</span><br><span class="line"></span><br><span class="line">#iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 2 -j DNAT --to-destination 192.168.1.103:443</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 12. 从内部向外部 Ping</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 13. 从外部向内部 Ping</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 14. 允许环回（loopback）访问</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i lo -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o lo -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 15. 允许 packets 从内网访问外网</span><br><span class="line"></span><br><span class="line"># if eth1 is connected to external network (internet)</span><br><span class="line"></span><br><span class="line"># if eth0 is connected to internal network (192.168.1.x)</span><br><span class="line"></span><br><span class="line">iptables -A FORWARD -i eth0 -o eth1 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 16. 允许外出的  DNS</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -p udp -o eth0 --dport 53 -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p udp -i eth0 --sport 53 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 17. 允许 NIS 连接</span><br><span class="line"></span><br><span class="line"># rpcinfo -p | grep ypbind ; This port is 853 and 850</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p tcp --dport 111 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p udp --dport 111 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p tcp --dport 853 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p udp --dport 853 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p tcp --dport 850 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -p udp --dport 850 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 18. 允许某个特定网络 rsync 进入本机</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp -s 192.168.101.0/24 --dport 873 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 873 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 19. 仅允许来自某个特定网络的 MySQL 的链接</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp -s 192.168.200.0/24 --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 3306 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 20. 允许 Sendmail 或 Postfix</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -i eth0 -p tcp --dport 25 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A OUTPUT -o eth0 -p tcp --sport 25 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 21. 允许 IMAP 和 IMAPS</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 143 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 143 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 993 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 993 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 22. 允许 POP3 和 POP3S</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 110 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 110 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 995 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 995 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 23. 防止 DoS 攻击</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 24. 设置 422 端口转发到 22 端口</span><br><span class="line"></span><br><span class="line">#iptables -t nat -A PREROUTING -p tcp -d 192.168.102.37 --dport 422 -j DNAT --to 192.168.102.37:22</span><br><span class="line"></span><br><span class="line">#iptables -A INPUT -i eth0 -p tcp --dport 422 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">#iptables -A OUTPUT -o eth0 -p tcp --sport 422 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"># 25. 为丢弃的包做日志（Log）</span><br><span class="line"></span><br><span class="line">iptables -N LOGGING</span><br><span class="line"></span><br><span class="line">iptables -A INPUT -j LOGGING</span><br><span class="line"></span><br><span class="line">iptables -A LOGGING -m limit --limit 2/min -j LOG --log-prefix &quot;IPTables Packet Dropped: &quot; --log-level 7</span><br><span class="line"></span><br><span class="line">iptables -A LOGGING -j DROP</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/03/13/iptables%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%B8%B8%E7%94%A8%E8%A7%84%E5%88%99/" data-id="cluwce6q20012kcuf5htjgw72" data-title="iptables详解及常用规则" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="nginx-keepalive-Nginx优化长连接" class="h-entry article article-type-nginx-keepalive" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/13/Nginx%E4%BC%98%E5%8C%96%E9%95%BF%E8%BF%9E%E6%8E%A5/" class="article-date">
+  <time class="dt-published" datetime="2020-03-13T02:04:04.000Z" itemprop="datePublished">2020-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/13/Nginx%E4%BC%98%E5%8C%96%E9%95%BF%E8%BF%9E%E6%8E%A5/">Nginx优化长连接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>引用：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunsky303/p/10648861.html">https://www.cnblogs.com/sunsky303/p/10648861.html</a></li>
+</ul>
+<h1 id="一、nginx之tcp-nooush、tcp-nodelay、snefile"><a href="#一、nginx之tcp-nooush、tcp-nodelay、snefile" class="headerlink" title="一、nginx之tcp_nooush、tcp_nodelay、snefile"></a>一、nginx之tcp_nooush、tcp_nodelay、snefile</h1><h2 id="1-TCP-NODELAY"><a href="#1-TCP-NODELAY" class="headerlink" title="1. TCP_NODELAY"></a>1. TCP_NODELAY</h2><p>怎么强制socket在它的缓冲区里发送数据？<br>一个解决方案是TCP堆栈的TCP_NODELAY选项。这样就可以使缓冲区中的数据立即发送出去。<br>Nginx的TCP_NODELAY选项使得在打开一个新的socket时增加了TCP_NODELAY选项。但这时会造成一种情况：<br>终端应用程序每产生一次操作就会发送一个包，而典型情况下下一个包会拥有一个字节的数据以及40个字节长的包头，于是产生4000%的过载，很轻易的能令网络发生拥塞。<strong>为了避免这种情况，TCP堆栈实现了等待数据0.2秒钟，因此操作后它不会发送一个数据包，而是将这段时间内的数据打成一个大的包。这一机制是由Nagle算法保证。</strong></p>
+<p>Nagle化后来成了一种标准并且立即在因特网上得以实现。它现在已经成为默认配置了，但是有些场合下把这一选项关掉也是合乎需要的。现在假设某个应用程序发出了一个请求，希望发送小块数据。我们可以选择立即发送数据或者等待产生更多的数据然后再一次发送两种策略。<br>如果我们马上发送数据，那么交互性的以及客户&#x2F;服务器型的应用程序将极大地受益。如果请求立即发出那么响应时间也会快一些。**以上操作可以通过设置套接字的TCP_NODELAY &#x3D; on 选项来完成，这样就禁用了Nagle算法。（不需要等待0.2s）</p>
+<h2 id="2-TCP-NOPUSH"><a href="#2-TCP-NOPUSH" class="headerlink" title="2. TCP_NOPUSH"></a>2. TCP_NOPUSH</h2><p>在nginx中，tcp_nopush配置和tcp_nodelay“互斥”。<strong>它可以配置一次发送数据的包大小。也就是说，它不是按时间累计0.2秒后发送包，而是当宝累计到一定大小后就发送。</strong><br><strong>注：在nginx中，tcp_nopush必须和sendfile搭配使用。</strong></p>
+<h2 id="3-sendfile"><a href="#3-sendfile" class="headerlink" title="3. sendfile"></a>3. sendfile</h2><p>现在流行的web服务器里面都提供sendfile选项用来提高服务器性能，那到底sendfile是什么，怎么影响性能的呢？<br>sendfile实际上是linux2.0+以后推出的一个系统调用，web服务器可以通过调整自身的配置来决定是否利用sendfile这个系统调用。先来看一下不用sendfile的传统网络传输过程：<br>read(file,tmp_buf,len);<br>write(socket,rmp_buf,len);</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">硬盘 &gt;&gt; kernel buffer &gt;&gt; user buffer &gt;&gt; kernel socket buffer &gt;&gt; 协议栈</span><br></pre></td></tr></table></figure>
+<p>1）一般来说一个网络应用是通过读硬盘数据，然后写数据到socket来完成网络传输的。上面的2行代码解释了这一点，不过上面2行简单的代码掩盖了低层的很多操作。来看看低层是怎么执行的：</p>
+<ol>
+<li>系统调用read()产生一个上下文切换，从user mode切换到kernel mode，然后DMA执行拷贝，把文件数据从硬盘读到一个kernel buffer里。</li>
+<li>数据从kernel buffer拷贝到user mode，然后系统调用read()返回，这时又产生一个上下文切换：从kernel mode切换到user mode。</li>
+<li>系统调用write()产生一个上下文切换：从user mode切换到kernel mode，然后把步骤2读到user buffer的数据拷贝到kernel buffer（数据第2次拷贝到kernel buffer），不过这次是个不同的kernel buffer，这个buffer和socket相关联。</li>
+<li>系统调用write()返回，产生一个上下文切换：从kernel mode切换到user mode（第4次切换了），然后DMA从kernel buffer拷贝数据到协议产（第4次拷贝了）。<br>上面4个步骤有4次切换，4次拷贝，我们发现如果能减少切换次数和拷贝次数将会有效提升性能。在kernel2.0+版本中，系统调用sendfile()就是用来简化上面步骤提升性能的。<br><strong>sendfile()不但能减少切换次数，还能减少拷贝次数。</strong><br>2）再来看下sendfile()来进行网络传输的过程：<br>sendfile(socket,file,len);<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">硬盘 &gt;&gt; kernel buffer（快速拷贝到kernel socket buffer） &gt;&gt; 协议栈</span><br></pre></td></tr></table></figure></li>
+<li>系统调用sendfile()通过DMA把硬盘数据拷贝到kernel buffer，然后数据被kernel直接拷贝到另外一个socket相关的kernel buffer。这里没有user mode和kernel mode之间的切换，在kernel中直接完成了一个buffer到另一个buffer的拷贝。</li>
+<li>DMA把数据从kernel buffer直接拷贝给协议栈，没有切换，也不需要数据从user mode拷贝到kernel mode，因为数据就在kernel中。<br>  步骤减少了，切换减少了，拷贝减少了，自然性能就提升了。这就是为什么说在Nginx配置文件里打开sendfile on选项能提高web server性能的原因。</li>
+</ol>
+<p>  <strong>综上，这三个参数都应该配置成on：sendfile on;tcp_nopush on;tcp_nodelay on;</strong></p>
+<h1 id="二、-nginx长连接-keepalive"><a href="#二、-nginx长连接-keepalive" class="headerlink" title="二、 nginx长连接-keepalive"></a>二、 nginx长连接-keepalive</h1><p>当时用nginx作为反向代理时，为了支持长连接，需要做到两点：</p>
+<ul>
+<li>从client到nginx的连接是长连接</li>
+<li>从nginx到server的连接是长连接</li>
+</ul>
+<h2 id="1、保持和client的长连接："><a href="#1、保持和client的长连接：" class="headerlink" title="1、保持和client的长连接："></a>1、保持和client的长连接：</h2><p>默认情况下，nginx已经自动开启了对client连接的keep alive支持（同时client发送的HTTP请求要求keep alive）。一般场景可以直接使用，但是对于一些比较特殊的场景，还是有必要调整个别参数（keepalive_timeout和keepalive_requests）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">    keepalive_timeout 120s 120s;</span><br><span class="line">    keepalive_requests 10000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1）keepalive_timeout</p>
+<ol>
+<li>第一个参数：设置keep-alive客户端连接在服务器端保持开启的超时值（默认75s）；值为0会禁用keep-alive客户端连接；</li>
+<li>第二个参数：可选，在响应的header域中设置一个值“Keep-Alive: timeout&#x3D;time”；通常可以不用设置；<br>注：keepalive_timeout默认75s，一般情况下够用，对于一些请求比较大的内部服务器通讯的场景，适当加大为120s或者300s；</li>
+</ol>
+<p>2）keepalive_requests<br>keepalive_requests指令用于<strong>设置一个keep-alive连接上可以服务的请求的最大数量，当最大请求数量达到时，连接被关闭。默认是100</strong>。这个参数的真实含义，是指一个keep alive建立之后，nginx就会为这个连接设置一个计数器，记录这个keep alive的长连接上已经接收并处理的客户端请求的数量。如果达到这个参数设置的最大值时，则nginx会强行关闭这个长连接，逼迫客户端不得不重新建立新的长连接。<br>大多数情况下当QPS（每秒请求数）不是很高时，默认值100凑活够用。但是，对于一些QPS比较高（比如超过10000QPS，甚至达到3k，5k设置更高）的场景，默认的100就显得太低。<br>简单计算一下，QPS&#x3D;10000时，客户端每秒发送10000个请求（通常建立有多个长连接），每个连接只能最多跑1000次请求，意味着平均每秒钟重新新建100个连接。因此，就会发现有大量的TIME_WAIT的socket连接（即使此时keep alive已经在client和nginx之间生效）。<strong>因为对于QPS较高的场景，非常有必要加大这个参数，以避免大量连接被生成再抛弃的情况，减少TIME_WAIT。</strong></p>
+<h2 id="2、保持和server的长连接"><a href="#2、保持和server的长连接" class="headerlink" title="2、保持和server的长连接"></a>2、保持和server的长连接</h2><p>为了让nginx和后端server（nginx成为upstream）之间保持长连接，典型设置如下：（<strong>默认nginx访问后端都是用的短连接（HTTP1.0），一个请求来了，nginx新开一个端口和后端建立连接，后端执行完毕后主动关闭该链接</strong>）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream  BACKEND &#123;</span><br><span class="line">        server   192.168.0.1：8080  weight=1 max_fails=2 fail_timeout=30s;</span><br><span class="line">        server   192.168.0.2：8080  weight=1 max_fails=2 fail_timeout=30s;</span><br><span class="line">        keepalive 300;        // 这个很重要！</span><br><span class="line">    &#125;</span><br><span class="line">server &#123;</span><br><span class="line">        listen 8080 default_server;</span><br><span class="line">        server_name &quot;&quot;;</span><br><span class="line">        location /  &#123;</span><br><span class="line">            proxy_pass http://BACKEND;</span><br><span class="line">            proxy_set_header Host  $Host;</span><br><span class="line">            proxy_set_header x-forwarded-for $remote_addr;</span><br><span class="line">            proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">            add_header Cache-Control no-store;</span><br><span class="line">            add_header Pragma  no-cache;</span><br><span class="line">            proxy_http_version 1.1;         // 这两个最好也设置</span><br><span class="line">            proxy_set_header Connection &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1）location中有两个参数需要设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        location /  &#123;</span><br><span class="line">            proxy_http_version 1.1; // 这两个最好也设置</span><br><span class="line">            proxy_set_header Connection &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HTTP协议中对长连接的支持是从1.1版本之后才有的，因为最好通过proxy_http_version指令设置为“1.1；<br>而“Connection” header应该被清理。清理的意思，我的理解，是清理从client过来的http header，因为即使client和nginx之间是短连接，nginx和upstream之间也是可以开启长连接的。这种情况下必须清理来自client请求中的“Connection” header。</p>
+<p>2）upstream中的keepalive设置<br>次数keepalive的含义不是开启、关闭长连接的开关，也不是用来设置超时的timeout；更不是设置长连接池的最大连接数。官方解释：</p>
+<ol>
+<li>The connections parameter sets the maximum number of idle keepalive connections to upstream servers connections（<strong>设置到upstream服务器的空闲keepalive连接的最大数量</strong>）</li>
+<li>When this number is exceeded, the least recently used connections are closed. （<strong>当这个数量被突破时，最近使用最少的连接将被关闭</strong>）</li>
+<li>It should be particularly noted that the keepalive directive does not limit the total number of connections to upstream servers that an nginx worker process can open.（<strong>特别提醒：keepalive指令不会限制一个nginx worker进程到upstream服务器连接的总数量</strong>）<br>我们先假设一个场景：有一个HTTP服务，作为upstream服务器接收请求，响应时间为100毫秒。如果要达到10000 QPS的性能，就需要在nginx和upstream服务器之间建立大约1000条HTTP连接。nginx为此建立连接池，然后请求过来时为每个请求分配一个连接，请求结束时回收连接到连接池中，连接的状态也就更改为idle。我们再假设这个upstream服务器的keepalive参数值比较小，比如常见的10：<br>A、假设请求和响应是均匀而平稳的，那么这1000条连接应该都是一放回连接池就立即被后续请求申请使用，线程池中的idle线程会非常少，趋近于零，不会造成连接数量反复震荡。<br>B、现实中请求和响应不可能平稳，我们以10毫秒为一个单位，来看连接的情况（逐一场景是1000个线程+100毫秒响应时间，每秒有10000个请求完成），我们假设应答始终都是平稳的，只是请求不平稳，第一个10毫秒只有50，第二个10毫秒有150：</li>
+<li>下一个10毫秒，有100个连接结束请求回收连接到连接池，但是假设此时请求不均匀10毫秒内没有预计的100个请求进来，而是只有50个请求。注意此时连接池回收了100个连接又分配出去50个连接，因此连接池内有50个空闲连接。</li>
+<li>然后注意看keepalive&#x3D;10的设置，这意味着连接池中最多容许保留有10个控线连接。因为nginx不得不将这50个空闲连接中的40个关闭，只保留10个。</li>
+<li>再下一个10毫秒，有150个请求进来，有100个请求结束任务释放连接。150-100&#x3D;50，孔雀50个连接，减掉前面连接池保留的10个空闲连接，nginx不得不新建40个新连接来满足要求。<br>C、同样，如果假设响应不均衡也会出现上面的连接数波动情况。</li>
+</ol>
+<p>造成连接数量反复震荡的一个推手，就是keepalive这个最大空闲连接数。毕竟连接池中的1000个连接在频繁利用时，出现短时间内多余10个空闲连接的概率是在太高。<strong>因此为了避免出现上面的连接震荡，必须考虑加大这个参数</strong>，比如上面的场景如果将keepalive设置为100或者200，就可以非常有效的缓冲请求和应答不均。</p>
+<p>总结：<br>keepalive这个参数一定要小心设置，尤其对于QPS比较高的场景，推荐先做一下估算（<strong>容量规划</strong>），根据QPS和平均响应时间答题能计算出需要的长连接的数量。比如前面1000QPS和100毫秒响应时间就可以推算出需要的长连接数量大概是1000.然后将keepalive设置为这个长连接数量的10%到30%。比较懒的同学，可以直接设置为keepalive&#x3D;1000之类的，一般都是OK的。</p>
+<h2 id="3、综上，出现大量TIME-WAIT的情况："><a href="#3、综上，出现大量TIME-WAIT的情况：" class="headerlink" title="3、综上，出现大量TIME_WAIT的情况："></a>3、综上，出现大量TIME_WAIT的情况：</h2><p>1）导致nginx端出现大量TIME_WAIT的情况有两种：</p>
+<ul>
+<li>keepalive_requests设置比较小，高并发下超过此值后nginx会强制关闭和客户端保持的keepalive长连接；（主动关闭连接后导致nginx出现TIME_WAIT）</li>
+<li>keepalive设置的比较小（空闲数太小），导致高并发下nginx会频繁的出现连接数震荡（超过该值会关闭连接），不停的关闭、开启和后端server保持的keepalive长连接<br>2）导致后端server端出现大量TIME_WAIT的情况：<br>nginx没有打开和后端的长连接，即：没有设置proxy_http_version 1.1和proxy_set_header Connection “”；从而导致后端server每次关闭连接，高并发下就会出现server端出现大量TIME_WAIT。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/03/13/Nginx%E4%BC%98%E5%8C%96%E9%95%BF%E8%BF%9E%E6%8E%A5/" data-id="cluwce6pn000jkcufat79gtsg" data-title="Nginx优化长连接" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="clear-collections-清空收藏夹" class="h-entry article article-type-clear-collections" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/12/%E6%B8%85%E7%A9%BA%E6%94%B6%E8%97%8F%E5%A4%B9/" class="article-date">
+  <time class="dt-published" datetime="2020-03-12T10:17:19.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/12/%E6%B8%85%E7%A9%BA%E6%94%B6%E8%97%8F%E5%A4%B9/">清空收藏夹</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>“收藏即看过”！
+清理收藏夹内容，转移至博客，重新学习一遍！
+</code></pre>
+<p>测试数据</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/03/12/%E6%B8%85%E7%A9%BA%E6%94%B6%E8%97%8F%E5%A4%B9/" data-id="cluwce6qc001ekcuf9emyckg6" data-title="清空收藏夹" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="keepalive-长连接KeepAlive" class="h-entry article article-type-keepalive" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/11/%E9%95%BF%E8%BF%9E%E6%8E%A5KeepAlive/" class="article-date">
+  <time class="dt-published" datetime="2020-03-11T03:11:08.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/11/%E9%95%BF%E8%BF%9E%E6%8E%A5KeepAlive/">长连接KeepAlive</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>引用：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gotodsp/p/6366163.html">https://www.cnblogs.com/gotodsp/p/6366163.html</a></li>
+</ul>
+<h1 id="1-HTTP协议和TCP-IP协议的关系"><a href="#1-HTTP协议和TCP-IP协议的关系" class="headerlink" title="1. HTTP协议和TCP&#x2F;IP协议的关系"></a>1. HTTP协议和TCP&#x2F;IP协议的关系</h1><p>HTTP的长连接和短连接本质上是TCP长连接和短连接。HTTP属于应用层协议，在传输层使用TCP协议，在网络层使用IP协议。IP协议主要解决网络路由和寻址的问题，TCP协议主要解决如何在IP层之上可靠地传递数据包，使得网络上接收端收到发送端所发出的所有包，并且顺序与发送顺序一致。TCP协议是可靠地，面向连接的。</p>
+<h1 id="2-如何理解HTTP协议是无状态的"><a href="#2-如何理解HTTP协议是无状态的" class="headerlink" title="2. 如何理解HTTP协议是无状态的"></a>2. 如何理解HTTP协议是无状态的</h1><p>HTTP协议是无状态的，指的是协议对于事务处理没有记忆能力，服务器不知道客户端是什么状态。也就是说，打开一个服务器上的网页和上一次打开这个服务器上的网页之间没有任何联系。HTTP是一个无状态的面向连接的协议，无状态不代表HTTP不能保持TCP连接，更不能代表HTTP使用的是UDP协议（无连接）。</p>
+<h1 id="3-什么时候长连接、短连接？"><a href="#3-什么时候长连接、短连接？" class="headerlink" title="3. 什么时候长连接、短连接？"></a>3. 什么时候长连接、短连接？</h1><p>在HTTP&#x2F;1.0中默认使用短连接。也就是说，客户端和服务器每进行一次HTTP操作，就建立一次连接，任务结束就中断连接。当客户端浏览器访问的某个HTML或其他类型的Web页中包含有其他的Web资源（如Javascript文件、图像文件、CSS文件等），每遇到这样一个Web资源，浏览器就会重新建立一个HTTP会话。<br>而从HTTP&#x2F;1.1起，默认使用长连接，用以保持连接特性。使用长连接的HTTP协议，会在响应头加入这行代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connecti:keep-alive</span><br></pre></td></tr></table></figure>
+<p>在使用长连接的情况下，当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭，客户端再次访问这个服务器时，会继续使用这一条已经建立的连接。Keep-Alive不会永久保持连接，它有一个保持时间，可以在不同的服务器软件（如Apache）中设定这个时间。实现长连接需要客户端和服务端都支持长连接。<br>HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。</p>
+<h2 id="3-1-TCP连接"><a href="#3-1-TCP连接" class="headerlink" title="3.1 TCP连接"></a>3.1 TCP连接</h2><p>当网络通信时采用TCP协议时，在真正的读写操作之前，客户端与服务器端之间必须建立一个连接，当读写操作完成后，双方不再需要这个连接时可以释放这个连接。连接的建立依靠“三次握手，而释放则需要”四次握手，所以每个连接的建立都是需要资源消耗和时间消耗的。<br>经典的三次握手建立连接示意图：<br><img src="/images/keepalive-1.jpg"><br><img src="/images/593345-20170204231325729-1747734402.png"></p>
+<p>经典的四次握手关闭连接示意图：<br><img src="/images/keepalive-2.jpg"><br><img src="/images/593345-20170204231344745-1817753534.jpg"></p>
+<h2 id="3-2-TCP短连接"><a href="#3-2-TCP短连接" class="headerlink" title="3.2 TCP短连接"></a>3.2 TCP短连接</h2><p>模拟一下TCP短连接的情况：client向server发起连接请求，server接到请求，然后双方建立连接。client向server发送消息，server回应client，然后一次请求就完成了。这时候双方任意都可以发起close操作，不过一般都是client先发起close操作。上述可知，短连接一般只会在client&#x2F;server间传递一次请求操作。<br>短连接的优点是：管理起来比较简单，存在的连接都是有用的连接，不需要额外的控制手段。</p>
+<h2 id="3-3-TCP长连接"><a href="#3-3-TCP长连接" class="headerlink" title="3.3 TCP长连接"></a>3.3 TCP长连接</h2><p>我们再模拟一次长连接的情况：client向server发起连接，server接受连接，双方建立连接，client与server完成一次请求后，它们之间的连接并不会主动关闭，后续的读写操作会继续使用这个连接。<br>TCP的保活功能主要为服务器应用提供。如果客户端已经消失而连接未断开，则会使得服务器上保留一个半开放的连接，而服务器又在等待来自客户端的数据，此时服务器将永远等待客户端的数据。保活功能就是试图在服务器端检测到这种半开放的连接。<br>如果一个给定的连接在两小时内没有任何动作，服务器就向客户发送一个探测报文，根据客户端主机响应探测4个客户端状态：</p>
+<ul>
+<li>客户主机依然正常运行，且服务器可达。此时客户的TCP响应正常，服务器将保活定时器复位。</li>
+<li>客户主机已经崩溃，并且关闭或者正在重启。上述情况下客户端都不能响应TCP。服务端将无法收到客户端对探测的响应。服务器总共发送10个这样的探测，每个间隔75秒。若服务器没有收到任何一个响应，它就认为客户端已经关闭并终止连接。</li>
+<li>客户端崩溃已经重新启动。服务器将收到一个对其保活探测的响应，这个响应是一个复位，使得服务器终止这个连接。</li>
+<li>客户端正常运行，但是服务器不可达。这种情况与第二种状态类似。</li>
+</ul>
+<h1 id="4-长连接和短连接的优点和缺点"><a href="#4-长连接和短连接的优点和缺点" class="headerlink" title="4. 长连接和短连接的优点和缺点"></a>4. 长连接和短连接的优点和缺点</h1><p>由上可以看出，长连接可以省去较多的TCP建立和关闭的操作，减少浪费，节约时间。对于频繁请求资源的客户端适合使用长连接。在长连接的应用场景下，client端一般不会主动关闭连接，当client与server之间的连接一直不关闭，随着客户端连接越来越多，server会保持过多连接，这时候server端需要采取一些策略，比如关闭一些长时间没有请求发生的连接，这样可以避免一些恶意连接导致server端服务受损；如果条件允许则可以限制每个客户端的最大长连接数，这样可以完全避免恶意的客户端拖垮整体后端服务。<br>短连接对于服务器来说管理较为简单，存在的连接都是有用的连接，不需要额外的控制手段。但如果客户端请求频繁，将在TCP的建立和关闭操作上浪费较多的时间和带宽。<br>长连接和短连接的产生在于client和server采取的关闭策略。不同的应用场景适合采用不同的策略。<br>由上可以看出，长连接可以省去较多的TCP建立和关闭的操作，减少浪费，节约时间。对于频繁请求资源的客户来说，较适合长连接。不过这里存在一个问题，存活功能的探测周期太长，还有就是它只是探测TCP连接的存活，属于比较斯文的做法，遇到恶意的连接时，保活功能就不够使了。在长连接的应用场景下，client端一般不会主动关闭它们之间的连接，client与server之间的连接如果一直不关闭的话，会存在一个问题，随着客户端连接数越来越多，server早晚有扛不住的时候，这时候server端需要采取一些策略，如关闭一些长时间没有读写时间发生的连接，这样可以避免一些恶意连接导致server端服务手段；如果条件再允许就可以以客户端为颗粒度，限制每个客户端的最大长连接，这样可以完全避免某个客户端连累后端服务。<br>短连接赋予服务器来说，管理较为简单，存在的连接都是有用的连接，不需要额外的控制手段。但如果客户请求频繁，将在TCP的建立和关闭操作上康菲时间和带宽。<br>长连接和短连接的产生在于client和server采取的关闭策略，具体的应用场景采用具体的策略，没有十全十美的选择，只有合适的选择。</p>
+<p>长连接短连接操作过程<br>短连接的操作步骤是：<br>建立连接——数据传输——关闭连接…建立连接——数据传输——关闭连接<br>长连接的操作步骤是：<br>建立连接——数据传输…（保持连接）…数据传输——关闭连接<br>什么时候用长连接，短连接？  　　<br>长连接多用于操作频繁，点对点的通讯，而且连接数不能太多情况，。每个TCP连接都需要三步握手，这需要时间，如果每个操作都是先连接，再操作的话那么处理速度会降低很多，所以每个操作完后都不断开，次处理时直接发送数据包就OK了，不用建立TCP连接。例如：数据库的连接用长连接， 如果用短连接频繁的通信会造成socket错误，而且频繁的socket 创建也是对资源的浪费。<br>而像WEB网站的http服务一般都用短链接，因为长连接对于服务端来说会耗费一定的资源，而像WEB网站这么频繁的成千上万甚至上亿客户端的连接用短连接会更省一些资源，如果用长连接，而且同时有成千上万的用户，如果每个用户都占用一个连接的话，那可想而知吧。所以并发量大，但每个用户无需频繁操作情况下需用短连好。</p>
+<p>http和socket之长连接和短连接区别<br><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/b68d2b26f5f4">http://www.jianshu.com/p/b68d2b26f5f4</a></p>
+<p>HTTP持久连接<br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5">https://zh.wikipedia.org/wiki/HTTP%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/03/11/%E9%95%BF%E8%BF%9E%E6%8E%A5KeepAlive/" data-id="cluwce6qf001lkcuf77iyhfsc" data-title="长连接KeepAlive" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

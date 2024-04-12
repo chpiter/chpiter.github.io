@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>LVS | ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="https:&#x2F;&#x2F;blog.csdn.net&#x2F;liwei0526vip&#x2F;article&#x2F;details&#x2F;103104393 https:&#x2F;&#x2F;blog.csdn.net&#x2F;liwei0526vip&#x2F;article&#x2F;details&#x2F;103104483 https:&#x2F;&#x2F;blog.csdn.net&#x2F;liwei0526vip&#x2F;article&#x2F;details&#x2F;103104496  一、netfilter基本原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LVS">
+<meta property="og:url" content="https://chpiter.github.io/2020/04/13/LVS/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="https:&#x2F;&#x2F;blog.csdn.net&#x2F;liwei0526vip&#x2F;article&#x2F;details&#x2F;103104393 https:&#x2F;&#x2F;blog.csdn.net&#x2F;liwei0526vip&#x2F;article&#x2F;details&#x2F;103104483 https:&#x2F;&#x2F;blog.csdn.net&#x2F;liwei0526vip&#x2F;article&#x2F;details&#x2F;103104496  一、netfilter基本原理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chpiter.github.io/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwM25ldGZpbHRlci5wbmc.jfif">
+<meta property="og:image" content="https://chpiter.github.io/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwNGlwdnMucG5n.jfif">
+<meta property="og:image" content="https://chpiter.github.io/images/20200319150450262.png">
+<meta property="og:image" content="https://chpiter.github.io/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwNm5hdC5wbmc.jfif">
+<meta property="og:image" content="https://chpiter.github.io/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwN3R1bm5lbC5wbmc.jfif">
+<meta property="article:published_time" content="2020-04-13T14:25:27.000Z">
+<meta property="article:modified_time" content="2024-04-12T07:23:54.153Z">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="ChpiTer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chpiter.github.io/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwM25ldGZpbHRlci5wbmc.jfif">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="lvs-LVS" class="h-entry article article-type-lvs" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/13/LVS/" class="article-date">
+  <time class="dt-published" datetime="2020-04-13T14:25:27.000Z" itemprop="datePublished">2020-04-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      LVS
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/liwei0526vip/article/details/103104393">https://blog.csdn.net/liwei0526vip/article/details/103104393</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/liwei0526vip/article/details/103104483">https://blog.csdn.net/liwei0526vip/article/details/103104483</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/liwei0526vip/article/details/103104496">https://blog.csdn.net/liwei0526vip/article/details/103104496</a></li>
+</ul>
+<h1 id="一、netfilter基本原理"><a href="#一、netfilter基本原理" class="headerlink" title="一、netfilter基本原理"></a>一、netfilter基本原理</h1><p>LVS 是基于 Linux 内核中 netfilter 框架实现的负载均衡系统，所以要学习 LVS 之前必须要先简单了解 netfilter 基本工作原理。netfilter 其实很复杂也很重要，平时我们说的 Linux 防火墙就是 netfilter，不过我们平时操作的都是 iptables，iptables 只是用户控件编写和传递规则的工具而已，真正工作的是 netfilter。通过下图可以简单了解下 netfilter 的工作机制：</p>
+<p><img src="/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwM25ldGZpbHRlci5wbmc.jfif"></p>
+<p>netfilter 是内核态的 Linux 防火墙机制，作为一个通用、抽象的框架，提供了一整套的 hook 函数管理机制，提供诸如数据包过滤、网络地址转换、基于协议类型的连接跟踪的功能。</p>
+<p>通俗点将，就是 netfilter 提供了一种机制，可以在数据包流经过程中，根据规则设置若干个关卡（hook函数）来执行相关的操作。netfilter 总共设置了5个点，包括：PREROUTING\INPUT\FORWARD\OUTPUT\POSTROUTING</p>
+<ul>
+<li>PREROUTING：刚刚进入网络层，还未进行路由查找的包，通过此处</li>
+<li>INPUT：通过路由查找，确定发往本机的包，通过此处</li>
+<li>FORWARD：经过路由查找，要转发的包，在 POSTROUTING之前</li>
+<li>OUTPUT：从本机进程刚发的包，通过此处</li>
+<li>POSTROUTING：进入网络层已经经过路由查找，确定转发，将要离开本设备的包，通过此处</li>
+</ul>
+<p>当一个数据包进入网卡，经过链路层之后进入网络层就会到达 PREROUTING ，接着根据目标IP地址进行路由查找，如果目标IP是本机，数据包继续传递到 INPUT 上，经过协议栈后根据目标端口将数据送到响应的应用程序；应用程序处理请求后将响应数据包发送到 OUTPUT 上，最终通过 POSTROUTING 后发送出网卡。如果目标IP不是本机，而且服务器开启了forward 参数，就会将数据包传递送给 FORWARD 上，最后通过 POSTROUTING 后发送出网卡。</p>
+<h1 id="二、LVS基本原理"><a href="#二、LVS基本原理" class="headerlink" title="二、LVS基本原理"></a>二、LVS基本原理</h1><p>LVS是基于 netfilter 框架，主要工作于 INPUT 链上，在 INPUT 上注册 <code>ip_vs_in</code> HOOK 函数，进行 IPVS 主流程，大概原理如图所示：</p>
+<p><img src="/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwNGlwdnMucG5n.jfif"></p>
+<ul>
+<li>当用户访问 <a target="_blank" rel="noopener" href="http://www.sina.com.cn/">www.sina.com.cn</a> 时，用户数据通过层层网络，最后通过交换机进入 LVS 服务器网卡，并进入内核网络层。</li>
+<li>进入 PREROUTING 后经过路由查找，确定访问的目的 VIP 是本机 IP 地址，所以数据包进入到 INPUT 链上</li>
+<li>IPVS 是工作在 INPUT 链上，会根据访问的 <code>vip+port</code> 判断请求是否 IPVS 服务，如果是则调用注册的 IPVS HOOK 函数，进行 IPVS 相关主流程，强行修改数据包的相关数据，并将数据包发往 POSTROUTING 链上。</li>
+<li>POSTROUTING  上收到数据包后，根据目标 IP 地址（后端服务器），通过路由选路，将数据包最终发往后端的服务器上。</li>
+</ul>
+<p>开源 LVS 版本有3中工作模式，每种模式的工作原理截然不同，各种模式有各自的优缺点，分别适合不同的应用场景，不过最终本质的功能都是能够实现均衡的流量调度和良好的扩展性。主要包括以下三种模式：</p>
+<ul>
+<li>DR模式</li>
+<li>NAT模式</li>
+<li>Tunnel模式</li>
+</ul>
+<p>另外必要要说的模式是FULLNAT，这个模式在开源版本中是没有的，代码没有合并进入内核主线版本。后面单独介绍 FullNAT 模式。</p>
+<h1 id="三、DR-模式实现原理"><a href="#三、DR-模式实现原理" class="headerlink" title="三、DR 模式实现原理"></a>三、DR 模式实现原理</h1><p>LVS 基本原理中描述的比较简单，表述的是比较通用的流程。下面针对 DR 模式的具体实现原理，详细阐述 DR 模式是如何工作的。</p>
+<p><img src="/images/20200319150450262.png"></p>
+<p>其实 DR 模式是最常用的工作模式，因为它强大的性能。下边以一次请求和响应数据流的过程来秒数 DR 模式的具体原理</p>
+<h2 id="实现原理与过程"><a href="#实现原理与过程" class="headerlink" title="实现原理与过程"></a>实现原理与过程</h2><ul>
+<li>① 当客户端请求 <a target="_blank" rel="noopener" href="http://www.sina.com.cn/">www.sina.com.cn</a> 主页，经过 DNS 解析到 IP 后，向新浪服务器发送请求数据，数据包经过层层网络到达新浪负载均衡 LVS 服务器，到达 LVS 网卡时的数据包：源 IP 是客户端 IP 地址 CIP，目的 IP 是新浪对外的服务器 IP 地址，也就是说 VIP；此时源 MAC 地址是 CMAC，其实是 LVS 连接的路由器的 MAC 地址（为了容易理解记为 CMAC），目标 MAC 地址是 VIP 对应的 MAC，记为 VMAC。</li>
+<li>② 数据包到达网卡后，经过链路层到达 PREROUTING 未知（刚进入网络层），查找路由发现目标 IP 是 LVS 的 VIP，就会递送到 INPUT 链上，此时数据包 MAC、IP、Port 都没有修改。</li>
+<li>③ 数据包到达 INPUT 链，INPUT 是 LVS 主要工作的位置。此时 LVS 会根据目的 IP 和 Port 来确认是否是 LVS 定义的服务，如果是定义过的 VIP 服务，就会根据配置的 Service 信息，从 RealServer 中选择一个作为后端服务器 RS1，然后以 RS1 作为目标查找 Out 方向的路由，确定下一跳信息以及数据包要通过哪个网卡发出。最后将数据包通过 INET_HOOK 到 OUTPUT 链上（Out 方向刚从四层进入网络层）。</li>
+<li>④ 数据包通过 POSTROUTING 链后，从网络层转到链路层，将目的 MAC 地址修改为 RealServer 服务器 MAC 地址，记为 RMAC；而源 MAC 地址修改为 LVS与 RS 同网段的 selfIP 对应的 MAC 地址，记为 DMAC。此时，数据包通过交换机转发给 RealServer 服务器。</li>
+<li>⑤ 请求数据包到达 RealServer 服务器后，链路层检查目的 MAC 是自己网卡地址。到了网络层，查找路由，目的 IP 是 VIP（lo 上配置 VIP），判定是本机主机的数据包。经过协议栈后拷贝至应用程序（比如这里是 nginx 服务器），nginx 响应请求后，产生响应数据包。以目的 VIP 为 dst 查找 Out 路由，确定下一跳信息和发送网卡设备信息，发送数据包。此时数据包源、目的 IP 分别是 VIP、CIP，而源 MAC 地址是 RS1 的RMAC，目的 MAC 地址是下一跳（路由器）的 MAC地址，记为 CMAC，然后数据包通过 RS1 相连的路由器转发给真正客户端。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">从整个过程可以看出，DR模式LVS逻辑非常简单，数据包通过路由方式直接转发给RS，而且响应数据包时由RS服务器直接发送给客户端，不经过LVS。我们知道一般请求数据包会比较小，响应报文较大，经过LVS的数据包基本上都是小包，上述几条因素是LVS的DR模式性能强大的主要原因。</span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点和使用场景"><a href="#优缺点和使用场景" class="headerlink" title="优缺点和使用场景"></a>优缺点和使用场景</h2><ul>
+<li>DR模式的优点<ol>
+<li>响应数据不经过lvs，性能高</li>
+<li>对数据包修改小，信息保存完整（携带客户端源IP）</li>
+</ol>
+</li>
+<li>DR模式的缺点<ol>
+<li>lvs与rs必须在同一个物理网络，不支持跨机房</li>
+<li>rs上必须配置lo和其他内核参数</li>
+<li>不支持端口映射</li>
+</ol>
+</li>
+<li>DR模式的使用场景<br>  如果对性能要求非常高，可以首选DR模式，而且可以穿透客户端源IP地址。</li>
+</ul>
+<h1 id="四、NAT-模式实现原理"><a href="#四、NAT-模式实现原理" class="headerlink" title="四、NAT 模式实现原理"></a>四、NAT 模式实现原理</h1><p>lvs的第二种工作模式是NAT模式，下图详细介绍了数据包从客户端进入lvs后转发到rs，后经rs再次将响应数据转发给lvs，由lvs将数据包回复给客户端的整个过程。<br><img src="/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwNm5hdC5wbmc.jfif"></p>
+<h2 id="实现原理与过程-1"><a href="#实现原理与过程-1" class="headerlink" title="实现原理与过程"></a>实现原理与过程</h2><ul>
+<li>① 用户请求数据包经过层层网络，到达lvs网卡，此时数据包源IP是CIP，目的IP是VIP。</li>
+<li>② 经过网卡进入网络层 PREROUTING 位置，根据目的的IP查找路由，确认是本机IP，将数据包转发到 INPUT 上，此时源、目的的IP都未发生变化。</li>
+<li>③ 到达lvs后，通过目的的IP和目的port查找是否为LVS服务。若是IPVS服务，则会选择一个RS作为后端服务器，将数据包的目的IP修改为RIP，并以RIP为目的IP查找路由信息，确定下一跳和出口信息，将数据包转发至output上。</li>
+<li>④ 修改后的数据包经过 POSTROUTING 和链路层处理后，到达RS服务器，此时的数据包源IP是CIP，目的IP是RIP</li>
+<li>⑤ 到达RS服务器的数据包经过链路层和网络层检查后，被送往用户空间nginx程序。nginx程序处理完毕，发送响应数据包，由于RS上默认网关配置为lvs设备IP，所以nginx服务器会将数据包转发至下一跳，也就是说lvs服务器。此时数据包源IP是RIP，目的IP是CIP。</li>
+<li>⑥ lvs服务器收到RS响应数据包后，根据路由查找，发现目的IP不是本机IP，而且lvs服务器开启了转发模式，所以讲数据包转发给forward链，此处数据包未作修改。</li>
+<li>⑦ lvs收到响应数据保护后，根据目的IP和目的port查找服务和连接表，将源IP改为VIP，通过路由查找，确定下一跳和出口信息，将数据包发送至网关，经过复杂的网络到达用户客户端，最红完成了一次请求和响应的交互。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NAT模式双向流量都经过LVS，因此NAT模式性能会存在一定的瓶颈。不过与其他模式区别的事，NAT支持端口映射，且支持Windows操作系统。</span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点和使用场景-1"><a href="#优缺点和使用场景-1" class="headerlink" title="优缺点和使用场景"></a>优缺点和使用场景</h2><ul>
+<li>NAT模式的优点<ol>
+<li>能够支持windows操作系统</li>
+<li>支持端口映射。如果rs端口与vport不一致，lvs除了修改目的ip，也会修改dport以支持端口映射</li>
+</ol>
+</li>
+<li>NAT模式的缺点<ol>
+<li>后端rs需要配置网关</li>
+<li>双向流量对lvs负载压力比较大</li>
+</ol>
+</li>
+<li>NAT模式的使用场景<br>  windows系统，使用lvs，必须选择lvs模式。</li>
+</ul>
+<h1 id="五、Tunnel-模式实现原理"><a href="#五、Tunnel-模式实现原理" class="headerlink" title="五、Tunnel 模式实现原理"></a>五、Tunnel 模式实现原理</h1><p>Tunnel 模式在国内使用比较少。它也是一种单臂的模式，只有请求数据会经过lvs，响应数据直接从后端服务器发送给客户端，性能也很强大，同时支持跨机房。</p>
+<p><img src="/images/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2xpd2VpMDUyNnZpcC9ibG9naW1nL21hc3Rlci9sYjAwN3R1bm5lbC5wbmc.jfif"></p>
+<h2 id="实现原理与过程-2"><a href="#实现原理与过程-2" class="headerlink" title="实现原理与过程"></a>实现原理与过程</h2><ul>
+<li>① 用户请求数据包经过层层网络，到达lvs网卡，此时数据包源IP是cip，目的IP是VIP。</li>
+<li>② 经过网卡进入网络层 PREROUTIONG 位置，根据目的ip查找路由，确认是本机IP，将数据包转发到INPUT链上，到达lvs，此时源、目的ip<br>都未发生变化。</li>
+<li>③ 到达lvs后，通过目的ip和目的port查找是否为IPVS服务。若是IPVS服务，则会选择一个rs作为后端服务器，以rip为目的ip查找路由信息，确定下一跳、dev等信息，然后IP头部前边额外增加一个IP头（以dip为源，rip为目的ip），将数据包转发至OUTPUT 上。</li>
+<li>④ 数据包根据路由信息最终经过lvs网卡，发送至路由器网关，通过网络到达后端服务器。</li>
+<li>⑤ 后端服务器收到数据包后，ipip模块将Tunnel头部卸载，正常看到源ip是cip，目的ip是vip，由于在tunl0上配置vip，路由查找后判定为本机ip，送往应用程序。应用程序nginx正常响应数据后以vip为源ip，cip为目的ip的数据包发送至网卡，最终到达客户。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tunnel模式具备DR模式的高性能，又支持跨机房访问，听起来比较完美。不过国内运营商有一定特色型，比如RS的响应数据包的源IP为VIP，VIP与后端服务器可能存在跨运营商的情况，有可能被运营商的策略封掉。</span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点和使用场景-2"><a href="#优缺点和使用场景-2" class="headerlink" title="优缺点和使用场景"></a>优缺点和使用场景</h2><ul>
+<li>Tunnel模式的优点<ol>
+<li>单臂模式，对lvs负载压力小</li>
+<li>对数据包修改脚下，信息保存完整</li>
+<li>可跨机房（国内实现有难度）</li>
+</ol>
+</li>
+<li>Tunnel模式的缺点<ol>
+<li>需要在后端服务器安装配置ipip模块</li>
+<li>需要在后端服务器tunl0配置vip</li>
+<li>隧道头部的加入可能导致分片，影响服务器性能</li>
+<li>隧道头部IP地址固定，后端服务器网卡hash可能不均</li>
+<li>不支持端口映射</li>
+</ol>
+</li>
+<li>Tunnel模式的使用场景<br>  理论上，如果对转发性能要求很高，且有跨机房需求，Tunnel可能是较好的选择。</li>
+</ul>
+<h1 id="六、涉及的概念术语"><a href="#六、涉及的概念术语" class="headerlink" title="六、涉及的概念术语"></a>六、涉及的概念术语</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CIP：Client IP，表示的是客户端 IP 地址。</span><br><span class="line">VIP：Virtual IP，表示负载均衡对外提供访问的 IP 地址，一般负载均衡 IP 都会通过 Virtual IP 实现高可用。</span><br><span class="line">RIP：RealServer IP，表示负载均衡后端的真实服务器 IP 地址。</span><br><span class="line">DIP：Director IP，表示负载均衡与后端服务器通信的 IP 地址。</span><br><span class="line">CMAC：客户端的 MAC 地址，准确的应该是 LVS 连接的路由器的 MAC 地址。</span><br><span class="line">VMAC：负载均衡 LVS 的 VIP 对应的 MAC 地址。</span><br><span class="line">DMAC：负载均衡 LVS 的 DIP 对应的 MAC 地址。</span><br><span class="line">RMAC：后端真实服务器的 RIP 地址对应的 MAC 地址。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/04/13/LVS/" data-id="cluwce6pb0006kcuf4j4qar9g" data-title="LVS" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/15/Nginx/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Nginx
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/08/kubeadm-command/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">kubeadm 常用命令行选项</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

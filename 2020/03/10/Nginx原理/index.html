@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Nginx原理 | ChpiTer Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="引用：  http:&#x2F;&#x2F;ningg.top&#x2F;nginx-series-principle&#x2F;  基本原理Nginx的进程模型Nginx服务器，正常运行过程中：  多进程：1个Master进程、多个Worker进程； Master进程：管理多个Worker进程： 对外接口：接收外部操作信号 对内转发：根据外部操作的不同，通过信号管理Worker 监控：监控Worker进程的运行状态，Worker进程异">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx原理">
+<meta property="og:url" content="https://chpiter.github.io/2020/03/10/Nginx%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="ChpiTer Blog">
+<meta property="og:description" content="引用：  http:&#x2F;&#x2F;ningg.top&#x2F;nginx-series-principle&#x2F;  基本原理Nginx的进程模型Nginx服务器，正常运行过程中：  多进程：1个Master进程、多个Worker进程； Master进程：管理多个Worker进程： 对外接口：接收外部操作信号 对内转发：根据外部操作的不同，通过信号管理Worker 监控：监控Worker进程的运行状态，Worker进程异">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chpiter.github.io/images/nginx-multi-progress-model.png">
+<meta property="og:image" content="https://chpiter.github.io/images/nginx-master-worker-details.png">
+<meta property="og:image" content="https://chpiter.github.io/images/nginx-request-process-model.png">
+<meta property="og:image" content="https://chpiter.github.io/images/nginx-architecture.png">
+<meta property="article:published_time" content="2020-03-10T02:39:25.000Z">
+<meta property="article:modified_time" content="2024-04-12T06:27:42.682Z">
+<meta property="article:author" content="ChpiTer">
+<meta property="article:tag" content="Nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chpiter.github.io/images/nginx-multi-progress-model.png">
+  
+    <link rel="alternate" href="/atom.xml" title="ChpiTer Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ChpiTer Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chpiter.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="nginx-principle-Nginx原理" class="h-entry article article-type-nginx-principle" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/10/Nginx%E5%8E%9F%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2020-03-10T02:39:25.000Z" itemprop="datePublished">2020-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Nginx原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>引用：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://ningg.top/nginx-series-principle/">http://ningg.top/nginx-series-principle/</a></li>
+</ul>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><h2 id="Nginx的进程模型"><a href="#Nginx的进程模型" class="headerlink" title="Nginx的进程模型"></a>Nginx的进程模型</h2><p><img src="/images/nginx-multi-progress-model.png"><br>Nginx服务器，正常运行过程中：</p>
+<ol>
+<li><strong>多进程</strong>：1个Master进程、多个Worker进程；</li>
+<li><strong>Master进程</strong>：管理多个Worker进程：<ol>
+<li>对外接口：接收<strong>外部操作</strong>信号</li>
+<li>对内转发：根据<strong>外部操作</strong>的不同，通过<strong>信号</strong>管理Worker</li>
+<li>监控：监控Worker进程的运行状态，Worker进程异常终止后，自动重启Worker进程</li>
+</ol>
+</li>
+<li><strong>Worker</strong>进程：所有Worker进程都是平等的：<ol>
+<li>实际处理：网络请求，又Worker进程处理；</li>
+<li>Worker进程数量：在nginx.conf中配置，一般设置为<strong>CPU核心数</strong>，充分利用CPU资源，同时避免进程数量过多，避免进程之间竞争CPU资源，增加上下文切换的损耗。</li>
+</ol>
+</li>
+</ol>
+<p>思考：</p>
+<ol>
+<li>请求是连接到Nginx，Master进程负责处理和转发？</li>
+<li>如何选定哪个Worker进程处理请求？请求的处理结果，是否还要经过Master进程？</li>
+</ol>
+<p><img src="/images/nginx-master-worker-details.png"></p>
+<p>HTTP连接建立和请求处理过程：</p>
+<ol>
+<li>Nginx启动时，Master进程，加载配置文件；</li>
+<li>Master进程，初始化监听的socket；</li>
+<li>Master进程，fork出多个Worker进程；</li>
+<li>Worker进程，竞争新的连接，获胜方通过三次握手，建立Socket连接，并处理请求。</li>
+</ol>
+<p>Nginx高性能、高并发：</p>
+<ol>
+<li>Nginx采用：<strong>多进程</strong>+<strong>异步非阻塞</strong>方式（<strong>IO多路复用</strong>epool）</li>
+<li>请求的完整过程：<ol>
+<li>建立连接</li>
+<li>读取请求：解析请求</li>
+<li>处理请求</li>
+<li>相应请求</li>
+</ol>
+</li>
+<li>请求的完整过程，对应到低层，就是：读写socket事件</li>
+</ol>
+<h2 id="Nginx的事件处理模型"><a href="#Nginx的事件处理模型" class="headerlink" title="Nginx的事件处理模型"></a>Nginx的事件处理模型</h2><p>request：Nginx中的http请求。<br>基本的HTTP Web Server工作模式：</p>
+<ol>
+<li><strong>接受请求</strong>：逐行读取<strong>请求行</strong>和<strong>请求头</strong>，判断有请求体后，读取<strong>请求体</strong></li>
+<li><strong>处理请求</strong></li>
+<li><strong>返回响应</strong>：根据处理结果，生成相应的HTTP请求（<strong>响应行</strong>、<strong>响应头</strong>、<strong>响应体</strong>）</li>
+</ol>
+<p>Nginx也是这个套路，整体流程一致：<br><img src="/images/nginx-request-process-model.png"></p>
+<h2 id="模块化体系结构"><a href="#模块化体系结构" class="headerlink" title="模块化体系结构"></a>模块化体系结构</h2><p><img src="/images/nginx-architecture.png"><br>nginx的模块根据其功能基本上可以分为以下几种类型：</p>
+<ul>
+<li><strong>event module</strong>：搭建了独立于操作系统的事件处理的框架，及提供了各具体时间的处理。包括ngx_events_module,ngx_event_core_module和ngx_epool_module等。nginx具体使用何种时间处理模块，这依赖于具体的操作系统和编译选项。</li>
+<li><strong>phase handler</strong>：此类型的模块也被直接成为handler模块。主要负责处理客户端请求并产生待相应内容，比如ngx_http_static_module模块，负责客户端的静态页面请求处理并将对应的磁盘文件准备为响应内容输出。</li>
+<li><strong>output filter</strong>：也被成为filter模块，主要是负责对输出的内容进行处理，可以对输出进行修改。例如，可以实现对输出的所有html页面增加预定义的footbar一类的工作，或者对输出的图片的URL进行替换之类的工作。</li>
+<li><strong>upstream</strong>：upstream模块实现反向代理的功能，将真正的请求转发到后端服务器上，并从后端服务器上读取相应，发回客户端。upstream模块是一种特殊的handler，只不过相应内容不是真正由自己产生的，而是从后端服务器上读取的。</li>
+<li><strong>load-balancer</strong>：负载均衡，实现特定的算法，在众多的后端服务器中，选择一个服务器出来作为某个请求的转发服务器。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2020/03/10/Nginx%E5%8E%9F%E7%90%86/" data-id="cluwce6pr000nkcufbg1danj7" data-title="Nginx原理" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/10/Nginx%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Nginx配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/09/Nginx%E9%99%90%E9%80%9F%E6%A8%A1%E5%9D%97%E6%8E%A2%E8%AE%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Nginx限速模块探讨</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/15/ceph/">ceph</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/15/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%9B%E5%BB%BAOpenStack%E9%95%9C%E5%83%8F%E7%A0%94%E7%A9%B6/">自动化创建OpenStack镜像研究</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/11/itil-5/">细说ITIL的五个服务支持流程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/DRP/">灾备切换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChpiTer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
