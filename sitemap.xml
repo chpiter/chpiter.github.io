@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chpiter.github.io/2024/04/22/Configuring%20LDAP%20Authentication/</loc>
+    
+    <lastmod>2024-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chpiter.github.io/2020/04/08/kubeadm-command/</loc>
     
     <lastmod>2024-04-12</lastmod>
@@ -301,7 +310,7 @@
 
   <url>
     <loc>https://chpiter.github.io/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -309,154 +318,168 @@
   
   <url>
     <loc>https://chpiter.github.io/tags/DRP/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/%E7%81%BE%E5%A4%87/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/BCM/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/ITIL/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/lvs/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/markdown/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/MongoDB/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/MySQL/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/nginx/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/keepalive/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/Nginx/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/SRE/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/linux/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/iptables/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/kubeadm/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/k8s/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/ops/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/supervisor/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/tcp/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chpiter.github.io/tags/http/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chpiter.github.io/tags/ldap/</loc>
+    <lastmod>2024-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chpiter.github.io/tags/2fa/</loc>
+    <lastmod>2024-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

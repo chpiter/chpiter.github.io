@@ -2021,4 +2021,21 @@ show variables like &#39;%relay%&#39;;
         <tag>http</tag>
       </tags>
   </entry>
+  <entry>
+    <title>关于主机的LDAP认证配置过程</title>
+    <url>/2024/04/22/Configuring%20LDAP%20Authentication/</url>
+    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a href="https://tylersguides.com/guides/configuring-openldap-authentication-centos-7/">https://tylersguides.com/guides/configuring-openldap-authentication-centos-7/</a></li>
+<li><a href="https://tylersguides.com/guides/configuring-ldap-authentication-on-centos-8/">https://tylersguides.com/guides/configuring-ldap-authentication-on-centos-8/</a></li>
+<li><a href="https://www.leviatan.cn/archives/28/">https://www.leviatan.cn/archives/28/</a></li>
+<li><a href="https://lework.github.io/2019/07/21/ldap-ssl/">https://lework.github.io/2019/07/21/ldap-ssl/</a></li>
+<li><a href="https://spiderevgn.github.io/2019/09/25/openldap-openssl.html">https://spiderevgn.github.io/2019/09/25/openldap-openssl.html</a></li>
+</ul>
+<h1 id="搭建openldap并开启SSL"><a href="#搭建openldap并开启SSL" class="headerlink" title="搭建openldap并开启SSL"></a>搭建openldap并开启SSL</h1><h1 id="配置NSLCD认证（CentOS7）"><a href="#配置NSLCD认证（CentOS7）" class="headerlink" title="配置NSLCD认证（CentOS7）"></a>配置NSLCD认证（CentOS7）</h1><h1 id="配置SSSD认证（CentOS8）"><a href="#配置SSSD认证（CentOS8）" class="headerlink" title="配置SSSD认证（CentOS8）"></a>配置SSSD认证（CentOS8）</h1><h1 id="添加双因素认证（2FA，基于google-authenticator）"><a href="#添加双因素认证（2FA，基于google-authenticator）" class="headerlink" title="添加双因素认证（2FA，基于google-authenticator）"></a>添加双因素认证（2FA，基于google-authenticator）</h1>]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>ldap</tag>
+        <tag>2fa</tag>
+      </tags>
+  </entry>
 </search>

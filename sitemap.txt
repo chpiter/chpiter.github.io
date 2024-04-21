@@ -1,3 +1,4 @@
+https://chpiter.github.io/2024/04/22/Configuring%20LDAP%20Authentication/
 https://chpiter.github.io/2020/04/08/kubeadm-command/
 https://chpiter.github.io/2020/03/11/Nginx%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D/
 https://chpiter.github.io/2020/04/07/kubeadm%E6%A6%82%E8%BF%B0/
@@ -54,3 +55,5 @@ https://chpiter.github.io/tags/%E7%AE%A1%E7%90%86/
 https://chpiter.github.io/tags/%E5%AD%A6%E4%B9%A0/
 https://chpiter.github.io/tags/tcp/
 https://chpiter.github.io/tags/http/
+https://chpiter.github.io/tags/ldap/
+https://chpiter.github.io/tags/2fa/

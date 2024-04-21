@@ -72,6 +72,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="ldap-Configuring LDAP Authentication" class="h-entry article article-type-ldap" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/22/Configuring%20LDAP%20Authentication/" class="article-date">
+  <time class="dt-published" datetime="2024-04-21T17:34:10.000Z" itemprop="datePublished">2024-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/22/Configuring%20LDAP%20Authentication/">关于主机的LDAP认证配置过程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://tylersguides.com/guides/configuring-openldap-authentication-centos-7/">https://tylersguides.com/guides/configuring-openldap-authentication-centos-7/</a></li>
+<li><a target="_blank" rel="noopener" href="https://tylersguides.com/guides/configuring-ldap-authentication-on-centos-8/">https://tylersguides.com/guides/configuring-ldap-authentication-on-centos-8/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.leviatan.cn/archives/28/">https://www.leviatan.cn/archives/28/</a></li>
+<li><a target="_blank" rel="noopener" href="https://lework.github.io/2019/07/21/ldap-ssl/">https://lework.github.io/2019/07/21/ldap-ssl/</a></li>
+<li><a target="_blank" rel="noopener" href="https://spiderevgn.github.io/2019/09/25/openldap-openssl.html">https://spiderevgn.github.io/2019/09/25/openldap-openssl.html</a></li>
+</ul>
+<h1 id="搭建openldap并开启SSL"><a href="#搭建openldap并开启SSL" class="headerlink" title="搭建openldap并开启SSL"></a>搭建openldap并开启SSL</h1><h1 id="配置NSLCD认证（CentOS7）"><a href="#配置NSLCD认证（CentOS7）" class="headerlink" title="配置NSLCD认证（CentOS7）"></a>配置NSLCD认证（CentOS7）</h1><h1 id="配置SSSD认证（CentOS8）"><a href="#配置SSSD认证（CentOS8）" class="headerlink" title="配置SSSD认证（CentOS8）"></a>配置SSSD认证（CentOS8）</h1><h1 id="添加双因素认证（2FA，基于google-authenticator）"><a href="#添加双因素认证（2FA，基于google-authenticator）" class="headerlink" title="添加双因素认证（2FA，基于google-authenticator）"></a>添加双因素认证（2FA，基于google-authenticator）</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chpiter.github.io/2024/04/22/Configuring%20LDAP%20Authentication/" data-id="clv9t4j1k0000s0ujgpt15usa" data-title="关于主机的LDAP认证配置过程" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2fa/" rel="tag">2fa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ldap/" rel="tag">ldap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="ceph-ceph" class="h-entry article article-type-ceph" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/04/15/ceph/" class="article-date">
@@ -837,55 +884,6 @@ show variables like &#39;%relay%&#39;;
 
 
   
-    <article id="lvs-practice-LVS操作实践" class="h-entry article article-type-lvs-practice" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/04/19/LVS%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5/" class="article-date">
-  <time class="dt-published" datetime="2020-04-19T10:08:02.000Z" itemprop="datePublished">2020-04-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/19/LVS%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5/">LVS操作实践</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/liwei0526vip/article/details/103104496">https://blog.csdn.net/liwei0526vip/article/details/103104496</a></li>
-</ul>
-<h1 id="一、实验环境说明"><a href="#一、实验环境说明" class="headerlink" title="一、实验环境说明"></a>一、实验环境说明</h1><p>我们知道 LVS 工作模式有DR、NAT、Tunnel 模式，这篇文章中会针对每个模式进行实践操作，通过实验来更深入理解工作原理。我们需要3台服务器来进行模拟。</p>
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/04/19/LVS%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://chpiter.github.io/2020/04/19/LVS%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5/" data-id="cluwce6pc0007kcuf9nkn1dvl" data-title="LVS操作实践" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -904,7 +902,7 @@ show variables like &#39;%relay%&#39;;
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2fa/" rel="tag">2fa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCM/" rel="tag">BCM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRP/" rel="tag">DRP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITIL/" rel="tag">ITIL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iptables/" rel="tag">iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalive/" rel="tag">keepalive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeadm/" rel="tag">kubeadm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ldap/" rel="tag">ldap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lvs/" rel="tag">lvs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ops/" rel="tag">ops</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/" rel="tag">tcp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%BE%E5%A4%87/" rel="tag">灾备</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
     </div>
   </div>
 
@@ -914,7 +912,7 @@ show variables like &#39;%relay%&#39;;
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
+      <a href="/tags/2fa/" style="font-size: 10px;">2fa</a> <a href="/tags/BCM/" style="font-size: 10px;">BCM</a> <a href="/tags/DRP/" style="font-size: 10px;">DRP</a> <a href="/tags/ITIL/" style="font-size: 10px;">ITIL</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/SRE/" style="font-size: 16.67px;">SRE</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/k8s/" style="font-size: 13.33px;">k8s</a> <a href="/tags/keepalive/" style="font-size: 10px;">keepalive</a> <a href="/tags/kubeadm/" style="font-size: 13.33px;">kubeadm</a> <a href="/tags/ldap/" style="font-size: 10px;">ldap</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ops/" style="font-size: 10px;">ops</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E7%81%BE%E5%A4%87/" style="font-size: 10px;">灾备</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 10px;">管理</a>
     </div>
   </div>
 
@@ -923,7 +921,7 @@ show variables like &#39;%relay%&#39;;
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li></ul>
     </div>
   </div>
 
@@ -934,6 +932,10 @@ show variables like &#39;%relay%&#39;;
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/04/22/Configuring%20LDAP%20Authentication/">关于主机的LDAP认证配置过程</a>
+          </li>
         
           <li>
             <a href="/2021/04/15/ceph/">ceph</a>
@@ -949,10 +951,6 @@ show variables like &#39;%relay%&#39;;
         
           <li>
             <a href="/2020/07/15/DRP/">灾备切换</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/15/BCM/">如何持续改进业务连续性管理体系</a>
           </li>
         
       </ul>
